@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "providers": [
+    "anthropic",
+    "codex",
+    "xai",
+    "kiro",
+    "kimi",
+    "cursor",
+    "deepseek"
+  ]
+}
