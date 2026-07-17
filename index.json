@@ -4,9 +4,10 @@
     "anthropic",
     "codex",
     "xai",
-    "kiro",
     "kimi",
-    "cursor",
-    "deepseek"
+    "deepseek",
+    "glm",
+    "minimax",
+    "mimo"
   ]
 }

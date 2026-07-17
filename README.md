@@ -34,22 +34,85 @@ providers/<name>.json # one file per provider
 - `pricing_style`: `openai` (cached tokens are a discounted subset of prompt tokens)
   or `anthropic` (input / cache_read / cache_write / output are separate buckets).
 - All prices are USD per 1M tokens.
-- A model id may appear under multiple providers with different prices
-  (e.g. `gpt-5.2` under both `codex` and `cursor`).
+- Model ids are **lowercase**; the service lowercases the account's upstream model
+  id before matching, so `MiniMax-M2` upstream matches `minimax-m2` here.
+- A model id may appear under multiple providers with different prices.
 
 ## Providers
 
 | name | display | notes |
 |---|---|---|
 | anthropic | Anthropic | canonical `claude-*` ids |
-| codex | OpenAI (Codex) | `gpt-*`, `o1/o3/o4*`, `chatgpt-*` |
-| xai | xAI | `grok-*` |
-| kiro | Kiro (CodeWhisperer) | accepts canonical and dotted (`claude-sonnet-4.5`) ids, billed at Anthropic rates |
-| kimi | Kimi (Moonshot) | `kimi-k2*` family |
-| cursor | Cursor | full IDE catalog incl. effort/speed/thinking variants (`-low/-high/-max/-fast/-thinking`); variants share the base model rate |
-| deepseek | DeepSeek | `deepseek-chat`, `deepseek-v4-*` |
+| codex | OpenAI (Codex) | `gpt-5.4` / `gpt-5.5` / `gpt-5.6-*` |
+| xai | xAI | `grok-*`; the four `grok-imagine-*` entries are **unpriced** — see below |
+| kimi | Kimi (Moonshot) | `k3` priced; the two `kimi-for-coding*` are **unpriced** — see below |
+| deepseek | DeepSeek | `deepseek-v4-flash` / `deepseek-v4-pro` |
+| glm | GLM (Zhipu) | `glm-4.5` and `glm-4.6` are **unpriced** — see below |
+| minimax | MiniMax | `MiniMax-M2`…`M3` upstream ids, lowercased here |
+| mimo | MiMo (Xiaomi) | all six entries are **unpriced** — see below |
+
+The registry only supplies rates; it never adds or removes catalog models. What a
+deployment serves is decided by its account pool's probes.
+
+## Provenance and known limitations
+
+Last full refresh: **2026-07-17**. Every rate below was taken from the vendor's own
+pricing page on that date. Read this section before trusting a number — several
+entries encode a judgement call, not a fact.
+
+### Currency
+
+`glm`, `kimi`, and `minimax` publish in **CNY**. This file is USD-only, so those
+rates were converted at:
+
+> **USD/CNY = 6.7669** — ECB reference rate, 2026-07-16
+> (cross-checked against open.er-api.com 6.78034 and fawazahmed0/currency-api 6.767994)
+
+**This rate is frozen and nothing re-checks it.** Those USD figures drift out of
+date from the day they were written. Re-derive them from the CNY source when the
+rate moves materially. The durable fix is a `currency` field in this schema plus
+conversion at billing time — not a hand-refreshed constant.
+
+### Tiered pricing is flattened
+
+The four rate fields cannot express prices that vary by prompt length. Where a
+vendor tiers, one tier was chosen:
+
+| provider | tiers | chosen |
+|---|---|---|
+| glm | input <32K vs 32K+ (some models also tier on output length) | **32K+ (higher)** — this deployment's traffic is agentic and routinely exceeds 32K, so the base tier would systematically undercharge (up to 2× on `glm-4.7`) |
+| xai | <200K vs ≥200K prompt (2× above) | base (<200K) |
+| codex | <272K context | base |
+| minimax | M3: ≤512K vs >512K input (2× above) | base (≤512K) |
+
+### Unpriced entries (all rates 0)
+
+A zero here means **"no published per-token rate"**, not "free". The service reads
+these rows as unpriced (`catalog.Unpriced`), so they produce no cost.
+
+| entries | why |
+|---|---|
+| `grok-imagine-image`, `grok-imagine-image-quality` | billed per image ($0.02 / $0.05), not per token |
+| `grok-imagine-video`, `grok-imagine-video-1.5` | billed per second ($0.050 / $0.080), not per token |
+| `mimo-v2.5*` (all 6) | Xiaomi's `token-plan-cn` endpoint is a subscription plan; no public per-token list price. `-asr` / `-tts*` are billed per character or second regardless |
+| `kimi-for-coding`, `kimi-for-coding-highspeed` | coding-plan aliases; no public per-token price. (`kimi-k2.7-code` **is** published at ¥1.30/¥6.50/¥27.00, but that is a different model id and was not substituted) |
+| `glm-4.5`, `glm-4.6` | no longer listed on open.bigmodel.cn/pricing as of 2026-07-17, though their doc pages remain |
+
+### Time-limited rates
+
+These will silently become wrong. Nothing in this repo will warn you.
+
+| entry | expires | reverts to |
+|---|---|---|
+| `claude-sonnet-5` | **2026-08-31** | 3 / 15 / 0.3 / 3.75 (currently the 2 / 10 / 0.2 / 2.5 intro rate) |
+| `glm-*` `cache_write_per_1m` | unannounced | GLM's cache-storage charge is currently 限时免费 (free for a limited time), hence 0 |
+| `minimax-m3` | unannounced | MiniMax lists 2.10/8.40/0.42 CNY as a 永久五折 rate against a 4.20/16.80/0.84 list price |
 
 ## Editing
 
 Edit the relevant `providers/<name>.json`, keep model ids unique within a file,
 then commit. Running deployments pick the change up on their next sync.
+
+When a CNY-priced rate changes, update it from the **vendor's CNY figure** and
+re-convert — do not edit the USD number directly, or the next person cannot tell
+what the source said.

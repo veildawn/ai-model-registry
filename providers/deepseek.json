@@ -3,27 +3,19 @@
   "display_name": "DeepSeek",
   "models": [
     {
-      "model": "deepseek-chat",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.27,
-      "completion_per_1m": 1.1,
-      "cache_read_per_1m": 0.07,
-      "cache_write_per_1m": 0
-    },
-    {
       "model": "deepseek-v4-flash",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.28,
-      "completion_per_1m": 1.1,
-      "cache_read_per_1m": 0.07,
+      "prompt_per_1m": 0.14,
+      "completion_per_1m": 0.28,
+      "cache_read_per_1m": 0.0028,
       "cache_write_per_1m": 0
     },
     {
       "model": "deepseek-v4-pro",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.55,
-      "completion_per_1m": 2.2,
-      "cache_read_per_1m": 0.14,
+      "prompt_per_1m": 0.435,
+      "completion_per_1m": 0.87,
+      "cache_read_per_1m": 0.003625,
       "cache_write_per_1m": 0
     }
   ]

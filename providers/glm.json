@@ -1,0 +1,70 @@
+{
+  "name": "glm",
+  "display_name": "GLM (Zhipu)",
+  "models": [
+    {
+      "model": "glm-4.5",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "glm-4.5-air",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.177334,
+      "completion_per_1m": 1.182225,
+      "cache_read_per_1m": 0.035467,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "glm-4.6",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "glm-4.7",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.591113,
+      "completion_per_1m": 2.36445,
+      "cache_read_per_1m": 0.118223,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "glm-5",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.886669,
+      "completion_per_1m": 3.251119,
+      "cache_read_per_1m": 0.221667,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "glm-5-turbo",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.034447,
+      "completion_per_1m": 3.842232,
+      "cache_read_per_1m": 0.266001,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "glm-5.1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.182225,
+      "completion_per_1m": 4.137788,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "glm-5.2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.182225,
+      "completion_per_1m": 4.137788,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0
+    }
+  ]
+}

@@ -3,62 +3,6 @@
   "display_name": "Anthropic",
   "models": [
     {
-      "model": "claude-3-5-haiku-20241022",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 0.8,
-      "completion_per_1m": 4,
-      "cache_read_per_1m": 0.08,
-      "cache_write_per_1m": 1
-    },
-    {
-      "model": "claude-3-5-sonnet-20241022",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75
-    },
-    {
-      "model": "claude-3-7-sonnet-20250219",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75
-    },
-    {
-      "model": "claude-3-haiku-20240307",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 0.25,
-      "completion_per_1m": 1.25,
-      "cache_read_per_1m": 0.03,
-      "cache_write_per_1m": 0.3
-    },
-    {
-      "model": "claude-3-opus-20240229",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 15,
-      "completion_per_1m": 75,
-      "cache_read_per_1m": 1.5,
-      "cache_write_per_1m": 18.75
-    },
-    {
-      "model": "claude-4-opus-20250514",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 15,
-      "completion_per_1m": 75,
-      "cache_read_per_1m": 1.5,
-      "cache_write_per_1m": 18.75
-    },
-    {
-      "model": "claude-4-sonnet-20250514",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75
-    },
-    {
       "model": "claude-fable-5",
       "pricing_style": "anthropic",
       "prompt_per_1m": 10,
@@ -67,76 +11,12 @@
       "cache_write_per_1m": 12.5
     },
     {
-      "model": "claude-haiku-4-5",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 1,
-      "completion_per_1m": 5,
-      "cache_read_per_1m": 0.1,
-      "cache_write_per_1m": 1.25
-    },
-    {
       "model": "claude-haiku-4-5-20251001",
       "pricing_style": "anthropic",
       "prompt_per_1m": 1,
       "completion_per_1m": 5,
       "cache_read_per_1m": 0.1,
       "cache_write_per_1m": 1.25
-    },
-    {
-      "model": "claude-mythos-5",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 10,
-      "completion_per_1m": 50,
-      "cache_read_per_1m": 1,
-      "cache_write_per_1m": 12.5
-    },
-    {
-      "model": "claude-mythos-preview",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 10,
-      "completion_per_1m": 50,
-      "cache_read_per_1m": 1,
-      "cache_write_per_1m": 12.5
-    },
-    {
-      "model": "claude-opus-4",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 15,
-      "completion_per_1m": 75,
-      "cache_read_per_1m": 1.5,
-      "cache_write_per_1m": 18.75
-    },
-    {
-      "model": "claude-opus-4-1",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 15,
-      "completion_per_1m": 75,
-      "cache_read_per_1m": 1.5,
-      "cache_write_per_1m": 18.75
-    },
-    {
-      "model": "claude-opus-4-1-20250805",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 15,
-      "completion_per_1m": 75,
-      "cache_read_per_1m": 1.5,
-      "cache_write_per_1m": 18.75
-    },
-    {
-      "model": "claude-opus-4-20250514",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 15,
-      "completion_per_1m": 75,
-      "cache_read_per_1m": 1.5,
-      "cache_write_per_1m": 18.75
-    },
-    {
-      "model": "claude-opus-4-5",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 5,
-      "completion_per_1m": 25,
-      "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25
     },
     {
       "model": "claude-opus-4-5-20251101",
@@ -155,23 +35,7 @@
       "cache_write_per_1m": 6.25
     },
     {
-      "model": "claude-opus-4-6-20260205",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 5,
-      "completion_per_1m": 25,
-      "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25
-    },
-    {
       "model": "claude-opus-4-7",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 5,
-      "completion_per_1m": 25,
-      "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25
-    },
-    {
-      "model": "claude-opus-4-7-20260416",
       "pricing_style": "anthropic",
       "prompt_per_1m": 5,
       "completion_per_1m": 25,
@@ -185,30 +49,6 @@
       "completion_per_1m": 25,
       "cache_read_per_1m": 0.5,
       "cache_write_per_1m": 6.25
-    },
-    {
-      "model": "claude-sonnet-4",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75
-    },
-    {
-      "model": "claude-sonnet-4-20250514",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75
-    },
-    {
-      "model": "claude-sonnet-4-5",
-      "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75
     },
     {
       "model": "claude-sonnet-4-5-20250929",

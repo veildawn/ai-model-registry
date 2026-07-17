@@ -3,51 +3,27 @@
   "display_name": "Kimi (Moonshot)",
   "models": [
     {
-      "model": "kimi-k2-thinking",
+      "model": "k3",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.6,
-      "completion_per_1m": 2.5,
-      "cache_read_per_1m": 0.15,
+      "prompt_per_1m": 2.955563,
+      "completion_per_1m": 14.777816,
+      "cache_read_per_1m": 0.295556,
       "cache_write_per_1m": 0
     },
     {
-      "model": "kimi-k2-0711-preview",
+      "model": "kimi-for-coding",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.6,
-      "completion_per_1m": 2.5,
-      "cache_read_per_1m": 0.15,
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
       "cache_write_per_1m": 0
     },
     {
-      "model": "kimi-k2-0905-preview",
+      "model": "kimi-for-coding-highspeed",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.6,
-      "completion_per_1m": 2.5,
-      "cache_read_per_1m": 0.15,
-      "cache_write_per_1m": 0
-    },
-    {
-      "model": "kimi-k2-turbo-preview",
-      "pricing_style": "openai",
-      "prompt_per_1m": 1.15,
-      "completion_per_1m": 8,
-      "cache_read_per_1m": 0.15,
-      "cache_write_per_1m": 0
-    },
-    {
-      "model": "kimi-latest",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.6,
-      "completion_per_1m": 2.5,
-      "cache_read_per_1m": 0.15,
-      "cache_write_per_1m": 0
-    },
-    {
-      "model": "kimi-k2.5",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.6,
-      "completion_per_1m": 2.5,
-      "cache_read_per_1m": 0.15,
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
       "cache_write_per_1m": 0
     }
   ]
