@@ -38,6 +38,32 @@ providers/<name>.json # one file per provider
   id before matching, so `MiniMax-M2` upstream matches `minimax-m2` here.
 - A model id may appear under multiple providers with different prices.
 
+### `hidden_models` (display blacklist, optional)
+
+A provider file may carry a `hidden_models` array in addition to (or instead of)
+`models`:
+
+```json
+{
+  "name": "cursor",
+  "display_name": "Cursor",
+  "models": [],
+  "hidden_models": ["claude-opus-4-7", "gpt-5.5", "gemini-3-flash"]
+}
+```
+
+- This is the **one display input** the registry has. The service drops these ids
+  from the model **listings** — the dashboard and `GET /v1/models` — so a reseller
+  that mirrors the whole industry's catalog can be trimmed to its common models
+  centrally instead of per deployment.
+- It **never un-serves** anything: a hidden id an active account still advertises
+  stays routable when a client names it explicitly. Serving is still a probe
+  decision; this only affects what is advertised.
+- Ids are **lowercase base ids** — the collapsed client-facing id without any
+  route prefix or thinking/effort suffix (`claude-opus-4-8`, not
+  `cursor/claude-opus-4-8-thinking-high`). Hiding a base hides its whole
+  thinking-variant family. It has no effect on pricing.
+
 ## Providers
 
 | name | display | notes |
@@ -50,9 +76,13 @@ providers/<name>.json # one file per provider
 | glm | GLM (Zhipu) | `glm-4.5` and `glm-4.6` are **unpriced** — see below |
 | minimax | MiniMax | `MiniMax-M2`…`M3` upstream ids, lowercased here |
 | mimo | MiMo (Xiaomi) | all six entries are **unpriced** — see below |
+| cursor | Cursor | **prices none** — reseller; `hidden_models` only, trims uncommon `claude-*` / `gpt-5.*` / `gemini-*` |
+| antigravity | Antigravity | **prices none** — reseller; `hidden_models` only, trims non-current Gemini/Claude |
+| google-ai-studio | Google AI Studio | **prices none**; `hidden_models` only, trims niche Gemini (tts / image / robotics / research / gemma) |
 
-The registry only supplies rates; it never adds or removes catalog models. What a
-deployment serves is decided by its account pool's probes.
+The registry only supplies rates and (via `hidden_models`) a listing blacklist; it
+never adds or removes catalog models. What a deployment serves is decided by its
+account pool's probes.
 
 ## Provenance and known limitations
 
