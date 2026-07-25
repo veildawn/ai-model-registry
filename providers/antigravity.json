@@ -1,7 +1,184 @@
 {
   "name": "antigravity",
   "display_name": "Antigravity",
-  "models": [],
+  "models": [
+    {
+      "model": "claude-opus-4-6-thinking",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-sonnet-4-6",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 3,
+      "completion_per_1m": 15,
+      "cache_read_per_1m": 0.3,
+      "cache_write_per_1m": 3.75
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.25,
+      "completion_per_1m": 1.5,
+      "cache_read_per_1m": 0.025,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-2.5-flash-lite",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.25,
+      "completion_per_1m": 1.5,
+      "cache_read_per_1m": 0.025,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-2.5-flash-thinking",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.25,
+      "completion_per_1m": 1.5,
+      "cache_read_per_1m": 0.025,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-2.5-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.25,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.125,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.5,
+      "completion_per_1m": 3,
+      "cache_read_per_1m": 0.05,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3-flash-agent",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.5,
+      "completion_per_1m": 9,
+      "cache_read_per_1m": 0.15,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3.1-flash-image",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.5,
+      "completion_per_1m": 3,
+      "cache_read_per_1m": 0.05,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3.1-flash-lite",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.25,
+      "completion_per_1m": 1.5,
+      "cache_read_per_1m": 0.025,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3.1-pro-high",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 12,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3.1-pro-low",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 12,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3.5-flash-extra-low",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.5,
+      "completion_per_1m": 9,
+      "cache_read_per_1m": 0.15,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3.5-flash-low",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.5,
+      "completion_per_1m": 9,
+      "cache_read_per_1m": 0.15,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3.6-flash-high",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.5,
+      "completion_per_1m": 7.5,
+      "cache_read_per_1m": 0.15,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3.6-flash-low",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.5,
+      "completion_per_1m": 7.5,
+      "cache_read_per_1m": 0.15,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3.6-flash-medium",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.5,
+      "completion_per_1m": 7.5,
+      "cache_read_per_1m": 0.15,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3.6-flash-tiered",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.5,
+      "completion_per_1m": 7.5,
+      "cache_read_per_1m": 0.15,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-pro-agent",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 12,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gpt-oss-120b-medium",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.04,
+      "completion_per_1m": 0.17,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "tab_flash_lite_preview",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.25,
+      "completion_per_1m": 1.5,
+      "cache_read_per_1m": 0.025,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "tab_jump_flash_lite_preview",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.25,
+      "completion_per_1m": 1.5,
+      "cache_read_per_1m": 0.025,
+      "cache_write_per_1m": 0
+    }
+  ],
   "hidden_models": [
     "chat_20706",
     "chat_23310",

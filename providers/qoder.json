@@ -1,0 +1,78 @@
+{
+  "name": "qoder",
+  "display_name": "Qoder",
+  "models": [
+    {
+      "model": "dfmodel",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.14,
+      "completion_per_1m": 0.28,
+      "cache_read_per_1m": 0.0028,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "dmodel",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.435,
+      "completion_per_1m": 0.87,
+      "cache_read_per_1m": 0.003625,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gm51model",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.182225,
+      "completion_per_1m": 4.137788,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "kmodel",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.95,
+      "completion_per_1m": 4,
+      "cache_read_per_1m": 0.19,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "mmodel",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.24,
+      "completion_per_1m": 0.96,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "q36fmodel",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.168912,
+      "completion_per_1m": 1.013471,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "qmodel",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.28152,
+      "completion_per_1m": 1.126079,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "qmodel_latest",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.689118,
+      "completion_per_1m": 5.067354,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "qmodel_preview",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.17,
+      "completion_per_1m": 0.51,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    }
+  ]
+}

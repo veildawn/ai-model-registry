@@ -51,6 +51,14 @@
       "cache_write_per_1m": 6.25
     },
     {
+      "model": "claude-opus-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
       "model": "claude-sonnet-4-5-20250929",
       "pricing_style": "anthropic",
       "prompt_per_1m": 3,

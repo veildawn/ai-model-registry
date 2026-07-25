@@ -1,0 +1,78 @@
+{
+  "name": "workbuddy",
+  "display_name": "WorkBuddy",
+  "models": [
+    {
+      "model": "deepseek-v4-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.14,
+      "completion_per_1m": 0.28,
+      "cache_read_per_1m": 0.0028,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.435,
+      "completion_per_1m": 0.87,
+      "cache_read_per_1m": 0.003625,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "glm-5.1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.182225,
+      "completion_per_1m": 4.137788,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "glm-5.2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.182225,
+      "completion_per_1m": 4.137788,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "hy3",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.14076,
+      "completion_per_1m": 0.563039,
+      "cache_read_per_1m": 0.03519,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "kimi-k2.6",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.95,
+      "completion_per_1m": 4,
+      "cache_read_per_1m": 0.16,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "kimi-k2.7",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.95,
+      "completion_per_1m": 4,
+      "cache_read_per_1m": 0.19,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "kimi-k3-1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2.955563,
+      "completion_per_1m": 14.777816,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "minimax-m3",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    }
+  ]
+}

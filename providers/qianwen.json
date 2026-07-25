@@ -1,0 +1,54 @@
+{
+  "name": "qianwen",
+  "display_name": "Qianwen",
+  "models": [
+    {
+      "model": "deepseek-v4-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.435,
+      "completion_per_1m": 0.87,
+      "cache_read_per_1m": 0.003625,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "glm-5.2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.182225,
+      "completion_per_1m": 4.137788,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "qwen3.6-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.168912,
+      "completion_per_1m": 1.013471,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "qwen3.7-max",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.689118,
+      "completion_per_1m": 5.067354,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "qwen3.7-plus",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.28152,
+      "completion_per_1m": 1.126079,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "qwen3.8-max-preview",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.17,
+      "completion_per_1m": 0.51,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0
+    }
+  ]
+}
