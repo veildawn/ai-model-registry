@@ -59,7 +59,10 @@
       "cache_write_per_1m": 0
     },
     {
-      "model": "kimi-k3-1",
+      "model": "kimi-k3",
+      "aliases": [
+        "kimi-k3-1"
+      ],
       "pricing_style": "openai",
       "prompt_per_1m": 2.955563,
       "completion_per_1m": 14.777816,
