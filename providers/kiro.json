@@ -138,5 +138,8 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0
     }
+  ],
+  "hidden_models": [
+    "auto"
   ]
 }
