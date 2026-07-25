@@ -515,6 +515,134 @@
       "cache_write_per_1m": 6.25
     },
     {
+      "model": "claude-opus-5-high",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-high-fast",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-low",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-low-fast",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-medium",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-medium-fast",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-thinking-high",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-thinking-high-fast",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-thinking-low",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-thinking-low-fast",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-thinking-max",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-thinking-max-fast",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-thinking-medium",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-thinking-medium-fast",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-thinking-xhigh",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
+      "model": "claude-opus-5-thinking-xhigh-fast",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 25,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 6.25
+    },
+    {
       "model": "claude-sonnet-5-high",
       "pricing_style": "anthropic",
       "prompt_per_1m": 3,
@@ -667,11 +795,35 @@
       "cache_write_per_1m": 1.25
     },
     {
+      "model": "gemini-2.5-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 2.5,
+      "cache_read_per_1m": 0.03,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.5,
+      "completion_per_1m": 3,
+      "cache_read_per_1m": 0.05,
+      "cache_write_per_1m": 0
+    },
+    {
       "model": "gemini-3.1-pro",
       "pricing_style": "openai",
       "prompt_per_1m": 2,
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 0
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.5,
+      "completion_per_1m": 9,
+      "cache_read_per_1m": 0.15,
       "cache_write_per_1m": 0
     },
     {
