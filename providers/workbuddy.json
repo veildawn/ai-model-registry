@@ -37,9 +37,9 @@
     {
       "model": "hy3",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.14076,
-      "completion_per_1m": 0.563039,
-      "cache_read_per_1m": 0.03519,
+      "prompt_per_1m": 0.147778,
+      "completion_per_1m": 0.591113,
+      "cache_read_per_1m": 0.036945,
       "cache_write_per_1m": 0
     },
     {

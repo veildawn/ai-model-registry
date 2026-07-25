@@ -63,8 +63,8 @@
         "q36fmodel"
       ],
       "pricing_style": "openai",
-      "prompt_per_1m": 0.168912,
-      "completion_per_1m": 1.013471,
+      "prompt_per_1m": 0.177334,
+      "completion_per_1m": 1.064003,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0
     },
@@ -74,8 +74,8 @@
         "qmodel_latest"
       ],
       "pricing_style": "openai",
-      "prompt_per_1m": 1.689118,
-      "completion_per_1m": 5.067354,
+      "prompt_per_1m": 1.773338,
+      "completion_per_1m": 5.320014,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0
     },
@@ -85,8 +85,8 @@
         "qmodel"
       ],
       "pricing_style": "openai",
-      "prompt_per_1m": 0.28152,
-      "completion_per_1m": 1.126079,
+      "prompt_per_1m": 0.295556,
+      "completion_per_1m": 1.182225,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0
     },
@@ -101,5 +101,8 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0
     }
+  ],
+  "hidden_models": [
+    "auto"
   ]
 }

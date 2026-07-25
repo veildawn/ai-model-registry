@@ -5,8 +5,8 @@
     {
       "model": "glm-4.5",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.112608,
-      "completion_per_1m": 0.28152,
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0
     },
