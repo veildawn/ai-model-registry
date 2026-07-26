@@ -69,7 +69,7 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | name | display | notes |
 |---|---|---|
 | anthropic | Anthropic | canonical `claude-*` ids |
-| codex | OpenAI (Codex) | `gpt-5.4` / `gpt-5.5` / `gpt-5.6-*` |
+| codex | OpenAI (Codex) | `gpt-5.4` / `gpt-5.5` / `gpt-5.6-*`; `gpt-image-2` is the images route — see below |
 | xai | xAI | `grok-*`; the four `grok-imagine-*` entries are **unpriced** — see below |
 | kimi | Kimi (Moonshot) | `k3` priced; the two `kimi-for-coding*` are **unpriced** — see below |
 | deepseek | DeepSeek | `deepseek-v4-flash` / `deepseek-v4-pro` |
@@ -114,6 +114,31 @@ vendor tiers, one tier was chosen:
 | xai | <200K vs ≥200K prompt (2× above) | base (<200K) |
 | codex | <272K context | base |
 | minimax | M3: ≤512K vs >512K input (2× above) | base (≤512K) |
+
+### Image models: one input rate for two kinds of input token
+
+`gpt-image-2` (added 2026-07-26 from developers.openai.com/api/docs/pricing) is
+billed by OpenAI on **five** rates, not four:
+
+| kind | rate |
+|---|---|
+| text input | $5.00 |
+| cached text input | $1.25 |
+| image input | $8.00 |
+| cached image input | $2.00 |
+| image output | $30.00 |
+
+The four fields here cannot hold that, and the service reads a single
+`input_tokens` figure off the upstream anyway — no text/image split reaches
+billing. So the **text** rates were taken for input (5 / 1.25) and the **image
+output** rate for output (30, the only kind these routes emit).
+
+The consequence: `/v1/images/generations`, whose input is the text prompt, is
+exact. `/v1/images/edits` charges the uploaded images' tokens at the text rate,
+undercharging that bucket by 37.5%. Input is the small bucket for image work —
+one 1024×1024 output is ~1.5K tokens at $30/1M — so this is a rounding error,
+not a systematic leak. Batch rates (exactly half of every row above) do not
+apply: nothing here goes through the Batch API.
 
 ### Unpriced entries (all rates 0)
 
