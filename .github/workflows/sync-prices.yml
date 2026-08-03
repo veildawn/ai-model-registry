@@ -1,0 +1,98 @@
+# Keep this registry current against litellm, once a day, without a person.
+#
+# Rows marked `"source": "litellm"` are rewritten from the upstream database and
+# committed. Rows marked `"source": "manual"` are never touched — the job only
+# reports when the upstream disagrees with one, through a single issue it keeps
+# up to date. See scripts/sync_prices.py for which rows are which and why.
+#
+# Daily rather than hourly: litellm's file moves a few times a day and a price
+# change is never urgent. The schedule is off the hour because GitHub queues
+# every cron in the world at :00, and a queued run is a late run.
+name: sync prices from litellm
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: sync-prices
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: apply the upstream to delegated rows
+        id: sync
+        run: |
+          set +e
+          python3 scripts/sync_prices.py --out report.md
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          set -e
+          if [ -n "$(git status --porcelain providers)" ]; then
+            echo "changed=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Exit code 2 is "could not read the upstream" — a network blip, not a
+      # finding. Stop before touching anything: with no upstream to read, the
+      # working tree is unchanged and there is nothing to report either.
+      - name: fail on a broken run
+        if: steps.sync.outputs.code == '2'
+        run: |
+          echo "sync_prices.py could not read the upstream file" >&2
+          exit 1
+
+      - name: commit
+        if: steps.sync.outputs.changed == '1'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add providers
+          git commit --file - <<'MSG'
+          chore: sync delegated rows from litellm
+
+          Applied by .github/workflows/sync-prices.yml. Only rows carrying
+          "source": "litellm" are written; see report in the run summary.
+          MSG
+          git push
+
+      # The report replaces the issue body rather than adding a comment, so the
+      # issue always reads as the CURRENT state instead of a pile of daily
+      # snapshots nobody scrolls to the bottom of.
+      - name: open or update the review issue
+        if: steps.sync.outputs.code == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          existing=$(gh issue list --state open --label price-drift --limit 1 --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" --body-file report.md
+            echo "updated issue #$existing"
+          else
+            gh label create price-drift --color ededed --description "rows we maintain disagree with litellm" --force
+            gh issue create --title "Rows to review against litellm" --label price-drift --body-file report.md
+          fi
+
+      - name: close the review issue when nothing needs a person
+        if: steps.sync.outputs.code == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          existing=$(gh issue list --state open --label price-drift --limit 1 --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue close "$existing" --comment "Nothing left to review: every hand-held row agrees with litellm, and no row is orphaned or unclassified."
+          fi
+
+      - name: report in the run summary
+        if: always() && steps.sync.outputs.code != '2'
+        run: cat report.md >> "$GITHUB_STEP_SUMMARY"

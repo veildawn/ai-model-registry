@@ -1,6 +1,6 @@
 {
-  "name": "qoder",
-  "display_name": "Qoder",
+  "name": "qoder-intl",
+  "display_name": "Qoder International",
   "models": [
     {
       "model": "deepseek-v4-flash",
@@ -51,25 +51,25 @@
       "source": "manual"
     },
     {
-      "model": "minimax-m2.7",
+      "model": "kimi-k3",
       "aliases": [
-        "mmodel"
+        "kmodel_latest"
       ],
       "pricing_style": "openai",
-      "prompt_per_1m": 0.24,
-      "completion_per_1m": 0.96,
-      "cache_read_per_1m": 0,
+      "prompt_per_1m": 2.955563,
+      "completion_per_1m": 14.777816,
+      "cache_read_per_1m": 0.295556,
       "cache_write_per_1m": 0,
       "source": "manual"
     },
     {
-      "model": "qwen3.6-flash",
+      "model": "minimax-m3",
       "aliases": [
-        "q36fmodel"
+        "mmodel"
       ],
       "pricing_style": "openai",
-      "prompt_per_1m": 0.177334,
-      "completion_per_1m": 1.064003,
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual"

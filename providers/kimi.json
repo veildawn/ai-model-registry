@@ -8,7 +8,8 @@
       "prompt_per_1m": 2.955563,
       "completion_per_1m": 14.777816,
       "cache_read_per_1m": 0.295556,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "k3-256k",
@@ -16,7 +17,8 @@
       "prompt_per_1m": 2.955563,
       "completion_per_1m": 14.777816,
       "cache_read_per_1m": 0.295556,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "kimi-for-coding",
@@ -24,7 +26,8 @@
       "prompt_per_1m": 0.95,
       "completion_per_1m": 4,
       "cache_read_per_1m": 0.19,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "kimi-for-coding-highspeed",
@@ -32,7 +35,8 @@
       "prompt_per_1m": 0.95,
       "completion_per_1m": 4,
       "cache_read_per_1m": 0.19,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     }
   ]
 }

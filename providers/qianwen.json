@@ -8,7 +8,8 @@
       "prompt_per_1m": 0.435,
       "completion_per_1m": 0.87,
       "cache_read_per_1m": 0.003625,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "glm-5.2",
@@ -16,7 +17,8 @@
       "prompt_per_1m": 1.182225,
       "completion_per_1m": 4.137788,
       "cache_read_per_1m": 0.295556,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "qwen3.6-flash",
@@ -24,15 +26,18 @@
       "prompt_per_1m": 0.177334,
       "completion_per_1m": 1.064003,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "qwen3.7-max",
       "pricing_style": "openai",
-      "prompt_per_1m": 1.773338,
-      "completion_per_1m": 5.320014,
-      "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "prompt_per_1m": 2.5,
+      "completion_per_1m": 7.5,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 991808
     },
     {
       "model": "qwen3.7-plus",
@@ -40,7 +45,13 @@
       "prompt_per_1m": 0.295556,
       "completion_per_1m": 1.182225,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 991808,
+      "input_modalities": [
+        "text",
+        "image"
+      ]
     },
     {
       "model": "qwen3.8-max-preview",
@@ -48,7 +59,8 @@
       "prompt_per_1m": 0.17,
       "completion_per_1m": 0.51,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     }
   ]
 }

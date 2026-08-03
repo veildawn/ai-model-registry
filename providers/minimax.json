@@ -5,18 +5,25 @@
     {
       "model": "minimax-m2",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.310334,
-      "completion_per_1m": 1.241337,
-      "cache_read_per_1m": 0.031033,
-      "cache_write_per_1m": 0.387918
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.03,
+      "cache_write_per_1m": 0.375,
+      "input_modalities": [
+        "text"
+      ],
+      "source": "litellm",
+      "context_window": 200000
     },
     {
       "model": "minimax-m2.1",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.310334,
-      "completion_per_1m": 1.241337,
-      "cache_read_per_1m": 0.031033,
-      "cache_write_per_1m": 0.387918
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.03,
+      "cache_write_per_1m": 0.375,
+      "source": "litellm",
+      "context_window": 1000000
     },
     {
       "model": "minimax-m2.1-highspeed",
@@ -24,15 +31,18 @@
       "prompt_per_1m": 0.620668,
       "completion_per_1m": 2.482673,
       "cache_read_per_1m": 0.031033,
-      "cache_write_per_1m": 0.387918
+      "cache_write_per_1m": 0.387918,
+      "source": "manual"
     },
     {
       "model": "minimax-m2.5",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.310334,
-      "completion_per_1m": 1.241337,
-      "cache_read_per_1m": 0.031033,
-      "cache_write_per_1m": 0.387918
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.03,
+      "cache_write_per_1m": 0.375,
+      "source": "litellm",
+      "context_window": 1000000
     },
     {
       "model": "minimax-m2.5-highspeed",
@@ -40,7 +50,8 @@
       "prompt_per_1m": 0.620668,
       "completion_per_1m": 2.482673,
       "cache_read_per_1m": 0.031033,
-      "cache_write_per_1m": 0.387918
+      "cache_write_per_1m": 0.387918,
+      "source": "manual"
     },
     {
       "model": "minimax-m2.7",
@@ -48,7 +59,8 @@
       "prompt_per_1m": 0.310334,
       "completion_per_1m": 1.241337,
       "cache_read_per_1m": 0.062067,
-      "cache_write_per_1m": 0.387918
+      "cache_write_per_1m": 0.387918,
+      "source": "manual"
     },
     {
       "model": "minimax-m2.7-highspeed",
@@ -56,15 +68,22 @@
       "prompt_per_1m": 0.620668,
       "completion_per_1m": 2.482673,
       "cache_read_per_1m": 0.062067,
-      "cache_write_per_1m": 0.387918
+      "cache_write_per_1m": 0.387918,
+      "source": "manual"
     },
     {
       "model": "minimax-m3",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.310334,
-      "completion_per_1m": 1.241337,
-      "cache_read_per_1m": 0.062067,
-      "cache_write_per_1m": 0
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.06,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text",
+        "image"
+      ]
     }
   ]
 }

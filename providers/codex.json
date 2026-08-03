@@ -8,7 +8,13 @@
       "prompt_per_1m": 2.5,
       "completion_per_1m": 15,
       "cache_read_per_1m": 0.25,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1050000
     },
     {
       "model": "gpt-5.4-mini",
@@ -16,7 +22,13 @@
       "prompt_per_1m": 0.75,
       "completion_per_1m": 4.5,
       "cache_read_per_1m": 0.075,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 272000
     },
     {
       "model": "gpt-5.5",
@@ -24,15 +36,27 @@
       "prompt_per_1m": 5,
       "completion_per_1m": 30,
       "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1050000
     },
     {
       "model": "gpt-5.6-luna",
       "pricing_style": "openai",
-      "prompt_per_1m": 1,
-      "completion_per_1m": 6,
-      "cache_read_per_1m": 0.1,
-      "cache_write_per_1m": 1.25
+      "prompt_per_1m": 0.2,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.02,
+      "cache_write_per_1m": 0.25,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1050000
     },
     {
       "model": "gpt-5.6-sol",
@@ -40,23 +64,40 @@
       "prompt_per_1m": 5,
       "completion_per_1m": 30,
       "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25
+      "cache_write_per_1m": 6.25,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1050000
     },
     {
       "model": "gpt-5.6-terra",
       "pricing_style": "openai",
-      "prompt_per_1m": 2.5,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.25,
-      "cache_write_per_1m": 3.125
+      "prompt_per_1m": 2,
+      "completion_per_1m": 12,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1050000
     },
     {
       "model": "gpt-image-2",
       "pricing_style": "openai",
       "prompt_per_1m": 5,
-      "completion_per_1m": 30,
+      "completion_per_1m": 10,
       "cache_read_per_1m": 1.25,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "input_modalities": [
+        "text",
+        "image"
+      ]
     }
   ]
 }

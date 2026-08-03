@@ -8,15 +8,26 @@
       "prompt_per_1m": 1.25,
       "completion_per_1m": 2.5,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "manual"
     },
     {
       "model": "grok-4.20-0309-reasoning",
       "pricing_style": "openai",
-      "prompt_per_1m": 1.25,
-      "completion_per_1m": 2.5,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 6,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 2000000
     },
     {
       "model": "grok-4.20-multi-agent-0309",
@@ -24,7 +35,12 @@
       "prompt_per_1m": 1.25,
       "completion_per_1m": 2.5,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "manual"
     },
     {
       "model": "grok-4.3",
@@ -32,7 +48,13 @@
       "prompt_per_1m": 1.25,
       "completion_per_1m": 2.5,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000
     },
     {
       "model": "grok-4.5",
@@ -40,7 +62,13 @@
       "prompt_per_1m": 2,
       "completion_per_1m": 6,
       "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 500000
     },
     {
       "model": "grok-build-0.1",
@@ -48,7 +76,8 @@
       "prompt_per_1m": 1,
       "completion_per_1m": 2,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "grok-imagine-image",
@@ -56,7 +85,8 @@
       "prompt_per_1m": 0,
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "grok-imagine-image-quality",
@@ -64,7 +94,8 @@
       "prompt_per_1m": 0,
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "grok-imagine-video",
@@ -72,7 +103,8 @@
       "prompt_per_1m": 0,
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "grok-imagine-video-1.5",
@@ -80,7 +112,8 @@
       "prompt_per_1m": 0,
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     }
   ],
   "hidden_models": [

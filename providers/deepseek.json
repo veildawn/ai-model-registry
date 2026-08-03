@@ -8,7 +8,12 @@
       "prompt_per_1m": 0.14,
       "completion_per_1m": 0.28,
       "cache_read_per_1m": 0.0028,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "deepseek-v4-pro",
@@ -16,7 +21,12 @@
       "prompt_per_1m": 0.435,
       "completion_per_1m": 0.87,
       "cache_read_per_1m": 0.003625,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text"
+      ]
     }
   ]
 }

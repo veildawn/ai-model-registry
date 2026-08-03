@@ -8,7 +8,8 @@
       "prompt_per_1m": 0.14,
       "completion_per_1m": 0.28,
       "cache_read_per_1m": 0.0028,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "deepseek-v4-pro",
@@ -16,7 +17,8 @@
       "prompt_per_1m": 0.435,
       "completion_per_1m": 0.87,
       "cache_read_per_1m": 0.003625,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "glm-5.1",
@@ -24,7 +26,8 @@
       "prompt_per_1m": 1.182225,
       "completion_per_1m": 4.137788,
       "cache_read_per_1m": 0.295556,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "glm-5.2",
@@ -32,7 +35,8 @@
       "prompt_per_1m": 1.182225,
       "completion_per_1m": 4.137788,
       "cache_read_per_1m": 0.295556,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "hy3",
@@ -40,7 +44,8 @@
       "prompt_per_1m": 0.147778,
       "completion_per_1m": 0.591113,
       "cache_read_per_1m": 0.036945,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "kimi-k2.6",
@@ -48,7 +53,8 @@
       "prompt_per_1m": 0.95,
       "completion_per_1m": 4,
       "cache_read_per_1m": 0.16,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "kimi-k2.7",
@@ -56,7 +62,8 @@
       "prompt_per_1m": 0.95,
       "completion_per_1m": 4,
       "cache_read_per_1m": 0.19,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "kimi-k3",
@@ -67,7 +74,8 @@
       "prompt_per_1m": 2.955563,
       "completion_per_1m": 14.777816,
       "cache_read_per_1m": 0.295556,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "minimax-m3",
@@ -75,7 +83,8 @@
       "prompt_per_1m": 0.3,
       "completion_per_1m": 1.2,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     }
   ],
   "hidden_models": [

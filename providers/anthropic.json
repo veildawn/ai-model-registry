@@ -8,7 +8,13 @@
       "prompt_per_1m": 10,
       "completion_per_1m": 50,
       "cache_read_per_1m": 1,
-      "cache_write_per_1m": 12.5
+      "cache_write_per_1m": 12.5,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000
     },
     {
       "model": "claude-haiku-4-5-20251001",
@@ -16,7 +22,13 @@
       "prompt_per_1m": 1,
       "completion_per_1m": 5,
       "cache_read_per_1m": 0.1,
-      "cache_write_per_1m": 1.25
+      "cache_write_per_1m": 1.25,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 200000
     },
     {
       "model": "claude-opus-4-5-20251101",
@@ -24,7 +36,13 @@
       "prompt_per_1m": 5,
       "completion_per_1m": 25,
       "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25
+      "cache_write_per_1m": 6.25,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 200000
     },
     {
       "model": "claude-opus-4-6",
@@ -32,7 +50,13 @@
       "prompt_per_1m": 5,
       "completion_per_1m": 25,
       "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25
+      "cache_write_per_1m": 6.25,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000
     },
     {
       "model": "claude-opus-4-7",
@@ -40,7 +64,13 @@
       "prompt_per_1m": 5,
       "completion_per_1m": 25,
       "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25
+      "cache_write_per_1m": 6.25,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000
     },
     {
       "model": "claude-opus-4-8",
@@ -48,7 +78,13 @@
       "prompt_per_1m": 5,
       "completion_per_1m": 25,
       "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25
+      "cache_write_per_1m": 6.25,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000
     },
     {
       "model": "claude-opus-5",
@@ -56,7 +92,13 @@
       "prompt_per_1m": 5,
       "completion_per_1m": 25,
       "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25
+      "cache_write_per_1m": 6.25,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000
     },
     {
       "model": "claude-sonnet-4-5-20250929",
@@ -64,7 +106,13 @@
       "prompt_per_1m": 3,
       "completion_per_1m": 15,
       "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75
+      "cache_write_per_1m": 3.75,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 200000
     },
     {
       "model": "claude-sonnet-4-6",
@@ -72,7 +120,13 @@
       "prompt_per_1m": 3,
       "completion_per_1m": 15,
       "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75
+      "cache_write_per_1m": 3.75,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000
     },
     {
       "model": "claude-sonnet-5",
@@ -80,7 +134,13 @@
       "prompt_per_1m": 2,
       "completion_per_1m": 10,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 2.5
+      "cache_write_per_1m": 2.5,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000
     }
   ]
 }

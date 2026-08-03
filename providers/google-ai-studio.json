@@ -8,7 +8,8 @@
       "prompt_per_1m": 2,
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "deep-research-preview-04-2026",
@@ -16,7 +17,8 @@
       "prompt_per_1m": 2,
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "manual"
     },
     {
       "model": "deep-research-pro-preview-12-2025",
@@ -24,7 +26,13 @@
       "prompt_per_1m": 2,
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 65536,
+      "input_modalities": [
+        "text",
+        "image"
+      ]
     },
     {
       "model": "gemini-2.0-flash",
@@ -32,7 +40,15 @@
       "prompt_per_1m": 0.1,
       "completion_per_1m": 0.4,
       "cache_read_per_1m": 0.025,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-2.0-flash-001",
@@ -40,23 +56,47 @@
       "prompt_per_1m": 0.1,
       "completion_per_1m": 0.4,
       "cache_read_per_1m": 0.025,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-2.0-flash-lite",
       "pricing_style": "openai",
       "prompt_per_1m": 0.075,
       "completion_per_1m": 0.3,
-      "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_read_per_1m": 0.01875,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-2.0-flash-lite-001",
       "pricing_style": "openai",
       "prompt_per_1m": 0.075,
       "completion_per_1m": 0.3,
-      "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_read_per_1m": 0.01875,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-2.5-computer-use-preview-10-2025",
@@ -64,7 +104,13 @@
       "prompt_per_1m": 1.25,
       "completion_per_1m": 10,
       "cache_read_per_1m": 0.125,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 128000
     },
     {
       "model": "gemini-2.5-flash",
@@ -72,15 +118,31 @@
       "prompt_per_1m": 0.3,
       "completion_per_1m": 2.5,
       "cache_read_per_1m": 0.03,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-2.5-flash-image",
       "pricing_style": "openai",
       "prompt_per_1m": 0.3,
-      "completion_per_1m": 0,
+      "completion_per_1m": 2.5,
       "cache_read_per_1m": 0.03,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 32768
     },
     {
       "model": "gemini-2.5-flash-lite",
@@ -88,15 +150,27 @@
       "prompt_per_1m": 0.1,
       "completion_per_1m": 0.4,
       "cache_read_per_1m": 0.01,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-2.5-flash-preview-tts",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.5,
-      "completion_per_1m": 10,
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 2.5,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text"
+      ],
+      "source": "litellm"
     },
     {
       "model": "gemini-2.5-pro",
@@ -104,15 +178,28 @@
       "prompt_per_1m": 1.25,
       "completion_per_1m": 10,
       "cache_read_per_1m": 0.125,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-2.5-pro-preview-tts",
       "pricing_style": "openai",
-      "prompt_per_1m": 1,
-      "completion_per_1m": 20,
-      "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "prompt_per_1m": 1.25,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.125,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-3-flash-preview",
@@ -120,7 +207,15 @@
       "prompt_per_1m": 0.5,
       "completion_per_1m": 3,
       "cache_read_per_1m": 0.05,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-3-pro-image",
@@ -128,7 +223,13 @@
       "prompt_per_1m": 2,
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 65536
     },
     {
       "model": "gemini-3-pro-image-preview",
@@ -136,7 +237,13 @@
       "prompt_per_1m": 2,
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 65536
     },
     {
       "model": "gemini-3-pro-preview",
@@ -144,23 +251,43 @@
       "prompt_per_1m": 2,
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-3.1-flash-image",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.5,
-      "completion_per_1m": 3,
+      "prompt_per_1m": 0.25,
+      "completion_per_1m": 1.5,
       "cache_read_per_1m": 0.05,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 65536
     },
     {
       "model": "gemini-3.1-flash-image-preview",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.5,
-      "completion_per_1m": 3,
+      "prompt_per_1m": 0.25,
+      "completion_per_1m": 1.5,
       "cache_read_per_1m": 0.05,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 65536
     },
     {
       "model": "gemini-3.1-flash-lite",
@@ -168,7 +295,15 @@
       "prompt_per_1m": 0.25,
       "completion_per_1m": 1.5,
       "cache_read_per_1m": 0.025,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-3.1-flash-lite-image",
@@ -176,7 +311,12 @@
       "prompt_per_1m": 0.25,
       "completion_per_1m": 1.5,
       "cache_read_per_1m": 0.025,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "manual"
     },
     {
       "model": "gemini-3.1-flash-lite-preview",
@@ -184,7 +324,15 @@
       "prompt_per_1m": 0.25,
       "completion_per_1m": 1.5,
       "cache_read_per_1m": 0.025,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-3.1-flash-tts-preview",
@@ -192,7 +340,11 @@
       "prompt_per_1m": 1,
       "completion_per_1m": 20,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text"
+      ],
+      "source": "manual"
     },
     {
       "model": "gemini-3.1-pro-preview",
@@ -200,7 +352,15 @@
       "prompt_per_1m": 2,
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-3.1-pro-preview-customtools",
@@ -208,7 +368,15 @@
       "prompt_per_1m": 2,
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-3.5-flash",
@@ -216,7 +384,15 @@
       "prompt_per_1m": 1.5,
       "completion_per_1m": 9,
       "cache_read_per_1m": 0.15,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-3.5-flash-lite",
@@ -224,7 +400,15 @@
       "prompt_per_1m": 0.3,
       "completion_per_1m": 2.5,
       "cache_read_per_1m": 0.03,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-3.6-flash",
@@ -232,23 +416,47 @@
       "prompt_per_1m": 1.5,
       "completion_per_1m": 7.5,
       "cache_read_per_1m": 0.15,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-flash-latest",
       "pricing_style": "openai",
-      "prompt_per_1m": 1.5,
-      "completion_per_1m": 7.5,
-      "cache_read_per_1m": 0.15,
-      "cache_write_per_1m": 0
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 2.5,
+      "cache_read_per_1m": 0.075,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-flash-lite-latest",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.3,
-      "completion_per_1m": 2.5,
-      "cache_read_per_1m": 0.03,
-      "cache_write_per_1m": 0
+      "prompt_per_1m": 0.1,
+      "completion_per_1m": 0.4,
+      "cache_read_per_1m": 0.025,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-omni-flash-preview",
@@ -256,23 +464,47 @@
       "prompt_per_1m": 1.5,
       "completion_per_1m": 9,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-pro-latest",
       "pricing_style": "openai",
-      "prompt_per_1m": 2,
-      "completion_per_1m": 12,
-      "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "prompt_per_1m": 1.25,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.125,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-robotics-er-1.5-preview",
       "pricing_style": "openai",
-      "prompt_per_1m": 1,
-      "completion_per_1m": 5,
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 2.5,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "video",
+        "audio"
+      ],
+      "source": "litellm",
+      "context_window": 1048576
     },
     {
       "model": "gemini-robotics-er-1.6-preview",
@@ -280,7 +512,12 @@
       "prompt_per_1m": 1,
       "completion_per_1m": 5,
       "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "manual"
     },
     {
       "model": "nano-banana-pro-preview",
@@ -288,7 +525,12 @@
       "prompt_per_1m": 2,
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "manual"
     }
   ],
   "hidden_models": [
