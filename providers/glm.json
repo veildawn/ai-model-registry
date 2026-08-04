@@ -87,7 +87,15 @@
       "completion_per_1m": 4.137788,
       "cache_read_per_1m": 0.295556,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     }
   ],
   "hidden_models": [
