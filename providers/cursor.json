@@ -1279,7 +1279,8 @@
         "text",
         "image"
       ],
-      "source": "manual"
+      "source": "manual",
+      "context_window": 500000
     },
     {
       "model": "cursor-grok-4.5-high-fast",
@@ -1292,7 +1293,8 @@
         "text",
         "image"
       ],
-      "source": "manual"
+      "source": "manual",
+      "context_window": 500000
     },
     {
       "model": "cursor-grok-4.5-low",
@@ -1305,7 +1307,8 @@
         "text",
         "image"
       ],
-      "source": "manual"
+      "source": "manual",
+      "context_window": 500000
     },
     {
       "model": "cursor-grok-4.5-low-fast",
@@ -1318,7 +1321,8 @@
         "text",
         "image"
       ],
-      "source": "manual"
+      "source": "manual",
+      "context_window": 500000
     },
     {
       "model": "cursor-grok-4.5-medium",
@@ -1331,7 +1335,8 @@
         "text",
         "image"
       ],
-      "source": "manual"
+      "source": "manual",
+      "context_window": 500000
     },
     {
       "model": "cursor-grok-4.5-medium-fast",
@@ -1344,7 +1349,8 @@
         "text",
         "image"
       ],
-      "source": "manual"
+      "source": "manual",
+      "context_window": 500000
     },
     {
       "model": "default",
@@ -1490,7 +1496,8 @@
       "completion_per_1m": 4.4,
       "cache_read_per_1m": 0.26,
       "cache_write_per_1m": 0,
-      "source": "cursor-docs"
+      "source": "cursor-docs",
+      "context_window": 1000000
     },
     {
       "model": "glm-5.2-max",
@@ -1499,7 +1506,8 @@
       "completion_per_1m": 4.4,
       "cache_read_per_1m": 0.26,
       "cache_write_per_1m": 0,
-      "source": "cursor-docs"
+      "source": "cursor-docs",
+      "context_window": 1000000
     },
     {
       "model": "gpt-5-mini",
@@ -1526,7 +1534,8 @@
         "text",
         "image"
       ],
-      "source": "manual"
+      "source": "manual",
+      "context_window": 400000
     },
     {
       "model": "gpt-5.1-high",
@@ -1539,7 +1548,8 @@
         "text",
         "image"
       ],
-      "source": "manual"
+      "source": "manual",
+      "context_window": 400000
     },
     {
       "model": "gpt-5.1-low",
@@ -1552,7 +1562,8 @@
         "text",
         "image"
       ],
-      "source": "manual"
+      "source": "manual",
+      "context_window": 400000
     },
     {
       "model": "gpt-5.2",
@@ -2667,7 +2678,8 @@
       "completion_per_1m": 4,
       "cache_read_per_1m": 0.19,
       "cache_write_per_1m": 0,
-      "source": "cursor-docs"
+      "source": "cursor-docs",
+      "context_window": 262144
     }
   ],
   "hidden_models": [

@@ -68,7 +68,8 @@
       "completion_per_1m": 3.842232,
       "cache_read_per_1m": 0.266001,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 200000
     },
     {
       "model": "glm-5.1",
@@ -88,6 +89,7 @@
       "cache_read_per_1m": 0.295556,
       "cache_write_per_1m": 0,
       "source": "manual",
+      "context_window": 1000000,
       "effort_levels": [
         "none",
         "low",

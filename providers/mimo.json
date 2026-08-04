@@ -10,6 +10,7 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
+      "context_window": 1000000,
       "effort_levels": [
         "low",
         "medium",
@@ -24,6 +25,7 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
+      "context_window": 1000000,
       "effort_levels": [
         "low",
         "medium",

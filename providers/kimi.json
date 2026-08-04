@@ -9,7 +9,8 @@
       "completion_per_1m": 14.777816,
       "cache_read_per_1m": 0.295556,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 1048576
     },
     {
       "model": "k3-256k",
@@ -18,7 +19,8 @@
       "completion_per_1m": 14.777816,
       "cache_read_per_1m": 0.295556,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 262144
     },
     {
       "model": "kimi-for-coding",
@@ -27,7 +29,8 @@
       "completion_per_1m": 4,
       "cache_read_per_1m": 0.19,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 262144
     },
     {
       "model": "kimi-for-coding-highspeed",
@@ -36,7 +39,8 @@
       "completion_per_1m": 4,
       "cache_read_per_1m": 0.19,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 262144
     }
   ]
 }

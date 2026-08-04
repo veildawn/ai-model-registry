@@ -9,7 +9,8 @@
       "completion_per_1m": 0.87,
       "cache_read_per_1m": 0.003625,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 1000000
     },
     {
       "model": "glm-5.2",
@@ -18,7 +19,8 @@
       "completion_per_1m": 4.137788,
       "cache_read_per_1m": 0.295556,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 1000000
     },
     {
       "model": "qwen3.6-flash",
@@ -27,7 +29,8 @@
       "completion_per_1m": 1.064003,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 1000000
     },
     {
       "model": "qwen3.7-max",
@@ -60,7 +63,8 @@
       "completion_per_1m": 0.51,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 983616
     }
   ]
 }

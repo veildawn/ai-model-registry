@@ -32,7 +32,8 @@
       "completion_per_1m": 2.482673,
       "cache_read_per_1m": 0.031033,
       "cache_write_per_1m": 0.387918,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 1000000
     },
     {
       "model": "minimax-m2.5",
@@ -51,7 +52,8 @@
       "completion_per_1m": 2.482673,
       "cache_read_per_1m": 0.031033,
       "cache_write_per_1m": 0.387918,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 1000000
     },
     {
       "model": "minimax-m2.7",
@@ -60,7 +62,8 @@
       "completion_per_1m": 1.241337,
       "cache_read_per_1m": 0.062067,
       "cache_write_per_1m": 0.387918,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 204800
     },
     {
       "model": "minimax-m2.7-highspeed",
@@ -69,7 +72,8 @@
       "completion_per_1m": 2.482673,
       "cache_read_per_1m": 0.062067,
       "cache_write_per_1m": 0.387918,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 204800
     },
     {
       "model": "minimax-m3",
