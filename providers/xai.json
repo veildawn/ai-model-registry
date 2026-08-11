@@ -118,9 +118,5 @@
       "cache_write_per_1m": 0,
       "source": "manual"
     }
-  ],
-  "hidden_models": [
-    "grok-imagine-video",
-    "grok-imagine-video-1.5"
   ]
 }
