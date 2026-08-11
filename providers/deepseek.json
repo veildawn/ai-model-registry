@@ -17,7 +17,6 @@
       "effort_levels": [
         "low",
         "high",
-        "xhigh",
         "max"
       ]
     },
@@ -34,9 +33,7 @@
         "text"
       ],
       "effort_levels": [
-        "low",
         "high",
-        "xhigh",
         "max"
       ]
     }
