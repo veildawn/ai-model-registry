@@ -16,7 +16,6 @@
       ],
       "effort_levels": [
         "low",
-        "medium",
         "high",
         "xhigh",
         "max"
@@ -33,6 +32,12 @@
       "context_window": 1000000,
       "input_modalities": [
         "text"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "xhigh",
+        "max"
       ]
     }
   ]
