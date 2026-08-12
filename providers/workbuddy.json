@@ -10,7 +10,12 @@
       "cache_read_per_1m": 0.0028,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ]
     },
     {
       "model": "deepseek-v4-pro",
@@ -20,7 +25,11 @@
       "cache_read_per_1m": 0.003625,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "effort_levels": [
+        "high",
+        "max"
+      ]
     },
     {
       "model": "glm-5.1",
