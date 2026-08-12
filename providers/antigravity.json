@@ -138,7 +138,10 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 65536
+      "context_window": 65536,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "gemini-3.1-flash-lite",

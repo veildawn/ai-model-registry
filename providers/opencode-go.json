@@ -85,7 +85,12 @@
       "cache_read_per_1m": 0.3,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 500000
+      "context_window": 500000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "hy3",

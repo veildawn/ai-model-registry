@@ -117,7 +117,22 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
+    },
+    {
+      "model": "grok-imagine-image-2.0",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "grok-imagine-image-quality",
@@ -126,7 +141,10 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "grok-imagine-video",
@@ -135,7 +153,10 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "grok-imagine-video-1.5",
@@ -144,7 +165,10 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
     }
   ]
 }

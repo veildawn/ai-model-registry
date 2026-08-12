@@ -44,6 +44,8 @@ providers/<name>.json # one file per provider
   deployment that measured its own through an account probe outranks this.
 - `input_modalities` (optional): what media the model can **read**, as
   `text` / `image` / `audio` / `video` — see below.
+- `effort_levels` (optional): the reasoning depths the model can be asked for —
+  see below.
 - `source`: who owns this row's numbers — `litellm`, `vendor-api`,
   `cursor-docs` (all rewritten daily, do not hand-edit) or `manual` (ours,
   never touched by the job). See below.
@@ -62,7 +64,7 @@ it.** Take the row back by flipping its `source` to `manual` first.
 | `litellm` | 64 | the vendor's own litellm namespace carries this exact id. Read, not inferred. |
 | `cursor-docs` | 181 | read from Cursor's own published table (see below). Rates from Cursor; context window and modalities from the vendor's row, since those do not change because a reseller fronts the model. |
 | `vendor-api` | 34 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` (16 of 18) and `antigravity` (18 of 22). Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
-| `manual` | 78 | ours. The job compares and reports, and never writes. |
+| `manual` | 98 | ours. The job compares and reports, and never writes. |
 
 Delegation is deliberately maximal: an upstream that is occasionally wrong and
 always fresh beats a hand-authored file that is occasionally right and always
@@ -139,6 +141,33 @@ types, and a Kiro IDE builds its attach control from that answer.
   `["text", "image"]` on one that does not walks the user into a 400.
 - `text` is implied for every chat model; write it anyway so the list reads as a
   complete statement rather than a delta.
+
+### `effort_levels` (optional)
+
+The reasoning depths this model can be asked for, weakest first, from
+`none` / `low` / `medium` / `high` / `xhigh` / `max`. The service publishes it on
+`GET /v1/models` and an IDE builds its thinking-effort picker from it, so a rung
+listed is a rung the request path has to deliver and a rung withheld is depth the
+user is paying for and cannot select.
+
+- **This is the only place a ladder should be written.** The service carries a
+  build-time snapshot of this repo, but its boot sync REPLACES that snapshot
+  wholesale — a ladder edited into the snapshot alone survives exactly until the
+  next boot on any host that can reach GitHub. Facts go here.
+- **The ceiling of the MODEL, not of the channel.** Absent means unknown, and the
+  service then falls back to what the protocol cell serving it can carry — an
+  upper bound. This field is the only input that can NARROW that: DeepSeek Flash
+  takes `["low","high","max"]` while the OpenAI cell fronting it would advertise
+  `low/medium/high/xhigh`.
+- **`["none"]` is a statement, not an empty value** — "this model has no thinking
+  depths at all". It is the right answer for every image / audio / video model,
+  which would otherwise inherit the chat cell's ladder and advertise a reasoning
+  control their endpoint does not take.
+- **Write it on every provider serving the id.** A collapsed listing unions the
+  pool, and a published ladder stands in for poolmates that publish none — so one
+  reseller row without one cannot re-widen the model's ceiling, but a pool where
+  NOBODY publishes falls to the wire tier for all of them.
+- The daily job never touches this field, on delegated rows or manual ones.
 
 ### `hidden_models` (display blacklist, optional)
 

@@ -39,7 +39,10 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "mimo-v2.5-tts",
@@ -48,7 +51,10 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "mimo-v2.5-tts-voiceclone",
@@ -57,7 +63,10 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "mimo-v2.5-tts-voicedesign",
@@ -66,7 +75,10 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
     }
   ]
 }

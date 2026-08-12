@@ -142,7 +142,10 @@
         "video"
       ],
       "source": "litellm",
-      "context_window": 32768
+      "context_window": 32768,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "gemini-2.5-flash-lite",
@@ -170,7 +173,10 @@
       "input_modalities": [
         "text"
       ],
-      "source": "litellm"
+      "source": "litellm",
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "gemini-2.5-pro",
@@ -199,7 +205,10 @@
         "text"
       ],
       "source": "litellm",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "gemini-3-flash-preview",
@@ -229,7 +238,10 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 65536
+      "context_window": 65536,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "gemini-3-pro-image-preview",
@@ -243,7 +255,10 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 65536
+      "context_window": 65536,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "gemini-3-pro-preview",
@@ -273,7 +288,10 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 65536
+      "context_window": 65536,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "gemini-3.1-flash-image-preview",
@@ -287,7 +305,10 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 65536
+      "context_window": 65536,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "gemini-3.1-flash-lite",
@@ -316,7 +337,10 @@
         "text",
         "image"
       ],
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "gemini-3.1-flash-lite-preview",
@@ -344,7 +368,10 @@
       "input_modalities": [
         "text"
       ],
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "gemini-3.1-pro-preview",
@@ -530,7 +557,10 @@
         "text",
         "image"
       ],
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "none"
+      ]
     }
   ],
   "hidden_models": [
