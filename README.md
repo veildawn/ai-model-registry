@@ -181,6 +181,7 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | cursor | Cursor | **prices none** — reseller; `hidden_models` only, trims uncommon `claude-*` / `gpt-5.*` / `gemini-*` |
 | antigravity | Antigravity | **prices none** — reseller; `hidden_models` only, trims non-current Gemini/Claude |
 | google-ai-studio | Google AI Studio | `hidden_models` trims niche Gemini (tts / music / robotics / research / gemma); the image family is **listed** — see below |
+| opencode-go | OpenCode Go | curated open-model subscription (`opencode.ai/zen/go`); DeepSeek Flash/Pro use the official effort ladders |
 | qoder-intl | Qoder International | same opaque `*model` aliases as `qoder`, priced from the intl edition's own model set; `auto` hidden (router alias) |
 
 The registry only supplies rates and (via `hidden_models`) a listing blacklist; it

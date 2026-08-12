@@ -1,0 +1,231 @@
+{
+  "name": "opencode-go",
+  "display_name": "OpenCode Go",
+  "models": [
+    {
+      "model": "deepseek-v4-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.14,
+      "completion_per_1m": 0.28,
+      "cache_read_per_1m": 0.0028,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ]
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.435,
+      "completion_per_1m": 0.87,
+      "cache_read_per_1m": 0.003625,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "high",
+        "max"
+      ]
+    },
+    {
+      "model": "glm-5.1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.4,
+      "completion_per_1m": 4.4,
+      "cache_read_per_1m": 0.26,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 200000
+    },
+    {
+      "model": "glm-5.2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.4,
+      "completion_per_1m": 4.4,
+      "cache_read_per_1m": 0.26,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.2,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.02,
+      "cache_write_per_1m": 0.25,
+      "source": "manual",
+      "context_window": 1050000,
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "model": "grok-4.5",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 6,
+      "cache_read_per_1m": 0.3,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 500000
+    },
+    {
+      "model": "hy3",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.14,
+      "completion_per_1m": 0.58,
+      "cache_read_per_1m": 0.035,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 262144
+    },
+    {
+      "model": "kimi-k2.6",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.95,
+      "completion_per_1m": 4,
+      "cache_read_per_1m": 0.16,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 262144
+    },
+    {
+      "model": "kimi-k2.7-code",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.95,
+      "completion_per_1m": 4,
+      "cache_read_per_1m": 0.19,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 262144
+    },
+    {
+      "model": "kimi-k3",
+      "pricing_style": "openai",
+      "prompt_per_1m": 3,
+      "completion_per_1m": 15,
+      "cache_read_per_1m": 0.3,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1048576
+    },
+    {
+      "model": "minimax-m2.5",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.06,
+      "cache_write_per_1m": 0.375,
+      "source": "manual",
+      "context_window": 1000000
+    },
+    {
+      "model": "minimax-m2.7",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.06,
+      "cache_write_per_1m": 0.375,
+      "source": "manual",
+      "context_window": 204800
+    },
+    {
+      "model": "minimax-m3",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.06,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000
+    },
+    {
+      "model": "mimo-v2.5",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.14,
+      "completion_per_1m": 0.28,
+      "cache_read_per_1m": 0.0028,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    {
+      "model": "mimo-v2.5-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.435,
+      "completion_per_1m": 0.87,
+      "cache_read_per_1m": 0.003625,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    {
+      "model": "qwen3.6-plus",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.5,
+      "completion_per_1m": 3,
+      "cache_read_per_1m": 0.05,
+      "cache_write_per_1m": 0.625,
+      "source": "manual",
+      "context_window": 1000000
+    },
+    {
+      "model": "qwen3.7-max",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2.5,
+      "completion_per_1m": 7.5,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 3.125,
+      "source": "manual",
+      "context_window": 991808
+    },
+    {
+      "model": "qwen3.7-plus",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.4,
+      "completion_per_1m": 1.6,
+      "cache_read_per_1m": 0.04,
+      "cache_write_per_1m": 0.5,
+      "source": "manual",
+      "context_window": 991808
+    },
+    {
+      "model": "qwen3.8-max",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 6,
+      "cache_read_per_1m": 0.25,
+      "cache_write_per_1m": 2.5,
+      "source": "manual",
+      "context_window": 1000000
+    }
+  ]
+}
