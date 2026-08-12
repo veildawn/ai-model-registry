@@ -14,7 +14,10 @@
         "image"
       ],
       "source": "manual",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "grok-4.20-0309-reasoning",
@@ -28,7 +31,12 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 2000000
+      "context_window": 2000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "grok-4.20-multi-agent-0309",
@@ -42,7 +50,12 @@
         "image"
       ],
       "source": "manual",
-      "context_window": 2000000
+      "context_window": 2000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "grok-4.3",
@@ -56,7 +69,12 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "grok-4.5",
@@ -70,7 +88,12 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 500000
+      "context_window": 500000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "grok-build-0.1",
@@ -80,7 +103,12 @@
       "cache_read_per_1m": 0.2,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 256000
+      "context_window": 256000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "grok-imagine-image",

@@ -48,7 +48,15 @@
       "cache_read_per_1m": 0.295556,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "kimi-k2.7-code",
