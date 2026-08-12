@@ -22,8 +22,8 @@
     {
       "model": "grok-4.20-0309-reasoning",
       "pricing_style": "openai",
-      "prompt_per_1m": 2,
-      "completion_per_1m": 6,
+      "prompt_per_1m": 1.25,
+      "completion_per_1m": 2.5,
       "cache_read_per_1m": 0.2,
       "cache_write_per_1m": 0,
       "input_modalities": [
@@ -31,7 +31,7 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 2000000,
+      "context_window": 1000000,
       "effort_levels": [
         "low",
         "medium",
@@ -81,7 +81,7 @@
       "pricing_style": "openai",
       "prompt_per_1m": 2,
       "completion_per_1m": 6,
-      "cache_read_per_1m": 0.5,
+      "cache_read_per_1m": 0.3,
       "cache_write_per_1m": 0,
       "input_modalities": [
         "text",
