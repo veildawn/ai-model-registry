@@ -10,7 +10,36 @@ providers carries its own independent price row.
 ```
 index.json            # {"version": 1, "providers": ["anthropic", ...]}
 providers/<name>.json # one file per provider
+go.mod, registry.go   # the same files, embedded, for offline consumers
 ```
+
+## Two ways to read this data
+
+Over **HTTP** (raw.githubusercontent), which is how a running deployment stays
+current: it syncs at startup, every 24h, and on demand from the admin panel.
+This is the path that wins whenever it succeeds.
+
+As a **Go module**, which is the offline fallback a consumer builds in:
+
+```go
+import registry "github.com/veildawn/ai-model-registry"
+
+// registry.Files is an embed.FS holding index.json and providers/*.json
+// at the same paths they have here.
+```
+
+Same files, same layout, one parser on the consumer's side. The module exists so
+a consumer never has to vendor a flattened copy into its own tree — a generated
+file that diffs like source and can be hand-edited is a second source of truth
+waiting to happen, and was one twice: researched effort ladders typed into
+ai-proxy-service's snapshot existed only inside a build and were wiped by the
+first sync that reached this repo. A module pins its version in the consumer's
+`go.mod` and is checksummed in `go.sum`; there is nothing to hand-edit.
+
+Bumping the fallback on the consumer side is `go get
+github.com/veildawn/ai-model-registry@main && go mod tidy`. Untagged pseudo-
+versions are fine — `main` is the only branch and every commit here is a fact
+correction, not an API change.
 
 ## Provider file schema
 
@@ -396,3 +425,8 @@ what the source said.
 
 A new entry with no `source` is treated as `manual` and reported until someone
 classifies it, so adding a row never risks it being silently overwritten.
+
+Adding or removing a provider means editing **both** `index.json` and
+`providers/<name>.json`. `go test ./...` here checks the two agree — the Go
+module embeds `providers/*.json` by glob, so a file the index does not list
+compiles fine and is simply never read.
