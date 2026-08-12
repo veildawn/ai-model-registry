@@ -32,6 +32,19 @@
       ]
     },
     {
+      "model": "glm-5",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 200000,
+      "effort_levels": [
+        "max"
+      ]
+    },
+    {
       "model": "glm-5.1",
       "pricing_style": "openai",
       "prompt_per_1m": 1.4,
@@ -39,7 +52,10 @@
       "cache_read_per_1m": 0.26,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 200000
+      "context_window": 200000,
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "glm-5.2",
@@ -67,7 +83,7 @@
       "cache_read_per_1m": 0.02,
       "cache_write_per_1m": 0.25,
       "source": "manual",
-      "context_window": 1050000,
+      "context_window": 272000,
       "effort_levels": [
         "none",
         "low",
@@ -100,7 +116,36 @@
       "cache_read_per_1m": 0.035,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 262144
+      "context_window": 262144,
+      "effort_levels": [
+        "max"
+      ]
+    },
+    {
+      "model": "hy3-preview",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 262144,
+      "effort_levels": [
+        "max"
+      ]
+    },
+    {
+      "model": "kimi-k2.5",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 262144,
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "kimi-k2.6",
@@ -110,7 +155,10 @@
       "cache_read_per_1m": 0.16,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 262144
+      "context_window": 262144,
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "kimi-k2.7-code",
@@ -120,7 +168,10 @@
       "cache_read_per_1m": 0.19,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 262144
+      "context_window": 262144,
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "kimi-k3",
@@ -130,7 +181,12 @@
       "cache_read_per_1m": 0.3,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ]
     },
     {
       "model": "minimax-m2.5",
@@ -163,6 +219,42 @@
       "context_window": 1000000
     },
     {
+      "model": "mimo-v2-omni",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "manual",
+      "context_window": 262144,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    {
+      "model": "mimo-v2-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    {
       "model": "mimo-v2.5",
       "pricing_style": "openai",
       "prompt_per_1m": 0.14,
@@ -193,6 +285,19 @@
       ]
     },
     {
+      "model": "qwen3.5-plus",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 991808,
+      "effort_levels": [
+        "max"
+      ]
+    },
+    {
       "model": "qwen3.6-plus",
       "pricing_style": "openai",
       "prompt_per_1m": 0.5,
@@ -200,7 +305,10 @@
       "cache_read_per_1m": 0.05,
       "cache_write_per_1m": 0.625,
       "source": "manual",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "qwen3.7-max",
@@ -210,7 +318,10 @@
       "cache_read_per_1m": 0.5,
       "cache_write_per_1m": 3.125,
       "source": "manual",
-      "context_window": 991808
+      "context_window": 991808,
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "qwen3.7-plus",
@@ -220,7 +331,10 @@
       "cache_read_per_1m": 0.04,
       "cache_write_per_1m": 0.5,
       "source": "manual",
-      "context_window": 991808
+      "context_window": 991808,
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "qwen3.8-max",
@@ -230,7 +344,12 @@
       "cache_read_per_1m": 0.25,
       "cache_write_per_1m": 2.5,
       "source": "manual",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "xhigh"
+      ]
     }
   ]
 }

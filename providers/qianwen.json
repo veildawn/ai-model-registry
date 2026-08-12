@@ -42,7 +42,10 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "qwen3.7-max",
@@ -52,7 +55,10 @@
       "cache_read_per_1m": 0.5,
       "cache_write_per_1m": 0,
       "source": "litellm",
-      "context_window": 991808
+      "context_window": 991808,
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "qwen3.7-plus",
@@ -66,6 +72,9 @@
       "input_modalities": [
         "text",
         "image"
+      ],
+      "effort_levels": [
+        "max"
       ]
     },
     {
@@ -76,7 +85,12 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 983616
+      "context_window": 983616,
+      "effort_levels": [
+        "low",
+        "medium",
+        "xhigh"
+      ]
     }
   ]
 }
