@@ -1353,6 +1353,118 @@
       "context_window": 500000
     },
     {
+      "model": "cursor-grok-4.6-high",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 6,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "cursor-docs",
+      "context_window": 500000
+    },
+    {
+      "model": "cursor-grok-4.6-high-fast",
+      "pricing_style": "openai",
+      "prompt_per_1m": 4,
+      "completion_per_1m": 12,
+      "cache_read_per_1m": 1,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "cursor-docs",
+      "context_window": 500000
+    },
+    {
+      "model": "cursor-grok-4.6-low",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 6,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "cursor-docs",
+      "context_window": 500000
+    },
+    {
+      "model": "cursor-grok-4.6-low-fast",
+      "pricing_style": "openai",
+      "prompt_per_1m": 4,
+      "completion_per_1m": 12,
+      "cache_read_per_1m": 1,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "cursor-docs",
+      "context_window": 500000
+    },
+    {
+      "model": "cursor-grok-4.6-medium",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 6,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "cursor-docs",
+      "context_window": 500000
+    },
+    {
+      "model": "cursor-grok-4.6-medium-fast",
+      "pricing_style": "openai",
+      "prompt_per_1m": 4,
+      "completion_per_1m": 12,
+      "cache_read_per_1m": 1,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "cursor-docs",
+      "context_window": 500000
+    },
+    {
+      "model": "cursor-grok-4.6-xhigh",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 6,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "cursor-docs",
+      "context_window": 500000
+    },
+    {
+      "model": "cursor-grok-4.6-xhigh-fast",
+      "pricing_style": "openai",
+      "prompt_per_1m": 4,
+      "completion_per_1m": 12,
+      "cache_read_per_1m": 1,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "cursor-docs",
+      "context_window": 500000
+    },
+    {
       "model": "default",
       "pricing_style": "openai",
       "prompt_per_1m": 1.25,

@@ -39,6 +39,7 @@ What stays manual is what no upstream has an answer for:
     `grok-imagine-*` pairs, `glm-5-turbo`, `gpt-oss-120b-medium`, Antigravity's
     two `tab_*` completion models, and the Cursor ids its own table omits
     (`composer-2.5*`, `cursor-grok-4.5*`, `default`, `gpt-5.1*`).
+    `cursor-grok-4.6*` is in Cursor's table and is delegated via CURSOR_ALIASES.
 
 Two consequences worth knowing, both accepted rather than worked around:
 
@@ -125,6 +126,10 @@ CURSOR_DOCS = "https://cursor.com/docs/models-and-pricing.md"
 # the normalisation.
 CURSOR_ALIASES = {
     "claude-opus-4-7": "Claude 4.7 Opus",
+    # Cursor's first-party Grok ids keep a `cursor-` prefix the published table
+    # does not use. Without this, `cursor-grok-4.6` normalises to
+    # `cursorgrok46` and misses the `Grok 4.6` / `Grok 4.6 (Fast)` rows.
+    "cursor-grok-4.6": "Grok 4.6",
 }
 
 # Suffixes a surface appends to a model id — reasoning depths, agent modes,

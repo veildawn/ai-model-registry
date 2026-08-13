@@ -109,6 +109,26 @@
       ]
     },
     {
+      "model": "grok-4.6",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 6,
+      "cache_read_per_1m": 0.5,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "manual",
+      "context_window": 500000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
+    },
+    {
       "model": "hy3",
       "pricing_style": "openai",
       "prompt_per_1m": 0.14,

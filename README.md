@@ -142,7 +142,9 @@ What stays `manual` is what no upstream answers:
   `kiro/qwen3-coder-next`, `antigravity/gemini-pro-agent`,
   `antigravity/gpt-oss-120b-medium`, Antigravity's two `tab_*` models, and the
   Cursor ids its own table omits (`composer-2.5*`, `cursor-grok-4.5*`,
-  `default`, `gpt-5.1*`).
+  `default`, `gpt-5.1*`). `cursor-grok-4.6*` is in that table (as `Grok 4.6`
+  / `Grok 4.6 (Fast)`) and is delegated via an alias; litellm does not yet
+  carry `grok-4.6`, so the xAI and OpenCode Go rows stay `manual`.
 
 The job never writes a manual row. When litellm disagrees with one it keeps a
 single open issue (label `price-drift`) up to date with the list, and closes it
@@ -361,6 +363,7 @@ These will silently become wrong. Nothing in this repo will warn you.
 | entry | expires | reverts to |
 |---|---|---|
 | `claude-sonnet-5` | **2026-08-31** | 3 / 15 / 0.3 / 3.75 (currently the 2 / 10 / 0.2 / 2.5 intro rate) |
+| Cursor `cursor-grok-4.6*` | **2026-08-19** | listed 2 / 6 / 0.5 (fast 4 / 12 / 1). Cursor's table notes a 50% launch discount for one week from 2026-08-12; this registry stores the published columns, not the promo. |
 | `glm-*` `cache_write_per_1m` | unannounced | GLM's cache-storage charge is currently 限时免费 (free for a limited time), hence 0 |
 | `minimax-m3` | unannounced | MiniMax lists 2.10/8.40/0.42 CNY as a 永久五折 rate against a 4.20/16.80/0.84 list price |
 
