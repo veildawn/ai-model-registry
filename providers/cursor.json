@@ -1602,6 +1602,54 @@
       "context_window": 1048576
     },
     {
+      "model": "gemini-3.7-flash-high",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.75,
+      "completion_per_1m": 3.5,
+      "cache_read_per_1m": 0.075,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "cursor-docs",
+      "context_window": 1048576
+    },
+    {
+      "model": "gemini-3.7-flash-low",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.75,
+      "completion_per_1m": 3.5,
+      "cache_read_per_1m": 0.075,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "cursor-docs",
+      "context_window": 1048576
+    },
+    {
+      "model": "gemini-3.7-flash-medium",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.75,
+      "completion_per_1m": 3.5,
+      "cache_read_per_1m": 0.075,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "cursor-docs",
+      "context_window": 1048576
+    },
+    {
       "model": "glm-5.2-high",
       "pricing_style": "openai",
       "prompt_per_1m": 1.4,
