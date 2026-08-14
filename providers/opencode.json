@@ -9,6 +9,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
+      "free": true,
       "source": "manual"
     },
     {
@@ -18,6 +19,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
+      "free": true,
       "source": "manual",
       "context_window": 1000000,
       "effort_levels": [
@@ -33,6 +35,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
+      "free": true,
       "source": "manual",
       "context_window": 262144,
       "effort_levels": [
@@ -46,6 +49,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
+      "free": true,
       "source": "manual"
     },
     {
@@ -55,6 +59,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
+      "free": true,
       "source": "manual",
       "context_window": 1000000,
       "effort_levels": [
@@ -70,6 +75,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
+      "free": true,
       "source": "manual"
     },
     {
@@ -79,6 +85,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
+      "free": true,
       "source": "manual"
     }
   ]
