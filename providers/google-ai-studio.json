@@ -454,6 +454,27 @@
       "context_window": 1048576
     },
     {
+      "model": "gemini-3.7-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.75,
+      "completion_per_1m": 3.75,
+      "cache_read_per_1m": 0.075,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "source": "litellm",
+      "context_window": 1048576,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    {
       "model": "gemini-flash-latest",
       "pricing_style": "openai",
       "prompt_per_1m": 0.3,

@@ -363,6 +363,7 @@ These will silently become wrong. Nothing in this repo will warn you.
 | entry | expires | reverts to |
 |---|---|---|
 | `claude-sonnet-5` | **2026-08-31** | 3 / 15 / 0.3 / 3.75 (currently the 2 / 10 / 0.2 / 2.5 intro rate) |
+| `gemini-3.7-flash` (and Cursor / Antigravity effort ids) | **2026-12-31** | 1.5 / 7.5 / 0.15 (currently Google's intro 0.75 / 3.75 / 0.075). Cursor's table currently prints output as $3.5, not $3.75. |
 | Cursor `cursor-grok-4.6*` | **2026-08-19** | listed 2 / 6 / 0.5 (fast 4 / 12 / 1). Cursor's table notes a 50% launch discount for one week from 2026-08-12; this registry stores the published columns, not the promo. |
 | `glm-*` `cache_write_per_1m` | unannounced | GLM's cache-storage charge is currently 限时免费 (free for a limited time), hence 0 |
 | `minimax-m3` | unannounced | MiniMax lists 2.10/8.40/0.42 CNY as a 永久五折 rate against a 4.20/16.80/0.84 list price |
