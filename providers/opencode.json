@@ -3,6 +3,15 @@
   "display_name": "OpenCode",
   "models": [
     {
+      "model": "big-pickle",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual"
+    },
+    {
       "model": "deepseek-v4-flash-free",
       "pricing_style": "openai",
       "prompt_per_1m": 0,
@@ -16,6 +25,61 @@
         "high",
         "max"
       ]
+    },
+    {
+      "model": "hy3-free",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 262144,
+      "effort_levels": [
+        "max"
+      ]
+    },
+    {
+      "model": "laguna-s-2.1-free",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual"
+    },
+    {
+      "model": "mimo-v2.5-free",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    {
+      "model": "nemotron-3-ultra-free",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual"
+    },
+    {
+      "model": "nemotron-3.5-lightning-free",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual"
     }
   ]
 }

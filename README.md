@@ -237,7 +237,8 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | deepseek | DeepSeek | `deepseek-v4-flash` / `deepseek-v4-pro` |
 | glm | GLM (Zhipu) | `glm-4.5` and `glm-4.6` are **unpriced** — see below |
 | minimax | MiniMax | `MiniMax-M2`…`M3` upstream ids, lowercased here |
-| mimo | MiMo (Xiaomi) | all six entries are **unpriced** — see below |
+| mimo | MiMo (Xiaomi) | overseas PAYG for `mimo-v2.5` / `mimo-v2.5-pro`; `-asr` / `-tts*` stay **unpriced** |
+| opencode | OpenCode Zen | the seven current `*-free` / `big-pickle` rows are **$0** — actually free, not unpriced |
 | cursor | Cursor | **prices none** — reseller; `hidden_models` only, trims uncommon `claude-*` / `gpt-5.*` / `gemini-*` |
 | antigravity | Antigravity | **prices none** — reseller; `hidden_models` only, trims non-current Gemini/Claude |
 | google-ai-studio | Google AI Studio | `hidden_models` trims niche Gemini (tts / music / robotics / research / gemma); the image family is **listed** — see below |
@@ -328,11 +329,17 @@ back to `"source": "manual"` and restore 30 — the job will leave it alone.
 A zero here means **"no published per-token rate"**, not "free". The service reads
 these rows as unpriced (`catalog.Unpriced`), so they produce no cost.
 
+The exception is OpenCode Zen's current free catalogue (`big-pickle`,
+`deepseek-v4-flash-free`, `hy3-free`, `laguna-s-2.1-free`, `mimo-v2.5-free`,
+`nemotron-3-ultra-free`, `nemotron-3.5-lightning-free`): Zen publishes those as
+Free, so 0 there is **$0**, not a missing rate.
+
 | entries | why |
 |---|---|
 | `grok-imagine-image`, `grok-imagine-image-quality` | billed per image ($0.02 / $0.05), not per token |
 | `grok-imagine-video`, `grok-imagine-video-1.5` | billed per second ($0.050 / $0.080), not per token |
-| `mimo-v2.5*` (all 6) | Xiaomi's `token-plan-cn` endpoint is a subscription plan; no public per-token list price. `-asr` / `-tts*` are billed per character or second regardless |
+| `mimo-v2.5-asr` | billed per hour of audio ($0.074 overseas / ¥0.5 CN), not per token |
+| `mimo-v2.5-tts*` (3) | Xiaomi lists them as 限时免费; no per-token rate when the promo ends |
 | `kimi-for-coding`, `kimi-for-coding-highspeed` | coding-plan aliases; no public per-token price. (`kimi-k2.7-code` **is** published at ¥1.30/¥6.50/¥27.00, but that is a different model id and was not substituted) |
 
 `glm-4.5` and `glm-4.6` used to be here — delisted from open.bigmodel.cn as of
@@ -363,6 +370,7 @@ These will silently become wrong. Nothing in this repo will warn you.
 | entry | expires | reverts to |
 |---|---|---|
 | `claude-sonnet-5` | **2026-08-31** | 3 / 15 / 0.3 / 3.75 (currently the 2 / 10 / 0.2 / 2.5 intro rate) |
+| `mimo-v2.5-tts*` | unannounced | Xiaomi PAYG currently lists TTS as 限时免费; this registry leaves them unpriced (0) |
 | `gemini-3.7-flash` (and Cursor / Antigravity effort ids) | **2026-12-31** | 1.5 / 7.5 / 0.15 (currently Google's intro 0.75 / 3.75 / 0.075). Cursor's table currently prints output as $3.5, not $3.75. |
 | Cursor `cursor-grok-4.6*` | **2026-08-19** | listed 2 / 6 / 0.5 (fast 4 / 12 / 1). Cursor's table notes a 50% launch discount for one week from 2026-08-12; this registry stores the published columns, not the promo. |
 | `glm-*` `cache_write_per_1m` | unannounced | GLM's cache-storage charge is currently 限时免费 (free for a limited time), hence 0 |
@@ -406,7 +414,7 @@ them, and a wrong declaration is worse here than no declaration:
 | google-ai-studio | `deep-research-*` (3) |
 | xai | `grok-build-0.1`, `grok-imagine-*` (4) |
 | codex | `gpt-image-2` |
-| mimo | all 6 |
+| mimo | `mimo-v2.5-asr`, `mimo-v2.5-tts*` (3) |
 | kiro | `glm-5`, `minimax-m2.1`, `minimax-m2.5` |
 
 Fill these in as they are confirmed — one line each, and every deployment picks
