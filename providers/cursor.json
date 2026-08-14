@@ -1113,10 +1113,10 @@
     {
       "model": "claude-sonnet-5-high",
       "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
         "image"
@@ -1127,10 +1127,10 @@
     {
       "model": "claude-sonnet-5-low",
       "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
         "image"
@@ -1141,10 +1141,10 @@
     {
       "model": "claude-sonnet-5-max",
       "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
         "image"
@@ -1155,10 +1155,10 @@
     {
       "model": "claude-sonnet-5-medium",
       "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
         "image"
@@ -1169,10 +1169,10 @@
     {
       "model": "claude-sonnet-5-thinking-high",
       "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
         "image"
@@ -1183,10 +1183,10 @@
     {
       "model": "claude-sonnet-5-thinking-low",
       "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
         "image"
@@ -1197,10 +1197,10 @@
     {
       "model": "claude-sonnet-5-thinking-max",
       "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
         "image"
@@ -1211,10 +1211,10 @@
     {
       "model": "claude-sonnet-5-thinking-medium",
       "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
         "image"
@@ -1225,10 +1225,10 @@
     {
       "model": "claude-sonnet-5-thinking-xhigh",
       "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
         "image"
@@ -1239,10 +1239,10 @@
     {
       "model": "claude-sonnet-5-xhigh",
       "pricing_style": "anthropic",
-      "prompt_per_1m": 3,
-      "completion_per_1m": 15,
-      "cache_read_per_1m": 0.3,
-      "cache_write_per_1m": 3.75,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
         "image"
