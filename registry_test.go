@@ -63,3 +63,48 @@ func TestEmbeddedFilesMatchIndex(t *testing.T) {
 		}
 	}
 }
+
+func TestDeepSeekOfficialOffPeakPricing(t *testing.T) {
+	body, err := registry.Files.ReadFile("providers/deepseek.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var provider struct {
+		Models []struct {
+			Model           string  `json:"model"`
+			PromptPer1M     float64 `json:"prompt_per_1m"`
+			CompletionPer1M float64 `json:"completion_per_1m"`
+			CacheReadPer1M  float64 `json:"cache_read_per_1m"`
+			CacheWritePer1M float64 `json:"cache_write_per_1m"`
+			Source          string  `json:"source"`
+		} `json:"models"`
+	}
+	if err := json.Unmarshal(body, &provider); err != nil {
+		t.Fatal(err)
+	}
+
+	type rates struct {
+		prompt, completion, cacheRead, cacheWrite float64
+	}
+	want := map[string]rates{
+		"deepseek-v4-flash": {0.22, 0.66, 0.007, 0},
+		"deepseek-v4-pro":   {0.66, 1.98, 0.022, 0},
+	}
+	for _, model := range provider.Models {
+		expected, ok := want[model.Model]
+		if !ok {
+			t.Errorf("unexpected DeepSeek model %q", model.Model)
+			continue
+		}
+		delete(want, model.Model)
+		if model.Source != "manual" {
+			t.Errorf("%s source = %q, want manual so the official rates are not overwritten", model.Model, model.Source)
+		}
+		if got := (rates{model.PromptPer1M, model.CompletionPer1M, model.CacheReadPer1M, model.CacheWritePer1M}); got != expected {
+			t.Errorf("%s rates = %#v, want %#v", model.Model, got, expected)
+		}
+	}
+	for model := range want {
+		t.Errorf("missing DeepSeek model %q", model)
+	}
+}
