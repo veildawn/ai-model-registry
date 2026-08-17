@@ -281,10 +281,10 @@ having to re-derive them again. The frozen rate now survives only on the rows
 litellm cannot match: `kimi` (`k3`, `k3-256k`), `glm-5-turbo`, `glm-5.2`,
 `qwen3.6-flash`, `qwen3.8-max-preview`, and the resold copies of all of those.
 
-### Tiered pricing is flattened
+### Variable pricing is flattened
 
-The four rate fields cannot express prices that vary by prompt length. Where a
-vendor tiers, one tier was chosen:
+The four rate fields cannot express prices that vary by prompt length or time.
+Where a vendor tiers, one tier was chosen:
 
 | provider | tiers | chosen |
 |---|---|---|
@@ -292,6 +292,7 @@ vendor tiers, one tier was chosen:
 | xai | <200K vs ≥200K prompt (2× above) | base (<200K) |
 | codex | <272K context | base |
 | minimax | M3: ≤512K vs >512K input (2× above) | base (≤512K) |
+| deepseek | [peak](https://api-docs.deepseek.com/quick_start/pricing/) 01:00–04:00 and 06:00–10:00 UTC (2× off-peak) | **off-peak** — it applies for the other 17 hours each day; Flash is 0.22 / 0.66 / 0.007 and Pro is 0.66 / 1.98 / 0.022 (input / output / cache-read, USD per 1M). The rows are manual so the daily LiteLLM sync cannot restore its stale prices. |
 
 ### Image models: one input rate for two kinds of input token
 

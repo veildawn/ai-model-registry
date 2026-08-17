@@ -5,11 +5,11 @@
     {
       "model": "deepseek-v4-flash",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.14,
-      "completion_per_1m": 0.28,
-      "cache_read_per_1m": 0.0028,
+      "prompt_per_1m": 0.22,
+      "completion_per_1m": 0.66,
+      "cache_read_per_1m": 0.007,
       "cache_write_per_1m": 0,
-      "source": "litellm",
+      "source": "manual",
       "context_window": 1000000,
       "input_modalities": [
         "text"
@@ -23,11 +23,11 @@
     {
       "model": "deepseek-v4-pro",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.435,
-      "completion_per_1m": 0.87,
-      "cache_read_per_1m": 0.003625,
+      "prompt_per_1m": 0.66,
+      "completion_per_1m": 1.98,
+      "cache_read_per_1m": 0.022,
       "cache_write_per_1m": 0,
-      "source": "litellm",
+      "source": "manual",
       "context_window": 1000000,
       "input_modalities": [
         "text"
