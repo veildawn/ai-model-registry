@@ -440,9 +440,9 @@
     {
       "model": "gemini-3.6-flash",
       "pricing_style": "openai",
-      "prompt_per_1m": 1.5,
-      "completion_per_1m": 7.5,
-      "cache_read_per_1m": 0.15,
+      "prompt_per_1m": 0.75,
+      "completion_per_1m": 3.75,
+      "cache_read_per_1m": 0.075,
       "cache_write_per_1m": 0,
       "input_modalities": [
         "text",
