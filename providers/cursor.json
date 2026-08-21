@@ -2339,7 +2339,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-luna-high-fast",
@@ -2353,7 +2353,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-luna-low",
@@ -2367,7 +2367,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-luna-low-fast",
@@ -2381,7 +2381,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-luna-max",
@@ -2395,7 +2395,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-luna-max-fast",
@@ -2409,7 +2409,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-luna-medium",
@@ -2423,7 +2423,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-luna-medium-fast",
@@ -2437,7 +2437,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-luna-none",
@@ -2451,7 +2451,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-luna-none-fast",
@@ -2465,7 +2465,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-luna-xhigh",
@@ -2479,7 +2479,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-luna-xhigh-fast",
@@ -2493,7 +2493,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-high",
@@ -2507,7 +2507,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-high-fast",
@@ -2521,7 +2521,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-low",
@@ -2535,7 +2535,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-low-fast",
@@ -2549,7 +2549,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-max",
@@ -2563,7 +2563,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-max-fast",
@@ -2577,7 +2577,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-medium",
@@ -2591,7 +2591,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-medium-fast",
@@ -2605,7 +2605,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-none",
@@ -2619,7 +2619,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-none-fast",
@@ -2633,7 +2633,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-xhigh",
@@ -2647,7 +2647,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol-xhigh-fast",
@@ -2661,7 +2661,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-high",
@@ -2675,7 +2675,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-high-fast",
@@ -2689,7 +2689,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-low",
@@ -2703,7 +2703,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-low-fast",
@@ -2717,7 +2717,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-max",
@@ -2731,7 +2731,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-max-fast",
@@ -2745,7 +2745,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-medium",
@@ -2759,7 +2759,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-medium-fast",
@@ -2773,7 +2773,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-none",
@@ -2787,7 +2787,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-none-fast",
@@ -2801,7 +2801,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-xhigh",
@@ -2815,7 +2815,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra-xhigh-fast",
@@ -2829,7 +2829,7 @@
         "image"
       ],
       "source": "cursor-docs",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "kimi-k2.7-code",

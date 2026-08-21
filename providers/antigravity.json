@@ -129,8 +129,8 @@
     {
       "model": "gemini-3.1-flash-image",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.25,
-      "completion_per_1m": 1.5,
+      "prompt_per_1m": 0.5,
+      "completion_per_1m": 3,
       "cache_read_per_1m": 0.05,
       "cache_write_per_1m": 0,
       "input_modalities": [

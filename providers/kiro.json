@@ -177,7 +177,7 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-sol",
@@ -191,7 +191,7 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "gpt-5.6-terra",
@@ -205,7 +205,7 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1050000
+      "context_window": 922000
     },
     {
       "model": "minimax-m2.1",
