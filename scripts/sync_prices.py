@@ -347,9 +347,9 @@ def per_1m(entry: dict, field: str):
     """The upstream rate in our unit, or None when it publishes none.
 
     None and 0 are different answers and must stay so: 0 in this registry means
-    "no published per-token rate" (the service reads it as unpriced), while an
-    upstream silence means nobody filled the field in. Writing a silence in as a
-    zero would turn a priced model free.
+    "no published per-token rate" (the service reads it as unpriced) unless the
+    row also has `"free": true`. An upstream silence means nobody filled the
+    field in. Writing a silence in as a zero would turn a priced model free.
     """
     value = entry.get(field)
     return None if value is None else clean(value * 1e6)
