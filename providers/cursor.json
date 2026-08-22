@@ -2498,10 +2498,10 @@
     {
       "model": "gpt-5.6-sol-high",
       "pricing_style": "openai",
-      "prompt_per_1m": 5,
-      "completion_per_1m": 30,
-      "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25,
+      "prompt_per_1m": 4,
+      "completion_per_1m": 20,
+      "cache_read_per_1m": 0.4,
+      "cache_write_per_1m": 5,
       "input_modalities": [
         "text",
         "image"
@@ -2512,10 +2512,10 @@
     {
       "model": "gpt-5.6-sol-high-fast",
       "pricing_style": "openai",
-      "prompt_per_1m": 10,
-      "completion_per_1m": 60,
-      "cache_read_per_1m": 1,
-      "cache_write_per_1m": 12.5,
+      "prompt_per_1m": 8,
+      "completion_per_1m": 40,
+      "cache_read_per_1m": 0.8,
+      "cache_write_per_1m": 10,
       "input_modalities": [
         "text",
         "image"
@@ -2526,10 +2526,10 @@
     {
       "model": "gpt-5.6-sol-low",
       "pricing_style": "openai",
-      "prompt_per_1m": 5,
-      "completion_per_1m": 30,
-      "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25,
+      "prompt_per_1m": 4,
+      "completion_per_1m": 20,
+      "cache_read_per_1m": 0.4,
+      "cache_write_per_1m": 5,
       "input_modalities": [
         "text",
         "image"
@@ -2540,10 +2540,10 @@
     {
       "model": "gpt-5.6-sol-low-fast",
       "pricing_style": "openai",
-      "prompt_per_1m": 10,
-      "completion_per_1m": 60,
-      "cache_read_per_1m": 1,
-      "cache_write_per_1m": 12.5,
+      "prompt_per_1m": 8,
+      "completion_per_1m": 40,
+      "cache_read_per_1m": 0.8,
+      "cache_write_per_1m": 10,
       "input_modalities": [
         "text",
         "image"
@@ -2554,10 +2554,10 @@
     {
       "model": "gpt-5.6-sol-max",
       "pricing_style": "openai",
-      "prompt_per_1m": 5,
-      "completion_per_1m": 30,
-      "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25,
+      "prompt_per_1m": 4,
+      "completion_per_1m": 20,
+      "cache_read_per_1m": 0.4,
+      "cache_write_per_1m": 5,
       "input_modalities": [
         "text",
         "image"
@@ -2568,10 +2568,10 @@
     {
       "model": "gpt-5.6-sol-max-fast",
       "pricing_style": "openai",
-      "prompt_per_1m": 10,
-      "completion_per_1m": 60,
-      "cache_read_per_1m": 1,
-      "cache_write_per_1m": 12.5,
+      "prompt_per_1m": 8,
+      "completion_per_1m": 40,
+      "cache_read_per_1m": 0.8,
+      "cache_write_per_1m": 10,
       "input_modalities": [
         "text",
         "image"
@@ -2582,10 +2582,10 @@
     {
       "model": "gpt-5.6-sol-medium",
       "pricing_style": "openai",
-      "prompt_per_1m": 5,
-      "completion_per_1m": 30,
-      "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25,
+      "prompt_per_1m": 4,
+      "completion_per_1m": 20,
+      "cache_read_per_1m": 0.4,
+      "cache_write_per_1m": 5,
       "input_modalities": [
         "text",
         "image"
@@ -2596,10 +2596,10 @@
     {
       "model": "gpt-5.6-sol-medium-fast",
       "pricing_style": "openai",
-      "prompt_per_1m": 10,
-      "completion_per_1m": 60,
-      "cache_read_per_1m": 1,
-      "cache_write_per_1m": 12.5,
+      "prompt_per_1m": 8,
+      "completion_per_1m": 40,
+      "cache_read_per_1m": 0.8,
+      "cache_write_per_1m": 10,
       "input_modalities": [
         "text",
         "image"
@@ -2610,10 +2610,10 @@
     {
       "model": "gpt-5.6-sol-none",
       "pricing_style": "openai",
-      "prompt_per_1m": 5,
-      "completion_per_1m": 30,
-      "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25,
+      "prompt_per_1m": 4,
+      "completion_per_1m": 20,
+      "cache_read_per_1m": 0.4,
+      "cache_write_per_1m": 5,
       "input_modalities": [
         "text",
         "image"
@@ -2624,10 +2624,10 @@
     {
       "model": "gpt-5.6-sol-none-fast",
       "pricing_style": "openai",
-      "prompt_per_1m": 10,
-      "completion_per_1m": 60,
-      "cache_read_per_1m": 1,
-      "cache_write_per_1m": 12.5,
+      "prompt_per_1m": 8,
+      "completion_per_1m": 40,
+      "cache_read_per_1m": 0.8,
+      "cache_write_per_1m": 10,
       "input_modalities": [
         "text",
         "image"
@@ -2638,10 +2638,10 @@
     {
       "model": "gpt-5.6-sol-xhigh",
       "pricing_style": "openai",
-      "prompt_per_1m": 5,
-      "completion_per_1m": 30,
-      "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 6.25,
+      "prompt_per_1m": 4,
+      "completion_per_1m": 20,
+      "cache_read_per_1m": 0.4,
+      "cache_write_per_1m": 5,
       "input_modalities": [
         "text",
         "image"
@@ -2652,10 +2652,10 @@
     {
       "model": "gpt-5.6-sol-xhigh-fast",
       "pricing_style": "openai",
-      "prompt_per_1m": 10,
-      "completion_per_1m": 60,
-      "cache_read_per_1m": 1,
-      "cache_write_per_1m": 12.5,
+      "prompt_per_1m": 8,
+      "completion_per_1m": 40,
+      "cache_read_per_1m": 0.8,
+      "cache_write_per_1m": 10,
       "input_modalities": [
         "text",
         "image"
