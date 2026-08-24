@@ -18,6 +18,21 @@
       ]
     },
     {
+      "model": "deepseek-v4-flash-vision-exp",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.14,
+      "completion_per_1m": 0.28,
+      "cache_read_per_1m": 0.0028,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ]
+    },
+    {
       "model": "deepseek-v4-pro",
       "pricing_style": "openai",
       "prompt_per_1m": 0.435,
