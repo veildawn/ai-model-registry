@@ -1,0 +1,25 @@
+{
+    "name": "siliconflow",
+    "display_name": "SiliconFlow",
+    "models": [
+        {
+            "model": "deepseek-ai/deepseek-v4-flash",
+            "source": "manual",
+            "context_window": 200000,
+            "effort_levels": [
+                "low",
+                "high",
+                "max"
+            ]
+        },
+        {
+            "model": "deepseek-ai/deepseek-v4-pro",
+            "source": "manual",
+            "context_window": 200000,
+            "effort_levels": [
+                "high",
+                "max"
+            ]
+        }
+    ]
+}

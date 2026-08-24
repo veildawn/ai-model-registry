@@ -1,0 +1,25 @@
+{
+    "name": "ollama",
+    "display_name": "Ollama",
+    "models": [
+        {
+            "model": "deepseek-v4-flash",
+            "source": "manual",
+            "context_window": 200000,
+            "effort_levels": [
+                "low",
+                "high",
+                "max"
+            ]
+        },
+        {
+            "model": "deepseek-v4-pro",
+            "source": "manual",
+            "context_window": 200000,
+            "effort_levels": [
+                "high",
+                "max"
+            ]
+        }
+    ]
+}

@@ -13,11 +13,13 @@
     "antigravity",
     "google-ai-studio",
     "kiro",
+    "ollama",
     "opencode",
     "opencode-go",
     "qianwen",
     "qoder",
     "qoder-intl",
+    "siliconflow",
     "workbuddy"
   ]
 }
