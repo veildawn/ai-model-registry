@@ -1,6 +1,7 @@
 {
   "name": "antigravity",
   "display_name": "Antigravity",
+  "list_prices": true,
   "models": [
     {
       "model": "claude-opus-4-6-thinking",
@@ -14,7 +15,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "claude-sonnet-4-6",
@@ -28,7 +30,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "gemini-2.5-flash",
@@ -44,7 +47,14 @@
         "video"
       ],
       "source": "vendor-api",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "surface": "chat",
+      "variants": {
+        "suffixes": [
+          "",
+          "-thinking"
+        ]
+      }
     },
     {
       "model": "gemini-2.5-flash-lite",
@@ -60,23 +70,8 @@
         "video"
       ],
       "source": "vendor-api",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-2.5-flash-thinking",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.3,
-      "completion_per_1m": 2.5,
-      "cache_read_per_1m": 0.03,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "source": "vendor-api",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "surface": "chat"
     },
     {
       "model": "gemini-2.5-pro",
@@ -92,7 +87,8 @@
         "video"
       ],
       "source": "vendor-api",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "surface": "chat"
     },
     {
       "model": "gemini-3-flash",
@@ -108,23 +104,14 @@
         "video"
       ],
       "source": "vendor-api",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3-flash-agent",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.5,
-      "completion_per_1m": 3,
-      "cache_read_per_1m": 0.05,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "source": "vendor-api",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "surface": "chat",
+      "variants": {
+        "suffixes": [
+          "",
+          "-agent"
+        ]
+      }
     },
     {
       "model": "gemini-3.1-flash-image",
@@ -141,7 +128,8 @@
       "context_window": 65536,
       "effort_levels": [
         "none"
-      ]
+      ],
+      "surface": "image"
     },
     {
       "model": "gemini-3.1-flash-lite",
@@ -157,10 +145,11 @@
         "video"
       ],
       "source": "vendor-api",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "surface": "chat"
     },
     {
-      "model": "gemini-3.1-pro-high",
+      "model": "gemini-3.1-pro",
       "pricing_style": "openai",
       "prompt_per_1m": 2,
       "completion_per_1m": 12,
@@ -173,26 +162,17 @@
         "video"
       ],
       "source": "vendor-api",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "surface": "chat",
+      "variants": {
+        "suffixes": [
+          "-high",
+          "-low"
+        ]
+      }
     },
     {
-      "model": "gemini-3.1-pro-low",
-      "pricing_style": "openai",
-      "prompt_per_1m": 2,
-      "completion_per_1m": 12,
-      "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "source": "vendor-api",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3.5-flash-extra-low",
+      "model": "gemini-3.5-flash",
       "pricing_style": "openai",
       "prompt_per_1m": 1.5,
       "completion_per_1m": 9,
@@ -205,26 +185,17 @@
         "video"
       ],
       "source": "vendor-api",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "surface": "chat",
+      "variants": {
+        "suffixes": [
+          "-extra-low",
+          "-low"
+        ]
+      }
     },
     {
-      "model": "gemini-3.5-flash-low",
-      "pricing_style": "openai",
-      "prompt_per_1m": 1.5,
-      "completion_per_1m": 9,
-      "cache_read_per_1m": 0.15,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "source": "vendor-api",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3.6-flash-high",
+      "model": "gemini-3.6-flash",
       "pricing_style": "openai",
       "prompt_per_1m": 0.75,
       "completion_per_1m": 3.75,
@@ -237,10 +208,19 @@
         "video"
       ],
       "source": "vendor-api",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "surface": "chat",
+      "variants": {
+        "suffixes": [
+          "-high",
+          "-low",
+          "-medium",
+          "-tiered"
+        ]
+      }
     },
     {
-      "model": "gemini-3.6-flash-low",
+      "model": "gemini-3.7-flash",
       "pricing_style": "openai",
       "prompt_per_1m": 0.75,
       "completion_per_1m": 3.75,
@@ -253,103 +233,16 @@
         "video"
       ],
       "source": "vendor-api",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3.6-flash-medium",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.75,
-      "completion_per_1m": 3.75,
-      "cache_read_per_1m": 0.075,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "source": "vendor-api",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3.6-flash-tiered",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.75,
-      "completion_per_1m": 3.75,
-      "cache_read_per_1m": 0.075,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "source": "vendor-api",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3.7-flash-high",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.75,
-      "completion_per_1m": 3.75,
-      "cache_read_per_1m": 0.075,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "source": "vendor-api",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3.7-flash-low",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.75,
-      "completion_per_1m": 3.75,
-      "cache_read_per_1m": 0.075,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "source": "vendor-api",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3.7-flash-medium",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.75,
-      "completion_per_1m": 3.75,
-      "cache_read_per_1m": 0.075,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "source": "vendor-api",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3.7-flash-tiered",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.75,
-      "completion_per_1m": 3.75,
-      "cache_read_per_1m": 0.075,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "source": "vendor-api",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "surface": "chat",
+      "variants": {
+        "suffixes": [
+          "-high",
+          "-low",
+          "-medium",
+          "-tiered"
+        ]
+      }
     },
     {
       "model": "gemini-pro-agent",
@@ -375,7 +268,8 @@
         "text"
       ],
       "source": "manual",
-      "context_window": 131072
+      "context_window": 131072,
+      "surface": "chat"
     },
     {
       "model": "tab_flash_lite_preview",

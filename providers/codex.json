@@ -1,6 +1,7 @@
 {
   "name": "codex",
   "display_name": "OpenAI (Codex)",
+  "list_prices": true,
   "models": [
     {
       "model": "gpt-5.4",
@@ -22,7 +23,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "gpt-5.4-mini",
@@ -44,7 +46,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "gpt-5.5",
@@ -66,7 +69,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "gpt-5.6-luna",
@@ -88,7 +92,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "gpt-5.6-sol",
@@ -110,7 +115,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "gpt-5.6-terra",
@@ -132,7 +138,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "gpt-image-2",
@@ -148,7 +155,8 @@
       ],
       "effort_levels": [
         "none"
-      ]
+      ],
+      "surface": "image"
     }
   ]
 }

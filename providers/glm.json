@@ -1,6 +1,7 @@
 {
   "name": "glm",
   "display_name": "GLM (Zhipu)",
+  "list_prices": true,
   "models": [
     {
       "model": "glm-4.5",
@@ -16,7 +17,8 @@
       "context_window": 128000,
       "effort_levels": [
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "glm-4.5-air",
@@ -32,7 +34,8 @@
       "context_window": 128000,
       "effort_levels": [
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "glm-4.6",
@@ -48,7 +51,8 @@
       "context_window": 200000,
       "effort_levels": [
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "glm-4.7",
@@ -61,7 +65,8 @@
       "context_window": 200000,
       "effort_levels": [
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "glm-5",
@@ -74,7 +79,8 @@
       "context_window": 200000,
       "effort_levels": [
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "glm-5-turbo",
@@ -87,7 +93,8 @@
       "context_window": 200000,
       "effort_levels": [
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "glm-5.1",
@@ -100,7 +107,8 @@
       "context_window": 200000,
       "effort_levels": [
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "glm-5.2",
@@ -118,7 +126,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "surface": "chat"
     }
   ],
   "hidden_models": [

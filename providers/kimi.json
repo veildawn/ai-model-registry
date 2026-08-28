@@ -1,6 +1,7 @@
 {
   "name": "kimi",
   "display_name": "Kimi (Moonshot)",
+  "list_prices": true,
   "models": [
     {
       "model": "k3",
@@ -15,7 +16,8 @@
         "low",
         "high",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "k3-256k",
@@ -30,7 +32,8 @@
         "low",
         "high",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "kimi-for-coding",
@@ -45,7 +48,8 @@
         "low",
         "high",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "kimi-for-coding-highspeed",
@@ -60,7 +64,8 @@
         "low",
         "high",
         "max"
-      ]
+      ],
+      "surface": "chat"
     }
   ]
 }

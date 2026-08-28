@@ -1,6 +1,7 @@
 {
   "name": "qianwen",
   "display_name": "Qianwen",
+  "list_prices": true,
   "models": [
     {
       "model": "deepseek-v4-pro",
@@ -14,7 +15,8 @@
       "effort_levels": [
         "high",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "glm-5.2",
@@ -32,7 +34,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "qwen3.6-flash",
@@ -45,7 +48,8 @@
       "context_window": 1000000,
       "effort_levels": [
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "qwen3.7-max",
@@ -58,7 +62,8 @@
       "context_window": 991808,
       "effort_levels": [
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "qwen3.7-plus",
@@ -75,7 +80,8 @@
       ],
       "effort_levels": [
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "qwen3.8-max-preview",
@@ -90,7 +96,8 @@
         "low",
         "medium",
         "xhigh"
-      ]
+      ],
+      "surface": "chat"
     }
   ]
 }

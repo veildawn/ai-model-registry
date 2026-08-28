@@ -1,14 +1,23 @@
-# Keep this registry current against litellm, once a day, without a person.
+# Keep this registry current against its upstreams, once a day, without a person.
 #
 # Rows marked `"source": "litellm"` are rewritten from the upstream database and
 # committed. Rows marked `"source": "manual"` are never touched — the job only
-# reports when the upstream disagrees with one, through a single issue it keeps
+# reports when an upstream disagrees with one, through a single issue it keeps
 # up to date. See scripts/sync_prices.py for which rows are which and why.
+#
+# models.dev is read too, for the two fields litellm has no column for
+# (`effort_levels` and an image/video/audio `surface`). It only ever fills an
+# empty field, and its absence is not fatal: the script logs and carries on, so a
+# third party's outage cannot stop the price sync this job exists for.
 #
 # Daily rather than hourly: litellm's file moves a few times a day and a price
 # change is never urgent. The schedule is off the hour because GitHub queues
 # every cron in the world at :00, and a queued run is a late run.
-name: sync prices from litellm
+#
+# all.json — the whole registry in one document, which is what consumers fetch —
+# is regenerated and committed in the same run as the files it is built from,
+# and a stale one fails the job. See scripts/bundle.py.
+name: sync prices from litellm and models.dev
 
 on:
   schedule:
@@ -36,7 +45,7 @@ jobs:
           python3 scripts/sync_prices.py --out report.md
           echo "code=$?" >> "$GITHUB_OUTPUT"
           set -e
-          if [ -n "$(git status --porcelain providers)" ]; then
+          if [ -n "$(git status --porcelain providers all.json)" ]; then
             echo "changed=1" >> "$GITHUB_OUTPUT"
           fi
 
@@ -49,18 +58,48 @@ jobs:
           echo "sync_prices.py could not read the upstream file" >&2
           exit 1
 
+      # all.json is the whole registry in one document, and it is what every
+      # consumer actually FETCHES — one GET instead of one per provider. A
+      # bundle that lags the files it is built from is therefore worse than no
+      # bundle: the sync succeeds, every model is present, and some of the
+      # prices are yesterday's, with nothing anywhere that looks broken.
+      #
+      # sync_prices.py already regenerates it whenever it rewrites a provider
+      # file, so this step normally changes nothing. It runs anyway to pick up
+      # a provider file edited by hand and pushed without the bundle, and the
+      # --check that follows is what makes a stale bundle un-committable rather
+      # than merely discouraged.
+      - name: regenerate the bundle
+        if: steps.sync.outputs.code != '2'
+        run: |
+          set -euo pipefail
+          python3 scripts/bundle.py
+          if [ -n "$(git status --porcelain all.json)" ]; then
+            echo "changed=1" >> "$GITHUB_OUTPUT"
+          fi
+        id: bundle
+
+      - name: refuse a stale bundle
+        if: steps.sync.outputs.code != '2'
+        run: python3 scripts/bundle.py --check
+
       - name: commit
-        if: steps.sync.outputs.changed == '1'
+        if: steps.sync.outputs.changed == '1' || steps.bundle.outputs.changed == '1'
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add providers
+          git add providers all.json
           git commit --file - <<'MSG'
-          chore: sync delegated rows from litellm
+          chore: sync delegated rows from upstream
 
-          Applied by .github/workflows/sync-prices.yml. Only rows carrying
-          "source": "litellm" are written; see report in the run summary.
+          Applied by .github/workflows/sync-prices.yml. Only rows with a
+          delegated "source" are written, plus empty effort_levels/surface
+          fields filled from models.dev; see report in the run summary.
+
+          all.json is regenerated from those files by scripts/bundle.py and
+          committed with them, so the one-GET bundle consumers fetch can never
+          be older than the files it is built from.
           MSG
           git push
 

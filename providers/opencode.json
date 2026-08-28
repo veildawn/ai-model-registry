@@ -9,7 +9,8 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "surface": "chat"
     },
     {
       "model": "deepseek-v4-flash-free",
@@ -24,7 +25,8 @@
         "low",
         "high",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "hy3-free",
@@ -37,7 +39,8 @@
       "context_window": 262144,
       "effort_levels": [
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "laguna-s-2.1-free",
@@ -46,7 +49,13 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
     },
     {
       "model": "mimo-v2.5-free",
@@ -61,7 +70,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "nemotron-3-ultra-free",
@@ -70,7 +80,8 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "surface": "chat"
     },
     {
       "model": "nemotron-3.5-lightning-free",
@@ -79,7 +90,8 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "surface": "chat"
     }
   ]
 }

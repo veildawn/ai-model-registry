@@ -1,6 +1,7 @@
 {
   "name": "xai",
   "display_name": "xAI",
+  "list_prices": true,
   "models": [
     {
       "model": "grok-4.20-0309-non-reasoning",
@@ -17,7 +18,8 @@
       "context_window": 1000000,
       "effort_levels": [
         "none"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "grok-4.20-0309-reasoning",
@@ -36,7 +38,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "grok-4.20-multi-agent-0309",
@@ -56,7 +59,8 @@
         "medium",
         "high",
         "xhigh"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "grok-4.3",
@@ -76,7 +80,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "grok-4.5",
@@ -95,7 +100,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "grok-4.6",
@@ -115,7 +121,8 @@
         "medium",
         "high",
         "xhigh"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "grok-build-0.1",
@@ -130,7 +137,12 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "chat"
     },
     {
       "model": "grok-imagine-image",
@@ -142,7 +154,8 @@
       "source": "manual",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "surface": "image"
     },
     {
       "model": "grok-imagine-image-2.0",
@@ -154,7 +167,8 @@
       "source": "manual",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "surface": "image"
     },
     {
       "model": "grok-imagine-image-quality",
@@ -178,7 +192,8 @@
       "source": "manual",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "surface": "video"
     },
     {
       "model": "grok-imagine-video-1.5",
@@ -190,7 +205,8 @@
       "source": "manual",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "surface": "video"
     }
   ]
 }

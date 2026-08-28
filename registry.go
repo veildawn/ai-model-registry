@@ -19,8 +19,16 @@ package registry
 
 import "embed"
 
-// Files holds index.json and every providers/*.json at the paths they have in
-// this repository. Read index.json first: it lists which provider files exist.
+// Files holds index.json, every providers/*.json, and the generated all.json
+// bundle at the paths they have in this repository. Read index.json first: it
+// lists which provider files exist.
 //
-//go:embed index.json providers/*.json
+// all.json is those same files in one document, keyed by the path each one has
+// here (see scripts/bundle.py). It is carried so the offline reader can take
+// the identical route the HTTP one does — a consumer fetching the registry does
+// it in a single GET instead of one per provider — and it is generated, never
+// hand-edited: bundle_test.go fails the build if it disagrees with the files
+// beside it.
+//
+//go:embed index.json providers/*.json all.json
 var Files embed.FS

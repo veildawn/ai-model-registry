@@ -1,6 +1,7 @@
 {
   "name": "kiro",
   "display_name": "Kiro",
+  "list_prices": true,
   "models": [
     {
       "model": "claude-haiku-4.5",
@@ -14,7 +15,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 200000
+      "context_window": 200000,
+      "surface": "chat"
     },
     {
       "model": "claude-opus-4.5",
@@ -28,7 +30,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 200000
+      "context_window": 200000,
+      "surface": "chat"
     },
     {
       "model": "claude-opus-4.6",
@@ -42,7 +45,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "claude-opus-4.7",
@@ -56,7 +60,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "claude-opus-4.8",
@@ -70,7 +75,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "claude-opus-5",
@@ -84,7 +90,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "claude-sonnet-4",
@@ -98,7 +105,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "claude-sonnet-4.5",
@@ -112,7 +120,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 200000
+      "context_window": 200000,
+      "surface": "chat"
     },
     {
       "model": "claude-sonnet-4.6",
@@ -126,7 +135,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "claude-sonnet-5",
@@ -140,7 +150,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "deepseek-3.2",
@@ -153,7 +164,14 @@
         "text"
       ],
       "source": "manual",
-      "context_window": 262144
+      "context_window": 262144,
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
     },
     {
       "model": "glm-5",
@@ -163,7 +181,8 @@
       "cache_read_per_1m": 0.2,
       "cache_write_per_1m": 0,
       "source": "vendor-api",
-      "context_window": 200000
+      "context_window": 200000,
+      "surface": "chat"
     },
     {
       "model": "gpt-5.6-luna",
@@ -177,7 +196,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 922000
+      "context_window": 922000,
+      "surface": "chat"
     },
     {
       "model": "gpt-5.6-sol",
@@ -191,7 +211,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 922000
+      "context_window": 922000,
+      "surface": "chat"
     },
     {
       "model": "gpt-5.6-terra",
@@ -205,7 +226,8 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 922000
+      "context_window": 922000,
+      "surface": "chat"
     },
     {
       "model": "minimax-m2.1",
@@ -215,7 +237,8 @@
       "cache_read_per_1m": 0.03,
       "cache_write_per_1m": 0.375,
       "source": "vendor-api",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "minimax-m2.5",
@@ -225,7 +248,8 @@
       "cache_read_per_1m": 0.03,
       "cache_write_per_1m": 0.375,
       "source": "vendor-api",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "qwen3-coder-next",
@@ -238,7 +262,8 @@
         "text"
       ],
       "source": "manual",
-      "context_window": 262144
+      "context_window": 262144,
+      "surface": "chat"
     }
   ],
   "hidden_models": [

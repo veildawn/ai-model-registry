@@ -15,7 +15,8 @@
         "low",
         "high",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "deepseek-v4-pro",
@@ -29,7 +30,8 @@
       "effort_levels": [
         "high",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "glm-5.1",
@@ -39,7 +41,8 @@
       "cache_read_per_1m": 0.295556,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 200000
+      "context_window": 200000,
+      "surface": "chat"
     },
     {
       "model": "glm-5.2",
@@ -57,7 +60,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "hy3",
@@ -67,7 +71,8 @@
       "cache_read_per_1m": 0.036945,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 262144
+      "context_window": 262144,
+      "surface": "chat"
     },
     {
       "model": "kimi-k2.6",
@@ -77,7 +82,8 @@
       "cache_read_per_1m": 0.16,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 262144
+      "context_window": 262144,
+      "surface": "chat"
     },
     {
       "model": "kimi-k2.7",
@@ -100,7 +106,8 @@
       "cache_read_per_1m": 0.295556,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1048576
+      "context_window": 1048576,
+      "surface": "chat"
     },
     {
       "model": "minimax-m3",
@@ -110,7 +117,8 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     }
   ],
   "hidden_models": [

@@ -10,22 +10,67 @@ providers carries its own independent price row.
 ```
 index.json            # {"version": 1, "providers": ["anthropic", ...]}
 providers/<name>.json # one file per provider
+all.json              # GENERATED: every file above, in one document
 go.mod, registry.go   # the same files, embedded, for offline consumers
+```
+
+### `all.json` — why it exists
+
+Reading this registry over HTTP the obvious way means fetching `index.json` and
+then one file per provider: **21 requests today**, one more with every provider
+added, for 140 KB of data. ai-proxy-service does that at boot under a 20 second
+budget for the whole operation, so the layout only works while the average round
+trip stays under ~950ms. Past that the sync times out and the service silently
+falls back to its embedded snapshot — nothing looks broken, every model is still
+there, and the prices are from whenever the module was pinned.
+
+`all.json` is those same files in one document, so a consumer does it in **one
+GET** and the round-trip count leaves the budget entirely.
+
+Its shape is a map from each file's registry-relative **path** to that file's
+content, which is what lets a consumer feed the bundle to the per-file reader it
+already has instead of writing a second parser that could disagree with the
+first:
+
+```json
+{
+  "version": 1,
+  "generated_by": "scripts/bundle.py",
+  "files": {
+    "index.json":               { "version": 1, "providers": ["anthropic", "..."] },
+    "providers/anthropic.json": { "name": "anthropic", "display_name": "Anthropic",
+                                  "list_prices": true, "models": [], "hidden_models": [] }
+  }
+}
+```
+
+The top-level `version` repeats the index's, so a consumer can reject a document
+it does not understand before parsing anything inside it.
+
+**It is generated and never hand-edited.** `scripts/sync_prices.py` rebuilds it
+whenever it rewrites a provider file, `python3 scripts/bundle.py --check` fails
+CI when the committed bytes disagree with the files beside them, and
+`bundle_test.go` fails the build when parsing the bundle does not yield exactly
+the providers and models that walking `providers/*.json` does. Regenerate it by
+hand with:
+
+```
+python3 scripts/bundle.py
 ```
 
 ## Two ways to read this data
 
 Over **HTTP** (raw.githubusercontent), which is how a running deployment stays
 current: it syncs at startup, every 24h, and on demand from the admin panel.
-This is the path that wins whenever it succeeds.
+This is the path that wins whenever it succeeds, and it reads `all.json`.
 
 As a **Go module**, which is the offline fallback a consumer builds in:
 
 ```go
 import registry "github.com/veildawn/ai-model-registry"
 
-// registry.Files is an embed.FS holding index.json and providers/*.json
-// at the same paths they have here.
+// registry.Files is an embed.FS holding index.json, providers/*.json and
+// all.json at the same paths they have here.
 ```
 
 Same files, same layout, one parser on the consumer's side. The module exists so
@@ -47,6 +92,7 @@ correction, not an API change.
 {
   "name": "anthropic",
   "display_name": "Anthropic",
+  "list_prices": true,
   "models": [
     {
       "model": "claude-sonnet-4-5",
@@ -57,12 +103,16 @@ correction, not an API change.
       "cache_write_per_1m": 3.75,
       "context_window": 200000,
       "input_modalities": ["text", "image"],
+      "surface": "chat",
       "source": "litellm"
     }
   ]
 }
 ```
 
+- `list_prices` (file level, optional, defaults to **false**): whether this
+  file's rates are the **vendor's published list price** for these ids, rather
+  than one seller's commercial terms — see below.
 - `pricing_style`: `openai` (cached tokens are a discounted subset of prompt tokens)
   or `anthropic` (input / cache_read / cache_write / output are separate buckets).
 - All prices are USD per 1M tokens.
@@ -75,25 +125,159 @@ correction, not an API change.
   `text` / `image` / `audio` / `video` — see below.
 - `effort_levels` (optional): the reasoning depths the model can be asked for —
   see below.
-- `source`: who owns this row's numbers — `litellm`, `vendor-api`,
-  `cursor-docs` (all rewritten daily, do not hand-edit) or `manual` (ours,
-  never touched by the job). See below.
+- `surface` (optional): which API route **serves** the model — see below.
+- `variants` (optional): the effort/speed spellings this one model is sold as —
+  see below.
+- `source`: who owns this row's **prices** — `litellm`, `vendor-api` (both
+  rewritten daily, do not hand-edit) or `manual` (ours, never overwritten). It
+  does not gate the capability facts; see below.
+- `price_reviewed` (optional): a note saying a person compared this row's price
+  against the upstream and decided ours stands. Moves the row out of the daily
+  report's action list — see below.
+
+## One model, many spellings: `variants`
+
+A reseller sells one model as a dozen ids: `claude-opus-4-7-high`,
+`-thinking-max`, `-low-fast`, and so on. They are the same model at different
+reasoning depths and speed tiers, and they agree on everything but the price.
+
+Written flat, a reseller selling one model as twenty effort and speed spellings
+spent twenty entries saying two things, and a price change had to land
+identically in all twenty or the registry silently disagreed with itself. That
+is not hypothetical: the check that now runs in `--check` found exactly that
+drift the first time it was pointed at the data. A family removes the failure
+mode instead of testing for it — a shared fact has one place to live, so it
+cannot have two values.
+
+```json
+{
+  "model": "claude-opus-4-7",
+  "prompt_per_1m": 5,
+  "completion_per_1m": 25,
+  "context_window": 1000000,
+  "surface": "chat",
+  "source": "litellm",
+  "variants": {
+    "suffixes": ["-high", "-high-fast", "-low", "-low-fast"],
+    "overrides": [
+      { "suffixes": ["-high-fast", "-low-fast"],
+        "prompt_per_1m": 30, "completion_per_1m": 150 }
+    ]
+  }
+}
+```
+
+- A consumer **expands** this into one entry per suffix: `model + suffix`, with
+  the family's facts, and its override group's rates where it has one. Nothing
+  downstream sees a family.
+- **Suffixes are listed, not generated.** A grammar would have to be shared with
+  whatever wrote the file and could invent ids no upstream serves; a list can
+  only name what somebody put in it.
+- **Only rates may be overridden.** A depth or a speed tier changes what a call
+  costs and never what the model is, so `context_window`, `surface` and
+  `input_modalities` have exactly one home.
+- An empty string in `suffixes` means the **base id itself** is served. A family
+  whose members are all suffixed has no bare id, and inventing one would publish
+  a model the upstream does not answer to.
+- `scripts/sync_prices.py` maintains the shape: it expands on read, does its work
+  per served id, and collapses on write. `scripts/flatten.py` prints the expanded
+  fact set, which is how a change to the files is proved not to be a change to
+  the facts.
+
+## Whose price list a file is: `list_prices`
+
+A consumer that knows a relay serves `gemini-3.6-flash` but has never heard of
+that relay's own name has to price it from the model id alone, across every
+provider here. That only gives the right answer if the files it reads carry
+**vendor list prices**, which is what this flag marks.
+
+It matters because this registry carries both kinds. A reseller publishes its own
+per-model table and really does charge its own prices — and one such file was at
+one point roughly half the entries. Without the flag, "the highest published rate
+for this id" quietly stopped meaning *the vendor's list price* and started
+meaning *the highest markup anyone charges*: a relay serving
+`gemini-3.6-flash-high` would have been priced from that reseller's 1.5 instead
+of the 0.75 Google lists, at twice the rate.
+
+Set it `true` on exactly two kinds of file:
+
+- the **vendor itself**, publishing its own price list;
+- a surface that publishes no rate of its own and **meters at the vendor's
+  list** (`antigravity`, `kiro` — the `vendor-api` rows), whose numbers are the
+  vendor's by construction.
+
+Every reseller is left unmarked, whether it marks up (`cursor`) or discounts
+(`qoder`, `workbuddy`, `opencode`): what disqualifies a file is that its numbers
+are one seller's commercial terms, and a discount is as much a commercial term
+as a markup.
+
+**Absent means false**, which is the safe default and why resellers carry no key
+at all: leaving a vendor out costs the id-alone lookup one data point, while
+letting a reseller in prices somebody else's traffic at its markup. A new
+provider file is therefore correct by default and needs the flag only when it is
+genuinely a vendor's own list.
+
+The flag governs **prices only**. `context_window`, `effort_levels`,
+`input_modalities` and `surface` are properties of the model and are the same
+whoever fronts it, so every publisher counts toward those.
 
 ## Who owns a row: `source`
 
 A daily GitHub Action (`.github/workflows/sync-prices.yml`) runs
 `scripts/sync_prices.py`, which rewrites every delegated row from
 [litellm's public model database](https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json)
-and commits the result. Rates, context window and input modalities all come
-across. **Editing a delegated row by hand is pointless — the next run reverts
-it.** Take the row back by flipping its `source` to `manual` first.
+and commits the result. Rates, context window, input modalities and the serving
+surface all come across. **Editing a delegated row by hand is pointless — the
+next run reverts it.** Take the row back by flipping its `source` to `manual`
+first.
+
+A second upstream, [models.dev](https://models.dev/api.json), supplies the two
+fields litellm has no column for: `effort_levels`, and `surface` where a model's
+only output is an image, video or audio. It is a **supplement** in the strict
+sense — it fills a field a row leaves empty and never rewrites one that is set —
+so it can overrule neither litellm nor a person, and it has no `source` value of
+its own. It is also the one upstream whose absence is survivable: a failure there
+is logged and the run continues, because a third party's outage must not be able
+to stop a price sync.
+
+models.dev carries one entry per host that serves a model — `gpt-5.4` appears
+under 39 of them — so a fact is taken only when every host publishing it agrees.
+That is not pedantry: exactly one of those 39 mislabels `gpt-5.4` as an image
+model, and unanimity costs 4 ids across the whole upstream while removing the
+entire class of one-bad-row errors.
 
 | `source` | rows | what it means |
 |---|---|---|
-| `litellm` | 64 | the vendor's own litellm namespace carries this exact id. Read, not inferred. |
-| `cursor-docs` | 181 | read from Cursor's own published table (see below). Rates from Cursor; context window and modalities from the vendor's row, since those do not change because a reseller fronts the model. |
-| `vendor-api` | 34 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` (16 of 18) and `antigravity` (18 of 22). Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
-| `manual` | 98 | ours. The job compares and reports, and never writes. |
+| `litellm` | 58 | the vendor's own litellm namespace carries this exact id. Read, not inferred. |
+| `vendor-api` | 28 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` and `antigravity`. Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
+| `manual` | 114 | ours. The job compares this row's PRICES and reports, never writing them. |
+
+### `source` governs prices, not facts
+
+`source` protects a commercial judgement. There is none in a context window, an
+input modality, a serving surface or a reasoning ladder — a vendor either takes
+images or does not, and the window is the same number whoever fronts the model.
+So those four are written on **every** row, whatever its source:
+
+- on a **delegated** row the upstream owns the field and overwrites it;
+- on a row we own it may only **fill a blank**, so a value put there by hand
+  stands.
+
+The older reading — that `manual` freezes the whole row — is why 131 capability
+facts sat in the report waiting for somebody to copy them by hand. That was a
+backlog, not a decision, and the report is for decisions.
+
+### `price_reviewed`
+
+A disagreement between our price and the upstream's is not always staleness.
+DeepSeek's rows carry its off-peak list while litellm publishes the peak rate:
+both are right, and the difference will never resolve. Re-raising it every
+morning is how a daily report stops being read.
+
+A row carrying `price_reviewed` — any note saying a person compared it and kept
+ours — moves out of the report's action list into a folded "reviewed and kept"
+section, and stops setting the job's exit code. The action list is then only what
+nobody has looked at yet.
 
 Delegation is deliberately maximal: an upstream that is occasionally wrong and
 always fresh beats a hand-authored file that is occasionally right and always
@@ -112,27 +296,6 @@ an agent mode or a tiering suffix does not change the vendor's per-token rate,
 so `gemini-3-flash-agent` is priced as `gemini-3-flash` and
 `claude-opus-4-6-thinking` as `claude-opus-4-6`.
 
-`cursor-docs` reads [Cursor's own table](https://cursor.com/docs/models-and-pricing.md),
-which the vendor serves as `text/plain` markdown — so the adapter reads columns
-rather than scraping HTML, and a layout change shows up as an empty parse, which
-aborts the run rather than writing blank prices. 40 priced rows cover 181 of our
-193 cursor ids.
-
-Two things that page does not say in its columns, and the adapter has to know:
-
-- **Effort suffixes do not change a rate.** Cursor bills per token; `-high` only
-  changes how many get spent. So `gpt-5.4-high` and `gpt-5.4-low` both take the
-  `GPT-5.4` row.
-- **`-fast` does change it, and is documented in prose.** Where the table has an
-  explicit row it wins — "Claude Opus 4.7 (fast mode)" is 30/150, six times its
-  base. Where it does not, the fallback is **2x**, which the Notes corroborate
-  twice: GPT-5 Fast is "2x price" (and its explicit row is exactly 2x), and Opus
-  4.8's fast mode is "3x lower per-token pricing than Opus 4.7 fast mode" —
-  30/3 and 150/3, which is 2x its own base. This is the adapter's one inference,
-  and it corrects a real error: those 60 rows were carrying the base price.
-  Watch the naming, too — that same model is "Claude 4.7 Opus" in the base row
-  and "Claude Opus 4.7" in the fast row.
-
 What stays `manual` is what no upstream answers:
 
 - **Resellers who publish nothing**, where a vendor's rate would be fiction
@@ -140,11 +303,8 @@ What stays `manual` is what no upstream answers:
 - **Ids nothing upstream carries** — `k3`, `kimi-for-coding*`, every `mimo-*`,
   `grok-imagine-*`, `glm-5-turbo`, `qwen3.6-flash`, `kiro/deepseek-3.2`,
   `kiro/qwen3-coder-next`, `antigravity/gemini-pro-agent`,
-  `antigravity/gpt-oss-120b-medium`, Antigravity's two `tab_*` models, and the
-  Cursor ids its own table omits (`composer-2.5*`, `cursor-grok-4.5*`,
-  `default`, `gpt-5.1*`). `cursor-grok-4.6*` is in that table (as `Grok 4.6`
-  / `Grok 4.6 (Fast)`) and is delegated via an alias; litellm does not yet
-  carry `grok-4.6`, so the xAI and OpenCode Go rows stay `manual`.
+  `antigravity/gpt-oss-120b-medium`, and Antigravity's two `tab_*` models.
+
 
 The job never writes a manual row. When litellm disagrees with one it keeps a
 single open issue (label `price-drift`) up to date with the list, and closes it
@@ -198,7 +358,36 @@ user is paying for and cannot select.
   pool, and a published ladder stands in for poolmates that publish none — so one
   reseller row without one cannot re-widen the model's ceiling, but a pool where
   NOBODY publishes falls to the wire tier for all of them.
-- The daily job never touches this field, on delegated rows or manual ones.
+- The daily job fills this field from **models.dev** on delegated rows that have
+  none, and reports a candidate for rows we own. It never rewrites a ladder that
+  is already written, by either hand or upstream: litellm has no column for this
+  at all, so a ladder here is either a person's or models.dev's, and neither
+  overrules the other after the fact.
+
+### `surface` (optional)
+
+Which API route **serves** the model: `chat`, `image`, `embedding`, `audio`,
+`video` or `rerank`.
+
+It answers the question a gateway has to settle before it can dispatch, and no
+rate implies it. Without the field a consumer has only the model's NAME to read,
+which is a strong convention for well-known ids (nobody ships a chat model called
+`-tts`) and says nothing at all about a reseller's private one. That gap has a
+concrete cost: one public model id served by a relay's image model AND a
+plugin's chat model of the same name is a single pool, and an
+`/v1/images/generations` call routed to the chat half fails upstream while
+charging the account's health for it.
+
+- **Absent is not `chat`.** It means nobody has published one, and a consumer
+  falls through to its own classifier. Writing `chat` everywhere by default would
+  freeze a guess into a fact for every id this registry has not reached yet.
+- **The surface, not the media.** `input_modalities` says what a model can
+  *read*; this says where the request goes. They disagree on exactly the models
+  where it matters: `gpt-image-2` and a vision chat model both read images, and
+  only one of them answers on the images route.
+- The daily job writes it from litellm's `mode` on delegated rows, and from
+  models.dev's output modality where litellm names a mode we do not map. Rows we
+  own get a reported candidate instead.
 
 ### `hidden_models` (display blacklist, optional)
 
@@ -223,7 +412,7 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
   decision; this only affects what is advertised.
 - Ids are **lowercase base ids** — the collapsed client-facing id without any
   route prefix or thinking/effort suffix (`claude-opus-4-8`, not
-  `cursor/claude-opus-4-8-thinking-high`). Hiding a base hides its whole
+  `relay/claude-opus-4-8-thinking-high`). Hiding a base hides its whole
   thinking-variant family. It has no effect on pricing.
 
 ## Providers
@@ -239,7 +428,6 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | minimax | MiniMax | `MiniMax-M2`…`M3` upstream ids, lowercased here |
 | mimo | MiMo (Xiaomi) | overseas PAYG for `mimo-v2.5` / `mimo-v2.5-pro`; `-asr` / `-tts*` stay **unpriced** |
 | opencode | OpenCode Zen | the seven current `*-free` / `big-pickle` rows are **$0** — actually free, not unpriced |
-| cursor | Cursor | **prices none** — reseller; `hidden_models` only, trims uncommon `claude-*` / `gpt-5.*` / `gemini-*` |
 | antigravity | Antigravity | **prices none** — reseller; `hidden_models` only, trims non-current Gemini/Claude |
 | google-ai-studio | Google AI Studio | `hidden_models` trims niche Gemini (tts / music / robotics / research / gemma); the image family is **listed** — see below |
 | opencode-go | OpenCode Go | curated open-model subscription (`opencode.ai/zen/go`); DeepSeek Flash/Pro use the official effort ladders |
@@ -372,8 +560,7 @@ These will silently become wrong. Nothing in this repo will warn you.
 |---|---|---|
 | `claude-sonnet-5` | **2026-08-31** | 3 / 15 / 0.3 / 3.75 (currently the 2 / 10 / 0.2 / 2.5 intro rate) |
 | `mimo-v2.5-tts*` | unannounced | Xiaomi PAYG currently lists TTS as 限时免费; this registry leaves them unpriced (0) |
-| `gemini-3.7-flash` (and Cursor / Antigravity effort ids) | **2026-12-31** | 1.5 / 7.5 / 0.15 (currently Google's intro 0.75 / 3.75 / 0.075). Cursor's table currently prints output as $3.5, not $3.75. |
-| Cursor `cursor-grok-4.6*` | **2026-08-19** | listed 2 / 6 / 0.5 (fast 4 / 12 / 1). Cursor's table notes a 50% launch discount for one week from 2026-08-12; this registry stores the published columns, not the promo. |
+| `gemini-3.7-flash` (and reseller effort ids) | **2026-12-31** | 1.5 / 7.5 / 0.15 (currently Google's intro 0.75 / 3.75 / 0.075) |
 | `glm-*` `cache_write_per_1m` | unannounced | GLM's cache-storage charge is currently 限时免费 (free for a limited time), hence 0 |
 | `minimax-m3` | unannounced | MiniMax lists 2.10/8.40/0.42 CNY as a 永久五折 rate against a 4.20/16.80/0.84 list price |
 
@@ -393,7 +580,7 @@ published fact, by id prefix rather than one id at a time:
 | `gemini-*`, `nano-banana-*` | text + image | natively multimodal; the `*-tts` heads are text-only and were written that way |
 | `gpt-5*` | text + image | the GPT-5 line reads images |
 | `gpt-oss-120b*` | text | the open-weight model is text-only |
-| `grok-4*`, `cursor-grok-4*` | text + image | Grok 4 reads images |
+| `grok-4*` | text + image | Grok 4 reads images |
 | `deepseek-3.2`, `deepseek-v3*` | text | DeepSeek's chat line is text-only; vision ships as separate `-VL` models |
 | `qwen3-coder*` | text | the coder line is text-only; vision ships as `qwen-vl` |
 | `glm-4.5`, `glm-4.5-air`, `glm-4.6` | text | text-only; the vision variants are the `-V` models |
@@ -410,7 +597,6 @@ them, and a wrong declaration is worse here than no declaration:
 | deepseek | `deepseek-v4-flash`, `deepseek-v4-pro` |
 | qianwen | `qwen3.6-flash`, `qwen3.7-max`, `qwen3.7-plus`, `qwen3.8-max-preview`, + resold `deepseek-v4-pro` / `glm-5.2` |
 | qoder, qoder-intl, workbuddy | every entry (all resold CN models above, plus `hy3`, `kimi-k2.6/2.7/k3`) |
-| cursor | `composer-2.5*`, `default`, `glm-5.2-*`, `kimi-k2.7-code` |
 | antigravity | `tab_flash_lite_preview`, `tab_jump_flash_lite_preview` |
 | google-ai-studio | `deep-research-*` (3) |
 | xai | `grok-build-0.1`, `grok-imagine-*` (4) |

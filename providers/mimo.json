@@ -1,6 +1,7 @@
 {
   "name": "mimo",
   "display_name": "MiMo (Xiaomi)",
+  "list_prices": true,
   "models": [
     {
       "model": "mimo-v2.5",
@@ -15,7 +16,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "mimo-v2.5-pro",
@@ -30,7 +32,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "surface": "chat"
     },
     {
       "model": "mimo-v2.5-asr",
@@ -54,7 +57,8 @@
       "source": "manual",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "surface": "audio"
     },
     {
       "model": "mimo-v2.5-tts-voiceclone",
@@ -66,7 +70,8 @@
       "source": "manual",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "surface": "audio"
     },
     {
       "model": "mimo-v2.5-tts-voicedesign",
@@ -78,7 +83,8 @@
       "source": "manual",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "surface": "audio"
     }
   ]
 }

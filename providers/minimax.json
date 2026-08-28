@@ -1,6 +1,7 @@
 {
   "name": "minimax",
   "display_name": "MiniMax",
+  "list_prices": true,
   "models": [
     {
       "model": "minimax-m2",
@@ -13,7 +14,8 @@
         "text"
       ],
       "source": "litellm",
-      "context_window": 200000
+      "context_window": 200000,
+      "surface": "chat"
     },
     {
       "model": "minimax-m2.1",
@@ -23,7 +25,8 @@
       "cache_read_per_1m": 0.03,
       "cache_write_per_1m": 0.375,
       "source": "litellm",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "minimax-m2.1-highspeed",
@@ -43,7 +46,8 @@
       "cache_read_per_1m": 0.03,
       "cache_write_per_1m": 0.375,
       "source": "litellm",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "surface": "chat"
     },
     {
       "model": "minimax-m2.5-highspeed",
@@ -53,7 +57,15 @@
       "cache_read_per_1m": 0.031033,
       "cache_write_per_1m": 0.387918,
       "source": "manual",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat"
     },
     {
       "model": "minimax-m2.7",
@@ -63,7 +75,8 @@
       "cache_read_per_1m": 0.062067,
       "cache_write_per_1m": 0.387918,
       "source": "manual",
-      "context_window": 204800
+      "context_window": 204800,
+      "surface": "chat"
     },
     {
       "model": "minimax-m2.7-highspeed",
@@ -73,7 +86,8 @@
       "cache_read_per_1m": 0.062067,
       "cache_write_per_1m": 0.387918,
       "source": "manual",
-      "context_window": 204800
+      "context_window": 204800,
+      "surface": "chat"
     },
     {
       "model": "minimax-m3",
@@ -87,7 +101,8 @@
       "input_modalities": [
         "text",
         "image"
-      ]
+      ],
+      "surface": "chat"
     }
   ]
 }

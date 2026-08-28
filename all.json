@@ -1,0 +1,3439 @@
+{
+  "version": 1,
+  "generated_by": "scripts/bundle.py",
+  "files": {
+    "index.json": {
+      "version": 1,
+      "providers": [
+        "anthropic",
+        "codex",
+        "xai",
+        "kimi",
+        "deepseek",
+        "glm",
+        "minimax",
+        "mimo",
+        "antigravity",
+        "google-ai-studio",
+        "kiro",
+        "ollama",
+        "opencode",
+        "opencode-go",
+        "qianwen",
+        "qoder",
+        "qoder-intl",
+        "siliconflow",
+        "workbuddy"
+      ]
+    },
+    "providers/anthropic.json": {
+      "name": "anthropic",
+      "display_name": "Anthropic",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "claude-fable-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 10,
+          "completion_per_1m": 50,
+          "cache_read_per_1m": 1,
+          "cache_write_per_1m": 12.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 1.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "claude-opus-4-5-20251101",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-opus-4-6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "claude-opus-4-7",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-opus-4-8",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-opus-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "claude-sonnet-4-5-20250929",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 3.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "claude-sonnet-4-6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 3.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "claude-sonnet-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 2.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        }
+      ]
+    },
+    "providers/antigravity.json": {
+      "name": "antigravity",
+      "display_name": "Antigravity",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "claude-opus-4-6-thinking",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-sonnet-4-6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 3.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-2.5-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "surface": "chat",
+          "variants": {
+            "suffixes": [
+              "",
+              "-thinking"
+            ]
+          }
+        },
+        {
+          "model": "gemini-2.5-flash-lite",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.4,
+          "cache_read_per_1m": 0.01,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-2.5-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-3-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0.05,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "surface": "chat",
+          "variants": {
+            "suffixes": [
+              "",
+              "-agent"
+            ]
+          }
+        },
+        {
+          "model": "gemini-3.1-flash-image",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0.05,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 65536,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image"
+        },
+        {
+          "model": "gemini-3.1-flash-lite",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.25,
+          "completion_per_1m": 1.5,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-3.1-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "surface": "chat",
+          "variants": {
+            "suffixes": [
+              "-high",
+              "-low"
+            ]
+          }
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "surface": "chat",
+          "variants": {
+            "suffixes": [
+              "-extra-low",
+              "-low"
+            ]
+          }
+        },
+        {
+          "model": "gemini-3.6-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.75,
+          "completion_per_1m": 3.75,
+          "cache_read_per_1m": 0.075,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "surface": "chat",
+          "variants": {
+            "suffixes": [
+              "-high",
+              "-low",
+              "-medium",
+              "-tiered"
+            ]
+          }
+        },
+        {
+          "model": "gemini-3.7-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.75,
+          "completion_per_1m": 3.75,
+          "cache_read_per_1m": 0.075,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "surface": "chat",
+          "variants": {
+            "suffixes": [
+              "-high",
+              "-low",
+              "-medium",
+              "-tiered"
+            ]
+          }
+        },
+        {
+          "model": "gemini-pro-agent",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual"
+        },
+        {
+          "model": "gpt-oss-120b-medium",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.04,
+          "completion_per_1m": 0.17,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "manual",
+          "context_window": 131072,
+          "surface": "chat"
+        },
+        {
+          "model": "tab_flash_lite_preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.25,
+          "completion_per_1m": 1.5,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "source": "manual"
+        },
+        {
+          "model": "tab_jump_flash_lite_preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.25,
+          "completion_per_1m": 1.5,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "source": "manual"
+        }
+      ],
+      "hidden_models": [
+        "chat_20706",
+        "chat_23310",
+        "gemini-2.5-flash",
+        "gemini-2.5-flash-lite",
+        "gemini-2.5-pro",
+        "gemini-3-flash",
+        "gemini-3-flash-agent",
+        "gemini-3.1-flash-lite",
+        "gemini-3.5-flash",
+        "gemini-3.6-flash-tiered",
+        "gemini-pro-agent",
+        "gpt-oss-120b",
+        "tab_flash_lite_preview",
+        "tab_jump_flash_lite_preview"
+      ]
+    },
+    "providers/codex.json": {
+      "name": "codex",
+      "display_name": "OpenAI (Codex)",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "gpt-5.4",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.5,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.25,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "context_window": 272000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-5.4-mini",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.75,
+          "completion_per_1m": 4.5,
+          "cache_read_per_1m": 0.075,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 272000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-5.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 30,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "context_window": 272000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-5.6-luna",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.02,
+          "cache_write_per_1m": 0.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "context_window": 272000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-5.6-sol",
+          "pricing_style": "openai",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 30,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "context_window": 272000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-5.6-terra",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 2.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "context_window": 272000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-image-2",
+          "pricing_style": "openai",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 1.25,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image"
+        }
+      ]
+    },
+    "providers/deepseek.json": {
+      "name": "deepseek",
+      "display_name": "DeepSeek",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "deepseek-v4-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.22,
+          "completion_per_1m": 0.66,
+          "cache_read_per_1m": 0.007,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "off-peak list; litellm publishes the peak rate. See the README's DeepSeek row.",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.66,
+          "completion_per_1m": 1.98,
+          "cache_read_per_1m": 0.022,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "off-peak list; litellm publishes the peak rate. See the README's DeepSeek row.",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        }
+      ]
+    },
+    "providers/glm.json": {
+      "name": "glm",
+      "display_name": "GLM (Zhipu)",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "glm-4.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.6,
+          "completion_per_1m": 2.2,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 128000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-4.5-air",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2,
+          "completion_per_1m": 1.1,
+          "cache_read_per_1m": 0.035467,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 128000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-4.6",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.6,
+          "completion_per_1m": 2.2,
+          "cache_read_per_1m": 0.11,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-4.7",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.6,
+          "completion_per_1m": 2.2,
+          "cache_read_per_1m": 0.11,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 3.2,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5-turbo",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.034447,
+          "completion_per_1m": 3.842232,
+          "cache_read_per_1m": 0.266001,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.4,
+          "completion_per_1m": 4.4,
+          "cache_read_per_1m": 0.26,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.2",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.182225,
+          "completion_per_1m": 4.137788,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        }
+      ],
+      "hidden_models": [
+        "glm-4.5",
+        "glm-4.6"
+      ]
+    },
+    "providers/google-ai-studio.json": {
+      "name": "google-ai-studio",
+      "display_name": "Google AI Studio",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "deep-research-max-preview-04-2026",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "source": "manual"
+        },
+        {
+          "model": "deep-research-preview-04-2026",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "source": "manual"
+        },
+        {
+          "model": "deep-research-pro-preview-12-2025",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 65536,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "image"
+        },
+        {
+          "model": "gemini-2.0-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.4,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-2.0-flash-001",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.4,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-2.0-flash-lite",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.075,
+          "completion_per_1m": 0.3,
+          "cache_read_per_1m": 0.01875,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-2.0-flash-lite-001",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.075,
+          "completion_per_1m": 0.3,
+          "cache_read_per_1m": 0.01875,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-2.5-computer-use-preview-10-2025",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 128000,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-2.5-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-2.5-flash-image",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 32768,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image"
+        },
+        {
+          "model": "gemini-2.5-flash-lite",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.4,
+          "cache_read_per_1m": 0.01,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-2.5-flash-preview-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "audio"
+        },
+        {
+          "model": "gemini-2.5-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-2.5-pro-preview-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-3-flash-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0.05,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-3-pro-image",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 65536,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image"
+        },
+        {
+          "model": "gemini-3-pro-image-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 65536,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image"
+        },
+        {
+          "model": "gemini-3-pro-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high"
+          ]
+        },
+        {
+          "model": "gemini-3.1-flash-image",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0.05,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 65536,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image"
+        },
+        {
+          "model": "gemini-3.1-flash-image-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0.05,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 65536,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image"
+        },
+        {
+          "model": "gemini-3.1-flash-lite",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.25,
+          "completion_per_1m": 1.5,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-3.1-flash-lite-image",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.25,
+          "completion_per_1m": 1.5,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ],
+          "context_window": 65536,
+          "surface": "image"
+        },
+        {
+          "model": "gemini-3.1-flash-lite-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.25,
+          "completion_per_1m": 1.5,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-3.1-flash-tts-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ],
+          "context_window": 8192,
+          "surface": "audio"
+        },
+        {
+          "model": "gemini-3.1-pro-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-3.1-pro-preview-customtools",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-3.5-flash-lite",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-3.6-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.75,
+          "completion_per_1m": 3.75,
+          "cache_read_per_1m": 0.075,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-3.7-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.75,
+          "completion_per_1m": 3.75,
+          "cache_read_per_1m": 0.075,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-flash-latest",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-flash-lite-latest",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.4,
+          "cache_read_per_1m": 0.01,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "gemini-omni-flash-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-pro-latest",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "gemini-robotics-er-1.5-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "video",
+            "audio"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-robotics-er-1.6-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "context_window": 131072,
+          "surface": "chat"
+        },
+        {
+          "model": "nano-banana-pro-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ]
+        }
+      ],
+      "hidden_models": [
+        "antigravity-preview-05-2026",
+        "deep-research-max-preview-04-2026",
+        "deep-research-preview-04-2026",
+        "deep-research-pro-preview-12-2025",
+        "gemini-2.0-flash",
+        "gemini-2.0-flash-001",
+        "gemini-2.0-flash-lite",
+        "gemini-2.0-flash-lite-001",
+        "gemini-2.5-computer-use-preview-10-2025",
+        "gemini-2.5-flash-preview-tts",
+        "gemini-2.5-pro-preview-tts",
+        "gemini-3.1-flash-lite-preview",
+        "gemini-3.1-flash-tts-preview",
+        "gemini-3.1-pro-preview-customtools",
+        "gemini-omni-flash-preview",
+        "gemini-robotics-er-1.5-preview",
+        "gemini-robotics-er-1.6-preview",
+        "gemma-4-26b-a4b-it",
+        "gemma-4-31b-it",
+        "lyria-3-clip-preview",
+        "lyria-3-pro-preview"
+      ]
+    },
+    "providers/kimi.json": {
+      "name": "kimi",
+      "display_name": "Kimi (Moonshot)",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "k3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.955563,
+          "completion_per_1m": 14.777816,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1048576,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "k3-256k",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.955563,
+          "completion_per_1m": 14.777816,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-for-coding",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.19,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-for-coding-highspeed",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.19,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        }
+      ]
+    },
+    "providers/kiro.json": {
+      "name": "kiro",
+      "display_name": "Kiro",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "claude-haiku-4.5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 1.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 200000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-opus-4.5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 200000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-opus-4.6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-opus-4.7",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-opus-4.8",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-opus-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-sonnet-4",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 3.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-sonnet-4.5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 3.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 200000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-sonnet-4.6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 3.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "claude-sonnet-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 2.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-3.2",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2072,
+          "completion_per_1m": 0.3108,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "manual",
+          "context_window": 262144,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 3.2,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "source": "vendor-api",
+          "context_window": 200000,
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-5.6-luna",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.02,
+          "cache_write_per_1m": 0.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 922000,
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-5.6-sol",
+          "pricing_style": "openai",
+          "prompt_per_1m": 4,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0.4,
+          "cache_write_per_1m": 5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 922000,
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-5.6-terra",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 2.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "vendor-api",
+          "context_window": 922000,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0.375,
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0.375,
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3-coder-next",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.11,
+          "completion_per_1m": 0.8,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "manual",
+          "context_window": 262144,
+          "surface": "chat"
+        }
+      ],
+      "hidden_models": [
+        "auto"
+      ]
+    },
+    "providers/mimo.json": {
+      "name": "mimo",
+      "display_name": "MiMo (Xiaomi)",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "mimo-v2.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "mimo-v2.5-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.435,
+          "completion_per_1m": 0.87,
+          "cache_read_per_1m": 0.0036,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "mimo-v2.5-asr",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ]
+        },
+        {
+          "model": "mimo-v2.5-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "audio"
+        },
+        {
+          "model": "mimo-v2.5-tts-voiceclone",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "audio"
+        },
+        {
+          "model": "mimo-v2.5-tts-voicedesign",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "audio"
+        }
+      ]
+    },
+    "providers/minimax.json": {
+      "name": "minimax",
+      "display_name": "MiniMax",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "minimax-m2",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0.375,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0.375,
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.1-highspeed",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.620668,
+          "completion_per_1m": 2.482673,
+          "cache_read_per_1m": 0.031033,
+          "cache_write_per_1m": 0.387918,
+          "source": "manual",
+          "context_window": 1000000
+        },
+        {
+          "model": "minimax-m2.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0.375,
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.5-highspeed",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.620668,
+          "completion_per_1m": 2.482673,
+          "cache_read_per_1m": 0.031033,
+          "cache_write_per_1m": 0.387918,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.7",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.310334,
+          "completion_per_1m": 1.241337,
+          "cache_read_per_1m": 0.062067,
+          "cache_write_per_1m": 0.387918,
+          "source": "manual",
+          "context_window": 204800,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.7-highspeed",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.620668,
+          "completion_per_1m": 2.482673,
+          "cache_read_per_1m": 0.062067,
+          "cache_write_per_1m": 0.387918,
+          "source": "manual",
+          "context_window": 204800,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.06,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat"
+        }
+      ]
+    },
+    "providers/ollama.json": {
+      "name": "ollama",
+      "display_name": "Ollama",
+      "models": [
+        {
+          "model": "deepseek-v4-flash",
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        }
+      ]
+    },
+    "providers/opencode-go.json": {
+      "name": "opencode-go",
+      "display_name": "OpenCode Go",
+      "models": [
+        {
+          "model": "deepseek-v4-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-flash-vision-exp",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.435,
+          "completion_per_1m": 0.87,
+          "cache_read_per_1m": 0.003625,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 3.2,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.4,
+          "completion_per_1m": 4.4,
+          "cache_read_per_1m": 0.26,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.2",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.4,
+          "completion_per_1m": 4.4,
+          "cache_read_per_1m": 0.26,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.4,
+          "completion_per_1m": 4.4,
+          "cache_read_per_1m": 0.26,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-5.6-luna",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.02,
+          "cache_write_per_1m": 0.25,
+          "source": "manual",
+          "context_window": 272000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "grok-4.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 6,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 500000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "grok-4.6",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 6,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "context_window": 500000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "hy3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.58,
+          "cache_read_per_1m": 0.035,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "hy3-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.58,
+          "cache_read_per_1m": 0.035,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.6,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.6",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.16,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.7-code",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.19,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1048576,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.06,
+          "cache_write_per_1m": 0.375,
+          "source": "manual",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.7",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.06,
+          "cache_write_per_1m": 0.375,
+          "source": "manual",
+          "context_window": 204800,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.06,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "mimo-v2-omni",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "manual",
+          "context_window": 262144,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "mimo-v2-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.435,
+          "completion_per_1m": 0.87,
+          "cache_read_per_1m": 0.0036,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "mimo-v2.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "mimo-v2.5-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.435,
+          "completion_per_1m": 0.87,
+          "cache_read_per_1m": 0.003625,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.5-plus",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.02,
+          "cache_write_per_1m": 0.25,
+          "source": "manual",
+          "context_window": 991808,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.6-plus",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0.05,
+          "cache_write_per_1m": 0.625,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.7-max",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.5,
+          "completion_per_1m": 7.5,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 3.125,
+          "source": "manual",
+          "context_window": 991808,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.7-plus",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.4,
+          "completion_per_1m": 1.6,
+          "cache_read_per_1m": 0.04,
+          "cache_write_per_1m": 0.5,
+          "source": "manual",
+          "context_window": 991808,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.8-max",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 6,
+          "cache_read_per_1m": 0.25,
+          "cache_write_per_1m": 2.5,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "xhigh"
+          ],
+          "surface": "chat"
+        }
+      ]
+    },
+    "providers/opencode.json": {
+      "name": "opencode",
+      "display_name": "OpenCode",
+      "models": [
+        {
+          "model": "big-pickle",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-flash-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "hy3-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "laguna-s-2.1-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "mimo-v2.5-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "nemotron-3-ultra-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "surface": "chat"
+        },
+        {
+          "model": "nemotron-3.5-lightning-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "surface": "chat"
+        }
+      ]
+    },
+    "providers/qianwen.json": {
+      "name": "qianwen",
+      "display_name": "Qianwen",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "deepseek-v4-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.435,
+          "completion_per_1m": 0.87,
+          "cache_read_per_1m": 0.003625,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.2",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.182225,
+          "completion_per_1m": 4.137788,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.6-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.177334,
+          "completion_per_1m": 1.064003,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.7-max",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.5,
+          "completion_per_1m": 7.5,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 991808,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.7-plus",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.295556,
+          "completion_per_1m": 1.182225,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 991808,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.8-max-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.17,
+          "completion_per_1m": 0.51,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 983616,
+          "effort_levels": [
+            "low",
+            "medium",
+            "xhigh"
+          ],
+          "surface": "chat"
+        }
+      ]
+    },
+    "providers/qoder-intl.json": {
+      "name": "qoder-intl",
+      "display_name": "Qoder International",
+      "models": [
+        {
+          "model": "deepseek-v4-flash",
+          "aliases": [
+            "dfmodel"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "aliases": [
+            "dmodel"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.435,
+          "completion_per_1m": 0.87,
+          "cache_read_per_1m": 0.003625,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.2",
+          "aliases": [
+            "gm51model"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.182225,
+          "completion_per_1m": 4.137788,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.7-code",
+          "aliases": [
+            "kmodel"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.19,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k3",
+          "aliases": [
+            "kmodel_latest"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.955563,
+          "completion_per_1m": 14.777816,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m3",
+          "aliases": [
+            "mmodel"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.7-max",
+          "aliases": [
+            "qmodel_latest"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.773338,
+          "completion_per_1m": 5.320014,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 991808,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.7-plus",
+          "aliases": [
+            "qmodel"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.295556,
+          "completion_per_1m": 1.182225,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 991808,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.8-max-preview",
+          "aliases": [
+            "qmodel_preview"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.17,
+          "completion_per_1m": 0.51,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 983616,
+          "effort_levels": [
+            "low",
+            "medium",
+            "xhigh"
+          ],
+          "surface": "chat"
+        }
+      ],
+      "hidden_models": [
+        "auto"
+      ]
+    },
+    "providers/qoder.json": {
+      "name": "qoder",
+      "display_name": "Qoder",
+      "models": [
+        {
+          "model": "deepseek-v4-flash",
+          "aliases": [
+            "dfmodel"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "aliases": [
+            "dmodel"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.435,
+          "completion_per_1m": 0.87,
+          "cache_read_per_1m": 0.003625,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.2",
+          "aliases": [
+            "gm51model"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.182225,
+          "completion_per_1m": 4.137788,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.7-code",
+          "aliases": [
+            "kmodel"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.19,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.7",
+          "aliases": [
+            "mmodel"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.24,
+          "completion_per_1m": 0.96,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 204800,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.6-flash",
+          "aliases": [
+            "q36fmodel"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.177334,
+          "completion_per_1m": 1.064003,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.7-max",
+          "aliases": [
+            "qmodel_latest"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.773338,
+          "completion_per_1m": 5.320014,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 991808,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.7-plus",
+          "aliases": [
+            "qmodel"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.295556,
+          "completion_per_1m": 1.182225,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 991808,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.8-max-preview",
+          "aliases": [
+            "qmodel_preview"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.17,
+          "completion_per_1m": 0.51,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 983616,
+          "effort_levels": [
+            "low",
+            "medium",
+            "xhigh"
+          ],
+          "surface": "chat"
+        }
+      ],
+      "hidden_models": [
+        "auto"
+      ]
+    },
+    "providers/siliconflow.json": {
+      "name": "siliconflow",
+      "display_name": "SiliconFlow",
+      "models": [
+        {
+          "model": "deepseek-ai/deepseek-v4-flash",
+          "source": "manual",
+          "context_window": 200000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "aliases": [
+            "deepseek-v4-flash"
+          ]
+        },
+        {
+          "model": "deepseek-ai/deepseek-v4-pro",
+          "source": "manual",
+          "context_window": 200000,
+          "effort_levels": [
+            "high",
+            "max"
+          ],
+          "aliases": [
+            "deepseek-v4-pro"
+          ]
+        }
+      ]
+    },
+    "providers/workbuddy.json": {
+      "name": "workbuddy",
+      "display_name": "WorkBuddy",
+      "models": [
+        {
+          "model": "deepseek-v4-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.435,
+          "completion_per_1m": 0.87,
+          "cache_read_per_1m": 0.003625,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.182225,
+          "completion_per_1m": 4.137788,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 200000,
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.2",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.182225,
+          "completion_per_1m": 4.137788,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "hy3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.147778,
+          "completion_per_1m": 0.591113,
+          "cache_read_per_1m": 0.036945,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.6",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.16,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.7",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.19,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144
+        },
+        {
+          "model": "kimi-k3",
+          "aliases": [
+            "kimi-k3-1"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.955563,
+          "completion_per_1m": 14.777816,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1048576,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "surface": "chat"
+        }
+      ],
+      "hidden_models": [
+        "glm-5v-turbo"
+      ]
+    },
+    "providers/xai.json": {
+      "name": "xai",
+      "display_name": "xAI",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "grok-4.20-0309-non-reasoning",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "grok-4.20-0309-reasoning",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "grok-4.20-multi-agent-0309",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "context_window": 2000000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "grok-4.3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "grok-4.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 6,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 500000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "grok-4.6",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 6,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "context_window": 500000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "grok-build-0.1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 2,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 256000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "grok-imagine-image",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image"
+        },
+        {
+          "model": "grok-imagine-image-2.0",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image"
+        },
+        {
+          "model": "grok-imagine-image-quality",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ]
+        },
+        {
+          "model": "grok-imagine-video",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "video"
+        },
+        {
+          "model": "grok-imagine-video-1.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "video"
+        }
+      ]
+    }
+  }
+}
