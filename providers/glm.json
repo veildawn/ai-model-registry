@@ -128,6 +128,47 @@
         "max"
       ],
       "surface": "chat"
+    },
+    {
+      "model": "glm-5.3",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.4,
+      "completion_per_1m": 4.4,
+      "cache_read_per_1m": 0.26,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "glm-5.3-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.075,
+      "completion_per_1m": 0.25,
+      "cache_read_per_1m": 0.015,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "price_reviewed": "rates are z.ai's USD list, as published on models.dev (zai and zhipuai rows agree); litellm has no zai-namespace row for this id"
     }
   ],
   "hidden_models": [

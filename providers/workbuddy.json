@@ -72,7 +72,11 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 262144,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "none",
+        "high"
+      ]
     },
     {
       "model": "kimi-k2.6",
@@ -83,7 +87,16 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 262144,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "kimi-k2.7",
@@ -107,7 +120,12 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ]
     },
     {
       "model": "minimax-m3",

@@ -16,7 +16,14 @@
       ],
       "source": "litellm",
       "context_window": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "claude-haiku-4-5-20251001",
@@ -53,7 +60,12 @@
       ],
       "source": "litellm",
       "context_window": 200000,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "claude-opus-4-6",
@@ -90,7 +102,14 @@
       ],
       "source": "litellm",
       "context_window": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "claude-opus-4-8",
@@ -105,7 +124,14 @@
       ],
       "source": "litellm",
       "context_window": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "claude-opus-5",

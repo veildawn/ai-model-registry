@@ -106,11 +106,8 @@
       "source": "manual",
       "context_window": 1000000,
       "effort_levels": [
-        "none",
         "low",
-        "medium",
         "high",
-        "xhigh",
         "max"
       ],
       "surface": "chat"

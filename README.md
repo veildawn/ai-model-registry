@@ -241,10 +241,17 @@ is logged and the run continues, because a third party's outage must not be able
 to stop a price sync.
 
 models.dev carries one entry per host that serves a model — `gpt-5.4` appears
-under 39 of them — so a fact is taken only when every host publishing it agrees.
-That is not pedantry: exactly one of those 39 mislabels `gpt-5.4` as an image
-model, and unanimity costs 4 ids across the whole upstream while removing the
-entire class of one-bad-row errors.
+under 39 of them — so which fact is taken follows two accuracies, in order.
+First, the **vendor's own namespace** (`google`, `zai`, `minimax`, `alibaba`,
+`nvidia`, and the rest of `VENDOR_HOSTS`): a ladder stated by the model's
+publisher outranks every copy of it, whatever the aggregators say and however
+many of them say it — the same authority `vendor-api` pricing rests on. Second,
+for ids no vendor namespace publishes a ladder for, a fact is taken only when
+**every other host publishing it agrees**. That is not pedantry: exactly one of
+those 39 hosts mislabels `gpt-5.4` as an image model, and unanimity among the
+remaining hosts removes the entire class of one-bad-row errors. Where the
+vendors themselves split, or the aggregators do, the id is dropped for a person
+rather than arbitrated.
 
 | `source` | rows | what it means |
 |---|---|---|

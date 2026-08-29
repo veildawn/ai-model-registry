@@ -87,7 +87,12 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ]
     },
     {
       "model": "minimax-m3",

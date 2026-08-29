@@ -57,7 +57,10 @@ an image or video or audio, the serving `surface`. It is a supplement in the
 strict sense — it fills a field a row leaves EMPTY and never rewrites one that
 is set, so it can overrule neither litellm nor a person. It is also the one
 upstream whose absence is survivable: a failure there is logged and the run
-continues, because it must not be able to stop a price sync.
+continues, because it must not be able to stop a price sync. Within it, the
+vendor's own namespace outranks the aggregators: where one publishes a ladder
+it wins outright, and unanimity across the remaining hosts decides only for
+ids the vendor is silent on.
 
 Usage:
     python3 scripts/sync_prices.py                     # apply, then report
@@ -91,6 +94,31 @@ UPSTREAM = "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_
 # it is trusted for the fields nobody else publishes and for nothing else;
 # litellm remains the authority for every field it carries.
 MODELS_DEV = "https://models.dev/api.json"
+
+# models.dev namespaces that are the model's FIRST-PARTY publisher or one of its
+# own metering arms — google/google-vertex for Gemini, zai/zhipuai for GLM,
+# minimax, deepseek, moonshotai, alibaba, nvidia, and the rest below. A reasoning
+# ladder is a fact about the MODEL, and the vendor's row is that fact from its
+# source, which is the same authority `vendor-api` pricing rests on.
+#
+# The unanimity rule that governed every host equally was dropping the ladders
+# that mattered most: one aggregator misreading an id outvoted the vendor's own
+# row, and a family split across aggregator spellings (llmgateway,
+# llmgateway-providers, requesty, kilo, each with its own opinion) contested the
+# id away entirely — minimax-m2.5 lost its ladder to four mutually inconsistent
+# copies while the vendor's row sat right there. Where the vendor speaks, it
+# wins; the aggregators decide only what the vendor has not.
+VENDOR_HOSTS = frozenset({
+    "alibaba", "alibaba-cn", "alibaba-coding-plan", "alibaba-coding-plan-cn",
+    "alibaba-token-plan", "alibaba-token-plan-cn",
+    "amazon-bedrock", "anthropic", "cohere", "deepseek",
+    "google", "google-vertex", "google-vertex-anthropic",
+    "meta", "microsoft", "minimax", "minimax-cn", "minimax-coding-plan",
+    "minimax-cn-coding-plan", "mistral", "moonshotai", "moonshotai-cn",
+    "nvidia", "openai", "tencent-coding-plan", "tencent-token-plan",
+    "tencent-tokenhub", "xai", "zai", "zai-coding-plan", "zhipuai",
+    "zhipuai-coding-plan",
+})
 
 # Our `surface` <- litellm's `mode`. The surface is which API ROUTE serves a
 # model — the question a gateway answers before it can dispatch, and one no rate
@@ -356,21 +384,36 @@ def fetch_json(source: str, agent: str = "ai-model-registry-sync"):
 
 
 def index_models_dev(document) -> dict:
-    """bare model id -> the facts every models.dev provider publishing it agrees on.
+    """bare model id -> the facts models.dev yields for it, vendor row first.
 
     Keyed by the BARE id across providers rather than per namespace, because that
     is what this upstream is being asked for: a reasoning ladder is a property of
     the model, and models.dev carries the same model under every host that serves
-    it. Where those hosts DISAGREE the id is dropped rather than arbitrated — the
-    same discipline this registry's consumers apply to a model-id-alone lookup,
-    and for the same reason: a disagreement is the signature of a name collision,
-    and guessing between the two is worse than leaving the row for a person.
+    it. Two accuracies, in order:
+
+    1. A vendor row (VENDOR_HOSTS) — the publisher's own statement, the same
+       authority `vendor-api` pricing rests on. Where one speaks it wins
+       outright, whatever the aggregators say and however many of them say it.
+       All voting vendor hosts must agree; a vendor-vs-vendor split is still a
+       collision, and the id drops rather than picking a side.
+    2. Unanimity among the remaining hosts — kept for the ids whose vendor is
+       silent here (a reseller-only id, a release the vendor's rows do not list
+       yet). Where every aggregator that publishes a ladder publishes the same
+       one, that is the best reading there is; where they split, the
+       disagreement is dropped for a person, as before.
+
+    A ladder no rule yields is dropped rather than arbitrated — the same
+    discipline this registry's consumers apply to a model-id-alone lookup,
+    because a disagreement is the signature of a name collision, and guessing
+    between the two is worse than leaving the row for a person.
     """
+    vendor_ladders: dict = {}
+    vendor_contested: set = set()
     ladders: dict = {}
     surfaces: dict = {}
     contested_ladder, contested_surface = set(), set()
 
-    for provider in document.values():
+    for provider_name, provider in document.items():
         if not isinstance(provider, dict):
             continue
         for mid, model in (provider.get("models") or {}).items():
@@ -383,9 +426,14 @@ def index_models_dev(document) -> dict:
                 if isinstance(option, dict) and option.get("type") == "effort":
                     levels = ladder(option.get("values"))
                     break
-            if levels and bare not in contested_ladder:
-                if ladders.setdefault(bare, levels) != levels:
-                    contested_ladder.add(bare)
+            if levels:
+                if provider_name in VENDOR_HOSTS:
+                    if bare in vendor_ladders and vendor_ladders[bare] != levels:
+                        vendor_contested.add(bare)
+                    vendor_ladders.setdefault(bare, levels)
+                elif bare not in contested_ladder:
+                    if ladders.setdefault(bare, levels) != levels:
+                        contested_ladder.add(bare)
 
             # An OUTPUT modality is the surface stated the other way round: a
             # model whose only output is an image is served by the images route
@@ -413,8 +461,14 @@ def index_models_dev(document) -> dict:
         ladders.pop(bare, None)
     for bare in contested_surface:
         surfaces.pop(bare, None)
+    # A vendor split disqualifies the id outright: falling back to the
+    # aggregators would let the noisiest copy of a contested fact win.
+    for bare in vendor_contested:
+        ladders.pop(bare, None)
 
     out: dict = {}
+    for bare, levels in vendor_ladders.items():
+        out.setdefault(bare, {})["effort_levels"] = levels
     for bare, levels in ladders.items():
         out.setdefault(bare, {})["effort_levels"] = levels
     for bare, surface in surfaces.items():

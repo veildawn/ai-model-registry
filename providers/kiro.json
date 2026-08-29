@@ -91,7 +91,14 @@
       ],
       "source": "vendor-api",
       "context_window": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "claude-sonnet-4",
@@ -151,7 +158,14 @@
       ],
       "source": "vendor-api",
       "context_window": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "deepseek-3.2",
@@ -197,7 +211,15 @@
       ],
       "source": "vendor-api",
       "context_window": 922000,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "gpt-5.6-sol",
@@ -212,7 +234,15 @@
       ],
       "source": "vendor-api",
       "context_window": 922000,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "gpt-5.6-terra",
@@ -227,7 +257,15 @@
       ],
       "source": "vendor-api",
       "context_window": 922000,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "minimax-m2.1",
