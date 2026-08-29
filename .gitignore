@@ -1,0 +1,3 @@
+# Python sync tooling byproducts
+__pycache__/
+*.pyc
