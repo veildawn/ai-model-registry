@@ -119,8 +119,10 @@ correction, not an API change.
 - Model ids are **lowercase**; the service lowercases the account's upstream model
   id before matching, so `MiniMax-M2` upstream matches `minimax-m2` here.
 - A model id may appear under multiple providers with different prices.
-- `context_window` (optional): the vendor's published input-token budget. A
-  deployment that measured its own through an account probe outranks this.
+- `context_window` (optional): the vendor's published input-token budget. It
+  outranks a deployment's own probe: the registry is reviewed and corrected
+  centrally, while a probe is one account's listing at one moment — the probe
+  covers only what this file does not publish.
 - `input_modalities` (optional): what media the model can **read**, as
   `text` / `image` / `audio` / `video` — see below.
 - `effort_levels` (optional): the reasoning depths the model can be asked for —
