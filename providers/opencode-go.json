@@ -428,6 +428,82 @@
         "xhigh"
       ],
       "surface": "chat"
+    },
+    {
+      "model": "hy4-preview",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.834,
+      "completion_per_1m": 2.501,
+      "cache_read_per_1m": 0.042,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text"
+      ],
+      "source": "manual",
+      "context_window": 1024000,
+      "effort_levels": [
+        "none",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "longcat-2.0",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.006,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text"
+      ],
+      "source": "manual",
+      "context_window": 1000000,
+      "surface": "chat"
+    },
+    {
+      "model": "muse-spark-1.2-contributor",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.1,
+      "completion_per_1m": 0.2,
+      "cache_read_per_1m": 0.002,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "source": "manual",
+      "context_window": 1048576,
+      "effort_levels": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "qwen3.8-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.47,
+      "cache_read_per_1m": 0.016,
+      "cache_write_per_1m": 0.2,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "xhigh"
+      ],
+      "surface": "chat"
     }
   ]
 }
