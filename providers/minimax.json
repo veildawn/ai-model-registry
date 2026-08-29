@@ -45,8 +45,8 @@
       "completion_per_1m": 1.2,
       "cache_read_per_1m": 0.03,
       "cache_write_per_1m": 0.375,
-      "source": "litellm",
-      "context_window": 1000000,
+      "source": "manual",
+      "context_window": 204800,
       "surface": "chat",
       "effort_levels": [
         "minimal",
@@ -63,7 +63,7 @@
       "cache_read_per_1m": 0.031033,
       "cache_write_per_1m": 0.387918,
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 204800,
       "effort_levels": [
         "low",
         "medium",
