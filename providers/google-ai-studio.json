@@ -615,7 +615,7 @@
         "video"
       ],
       "source": "litellm",
-      "context_window": 1048576,
+      "context_window": 131072,
       "surface": "chat"
     },
     {
@@ -686,7 +686,9 @@
       "source": "manual",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "context_window": 131072,
+      "surface": "image"
     }
   ],
   "hidden_models": [

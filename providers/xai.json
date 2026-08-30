@@ -155,7 +155,11 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "image"
+      "surface": "image",
+      "input_modalities": [
+        "text",
+        "image"
+      ]
     },
     {
       "model": "grok-imagine-image-2.0",
@@ -168,7 +172,11 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "image"
+      "surface": "image",
+      "input_modalities": [
+        "text",
+        "image"
+      ]
     },
     {
       "model": "grok-imagine-image-quality",
@@ -180,7 +188,12 @@
       "source": "manual",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "image"
     },
     {
       "model": "grok-imagine-video",

@@ -176,17 +176,17 @@
       "source": "vendor-api",
       "context_window": 1048576,
       "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
       "variants": {
         "suffixes": [
           "-high",
           "-low"
         ]
-      },
-      "effort_levels": [
-        "low",
-        "medium",
-        "high"
-      ]
+      }
     },
     {
       "model": "gemini-3.5-flash",

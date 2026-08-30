@@ -459,7 +459,11 @@
       ],
       "source": "manual",
       "context_window": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "none",
+        "high"
+      ]
     },
     {
       "model": "muse-spark-1.2-contributor",
