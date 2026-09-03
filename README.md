@@ -570,6 +570,7 @@ These will silently become wrong. Nothing in this repo will warn you.
 | `claude-sonnet-5` | **2026-08-31** | 3 / 15 / 0.3 / 3.75 (currently the 2 / 10 / 0.2 / 2.5 intro rate) |
 | `mimo-v2.5-tts*` | unannounced | Xiaomi PAYG currently lists TTS as 限时免费; this registry leaves them unpriced (0) |
 | `gemini-3.7-flash` (and reseller effort ids) | **2026-12-31** | 1.5 / 7.5 / 0.15 (currently Google's intro 0.75 / 3.75 / 0.075) |
+| `gemini-3.8-flash` (and reseller effort ids) | **2027-01-01** | 1.5 / 7.5 / 0.15 (currently Google's intro 0.75 / 3.75 / 0.075). Adds PDF input modality. |
 | `glm-*` `cache_write_per_1m` | unannounced | GLM's cache-storage charge is currently 限时免费 (free for a limited time), hence 0 |
 | `minimax-m3` | unannounced | MiniMax lists 2.10/8.40/0.42 CNY as a 永久五折 rate against a 4.20/16.80/0.84 list price |
 
