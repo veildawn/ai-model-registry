@@ -1588,7 +1588,13 @@
             "pdf"
           ],
           "source": "manual",
-          "context_window": 1048576
+          "context_window": 1048576,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
         },
         {
           "model": "gemini-flash-latest",
