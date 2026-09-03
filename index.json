@@ -2,16 +2,15 @@
   "version": 1,
   "providers": [
     "anthropic",
+    "antigravity",
     "codex",
-    "xai",
-    "kimi",
     "deepseek",
     "glm",
-    "minimax",
-    "mimo",
-    "antigravity",
     "google-ai-studio",
+    "kimi",
     "kiro",
+    "mimo",
+    "minimax",
     "ollama",
     "opencode",
     "opencode-go",
@@ -19,6 +18,8 @@
     "qoder",
     "qoder-intl",
     "siliconflow",
-    "workbuddy"
+    "tokenhub",
+    "workbuddy",
+    "xai"
   ]
 }

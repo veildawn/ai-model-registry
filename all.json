@@ -6,16 +6,15 @@
       "version": 1,
       "providers": [
         "anthropic",
+        "antigravity",
         "codex",
-        "xai",
-        "kimi",
         "deepseek",
         "glm",
-        "minimax",
-        "mimo",
-        "antigravity",
         "google-ai-studio",
+        "kimi",
         "kiro",
+        "mimo",
+        "minimax",
         "ollama",
         "opencode",
         "opencode-go",
@@ -23,7 +22,9 @@
         "qoder",
         "qoder-intl",
         "siliconflow",
-        "workbuddy"
+        "tokenhub",
+        "workbuddy",
+        "xai"
       ]
     },
     "providers/anthropic.json": {
@@ -3441,6 +3442,326 @@
           "aliases": [
             "deepseek-v4-pro"
           ]
+        }
+      ]
+    },
+    "providers/tokenhub.json": {
+      "name": "tokenhub",
+      "display_name": "TokenHub",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "auto",
+          "aliases": [
+            "tc-code-latest"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-flash",
+          "aliases": [
+            "deepseek/deepseek-v4-flash"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-flash-0731",
+          "aliases": [
+            "deepseek-v4-flash-202605",
+            "deepseek/deepseek-v4-flash-0731"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.22,
+          "completion_per_1m": 0.66,
+          "cache_read_per_1m": 0.007,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "TokenHub 原厂直供 0731 正式版 off-peak list (1.5/4.5/0.05 CNY). See Tencent 130055.",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek/deepseek-v4-flash-vision-exp",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.22,
+          "completion_per_1m": 0.66,
+          "cache_read_per_1m": 0.007,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "TokenHub 原厂直供 vision off-peak list (1.5/4.5/0.05 CNY). See Tencent 130055.",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "aliases": [
+            "deepseek/deepseek-v4-pro"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.435,
+          "completion_per_1m": 0.87,
+          "cache_read_per_1m": 0.003625,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v4-pro-0813",
+          "aliases": [
+            "deepseek-v4-pro-202606",
+            "deepseek/deepseek-v4-pro-0813"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.66,
+          "completion_per_1m": 1.98,
+          "cache_read_per_1m": 0.022,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "TokenHub 原厂直供 0813 正式版 off-peak list (4.5/13.5/0.15 CNY). See Tencent 130055.",
+          "context_window": 1000000,
+          "effort_levels": [
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5",
+          "aliases": [
+            "glm-5-0"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.886669,
+          "completion_per_1m": 3.25112,
+          "cache_read_per_1m": 0.221667,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "TokenHub list 6/22/1.5 CNY at ECB 6.7669. See Tencent 130055.",
+          "context_window": 200000,
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5-turbo",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.034447,
+          "completion_per_1m": 3.842232,
+          "cache_read_per_1m": 0.266001,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "TokenHub list 7/26/1.8 CNY at ECB 6.7669. See Tencent 130055.",
+          "context_window": 200000,
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.1",
+          "aliases": [
+            "glm-5-1"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.182225,
+          "completion_per_1m": 4.137788,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "TokenHub list 8/28/2 CNY at ECB 6.7669. See Tencent 130055.",
+          "context_window": 200000,
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.2",
+          "aliases": [
+            "glm-5-2"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.182225,
+          "completion_per_1m": 4.137788,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "TokenHub list 8/28/2 CNY at ECB 6.7669. See Tencent 130055.",
+          "context_window": 1000000,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.3",
+          "aliases": [
+            "glm-5-3"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.4,
+          "completion_per_1m": 4.4,
+          "cache_read_per_1m": 0.26,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "hy3",
+          "aliases": [
+            "hy3-202608"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.147778,
+          "completion_per_1m": 0.591113,
+          "cache_read_per_1m": 0.036945,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "TokenHub list 1/4/0.25 CNY at ECB 6.7669. See Tencent 130055.",
+          "context_window": 262144,
+          "effort_levels": [
+            "none",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "hy3-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.147778,
+          "completion_per_1m": 0.591113,
+          "cache_read_per_1m": 0.036945,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "TokenHub list 1/4/0.25 CNY at ECB 6.7669. See Tencent 130055.",
+          "context_window": 262144,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "hy4-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.834,
+          "completion_per_1m": 2.501,
+          "cache_read_per_1m": 0.042,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1024000,
+          "effort_levels": [
+            "none",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.6",
+          "aliases": [
+            "kimi-k-2-6"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.16,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.7-code",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.19,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.7-code-highspeed",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.9,
+          "completion_per_1m": 8,
+          "cache_read_per_1m": 0.38,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 262144,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.7",
+          "aliases": [
+            "minimax-m-2-7"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.06,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 204800,
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m3",
+          "aliases": [
+            "minimax-m-3-0"
+          ],
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.06,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "surface": "chat"
         }
       ]
     },
