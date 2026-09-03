@@ -279,7 +279,7 @@
       }
     },
     {
-      "model": "gemini-3.8-flash-high",
+      "model": "gemini-3.8-flash",
       "pricing_style": "openai",
       "prompt_per_1m": 0.75,
       "completion_per_1m": 3.75,
@@ -293,58 +293,21 @@
         "pdf"
       ],
       "source": "manual",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3.8-flash-low",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.75,
-      "completion_per_1m": 3.75,
-      "cache_read_per_1m": 0.075,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video",
-        "pdf"
+      "context_window": 1048576,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
       ],
-      "source": "manual",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3.8-flash-medium",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.75,
-      "completion_per_1m": 3.75,
-      "cache_read_per_1m": 0.075,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video",
-        "pdf"
-      ],
-      "source": "manual",
-      "context_window": 1048576
-    },
-    {
-      "model": "gemini-3.8-flash-tiered",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.75,
-      "completion_per_1m": 3.75,
-      "cache_read_per_1m": 0.075,
-      "cache_write_per_1m": 0,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video",
-        "pdf"
-      ],
-      "source": "manual",
-      "context_window": 1048576
+      "variants": {
+        "suffixes": [
+          "-high",
+          "-low",
+          "-medium",
+          "-tiered"
+        ]
+      }
     },
     {
       "model": "gemini-pro-agent",
