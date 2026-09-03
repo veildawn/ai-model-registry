@@ -58,27 +58,6 @@
       "surface": "chat"
     },
     {
-      "model": "deepseek/deepseek-v4-flash-vision-exp",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.22,
-      "completion_per_1m": 0.66,
-      "cache_read_per_1m": 0.007,
-      "cache_write_per_1m": 0,
-      "source": "manual",
-      "price_reviewed": "TokenHub 原厂直供 vision off-peak list (1.5/4.5/0.05 CNY). See Tencent 130055.",
-      "context_window": 1000000,
-      "input_modalities": [
-        "text",
-        "image"
-      ],
-      "effort_levels": [
-        "low",
-        "high",
-        "max"
-      ],
-      "surface": "chat"
-    },
-    {
       "model": "deepseek-v4-pro",
       "aliases": [
         "deepseek/deepseek-v4-pro"
@@ -111,6 +90,27 @@
       "price_reviewed": "TokenHub 原厂直供 0813 正式版 off-peak list (4.5/13.5/0.15 CNY). See Tencent 130055.",
       "context_window": 1000000,
       "effort_levels": [
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "deepseek/deepseek-v4-flash-vision-exp",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.22,
+      "completion_per_1m": 0.66,
+      "cache_read_per_1m": 0.007,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "TokenHub 原厂直供 vision off-peak list (1.5/4.5/0.05 CNY). See Tencent 130055.",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
         "high",
         "max"
       ],
@@ -253,6 +253,20 @@
       "surface": "chat"
     },
     {
+      "model": "kimi-k2.5",
+      "aliases": [
+        "kimi-k-2-5"
+      ],
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.6,
+      "completion_per_1m": 3,
+      "cache_read_per_1m": 0.1,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 262144,
+      "surface": "chat"
+    },
+    {
       "model": "kimi-k2.6",
       "aliases": [
         "kimi-k-2-6"
@@ -286,6 +300,20 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 262144,
+      "surface": "chat"
+    },
+    {
+      "model": "minimax-m2.5",
+      "aliases": [
+        "minimax-m-2-5"
+      ],
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.06,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 204800,
       "surface": "chat"
     },
     {
