@@ -532,6 +532,37 @@
           }
         },
         {
+          "model": "gemini-3.8-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.75,
+          "completion_per_1m": 3.75,
+          "cache_read_per_1m": 0.075,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video",
+            "pdf"
+          ],
+          "source": "manual",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "variants": {
+            "suffixes": [
+              "-high",
+              "-low",
+              "-medium",
+              "-tiered"
+            ]
+          }
+        },
+        {
           "model": "gemini-pro-agent",
           "pricing_style": "openai",
           "prompt_per_1m": 2,
@@ -1541,6 +1572,23 @@
             "high"
           ],
           "surface": "chat"
+        },
+        {
+          "model": "gemini-3.8-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.75,
+          "completion_per_1m": 3.75,
+          "cache_read_per_1m": 0.075,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video",
+            "pdf"
+          ],
+          "source": "manual",
+          "context_window": 1048576
         },
         {
           "model": "gemini-flash-latest",
