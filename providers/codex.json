@@ -142,6 +142,28 @@
       "surface": "chat"
     },
     {
+      "model": "gpt-6-astra",
+      "pricing_style": "openai",
+      "prompt_per_1m": 10,
+      "completion_per_1m": 50,
+      "cache_read_per_1m": 1,
+      "cache_write_per_1m": 12.5,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "manual",
+      "context_window": 272000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
       "model": "gpt-image-2",
       "pricing_style": "openai",
       "prompt_per_1m": 5,
