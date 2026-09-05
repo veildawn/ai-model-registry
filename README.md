@@ -136,6 +136,10 @@ correction, not an API change.
 - `price_reviewed` (optional): a note saying a person compared this row's price
   against the upstream and decided ours stands. Moves the row out of the daily
   report's action list — see below.
+- `free` (optional): `true` means all-zero rates are **$0**, not a missing
+  price. The service's rate index otherwise skips a row whose four rates are
+  0 (`hasRates`), so the catalog still shows 未定价 / `unpriced`. Set this
+  only on a model the vendor actually gives away; never on an unpriced id.
 
 ## One model, many spellings: `variants`
 
@@ -436,7 +440,8 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | glm | GLM (Zhipu) | `glm-4.5` and `glm-4.6` are **unpriced** — see below |
 | minimax | MiniMax | `MiniMax-M2`…`M3` upstream ids, lowercased here |
 | mimo | MiMo (Xiaomi) | overseas PAYG for `mimo-v2.5` / `mimo-v2.5-pro`; `-asr` / `-tts*` stay **unpriced** |
-| opencode | OpenCode Zen | the seven current `*-free` / `big-pickle` rows are **$0** — actually free, not unpriced |
+| opencode | OpenCode Zen | the seven current `*-free` / `big-pickle` rows are **$0** with `"free": true` — not unpriced |
+| cursor | Cursor | **prices none** — reseller; `hidden_models` only, trims uncommon `claude-*` / `gpt-5.*` / `gemini-*` |
 | antigravity | Antigravity | **prices none** — reseller; `hidden_models` only, trims non-current Gemini/Claude |
 | google-ai-studio | Google AI Studio | `hidden_models` trims niche Gemini (tts / music / robotics / research / gemma); the image family is **listed** — see below |
 | opencode-go | OpenCode Go | curated open-model subscription (`opencode.ai/zen/go`); DeepSeek Flash/Pro use the official effort ladders |
@@ -524,13 +529,15 @@ back to `"source": "manual"` and restore 30 — the job will leave it alone.
 
 ### Unpriced entries (all rates 0)
 
-A zero here means **"no published per-token rate"**, not "free". The service reads
-these rows as unpriced (`catalog.Unpriced`), so they produce no cost.
+A zero here means **"no published per-token rate"**, not "free". The service
+drops those rows from its rate index (`modelregistry.hasRates`), so
+`catalog.Unpriced` stays true and the admin UI shows 未定价.
 
-The exception is OpenCode Zen's current free catalogue (`big-pickle`,
+The exception is a row with `"free": true`. That is a published $0, and the
+service must keep it in the rate index so the catalog is not unpriced and a
+models list can show 免费. OpenCode Zen's current free catalogue (`big-pickle`,
 `deepseek-v4-flash-free`, `hy3-free`, `laguna-s-2.1-free`, `mimo-v2.5-free`,
-`nemotron-3-ultra-free`, `nemotron-3.5-lightning-free`): Zen publishes those as
-Free, so 0 there is **$0**, not a missing rate.
+`nemotron-3-ultra-free`, `nemotron-3.5-lightning-free`) is marked that way.
 
 | entries | why |
 |---|---|
