@@ -202,6 +202,28 @@
       "surface": "chat"
     },
     {
+      "model": "glm-5.3-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.118223,
+      "completion_per_1m": 0.413779,
+      "cache_read_per_1m": 0.033989,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "TokenHub list 0.8/2.8/0.23 CNY at ECB 6.7669. See Tencent 130055 and 130659.",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
       "model": "hy3",
       "aliases": [
         "hy3-202608"
@@ -317,6 +339,26 @@
         "xhigh",
         "max"
       ]
+    },
+    {
+      "model": "kimi-k3",
+      "aliases": [
+        "kimi3"
+      ],
+      "pricing_style": "openai",
+      "prompt_per_1m": 2.955563,
+      "completion_per_1m": 14.777816,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "TokenHub list 20/100/2 CNY at ECB 6.7669. See Tencent 130055 and 130659.",
+      "context_window": 1048576,
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
     },
     {
       "model": "minimax-m2.5",
