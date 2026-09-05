@@ -1,0 +1,151 @@
+{
+  "name": "sensenova",
+  "display_name": "SenseNova",
+  "models": [
+    {
+      "model": "sensenova-6.8-flash-lite",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Unpriced: SenseNova Token Plan settles in subscription credits and publishes no USD-per-token list price for this model.",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.66,
+      "completion_per_1m": 1.98,
+      "cache_read_per_1m": 0.022,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Canonical vendor list price estimate for reference; SenseNova Token Plan is billed in subscription credits, not USD/token.",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.22,
+      "completion_per_1m": 0.66,
+      "cache_read_per_1m": 0.007,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Canonical vendor list price estimate for reference; SenseNova Token Plan is billed in subscription credits, not USD/token.",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "glm-5.2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.182225,
+      "completion_per_1m": 4.137788,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Canonical vendor list price estimate for reference; SenseNova Token Plan is billed in subscription credits, not USD/token.",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "kimi-k3",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2.955563,
+      "completion_per_1m": 14.777816,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Canonical vendor list price estimate for reference; SenseNova Token Plan is billed in subscription credits, not USD/token.",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "sensenova-u1-fast",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Unpriced: SenseNova Token Plan settles in subscription credits and publishes no USD-per-token list price for this model.",
+      "context_window": 262144,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "none"
+      ],
+      "surface": "image"
+    },
+    {
+      "model": "sensenova-u1.5-lite",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Unpriced: SenseNova Token Plan settles in subscription credits and publishes no USD-per-token list price for this model.",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none"
+      ],
+      "surface": "image"
+    }
+  ]
+}
