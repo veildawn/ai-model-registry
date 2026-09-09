@@ -813,6 +813,23 @@
             "none"
           ],
           "surface": "image"
+        },
+        {
+          "model": "gpt-image-2.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 1.25,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image"
         }
       ]
     },

@@ -433,7 +433,7 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | name | display | notes |
 |---|---|---|
 | anthropic | Anthropic | canonical `claude-*` ids |
-| codex | OpenAI (Codex) | `gpt-5.4` / `gpt-5.5` / `gpt-5.6-*` / `gpt-6-astra`; `gpt-image-2` is the images route — see below |
+| codex | OpenAI (Codex) | `gpt-5.4` / `gpt-5.5` / `gpt-5.6-*` / `gpt-6-astra`; `gpt-image-2` / `gpt-image-2.5` is the images route — see below |
 | xai | xAI | `grok-*`; the four `grok-imagine-*` entries are **unpriced** — see below |
 | kimi | Kimi (Moonshot) | `k3` priced; the two `kimi-for-coding*` are **unpriced** — see below |
 | deepseek | DeepSeek | `deepseek-v4-flash` / `deepseek-v4-pro` |
@@ -617,7 +617,7 @@ them, and a wrong declaration is worse here than no declaration:
 | antigravity | `tab_flash_lite_preview`, `tab_jump_flash_lite_preview` |
 | google-ai-studio | `deep-research-*` (3) |
 | xai | `grok-build-0.1`, `grok-imagine-*` (4) |
-| codex | `gpt-image-2` |
+| codex | `gpt-image-2`, `gpt-image-2.5` |
 | mimo | `mimo-v2.5-asr`, `mimo-v2.5-tts*` (3) |
 | kiro | `glm-5`, `minimax-m2.1`, `minimax-m2.5` |
 
