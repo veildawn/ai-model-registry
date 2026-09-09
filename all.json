@@ -3565,7 +3565,7 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "image"
+          "surface": "chat"
         },
         {
           "model": "sensenova-u1.5-lite",
@@ -3584,7 +3584,7 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "image"
+          "surface": "chat"
         }
       ]
     },
