@@ -271,7 +271,13 @@
           ],
           "source": "vendor-api",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "max"
+          ]
         },
         {
           "model": "claude-sonnet-4-6",
