@@ -1,9 +1,9 @@
 {
-  "version": 1,
+  "version": 2,
   "generated_by": "scripts/bundle.py",
   "files": {
     "index.json": {
-      "version": 1,
+      "version": 2,
       "providers": [
         "anthropic",
         "antigravity",
