@@ -206,7 +206,12 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "video"
+      "surface": "video",
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ]
     },
     {
       "model": "grok-imagine-video-1.5",
@@ -219,7 +224,12 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "video"
+      "surface": "video",
+      "input_modalities": [
+        "text",
+        "image",
+        "audio"
+      ]
     }
   ]
 }
