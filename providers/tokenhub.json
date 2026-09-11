@@ -18,6 +18,30 @@
       "surface": "chat"
     },
     {
+      "model": "deepseek/deepseek-flash",
+      "aliases": [
+        "deepseek-flash"
+      ],
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.147778,
+      "completion_per_1m": 0.591113,
+      "cache_read_per_1m": 0.002956,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "TokenHub 原厂直供 V4.1 Flash off-peak list (1/4/0.02 CNY) at ECB 6.7669. See Tencent 130055 and 130079.",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
       "model": "deepseek-v4-flash",
       "aliases": [
         "deepseek/deepseek-v4-flash"
