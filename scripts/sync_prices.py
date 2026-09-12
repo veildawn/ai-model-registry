@@ -25,6 +25,23 @@ occasionally right and always rotting, which is the state this registry was in �
 its only freshness signal was a "last full refresh" date in the README that
 nothing checked.
 
+Four vendor files also ENROLL ids the catalog does not yet have. Matching only
+keeps a row fresh; it cannot notice that Anthropic shipped `claude-fable-5-1`
+or OpenAI shipped `gpt-5.7` if nobody typed the id in. `AUTO_ENROLL` is that
+notice, scoped to the four first-party catalogs a new frontier model actually
+lands in (Anthropic, OpenAI/Codex, Google AI Studio, xAI). A reseller is left
+alone: guessing which of a vendor's new ids a discount shop has turned on is
+not a price fact.
+
+Enrollment is filtered so the daily job cannot dump a vendor's attic into a
+curated file. An id is added only when it is in the vendor's own namespace, has
+a mapped surface this registry serves, has a published rate, is not a moving
+alias or a dated snapshot of something already here, and is at or above the
+generation that file already carries for that family. A brand-new family
+(Claude Mythos, a Grok Code line) has no floor and is admitted. New rows are
+delegated (`source: litellm`) so the same run that created them keeps their
+prices.
+
 What stays manual is what no upstream has an answer for:
 
   - Resellers with a price list of their own that they do not publish: qoder,
@@ -71,6 +88,7 @@ Usage:
 Exit codes: 0 nothing needs a human, 1 something does, 2 could not run.
 """
 import argparse
+import bisect
 import collections
 import glob
 import json
@@ -167,6 +185,65 @@ NAMESPACES = {
     "qianwen": ["dashscope"],
 }
 
+# Provider files that gain a new row when the vendor's namespace grows. The
+# include pattern is the family's current spelling, not a generation number —
+# `gpt-5.\d+` is what Codex actually lists (5.4 / 5.5 / 5.6), `gpt-5$` is an
+# older line this file never carried. The generation floor (see family_floor)
+# is what stops gpt-5.1 landing next to gpt-5.4 the morning after this ships.
+#
+# pricing_style is a file-level convention, not an upstream column.
+AUTO_ENROLL = {
+    "anthropic": {
+        "include": re.compile(r"^claude-(fable|mythos|opus|sonnet|haiku)-"),
+        "pricing_style": "anthropic",
+        "surfaces": frozenset({"chat", "image", "video"}),
+    },
+    "codex": {
+        "include": re.compile(
+            r"^(gpt-5\.\d+|gpt-[6-9](?:-|$|\.)|gpt-\d{2,}(?:-|$|\.)|gpt-image-)"),
+        "pricing_style": "openai",
+        "surfaces": frozenset({"chat", "image", "video"}),
+    },
+    "google-ai-studio": {
+        "include": re.compile(r"^gemini-\d"),
+        "pricing_style": "openai",
+        "surfaces": frozenset({"chat", "image", "video"}),
+    },
+    "xai": {
+        "include": re.compile(
+            r"^grok-(?:[5-9]|4\.(?:[2-9]\d+|[3-9])|build|imagine|code)"),
+        "pricing_style": "openai",
+        "surfaces": frozenset({"chat", "image", "video"}),
+    },
+}
+
+# Moving aliases, fine-tunes, and product lines this registry's four catalogs
+# deliberately do not list. A new Claude / GPT / Gemini / Grok id does not match
+# these; gpt-4o and claude-3 do not get in through the include pattern either.
+SKIP_ENROLL = re.compile(
+    r"(?:^ft:|-latest$|-beta(?:-|$)|-exp(?:erimental)?(?:-|$)|"
+    r"-tts(?:-|$)|transcribe|realtime|native-audio|embedding|"
+    r"search-preview|audio-preview|computer-use|customtools|"
+    r"robotics|gemma|lyria|learnlm|imagen|veo|"
+    r"^chatgpt-|^chat-latest|^codex-mini|^daybreak-|"
+    r"whisper|^text-|^davinci|^omni|deep-research)"
+)
+
+# A vendor's dated snapshot of an id this registry already stores undated, or
+# the other way around. Anthropic writes -YYYYMMDD, OpenAI writes -YYYY-MM-DD.
+RELEASE_DATE = re.compile(r"(?:-20\d{6}|-\d{4}-\d{2}-\d{2})$")
+
+# gemini-2.5-flash-lite-preview-09-2025 is a snapshot of gemini-2.5-flash-lite,
+# which the file already has. The -preview suffix on gemini-3-flash-preview is
+# the shipping id, not a snapshot — only a preview WITH a date is stripped.
+PREVIEW_DATED = re.compile(
+    r"-preview(?:-\d{2}-\d{4}|-\d{4}-\d{2}|-\d{2}-\d{4}|-\d{2}-\d{2})$")
+
+# gemini-2.0-flash-001 is a pin of gemini-2.0-flash. grok-code-fast-1-0825 is
+# a four-digit pin of grok-code-fast-1.
+VERSION_PIN = re.compile(r"-\d{3}$")
+SHORT_DATE_PIN = re.compile(r"-\d{4}$")
+
 # Surfaces that publish no rates of their own but METER at the vendor's API
 # list, matched against another vendor's namespace on the model's base id.
 #
@@ -245,6 +322,198 @@ def strip_suffixes(model_id: str) -> str:
         previous = base
         base = SURFACE_SUFFIX.sub("", base)
     return base
+
+
+def strip_release_date(model_id: str) -> str:
+    """The floating id a dated snapshot is a snapshot of."""
+    return RELEASE_DATE.sub("", model_id.lower())
+
+
+def family_version(model_id: str):
+    """(family, version-tuple) for the generation-floor check, or None.
+
+    The family is the product line a floor applies to (`claude-opus`, `gpt`,
+    `gpt-image`, `gemini`, `grok`, `grok-build`). The version is the numbers
+    after it, so `claude-opus-4-5` is `(4, 5)` and `gpt-5.4-mini` is `(5, 4)`.
+    Missing trailing numbers compare as zeros: `claude-sonnet-4` < `claude-sonnet-4-5`.
+    """
+    mid = strip_release_date(model_id)
+    claude = re.match(
+        r"^(claude-(?:fable|mythos|opus|sonnet|haiku))-(\d+)(?:-(\d+))?(?:-|$)", mid)
+    if claude:
+        major = int(claude.group(2))
+        minor = int(claude.group(3)) if claude.group(3) else 0
+        return claude.group(1), (major, minor)
+    image = re.match(r"^gpt-image-(\d+)(?:\.(\d+))?(?:-|$)", mid)
+    if image:
+        major = int(image.group(1))
+        minor = int(image.group(2)) if image.group(2) else 0
+        return "gpt-image", (major, minor)
+    gpt = re.match(r"^gpt-(\d+)(?:\.(\d+))?(?:-|$)", mid)
+    if gpt:
+        major = int(gpt.group(1))
+        minor = int(gpt.group(2)) if gpt.group(2) else 0
+        return "gpt", (major, minor)
+    gemini = re.match(r"^gemini-(\d+)(?:\.(\d+))?(?:-|$)", mid)
+    if gemini:
+        major = int(gemini.group(1))
+        minor = int(gemini.group(2)) if gemini.group(2) else 0
+        return "gemini", (major, minor)
+    grok_named = re.match(r"^grok-(build|imagine|code)(?:-|$)", mid)
+    if grok_named:
+        numbered = re.match(r"^grok-(?:build|imagine|code)-(\d+)(?:\.(\d+))?", mid)
+        if numbered:
+            major = int(numbered.group(1))
+            minor = int(numbered.group(2)) if numbered.group(2) else 0
+            return f"grok-{grok_named.group(1)}", (major, minor)
+        return f"grok-{grok_named.group(1)}", (0,)
+    grok = re.match(r"^grok-(\d+)(?:\.(\d+))?(?:-|$)", mid)
+    if grok:
+        major = int(grok.group(1))
+        minor = int(grok.group(2)) if grok.group(2) else 0
+        return "grok", (major, minor)
+    return None
+
+
+def family_floors(models: list) -> dict:
+    """Lowest version this file already carries, per family.
+
+    Using the minimum (not the newest) is the point: Codex listing gpt-5.4 and
+    gpt-6 means a new gpt-5.4-nano is in-generation and a leftover gpt-5.1 is
+    not. A family the file has never listed has no floor and is admitted.
+    """
+    floors = {}
+    for row in models:
+        parsed = family_version(row["model"])
+        if not parsed:
+            continue
+        family, version = parsed
+        if family not in floors or version < floors[family]:
+            floors[family] = version
+    return floors
+
+
+def snapshot_of(model_id: str) -> str:
+    """The id this one is a dated/preview/pinned snapshot of, if any."""
+    mid = model_id.lower()
+    stripped = PREVIEW_DATED.sub("", mid)
+    if stripped != mid:
+        return stripped
+    stripped = RELEASE_DATE.sub("", mid)
+    if stripped != mid:
+        return stripped
+    stripped = VERSION_PIN.sub("", mid)
+    if stripped != mid:
+        return stripped
+    stripped = SHORT_DATE_PIN.sub("", mid)
+    if stripped != mid:
+        return stripped
+    return mid
+
+
+def enroll_reason(provider: str, model_id: str, entry: dict, known: set,
+                  floors: dict):
+    """Why this id is skipped, or None if it should be added.
+
+    Returning the skip reason (rather than a bool) is what makes a unit test
+    able to point at the exact rule without re-deriving it from a fixture's
+    shape.
+    """
+    spec = AUTO_ENROLL.get(provider)
+    if spec is None:
+        return "not-enrolled-provider"
+    mid = model_id.lower()
+    if mid in known:
+        return "already-present"
+    if snapshot_of(mid) in known:
+        return "snapshot-of-present"
+    if strip_release_date(mid) != mid:
+        present_undated = {strip_release_date(k) for k in known}
+        if strip_release_date(mid) in present_undated:
+            return "dated-sibling"
+    # Undated form of a dated id already in the file (claude-haiku-4-5 vs
+    # claude-haiku-4-5-20251001).
+    if mid in {strip_release_date(k) for k in known}:
+        return "undated-sibling"
+    if SKIP_ENROLL.search(mid):
+        return "skipped-pattern"
+    if not spec["include"].search(mid):
+        return "outside-include"
+    # claude-mythos-preview is an alias of the versioned Mythos line, not a
+    # shipping id of its own.
+    if re.match(r"^claude-(?:fable|mythos|opus|sonnet|haiku)-preview$", mid):
+        return "unversioned-preview"
+    surface = upstream_surface(entry)
+    if surface not in spec["surfaces"]:
+        return "unserved-surface"
+    prompt = per_1m(entry, "input_cost_per_token")
+    completion = per_1m(entry, "output_cost_per_token")
+    if prompt is None:
+        return "unpriced"
+    if not prompt and not completion:
+        return "zero-price"
+    parsed = family_version(mid)
+    if parsed:
+        family, version = parsed
+        floor = floors.get(family)
+        if floor is not None and version < floor:
+            return "below-floor"
+    return None
+
+
+def build_enrolled_row(model_id: str, entry: dict, pricing_style: str,
+                       supplement: dict) -> collections.OrderedDict:
+    """A new delegated row filled from the vendor's upstream facts."""
+    row = collections.OrderedDict()
+    row["model"] = model_id
+    row["pricing_style"] = pricing_style
+    for field, upstream_field in RATES:
+        theirs = per_1m(entry, upstream_field)
+        row[field] = theirs if theirs is not None else 0
+    modalities = upstream_modalities(entry)
+    if modalities:
+        row["input_modalities"] = modalities
+    row["source"] = "litellm"
+    for field, value in capability_facts(entry):
+        if field == "input_modalities":
+            continue
+        if value:
+            row[field] = value
+    for field, value in sorted((supplement or {}).items()):
+        if not row.get(field) and value:
+            row[field] = value
+    return row
+
+
+def enroll_new_models(provider: str, models: list, idx: dict,
+                      models_dev: dict) -> list:
+    """Ids the vendor publishes that this file does not yet carry.
+
+    Appends matching rows onto `models` (the expanded per-id list) and returns
+    the ids added, so the report can name them. Insertion is alphabetical among
+    the whole file, which is how these four files are already written.
+    """
+    spec = AUTO_ENROLL.get(provider)
+    if spec is None:
+        return []
+    known = {m["model"].lower() for m in models}
+    floors = family_floors(models)
+    added = []
+    seen = set(known)
+    for namespace in NAMESPACES.get(provider, []):
+        for bare, (_key, entry) in sorted(idx.get(namespace, {}).items()):
+            if bare in seen:
+                continue
+            if enroll_reason(provider, bare, entry, known, floors):
+                continue
+            supplement = models_dev.get(bare) or models_dev.get(strip_suffixes(bare)) or {}
+            models.insert(
+                bisect.bisect_left([m["model"] for m in models], bare),
+                build_enrolled_row(bare, entry, spec["pricing_style"], supplement))
+            seen.add(bare)
+            known.add(bare)
+            added.append(bare)
+    return added
 
 
 def derived_match(provider: str, model_id: str, idx: dict):
@@ -650,7 +919,7 @@ def contested_model_facts(rows: list) -> list:
 
 def sync(registry_dir: str, upstream, models_dev: dict, apply: bool):
     idx = index_upstream(upstream)
-    applied, disagree, orphans, unclassified, capability = [], [], [], [], []
+    applied, disagree, orphans, unclassified, capability, enrolled = [], [], [], [], [], []
     counts = collections.Counter()
     # Every row this pass saw, for the cross-provider checks that can only be
     # made once the whole registry is in hand.
@@ -670,6 +939,11 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool):
         # write, so the matching logic never has to know a family from a row.
         models = discover_families(
             [row for entry in doc.get("models", []) for row in expand_family(entry)])
+
+        enrolled_here = enroll_new_models(provider, models, idx, models_dev)
+        if enrolled_here:
+            dirty = True
+            enrolled.extend((provider, mid) for mid in enrolled_here)
 
         for model in models:
             source = model.get("source")
@@ -811,7 +1085,7 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool):
         regenerate_bundle(registry_dir)
 
     return (applied, disagree, orphans, unclassified, capability, counts,
-            contested_model_facts(everything))
+            contested_model_facts(everything), enrolled)
 
 
 def regenerate_bundle(registry_dir: str) -> None:
@@ -838,7 +1112,7 @@ def regenerate_bundle(registry_dir: str) -> None:
 
 
 def render(applied, disagree, orphans, unclassified, capability, counts, contested,
-           apply: bool) -> str:
+           enrolled, apply: bool) -> str:
     out = []
     w = out.append
     verb = "applied" if apply else "would apply"
@@ -851,7 +1125,8 @@ def render(applied, disagree, orphans, unclassified, capability, counts, contest
     fresh = [d for d in disagree if not d[6]]
     reviewed = [d for d in disagree if d[6]]
 
-    w(f"**{len(applied)} field(s) {verb}** · **{len(fresh)} new disagreement(s) on rows we own** · "
+    w(f"**{len(applied)} field(s) {verb}** · **{len(enrolled)} model(s) enrolled** · "
+      f"**{len(fresh)} new disagreement(s) on rows we own** · "
       f"{len(reviewed)} reviewed and kept · "
       f"{len(orphans)} orphaned · {len(unclassified)} unclassified · "
       f"{len(capability)} capability facts available · "
@@ -926,6 +1201,19 @@ def render(applied, disagree, orphans, unclassified, capability, counts, contest
             w(f"- {provider}: `{model}`")
         w("")
 
+    if enrolled:
+        verb_enroll = "Enrolled" if apply else "Would enroll"
+        w(f"## {verb_enroll} from the vendor's namespace")
+        w("")
+        w("These ids were not in the file. They matched AUTO_ENROLL (Anthropic, "
+          "OpenAI/Codex, Google AI Studio, xAI), so they are added as "
+          "`source: litellm` and kept fresh from here on. A reseller file is "
+          "never enrolled this way.")
+        w("")
+        for provider, model in enrolled:
+            w(f"- {provider}: `{model}`")
+        w("")
+
     if applied:
         w(f"## Fields {verb}")
         w("")
@@ -981,10 +1269,10 @@ def main() -> int:
         print(f"models.dev unavailable, continuing without it: {err}", file=sys.stderr)
         models_dev = {}
 
-    applied, disagree, orphans, unclassified, capability, counts, contested = sync(
+    applied, disagree, orphans, unclassified, capability, counts, contested, enrolled = sync(
         args.registry, upstream, models_dev, apply=not args.check)
     report = render(applied, disagree, orphans, unclassified, capability, counts,
-                    contested, apply=not args.check)
+                    contested, enrolled, apply=not args.check)
     print(report)
     if args.out:
         with open(args.out, "w") as fh:
