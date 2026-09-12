@@ -259,8 +259,10 @@ Enrollment is not "copy the vendor's attic". An id is added only when it:
   `gpt-5.1`). A brand-new family (Claude Mythos, Grok Code) has no floor and is
   admitted.
 
-Resellers are never enrolled this way: guessing which of a vendor's new ids a
-discount shop has turned on is not a price fact.
+Resellers who publish their own price list are never enrolled this way:
+guessing which of a vendor's new ids a discount shop has turned on is not a
+price fact. Antigravity is the exception that is not a discount shop — it
+meters the vendor's list, so a new Claude or Gemini id is enrolled there too.
 
 A second upstream, [models.dev](https://models.dev/api.json), supplies the two
 fields litellm has no column for: `effort_levels`, and `surface` where a model's
@@ -287,7 +289,7 @@ rather than arbitrated.
 | `source` | rows | what it means |
 |---|---|---|
 | `litellm` | 74 | the vendor's own litellm namespace carries this exact id. Read, not inferred. |
-| `vendor-api` | 38 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` and `antigravity`. Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
+| `vendor-api` | 52 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` and `antigravity`. Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
 | `manual` | 158 | ours. The job compares this row's PRICES and reports, never writing them. |
 
 ### `source` governs prices, not facts
