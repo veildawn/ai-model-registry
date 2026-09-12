@@ -25,13 +25,14 @@ occasionally right and always rotting, which is the state this registry was in â
 its only freshness signal was a "last full refresh" date in the README that
 nothing checked.
 
-Four vendor files also ENROLL ids the catalog does not yet have. Matching only
-keeps a row fresh; it cannot notice that Anthropic shipped `claude-fable-5-1`
-or OpenAI shipped `gpt-5.7` if nobody typed the id in. `AUTO_ENROLL` is that
-notice, scoped to the four first-party catalogs a new frontier model actually
-lands in (Anthropic, OpenAI/Codex, Google AI Studio, xAI). A reseller is left
-alone: guessing which of a vendor's new ids a discount shop has turned on is
-not a price fact.
+Four vendor files, and Antigravity, also ENROLL ids the catalog does not yet
+have. Matching only keeps a row fresh; it cannot notice that Anthropic shipped
+`claude-fable-5-1` or OpenAI shipped `gpt-5.7` if nobody typed the id in.
+`AUTO_ENROLL` is that notice, scoped to the first-party catalogs a new frontier
+model actually lands in (Anthropic, OpenAI/Codex, Google AI Studio, xAI) and to
+Antigravity, which meters those same Claude/Gemini ids at the vendor's API
+list. A discount reseller is left alone: guessing which of a vendor's new ids
+it has turned on is not a price fact.
 
 Enrollment is filtered so the daily job cannot dump a vendor's attic into a
 curated file. An id is added only when it is in the vendor's own namespace, has
@@ -215,11 +216,20 @@ AUTO_ENROLL = {
         "pricing_style": "openai",
         "surfaces": frozenset({"chat", "image", "video"}),
     },
+    # Meters Claude and Gemini at the vendor's list (`source: vendor-api`).
+    # Gemini's shipping ids often end in `-preview` upstream; this file stores
+    # the un-previewed spelling (`gemini-3-flash`, not `gemini-3-flash-preview`).
+    "antigravity": {
+        "include": re.compile(r"^(claude-(fable|mythos|opus|sonnet|haiku)-|gemini-\d)"),
+        "source": "vendor-api",
+        "drop_gemini_preview": True,
+        "surfaces": frozenset({"chat", "image", "video"}),
+    },
 }
 
-# Moving aliases, fine-tunes, and product lines this registry's four catalogs
-# deliberately do not list. A new Claude / GPT / Gemini / Grok id does not match
-# these; gpt-4o and claude-3 do not get in through the include pattern either.
+# Moving aliases, fine-tunes, and product lines these catalogs deliberately do
+# not list. A new Claude / GPT / Gemini / Grok id does not match these; gpt-4o
+# and claude-3 do not get in through the include pattern either.
 SKIP_ENROLL = re.compile(
     r"(?:^ft:|-latest$|-beta(?:-|$)|-exp(?:erimental)?(?:-|$)|"
     r"-tts(?:-|$)|transcribe|realtime|native-audio|embedding|"
@@ -411,6 +421,41 @@ def snapshot_of(model_id: str) -> str:
     return mid
 
 
+def enroll_store_id(provider: str, model_id: str) -> str:
+    """The id this file would store for an upstream bare name.
+
+    Antigravity lists Gemini without the vendor's `-preview` shipping suffix.
+    Everyone else stores the upstream id as published.
+    """
+    spec = AUTO_ENROLL.get(provider) or {}
+    mid = model_id.lower()
+    if spec.get("drop_gemini_preview") and mid.startswith("gemini-") and mid.endswith("-preview"):
+        return mid[:-8]
+    return mid
+
+
+def enroll_pricing_style(spec: dict, model_id: str) -> str:
+    if model_id.startswith("claude-"):
+        return "anthropic"
+    return spec.get("pricing_style") or "openai"
+
+
+def enroll_namespaces(provider: str):
+    spec = AUTO_ENROLL.get(provider) or {}
+    return spec.get("namespaces") or NAMESPACES.get(provider) or DERIVED_NAMESPACES.get(provider) or []
+
+
+def expand_enroll_known(known: set) -> set:
+    """Ids that already count as present, including this surface's own suffixes."""
+    out = set(known)
+    for mid in list(known):
+        out.add(strip_suffixes(mid))
+        out.add(snapshot_of(mid))
+        if mid.endswith("-preview"):
+            out.add(mid[:-8])
+    return out
+
+
 def enroll_reason(provider: str, model_id: str, entry: dict, known: set,
                   floors: dict):
     """Why this id is skipped, or None if it should be added.
@@ -423,17 +468,20 @@ def enroll_reason(provider: str, model_id: str, entry: dict, known: set,
     if spec is None:
         return "not-enrolled-provider"
     mid = model_id.lower()
-    if mid in known:
+    present = expand_enroll_known(known)
+    if mid in present:
         return "already-present"
-    if snapshot_of(mid) in known:
+    if mid.endswith("-preview") and mid[:-8] in present:
+        return "already-present"
+    if snapshot_of(mid) in present:
         return "snapshot-of-present"
     if strip_release_date(mid) != mid:
-        present_undated = {strip_release_date(k) for k in known}
+        present_undated = {strip_release_date(k) for k in present}
         if strip_release_date(mid) in present_undated:
             return "dated-sibling"
     # Undated form of a dated id already in the file (claude-haiku-4-5 vs
     # claude-haiku-4-5-20251001).
-    if mid in {strip_release_date(k) for k in known}:
+    if mid in {strip_release_date(k) for k in present}:
         return "undated-sibling"
     if SKIP_ENROLL.search(mid):
         return "skipped-pattern"
@@ -462,7 +510,7 @@ def enroll_reason(provider: str, model_id: str, entry: dict, known: set,
 
 
 def build_enrolled_row(model_id: str, entry: dict, pricing_style: str,
-                       supplement: dict) -> collections.OrderedDict:
+                       supplement: dict, source: str = "litellm") -> collections.OrderedDict:
     """A new delegated row filled from the vendor's upstream facts."""
     row = collections.OrderedDict()
     row["model"] = model_id
@@ -473,7 +521,7 @@ def build_enrolled_row(model_id: str, entry: dict, pricing_style: str,
     modalities = upstream_modalities(entry)
     if modalities:
         row["input_modalities"] = modalities
-    row["source"] = "litellm"
+    row["source"] = source
     for field, value in capability_facts(entry):
         if field == "input_modalities":
             continue
@@ -499,20 +547,25 @@ def enroll_new_models(provider: str, models: list, idx: dict,
     known = {m["model"].lower() for m in models}
     floors = family_floors(models)
     added = []
-    seen = set(known)
-    for namespace in NAMESPACES.get(provider, []):
+    seen = set(expand_enroll_known(known))
+    source = spec.get("source", "litellm")
+    for namespace in enroll_namespaces(provider):
         for bare, (_key, entry) in sorted(idx.get(namespace, {}).items()):
-            if bare in seen:
+            store_id = enroll_store_id(provider, bare)
+            if store_id in seen:
                 continue
-            if enroll_reason(provider, bare, entry, known, floors):
+            if enroll_reason(provider, store_id, entry, known, floors):
                 continue
-            supplement = models_dev.get(bare) or models_dev.get(strip_suffixes(bare)) or {}
+            supplement = models_dev.get(bare) or models_dev.get(store_id) or models_dev.get(strip_suffixes(store_id)) or {}
             models.insert(
-                bisect.bisect_left([m["model"] for m in models], bare),
-                build_enrolled_row(bare, entry, spec["pricing_style"], supplement))
-            seen.add(bare)
-            known.add(bare)
-            added.append(bare)
+                bisect.bisect_left([m["model"] for m in models], store_id),
+                build_enrolled_row(
+                    store_id, entry, enroll_pricing_style(spec, store_id),
+                    supplement, source=source))
+            seen.add(store_id)
+            seen.update(expand_enroll_known({store_id}))
+            known.add(store_id)
+            added.append(store_id)
     return added
 
 
@@ -1206,9 +1259,10 @@ def render(applied, disagree, orphans, unclassified, capability, counts, contest
         w(f"## {verb_enroll} from the vendor's namespace")
         w("")
         w("These ids were not in the file. They matched AUTO_ENROLL (Anthropic, "
-          "OpenAI/Codex, Google AI Studio, xAI), so they are added as "
-          "`source: litellm` and kept fresh from here on. A reseller file is "
-          "never enrolled this way.")
+          "OpenAI/Codex, Google AI Studio, xAI, and Antigravity). First-party "
+          "rows are `source: litellm`; Antigravity rows are `source: vendor-api` "
+          "because that surface meters the vendor's list. A discount reseller "
+          "is never enrolled this way.")
         w("")
         for provider, model in enrolled:
             w(f"- {provider}: `{model}`")

@@ -75,7 +75,7 @@ class EnrollReasonTest(unittest.TestCase):
         self.assertEqual(self.reason("anthropic", "claude-3-opus-20240229"),
                          "outside-include")
         self.assertEqual(self.reason("anthropic", "claude-opus-4-1"), "below-floor")
-        self.assertEqual(self.reason("anthropic", "claude-haiku-4-5"), "undated-sibling")
+        self.assertEqual(self.reason("anthropic", "claude-haiku-4-5"), "already-present")
         self.assertEqual(self.reason("anthropic", "claude-opus-4-6-20260205"),
                          "snapshot-of-present")
         self.assertEqual(self.reason("anthropic", "claude-mythos-preview"),
@@ -121,6 +121,19 @@ class EnrollReasonTest(unittest.TestCase):
         self.assertEqual(self.reason("qoder", "claude-fable-5-1"),
                          "not-enrolled-provider")
 
+    def test_antigravity_enrolls_claude_and_gemini(self):
+        floors = {"claude-opus": (4, 6), "claude-sonnet": (4, 6), "gemini": (2, 5)}
+        known = {"claude-opus-4-6-thinking", "claude-sonnet-4-6", "gemini-3-flash-agent"}
+        def reason(mid, entry=None):
+            return sp.enroll_reason("antigravity", mid, entry or chat(), known, floors)
+        self.assertIsNone(reason("claude-fable-5-1", chat(cache_read=0.25)))
+        self.assertEqual(reason("claude-opus-4-6"), "already-present")
+        self.assertEqual(reason("gemini-3-flash"), "already-present")
+        self.assertEqual(reason("gemini-3-flash-preview"), "already-present")
+        self.assertEqual(reason("claude-opus-4-5"), "below-floor")
+        self.assertIsNone(reason("gemini-3.9-flash"))
+        self.assertEqual(reason("gpt-5.4"), "outside-include")
+
     def test_unpriced_and_unserved(self):
         self.assertEqual(
             self.reason("xai", "grok-imagine-image-pro",
@@ -158,6 +171,35 @@ class EnrollNewModelsTest(unittest.TestCase):
         self.assertEqual(new["completion_per_1m"], 50)
         self.assertEqual(new["cache_read_per_1m"], 0.25)
         self.assertEqual(new["surface"], "chat")
+
+    def test_antigravity_uses_vendor_api_and_drops_gemini_preview(self):
+        models = [
+            {"model": "claude-opus-4-6-thinking", "source": "vendor-api",
+             "prompt_per_1m": 5, "completion_per_1m": 25},
+            {"model": "gemini-3-flash", "source": "vendor-api",
+             "prompt_per_1m": 0.5, "completion_per_1m": 3},
+        ]
+        idx = {
+            "anthropic": {
+                "claude-fable-5-1": ("claude-fable-5-1", chat(cache_read=0.25)),
+                "claude-opus-4-6": ("claude-opus-4-6", chat(prompt=5, completion=25)),
+            },
+            "gemini": {
+                "gemini-3-flash-preview": ("gemini-3-flash-preview",
+                                           chat(prompt=0.5, completion=3)),
+                "gemini-3.9-flash-preview": ("gemini-3.9-flash-preview",
+                                             chat(prompt=0.75, completion=3.75)),
+            },
+        }
+        added = sp.enroll_new_models("antigravity", models, idx, {})
+        self.assertEqual(added, ["claude-fable-5-1", "gemini-3.9-flash"])
+        by_id = {m["model"]: m for m in models}
+        self.assertEqual(by_id["claude-fable-5-1"]["source"], "vendor-api")
+        self.assertEqual(by_id["claude-fable-5-1"]["pricing_style"], "anthropic")
+        self.assertEqual(by_id["claude-fable-5-1"]["cache_read_per_1m"], 0.25)
+        self.assertEqual(by_id["gemini-3.9-flash"]["source"], "vendor-api")
+        self.assertEqual(by_id["gemini-3.9-flash"]["pricing_style"], "openai")
+        self.assertNotIn("gemini-3-flash-preview", by_id)
 
 
 if __name__ == "__main__":

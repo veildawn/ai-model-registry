@@ -238,11 +238,13 @@ next run reverts it.** Take the row back by flipping its `source` to `manual`
 first.
 
 On the four first-party catalogs — `anthropic`, `codex` (OpenAI),
-`google-ai-studio` (Gemini), `xai` (Grok) — the same job also **enrolls** an
+`google-ai-studio` (Gemini), `xai` (Grok) — and on `antigravity` (which meters
+Claude and Gemini at those vendors' API lists) the same job also **enrolls** an
 id the file does not yet have, when the vendor's own namespace publishes it.
 That is how `claude-fable-5-1` lands the morning after Anthropic ships it,
-instead of waiting for a person to type the id. New rows are written with
-`"source": "litellm"`, so the run that created them keeps their prices.
+instead of waiting for a person to type the id. First-party rows are written
+with `"source": "litellm"`; Antigravity rows with `"source": "vendor-api"`.
+The run that created them keeps their prices.
 
 Enrollment is not "copy the vendor's attic". An id is added only when it:
 
