@@ -56,6 +56,28 @@
           ]
         },
         {
+          "model": "claude-fable-5-1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 10,
+          "completion_per_1m": 50,
+          "cache_read_per_1m": 0.25,
+          "cache_write_per_1m": 12.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
           "model": "claude-haiku-4-5-20251001",
           "pricing_style": "anthropic",
           "prompt_per_1m": 1,
@@ -75,6 +97,43 @@
             "xhigh",
             "max"
           ],
+          "surface": "chat"
+        },
+        {
+          "model": "claude-mythos-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 10,
+          "completion_per_1m": 50,
+          "cache_read_per_1m": 1,
+          "cache_write_per_1m": 12.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "claude-mythos-5-1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 10,
+          "completion_per_1m": 50,
+          "cache_read_per_1m": 0.25,
+          "cache_write_per_1m": 12.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
           "surface": "chat"
         },
         {
@@ -690,6 +749,48 @@
           "surface": "chat"
         },
         {
+          "model": "gpt-5.4-nano",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2,
+          "completion_per_1m": 1.25,
+          "cache_read_per_1m": 0.02,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 272000,
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ]
+        },
+        {
+          "model": "gpt-5.4-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 30,
+          "completion_per_1m": 180,
+          "cache_read_per_1m": 3,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1050000,
+          "surface": "chat",
+          "effort_levels": [
+            "medium",
+            "high",
+            "xhigh"
+          ]
+        },
+        {
           "model": "gpt-5.5",
           "pricing_style": "openai",
           "prompt_per_1m": 5,
@@ -710,6 +811,63 @@
             "xhigh",
             "max"
           ],
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-5.5-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 30,
+          "completion_per_1m": 180,
+          "cache_read_per_1m": 3,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1050000,
+          "surface": "chat",
+          "effort_levels": [
+            "medium",
+            "high",
+            "xhigh"
+          ]
+        },
+        {
+          "model": "gpt-5.6",
+          "pricing_style": "openai",
+          "prompt_per_1m": 4,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0.4,
+          "cache_write_per_1m": 5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 922000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "gpt-5.6-cyber",
+          "pricing_style": "openai",
+          "prompt_per_1m": 12.5,
+          "completion_per_1m": 75,
+          "cache_read_per_1m": 1.25,
+          "cache_write_per_1m": 15.625,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 400000,
           "surface": "chat"
         },
         {
@@ -835,6 +993,34 @@
           "effort_levels": [
             "none"
           ],
+          "surface": "image"
+        },
+        {
+          "model": "gpt-image-2.5-flare",
+          "pricing_style": "openai",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 1.25,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "surface": "image"
+        },
+        {
+          "model": "gpt-image-2.5-sunburst",
+          "pricing_style": "openai",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 1.25,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
           "surface": "image"
         }
       ]
@@ -4227,6 +4413,21 @@
       "list_prices": true,
       "models": [
         {
+          "model": "grok-4.20",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
           "model": "grok-4.20-0309-non-reasoning",
           "pricing_style": "openai",
           "prompt_per_1m": 1.25,
@@ -4265,6 +4466,27 @@
           "surface": "chat"
         },
         {
+          "model": "grok-4.20-multi-agent",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ]
+        },
+        {
           "model": "grok-4.20-multi-agent-0309",
           "pricing_style": "openai",
           "prompt_per_1m": 1.25,
@@ -4283,6 +4505,36 @@
             "high",
             "xhigh"
           ],
+          "surface": "chat"
+        },
+        {
+          "model": "grok-4.20-non-reasoning",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat"
+        },
+        {
+          "model": "grok-4.20-reasoning",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
           "surface": "chat"
         },
         {
@@ -4365,6 +4617,36 @@
             "text",
             "image"
           ],
+          "surface": "chat"
+        },
+        {
+          "model": "grok-code-fast",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 2,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 256000,
+          "surface": "chat"
+        },
+        {
+          "model": "grok-code-fast-1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 2,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 256000,
           "surface": "chat"
         },
         {

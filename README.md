@@ -284,9 +284,9 @@ rather than arbitrated.
 
 | `source` | rows | what it means |
 |---|---|---|
-| `litellm` | 58 | the vendor's own litellm namespace carries this exact id. Read, not inferred. |
-| `vendor-api` | 28 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` and `antigravity`. Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
-| `manual` | 114 | ours. The job compares this row's PRICES and reports, never writing them. |
+| `litellm` | 74 | the vendor's own litellm namespace carries this exact id. Read, not inferred. |
+| `vendor-api` | 38 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` and `antigravity`. Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
+| `manual` | 158 | ours. The job compares this row's PRICES and reports, never writing them. |
 
 ### `source` governs prices, not facts
 
