@@ -30,9 +30,9 @@ have. Matching only keeps a row fresh; it cannot notice that Anthropic shipped
 `claude-fable-5-1` or OpenAI shipped `gpt-5.7` if nobody typed the id in.
 `AUTO_ENROLL` is that notice, scoped to the first-party catalogs a new frontier
 model actually lands in (Anthropic, OpenAI/Codex, Google AI Studio, xAI) and to
-Antigravity, which meters those same Claude/Gemini ids at the vendor's API
-list. A discount reseller is left alone: guessing which of a vendor's new ids
-it has turned on is not a price fact.
+Antigravity for Gemini only — the same ids AI Studio enrolls, metered at
+Google's list. A discount reseller is left alone: guessing which of a vendor's
+new ids it has turned on is not a price fact.
 
 Enrollment is filtered so the daily job cannot dump a vendor's attic into a
 curated file. An id is added only when it is in the vendor's own namespace, has
@@ -216,12 +216,15 @@ AUTO_ENROLL = {
         "pricing_style": "openai",
         "surfaces": frozenset({"chat", "image", "video"}),
     },
-    # Meters Claude and Gemini at the vendor's list (`source: vendor-api`).
+    # Meters Gemini at Google's list (`source: vendor-api`), same models AI
+    # Studio enrolls. Existing Claude rows stay and keep matching; new Claude
+    # ids are not enrolled here — this surface does not carry that catalog.
     # Gemini's shipping ids often end in `-preview` upstream; this file stores
     # the un-previewed spelling (`gemini-3-flash`, not `gemini-3-flash-preview`).
     "antigravity": {
-        "include": re.compile(r"^(claude-(fable|mythos|opus|sonnet|haiku)-|gemini-\d)"),
+        "include": re.compile(r"^gemini-\d"),
         "source": "vendor-api",
+        "namespaces": ["gemini"],
         "drop_gemini_preview": True,
         "surfaces": frozenset({"chat", "image", "video"}),
     },
@@ -1259,10 +1262,10 @@ def render(applied, disagree, orphans, unclassified, capability, counts, contest
         w(f"## {verb_enroll} from the vendor's namespace")
         w("")
         w("These ids were not in the file. They matched AUTO_ENROLL (Anthropic, "
-          "OpenAI/Codex, Google AI Studio, xAI, and Antigravity). First-party "
-          "rows are `source: litellm`; Antigravity rows are `source: vendor-api` "
-          "because that surface meters the vendor's list. A discount reseller "
-          "is never enrolled this way.")
+          "OpenAI/Codex, Google AI Studio, xAI, and Antigravity's Gemini ids). "
+          "First-party rows are `source: litellm`; Antigravity Gemini rows are "
+          "`source: vendor-api` because that surface meters Google's list. A "
+          "discount reseller is never enrolled this way.")
         w("")
         for provider, model in enrolled:
             w(f"- {provider}: `{model}`")

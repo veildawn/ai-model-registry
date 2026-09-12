@@ -121,16 +121,16 @@ class EnrollReasonTest(unittest.TestCase):
         self.assertEqual(self.reason("qoder", "claude-fable-5-1"),
                          "not-enrolled-provider")
 
-    def test_antigravity_enrolls_claude_and_gemini(self):
+    def test_antigravity_enrolls_gemini_not_claude(self):
         floors = {"claude-opus": (4, 6), "claude-sonnet": (4, 6), "gemini": (2, 5)}
         known = {"claude-opus-4-6-thinking", "claude-sonnet-4-6", "gemini-3-flash-agent"}
         def reason(mid, entry=None):
             return sp.enroll_reason("antigravity", mid, entry or chat(), known, floors)
-        self.assertIsNone(reason("claude-fable-5-1", chat(cache_read=0.25)))
+        self.assertEqual(reason("claude-fable-5-1", chat(cache_read=0.25)),
+                         "outside-include")
         self.assertEqual(reason("claude-opus-4-6"), "already-present")
         self.assertEqual(reason("gemini-3-flash"), "already-present")
         self.assertEqual(reason("gemini-3-flash-preview"), "already-present")
-        self.assertEqual(reason("claude-opus-4-5"), "below-floor")
         self.assertIsNone(reason("gemini-3.9-flash"))
         self.assertEqual(reason("gpt-5.4"), "outside-include")
 
@@ -182,7 +182,6 @@ class EnrollNewModelsTest(unittest.TestCase):
         idx = {
             "anthropic": {
                 "claude-fable-5-1": ("claude-fable-5-1", chat(cache_read=0.25)),
-                "claude-opus-4-6": ("claude-opus-4-6", chat(prompt=5, completion=25)),
             },
             "gemini": {
                 "gemini-3-flash-preview": ("gemini-3-flash-preview",
@@ -192,11 +191,9 @@ class EnrollNewModelsTest(unittest.TestCase):
             },
         }
         added = sp.enroll_new_models("antigravity", models, idx, {})
-        self.assertEqual(added, ["claude-fable-5-1", "gemini-3.9-flash"])
+        self.assertEqual(added, ["gemini-3.9-flash"])
         by_id = {m["model"]: m for m in models}
-        self.assertEqual(by_id["claude-fable-5-1"]["source"], "vendor-api")
-        self.assertEqual(by_id["claude-fable-5-1"]["pricing_style"], "anthropic")
-        self.assertEqual(by_id["claude-fable-5-1"]["cache_read_per_1m"], 0.25)
+        self.assertNotIn("claude-fable-5-1", by_id)
         self.assertEqual(by_id["gemini-3.9-flash"]["source"], "vendor-api")
         self.assertEqual(by_id["gemini-3.9-flash"]["pricing_style"], "openai")
         self.assertNotIn("gemini-3-flash-preview", by_id)

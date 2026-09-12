@@ -238,13 +238,14 @@ next run reverts it.** Take the row back by flipping its `source` to `manual`
 first.
 
 On the four first-party catalogs — `anthropic`, `codex` (OpenAI),
-`google-ai-studio` (Gemini), `xai` (Grok) — and on `antigravity` (which meters
-Claude and Gemini at those vendors' API lists) the same job also **enrolls** an
-id the file does not yet have, when the vendor's own namespace publishes it.
-That is how `claude-fable-5-1` lands the morning after Anthropic ships it,
-instead of waiting for a person to type the id. First-party rows are written
-with `"source": "litellm"`; Antigravity rows with `"source": "vendor-api"`.
-The run that created them keeps their prices.
+`google-ai-studio` (Gemini), `xai` (Grok) — and on `antigravity` **for Gemini
+only** (the same ids AI Studio enrolls, metered at Google's list) the same job
+also **enrolls** an id the file does not yet have, when the vendor's own
+namespace publishes it. That is how `claude-fable-5-1` lands on Anthropic the
+morning after it ships, and how a new Gemini lands on both AI Studio and
+Antigravity. First-party rows are written with `"source": "litellm"`;
+Antigravity Gemini rows with `"source": "vendor-api"`. The run that created
+them keeps their prices.
 
 Enrollment is not "copy the vendor's attic". An id is added only when it:
 
@@ -262,7 +263,8 @@ Enrollment is not "copy the vendor's attic". An id is added only when it:
 Resellers who publish their own price list are never enrolled this way:
 guessing which of a vendor's new ids a discount shop has turned on is not a
 price fact. Antigravity is the exception that is not a discount shop — it
-meters the vendor's list, so a new Claude or Gemini id is enrolled there too.
+meters Google's list, so a new Gemini id is enrolled there alongside AI
+Studio. New Claude ids are not.
 
 A second upstream, [models.dev](https://models.dev/api.json), supplies the two
 fields litellm has no column for: `effort_levels`, and `surface` where a model's
@@ -289,7 +291,7 @@ rather than arbitrated.
 | `source` | rows | what it means |
 |---|---|---|
 | `litellm` | 74 | the vendor's own litellm namespace carries this exact id. Read, not inferred. |
-| `vendor-api` | 52 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` and `antigravity`. Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
+| `vendor-api` | 43 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` and `antigravity`. Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
 | `manual` | 158 | ours. The job compares this row's PRICES and reports, never writing them. |
 
 ### `source` governs prices, not facts
