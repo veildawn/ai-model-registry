@@ -237,6 +237,35 @@ surface all come across. **Editing a delegated row by hand is pointless — the
 next run reverts it.** Take the row back by flipping its `source` to `manual`
 first.
 
+On the four first-party catalogs — `anthropic`, `codex` (OpenAI),
+`google-ai-studio` (Gemini), `xai` (Grok) — and on `antigravity` **for Gemini
+only** (the same ids AI Studio enrolls, metered at Google's list) the same job
+also **enrolls** an id the file does not yet have, when the vendor's own
+namespace publishes it. That is how `claude-fable-5-1` lands on Anthropic the
+morning after it ships, and how a new Gemini lands on both AI Studio and
+Antigravity. First-party rows are written with `"source": "litellm"`;
+Antigravity Gemini rows with `"source": "vendor-api"`. The run that created
+them keeps their prices.
+
+Enrollment is not "copy the vendor's attic". An id is added only when it:
+
+- is in that vendor's own litellm namespace, with a chat/image/video surface and
+  a published rate;
+- matches the family's current spelling (`claude-fable-*`, `gpt-5.*` / `gpt-6+`
+  / `gpt-image-*`, `gemini-<digit>*`, `grok-4.3+` / `grok-5+` / `grok-code-*`);
+- is not a moving alias (`-latest`), a fine-tune, or a dated/preview pin of an
+  id already in the file;
+- is at or above the **generation that file already carries** for that family
+  (Codex listing `gpt-5.4` will take `gpt-5.7` and `gpt-5.4-nano`, not leftover
+  `gpt-5.1`). A brand-new family (Claude Mythos, Grok Code) has no floor and is
+  admitted.
+
+Resellers who publish their own price list are never enrolled this way:
+guessing which of a vendor's new ids a discount shop has turned on is not a
+price fact. Antigravity is the exception that is not a discount shop — it
+meters Google's list, so a new Gemini id is enrolled there alongside AI
+Studio. New Claude ids are not.
+
 A second upstream, [models.dev](https://models.dev/api.json), supplies the two
 fields litellm has no column for: `effort_levels`, and `surface` where a model's
 only output is an image, video or audio. It is a **supplement** in the strict
@@ -261,9 +290,9 @@ rather than arbitrated.
 
 | `source` | rows | what it means |
 |---|---|---|
-| `litellm` | 58 | the vendor's own litellm namespace carries this exact id. Read, not inferred. |
-| `vendor-api` | 28 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` and `antigravity`. Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
-| `manual` | 114 | ours. The job compares this row's PRICES and reports, never writing them. |
+| `litellm` | 74 | the vendor's own litellm namespace carries this exact id. Read, not inferred. |
+| `vendor-api` | 43 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` and `antigravity`. Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
+| `manual` | 158 | ours. The job compares this row's PRICES and reports, never writing them. |
 
 ### `source` governs prices, not facts
 
@@ -447,9 +476,11 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | opencode-go | OpenCode Go | curated open-model subscription (`opencode.ai/zen/go`); DeepSeek Flash/Pro use the official effort ladders |
 | qoder-intl | Qoder International | same opaque `*model` aliases as `qoder`, priced from the intl edition's own model set; `auto` hidden (router alias) |
 
-The registry only supplies rates and (via `hidden_models`) a listing blacklist; it
-never adds or removes catalog models. What a deployment serves is decided by its
-account pool's probes.
+The registry supplies rates and (via `hidden_models`) a listing blacklist.
+What a deployment **serves** is still decided by its account pool's probes —
+enrolling an id here prices it, it does not turn the model on. On the four
+first-party catalogs the daily job will add a newly published id; it never
+removes one.
 
 ## Provenance and known limitations
 

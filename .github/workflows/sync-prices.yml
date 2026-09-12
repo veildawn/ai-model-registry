@@ -1,9 +1,14 @@
 # Keep this registry current against its upstreams, once a day, without a person.
 #
 # Rows marked `"source": "litellm"` are rewritten from the upstream database and
-# committed. Rows marked `"source": "manual"` are never touched — the job only
-# reports when an upstream disagrees with one, through a single issue it keeps
-# up to date. See scripts/sync_prices.py for which rows are which and why.
+# committed. On anthropic / codex / google-ai-studio / xai, an id the vendor's
+# namespace grew that this file does not yet have is enrolled the same way —
+# new row, delegated, then kept fresh. Antigravity enrolls matching Gemini ids
+# as `vendor-api` (it meters Google's list, same catalog as AI Studio).
+# Existing Claude rows on that file are left alone; new Claude ids are not
+# enrolled there. Rows marked `"source": "manual"` are never touched — the job
+# only reports when an upstream disagrees with one, through a single issue it
+# keeps up to date. See scripts/sync_prices.py.
 #
 # models.dev is read too, for the two fields litellm has no column for
 # (`effort_levels` and an image/video/audio `surface`). It only ever fills an
