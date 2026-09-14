@@ -2699,7 +2699,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "deepseek-v4.1-flash",
@@ -2724,6 +2727,254 @@
             "high",
             "max"
           ],
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "gemma4:31b",
+          "source": "manual",
+          "context_window": 262144,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.1",
+          "source": "manual",
+          "context_window": 200000,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.2",
+          "source": "manual",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.3",
+          "source": "manual",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.3-flash",
+          "source": "manual",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-oss:120b",
+          "source": "manual",
+          "context_window": 131072,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "gpt-oss:20b",
+          "source": "manual",
+          "context_window": 131072,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.5",
+          "source": "manual",
+          "context_window": 262144,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.6",
+          "source": "manual",
+          "context_window": 262144,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.7-code",
+          "source": "manual",
+          "context_window": 262144,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k3",
+          "source": "manual",
+          "context_window": 1048576,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.5",
+          "source": "manual",
+          "context_window": 204800,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m2.7",
+          "source": "manual",
+          "context_window": 204800,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "minimax-m3",
+          "source": "manual",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "mistral-large-3:675b",
+          "source": "manual",
+          "context_window": 262144,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "nemotron-3-nano:30b",
+          "source": "manual",
+          "context_window": 1048576,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "nemotron-3-super",
+          "source": "manual",
+          "context_window": 262144,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "nemotron-3-ultra",
+          "source": "manual",
+          "context_window": 262144,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3.5:397b",
+          "source": "manual",
+          "context_window": 262144,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
           "surface": "chat"
         }
       ]
@@ -2732,6 +2983,26 @@
       "name": "opencode-go",
       "display_name": "OpenCode Go",
       "models": [
+        {
+          "model": "deepseek-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.6,
+          "cache_read_per_1m": 0.003,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
         {
           "model": "deepseek-v4-flash",
           "pricing_style": "openai",
@@ -2746,7 +3017,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "deepseek-v4-flash-vision-exp",
@@ -2774,6 +3048,29 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
+            "high",
+            "max"
+          ],
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "deepseek-v4.1-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.6,
+          "cache_read_per_1m": 0.003,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
             "high",
             "max"
           ],
@@ -2840,6 +3137,30 @@
             "high",
             "max"
           ],
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "glm-5.3-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.075,
+          "completion_per_1m": 0.25,
+          "cache_read_per_1m": 0.015,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
           "surface": "chat"
         },
         {
@@ -2859,7 +3180,11 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ]
         },
         {
           "model": "grok-4.5",
@@ -2875,7 +3200,11 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ]
         },
         {
           "model": "grok-4.6",
@@ -2993,7 +3322,13 @@
           "cache_write_per_1m": 0.375,
           "source": "manual",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "minimax-m2.7",
@@ -3004,7 +3339,13 @@
           "cache_write_per_1m": 0.375,
           "source": "manual",
           "context_window": 204800,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "minimax-m3",
@@ -3015,7 +3356,18 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "mimo-v2-omni",
@@ -3088,6 +3440,49 @@
           "surface": "chat"
         },
         {
+          "model": "muse-spark-1.3-contributor",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.2,
+          "cache_read_per_1m": 0.002,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1048576,
+          "input_modalities": [
+            "text",
+            "image",
+            "video",
+            "audio"
+          ],
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "omen-alpha",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2,
+          "completion_per_1m": 0.66,
+          "cache_read_per_1m": 0.04,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 500000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
           "model": "qwen3.5-plus",
           "pricing_style": "openai",
           "prompt_per_1m": 0.2,
@@ -3141,7 +3536,11 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ]
         },
         {
           "model": "qwen3.8-max",

@@ -31,8 +31,19 @@ have. Matching only keeps a row fresh; it cannot notice that Anthropic shipped
 `AUTO_ENROLL` is that notice, scoped to the first-party catalogs a new frontier
 model actually lands in (Anthropic, OpenAI/Codex, Google AI Studio, xAI) and to
 Antigravity for Gemini only — the same ids AI Studio enrolls, metered at
-Google's list. A discount reseller is left alone: guessing which of a vendor's
-new ids it has turned on is not a price fact.
+Google's list.
+
+Ollama Cloud and OpenCode Go are the other case: they publish a CURATED list,
+not a discount of whoever shipped this week, so guessing is not required. Their
+own catalog is the enrollment source (`CATALOG_ENROLL`) — OpenCode Go's
+`/zen/go/v1/models`, Ollama Cloud via models.dev's `ollama-cloud` host. A new
+id on that list is added the same morning. Row facts prefer this registry's
+first-party file for that family (DeepSeek, GLM, Kimi, MiniMax, MiMo, Qianwen,
+xAI, Codex): a context window and a ladder are properties of the MODEL, and
+the vendor row here is that fact. Prices on OpenCode Go copy the same first-
+party list when one exists, then the surface's own models.dev row; Ollama
+stays unpriced. A discount reseller with no catalog of its own is still left
+alone.
 
 Enrollment is filtered so the daily job cannot dump a vendor's attic into a
 curated file. An id is added only when it is in the vendor's own namespace, has
@@ -230,6 +241,69 @@ AUTO_ENROLL = {
     },
 }
 
+# Surfaces that publish their own curated catalog. Enrollment is "this id is
+# on the list", not "the vendor shipped it": OpenCode Go rotating in
+# `glm-5.3-flash` is a fact about Go, and dumping GLM's attic onto that file
+# would not be.
+#
+# `copy_prices` is whether a new row takes a rate card. Go meters per token
+# and wants one; Ollama Cloud does not publish per-token rates in this
+# registry, so those rows stay capability-only — the same shape the file
+# already has.
+CATALOG_ENROLL = {
+    "opencode-go": {
+        "copy_prices": True,
+        "pricing_style": "openai",
+        "models_dev_host": "opencode-go",
+    },
+    "ollama": {
+        "copy_prices": False,
+        "models_dev_host": "ollama-cloud",
+    },
+}
+
+# Provider file that owns a family in THIS registry. A reseller spelling
+# (`opencode-go/glm-5.3`) copies facts from that file rather than from an
+# aggregator, because the window and the ladder are the vendor's.
+FIRST_PARTY_OWNER = (
+    (re.compile(r"^claude-"), "anthropic"),
+    (re.compile(r"^gpt-image-"), "codex"),
+    (re.compile(r"^gpt-"), "codex"),
+    (re.compile(r"^gemini-"), "google-ai-studio"),
+    (re.compile(r"^grok-"), "xai"),
+    (re.compile(r"^deepseek"), "deepseek"),
+    (re.compile(r"^glm-"), "glm"),
+    (re.compile(r"^(?:kimi-|k3(?:-|$))"), "kimi"),
+    (re.compile(r"^minimax-"), "minimax"),
+    (re.compile(r"^mimo-"), "mimo"),
+    (re.compile(r"^qwen"), "qianwen"),
+)
+
+# Reseller spellings of an id the vendor file stores differently. Lookups try
+# every name in the tuple, so `kimi-k3` on Go copies `k3` from kimi.json.
+FIRST_PARTY_SPELLINGS = {
+    "k3": ("k3", "kimi-k3"),
+    "kimi-k3": ("kimi-k3", "k3"),
+    "deepseek-v4.1-flash": ("deepseek-v4.1-flash", "deepseek-flash"),
+    "deepseek-flash": ("deepseek-flash", "deepseek-v4.1-flash"),
+}
+
+# Capability facts copied from a first-party row. Rates are a separate decision
+# (`copy_prices`); `source` / `price_reviewed` / `aliases` stay with the row
+# they were written on.
+FIRST_PARTY_FACTS = (
+    "context_window", "input_modalities", "effort_levels", "surface",
+)
+FIRST_PARTY_RATES = (
+    "pricing_style", "prompt_per_1m", "completion_per_1m",
+    "cache_read_per_1m", "cache_write_per_1m",
+)
+
+# An Ollama Cloud tag that is a dated snapshot (`deepseek-v4-flash:0731`), not
+# a size (`gemma4:31b`, `gpt-oss:120b`). Four digits after a colon matches how
+# Ollama pins a calendar build; a size tag has a unit suffix.
+CLOUD_DATE_TAG = re.compile(r":\d{4}$")
+
 # Moving aliases, fine-tunes, and product lines these catalogs deliberately do
 # not list. A new Claude / GPT / Gemini / Grok id does not match these; gpt-4o
 # and claude-3 do not get in through the include pattern either.
@@ -421,6 +495,9 @@ def snapshot_of(model_id: str) -> str:
     stripped = SHORT_DATE_PIN.sub("", mid)
     if stripped != mid:
         return stripped
+    stripped = CLOUD_DATE_TAG.sub("", mid)
+    if stripped != mid:
+        return stripped
     return mid
 
 
@@ -572,6 +649,243 @@ def enroll_new_models(provider: str, models: list, idx: dict,
     return added
 
 
+def first_party_owner(model_id: str):
+    """The provider file that publishes this family's list, or None."""
+    mid = model_id.lower()
+    for pattern, owner in FIRST_PARTY_OWNER:
+        if pattern.search(mid):
+            return owner
+    return None
+
+
+def first_party_keys(model_id: str) -> tuple:
+    """Spellings to try when looking this id up in a first-party file."""
+    mid = model_id.lower()
+    keys = []
+    for name in (mid, strip_suffixes(mid), snapshot_of(mid)):
+        keys.extend(FIRST_PARTY_SPELLINGS.get(name, (name,)))
+    # Preserve order, drop duplicates.
+    out, seen = [], set()
+    for key in keys:
+        if key not in seen:
+            seen.add(key)
+            out.append(key)
+    return tuple(out)
+
+
+def remember_first_party(index: dict, provider: str, models: list) -> None:
+    """Index this file's rows under every spelling a reseller might use.
+
+    Only the family's owner is stored: qianwen also lists `deepseek-v4-pro`,
+    and copying that reseller's window onto Ollama would be the wrong fact.
+    """
+    for row in models:
+        mid = row["model"].lower()
+        if first_party_owner(mid) != provider:
+            continue
+        facts = {k: row[k] for k in (*FIRST_PARTY_FACTS, *FIRST_PARTY_RATES)
+                 if k in row}
+        aliases = [a.lower() for a in row.get("aliases") or [] if a]
+        for key in (*first_party_keys(mid), *aliases):
+            index[key] = facts
+
+
+def index_first_party(registry_dir: str) -> dict:
+    """bare id -> facts from this registry's first-party files."""
+    index = {}
+    for path in sorted(glob.glob(os.path.join(registry_dir, "providers", "*.json"))):
+        with open(path) as fh:
+            doc = json.load(fh, object_pairs_hook=collections.OrderedDict)
+        models = [row for entry in doc.get("models", []) for row in expand_family(entry)]
+        remember_first_party(index, doc["name"], models)
+    return index
+
+
+def openai_model_ids(document) -> list:
+    """Ids from an OpenAI-shaped `{data: [{id: ...}]}` list."""
+    rows = document.get("data") if isinstance(document, dict) else None
+    if not isinstance(rows, list):
+        return []
+    out, seen = [], set()
+    for item in rows:
+        if not isinstance(item, dict) or not item.get("id"):
+            continue
+        mid = str(item["id"]).lower()
+        if mid not in seen:
+            seen.add(mid)
+            out.append(mid)
+    return out
+
+
+def models_dev_host_ids(document, host: str) -> list:
+    models = ((document or {}).get(host) or {}).get("models") or {}
+    return sorted(str(mid).lower() for mid in models)
+
+
+def facts_from_models_dev_model(model: dict) -> dict:
+    """One models.dev model entry as the fields this registry stores."""
+    facts = {}
+    limit = model.get("limit") or {}
+    window = limit.get("context")
+    if window:
+        facts["context_window"] = window
+    modalities = [
+        m for m in ((model.get("modalities") or {}).get("input") or [])
+        if m in ("text", "image", "audio", "video")
+    ]
+    if modalities:
+        facts["input_modalities"] = modalities
+    for option in model.get("reasoning_options") or []:
+        if isinstance(option, dict) and option.get("type") == "effort":
+            levels = ladder(option.get("values"))
+            if levels:
+                facts["effort_levels"] = levels
+            break
+    output = tuple((model.get("modalities") or {}).get("output") or ())
+    surface = {("text",): "chat", ("image",): "image",
+               ("video",): "video", ("audio",): "audio"}.get(output)
+    if surface:
+        facts["surface"] = surface
+    cost = model.get("cost") or {}
+    mapping = (
+        ("prompt_per_1m", "input"),
+        ("completion_per_1m", "output"),
+        ("cache_read_per_1m", "cache_read"),
+        ("cache_write_per_1m", "cache_write"),
+    )
+    for field, key in mapping:
+        if key in cost and cost[key] is not None:
+            facts[field] = clean(cost[key])
+    return facts
+
+
+def index_models_dev_hosts(document) -> dict:
+    """host -> bare id -> facts, for catalog enrollment and surface prices."""
+    out = {}
+    if not isinstance(document, dict):
+        return out
+    for host, provider in document.items():
+        if not isinstance(provider, dict):
+            continue
+        models = {}
+        for mid, model in (provider.get("models") or {}).items():
+            if isinstance(model, dict):
+                models[str(mid).lower()] = facts_from_models_dev_model(model)
+        if models:
+            out[host] = models
+    return out
+
+
+def lookup_facts(mid: str, *indexes) -> dict:
+    """First non-empty facts dict among indexes, trying reseller spellings."""
+    merged = {}
+    for index in indexes:
+        if not index:
+            continue
+        found = None
+        for key in first_party_keys(mid):
+            if key in index:
+                found = index[key]
+                break
+        if not found:
+            continue
+        for field, value in found.items():
+            if field not in merged and value not in (None, [], ""):
+                merged[field] = value
+    return merged
+
+
+def catalog_enroll_reason(provider: str, model_id: str, known: set):
+    """Why this catalog id is skipped, or None if it should be added."""
+    if provider not in CATALOG_ENROLL:
+        return "not-enrolled-provider"
+    mid = model_id.lower()
+    present = expand_enroll_known(known)
+    if mid in present:
+        return "already-present"
+    if snapshot_of(mid) in present:
+        return "snapshot-of-present"
+    return None
+
+
+def build_catalog_row(model_id: str, spec: dict, facts: dict) -> collections.OrderedDict:
+    """A new catalog row. First-party facts already won in `facts`."""
+    row = collections.OrderedDict()
+    row["model"] = model_id
+    if spec.get("copy_prices"):
+        row["pricing_style"] = spec.get("pricing_style") or "openai"
+        for field, _ in RATES:
+            row[field] = facts[field] if field in facts else 0
+        if facts.get("free"):
+            row["free"] = True
+    row["source"] = "manual"
+    for field in FIRST_PARTY_FACTS:
+        if field == "surface":
+            continue
+        if facts.get(field):
+            row[field] = facts[field]
+    row["surface"] = facts.get("surface") or "chat"
+    return row
+
+
+def enroll_catalog_models(provider: str, models: list, catalog_ids: list,
+                          first_party: dict, host_facts: dict,
+                          models_dev=None) -> list:
+    """Ids the surface's own catalog lists that this file does not yet carry.
+
+    Facts prefer the first-party file for that family, then the surface's
+    models.dev host, then the collapsed models.dev supplement. Insertion is
+    alphabetical, same as AUTO_ENROLL.
+    """
+    spec = CATALOG_ENROLL.get(provider)
+    if spec is None:
+        return []
+    known = {m["model"].lower() for m in models}
+    added = []
+    seen = set(expand_enroll_known(known))
+    for mid in catalog_ids:
+        mid = mid.lower()
+        if mid in seen:
+            continue
+        if catalog_enroll_reason(provider, mid, known):
+            continue
+        facts = lookup_facts(mid, first_party, host_facts, models_dev or {})
+        row = build_catalog_row(mid, spec, facts)
+        models.insert(bisect.bisect_left([m["model"] for m in models], mid), row)
+        seen.add(mid)
+        seen.update(expand_enroll_known({mid}))
+        known.add(mid)
+        added.append(mid)
+    return added
+
+
+def fill_from_first_party(model: dict, first_party: dict, copy_prices: bool) -> list:
+    """Blank capability (and, when asked, rate) fields the vendor file can fill.
+
+    Same rule as the models.dev supplement: a value already on the row stands.
+    Returns (field, before, after) triples; the caller writes.
+    """
+    facts = lookup_facts(model["model"], first_party)
+    if not facts:
+        return []
+    fields = FIRST_PARTY_FACTS + (FIRST_PARTY_RATES if copy_prices else ())
+    changes = []
+    for field in fields:
+        value = facts.get(field)
+        if value in (None, [], ""):
+            continue
+        current = model.get(field)
+        if field in FIRST_PARTY_RATES and field != "pricing_style":
+            if current is not None:
+                continue
+        elif current:
+            continue
+        if current == value:
+            continue
+        changes.append((field, current, value))
+    return changes
+
+
 def derived_match(provider: str, model_id: str, idx: dict):
     """Find the vendor row a derived surface's id is metered against.
 
@@ -692,7 +1006,13 @@ def ladder(values) -> list:
 # checked against this before a request is made rather than trusted because a
 # default happens to be safe: a sync job reaching an arbitrary host is how a
 # build server ends up reading a cloud metadata endpoint.
-FETCH_HOSTS = frozenset({"models.dev", "raw.githubusercontent.com"})
+FETCH_HOSTS = frozenset({"models.dev", "raw.githubusercontent.com", "opencode.ai"})
+
+# OpenCode Go's own model list. The live document is the enrollment source for
+# that file; models.dev's `opencode-go` host is the fallback when this fetch
+# fails, so a third-party outage cannot stop Go from picking up ids models.dev
+# already saw, and an opencode.ai outage cannot stop the litellm price sync.
+OPENCODE_GO_MODELS = "https://opencode.ai/zen/go/v1/models"
 
 
 def fetch_json(source: str, agent: str = "ai-model-registry-sync"):
@@ -973,7 +1293,8 @@ def contested_model_facts(rows: list) -> list:
     return out
 
 
-def sync(registry_dir: str, upstream, models_dev: dict, apply: bool):
+def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
+         catalogs=None, host_facts=None):
     idx = index_upstream(upstream)
     applied, disagree, orphans, unclassified, capability, enrolled = [], [], [], [], [], []
     counts = collections.Counter()
@@ -983,6 +1304,11 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool):
     # Whether any provider file was rewritten, which is what makes all.json
     # stale — see regenerate_bundle below.
     wrote = False
+    catalogs = catalogs or {}
+    host_facts = host_facts or {}
+    # Built once, then refreshed after each first-party file so a GLM id
+    # enrolled earlier in this run is what Ollama copies later in it.
+    first_party = index_first_party(registry_dir)
 
     for path in sorted(glob.glob(os.path.join(registry_dir, "providers", "*.json"))):
         with open(path) as fh:
@@ -1000,6 +1326,16 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool):
         if enrolled_here:
             dirty = True
             enrolled.extend((provider, mid) for mid in enrolled_here)
+
+        spec = CATALOG_ENROLL.get(provider)
+        if spec is not None:
+            catalog_here = enroll_catalog_models(
+                provider, models, catalogs.get(provider) or [],
+                first_party, host_facts.get(spec["models_dev_host"]) or {},
+                models_dev)
+            if catalog_here:
+                dirty = True
+                enrolled.extend((provider, mid) for mid in catalog_here)
 
         for model in models:
             source = model.get("source")
@@ -1091,6 +1427,18 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool):
                         model[field] = value
                         dirty = True
 
+            # Catalog surfaces copy blank capability facts from this registry's
+            # first-party file before models.dev speaks. A window GLM publishes
+            # here is the one Ollama should carry, not an aggregator's 202752.
+            if spec is not None:
+                for field, before, after in fill_from_first_party(
+                        model, first_party, copy_prices=False):
+                    applied.append((provider, mid, field, before, after))
+                    proposed.add(field)
+                    if apply:
+                        model[field] = after
+                        dirty = True
+
             # The models.dev supplement runs for every row, matched upstream or
             # not: it carries ids litellm has never listed, and a row that missed
             # the match above would otherwise never reach it. It only ever fills a
@@ -1117,6 +1465,7 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool):
         # Collected after the fills above, so the cross-provider check sees the
         # facts this run produced rather than the ones it started with.
         everything.extend((provider, model) for model in models)
+        remember_first_party(first_party, provider, models)
 
         # The canonical stored shape for these rows. A file that is merely not in
         # it yet — the state every file is in before variant families existed —
@@ -1259,13 +1608,16 @@ def render(applied, disagree, orphans, unclassified, capability, counts, contest
 
     if enrolled:
         verb_enroll = "Enrolled" if apply else "Would enroll"
-        w(f"## {verb_enroll} from the vendor's namespace")
+        w(f"## {verb_enroll} new ids")
         w("")
-        w("These ids were not in the file. They matched AUTO_ENROLL (Anthropic, "
-          "OpenAI/Codex, Google AI Studio, xAI, and Antigravity's Gemini ids). "
-          "First-party rows are `source: litellm`; Antigravity Gemini rows are "
-          "`source: vendor-api` because that surface meters Google's list. A "
-          "discount reseller is never enrolled this way.")
+        w("AUTO_ENROLL (Anthropic, OpenAI/Codex, Google AI Studio, xAI, and "
+          "Antigravity's Gemini ids) reads the vendor's litellm namespace. "
+          "CATALOG_ENROLL (Ollama Cloud, OpenCode Go) reads that surface's own "
+          "model list. First-party AUTO_ENROLL rows are `source: litellm`; "
+          "Antigravity Gemini rows are `source: vendor-api`; catalog rows are "
+          "`source: manual` with facts copied from this registry's vendor file "
+          "when one exists. A discount reseller with no catalog of its own is "
+          "never enrolled this way.")
         w("")
         for provider, model in enrolled:
             w(f"- {provider}: `{model}`")
@@ -1304,6 +1656,8 @@ def main() -> int:
                         help="registry checkout to sync (default: this one)")
     parser.add_argument("--models-dev", default=MODELS_DEV,
                         help="models.dev's api.json: a URL, or a path to a local copy")
+    parser.add_argument("--opencode-go-catalog", default=OPENCODE_GO_MODELS,
+                        help="OpenCode Go /v1/models: a URL, or a path to a local copy")
     parser.add_argument("--check", action="store_true",
                         help="report only; write nothing")
     parser.add_argument("--out", help="also write the report here")
@@ -1319,15 +1673,33 @@ def main() -> int:
     # fields nobody else publishes and only where a row has none, so losing it
     # costs this run some fills and nothing else — while making it fatal would
     # let a third party's outage stop the price sync that is this job's actual
-    # purpose.
+    # purpose. Ollama Cloud enrollment also reads it; without it that file
+    # simply does not grow this run.
+    models_dev_doc = {}
     try:
-        models_dev = index_models_dev(fetch_json(args.models_dev))
+        models_dev_doc = fetch_json(args.models_dev)
+        models_dev = index_models_dev(models_dev_doc)
+        host_facts = index_models_dev_hosts(models_dev_doc)
     except Exception as err:
         print(f"models.dev unavailable, continuing without it: {err}", file=sys.stderr)
         models_dev = {}
+        host_facts = {}
+
+    catalogs = {
+        "ollama": models_dev_host_ids(models_dev_doc, "ollama-cloud"),
+        "opencode-go": models_dev_host_ids(models_dev_doc, "opencode-go"),
+    }
+    try:
+        go_ids = openai_model_ids(fetch_json(args.opencode_go_catalog))
+        if go_ids:
+            catalogs["opencode-go"] = go_ids
+    except Exception as err:
+        print(f"OpenCode Go catalog unavailable, using models.dev: {err}",
+              file=sys.stderr)
 
     applied, disagree, orphans, unclassified, capability, counts, contested, enrolled = sync(
-        args.registry, upstream, models_dev, apply=not args.check)
+        args.registry, upstream, models_dev, apply=not args.check,
+        catalogs=catalogs, host_facts=host_facts)
     report = render(applied, disagree, orphans, unclassified, capability, counts,
                     contested, enrolled, apply=not args.check)
     print(report)
