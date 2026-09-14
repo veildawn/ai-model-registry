@@ -247,7 +247,17 @@ Antigravity. First-party rows are written with `"source": "litellm"`;
 Antigravity Gemini rows with `"source": "vendor-api"`. The run that created
 them keeps their prices.
 
-Enrollment is not "copy the vendor's attic". An id is added only when it:
+`ollama` and `opencode-go` enroll from **their own catalog** instead: Ollama
+Cloud via models.dev's `ollama-cloud` host, OpenCode Go via
+`https://opencode.ai/zen/go/v1/models` (falling back to models.dev if that
+fetch fails). A new id on that list is added the same morning. Facts prefer
+this registry's first-party file for the family — GLM's window and ladder for
+`glm-5.3-flash`, Kimi's `k3` row for `kimi-k3` — then the surface's models.dev
+row. OpenCode Go copies the first-party rate card when one exists; Ollama
+stays unpriced. Rows are `"source": "manual"` so a later litellm pass cannot
+overwrite a catalog judgement.
+
+Enrollment is not "copy the vendor's attic". An AUTO_ENROLL id is added only when it:
 
 - is in that vendor's own litellm namespace, with a chat/image/video surface and
   a published rate;
@@ -260,11 +270,13 @@ Enrollment is not "copy the vendor's attic". An id is added only when it:
   `gpt-5.1`). A brand-new family (Claude Mythos, Grok Code) has no floor and is
   admitted.
 
-Resellers who publish their own price list are never enrolled this way:
-guessing which of a vendor's new ids a discount shop has turned on is not a
-price fact. Antigravity is the exception that is not a discount shop — it
-meters Google's list, so a new Gemini id is enrolled there alongside AI
-Studio. New Claude ids are not.
+Resellers who publish their own price list are never enrolled from a vendor
+namespace: guessing which of a vendor's new ids a discount shop has turned on
+is not a price fact. Antigravity is the exception that is not a discount shop
+— it meters Google's list, so a new Gemini id is enrolled there alongside AI
+Studio. New Claude ids are not. Ollama Cloud and OpenCode Go are the other
+exception: they publish the list of ids they actually serve, so enrollment
+there is a catalog fact, not a guess.
 
 A second upstream, [models.dev](https://models.dev/api.json), supplies the two
 fields litellm has no column for: `effort_levels`, and `surface` where a model's
@@ -469,18 +481,19 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | glm | GLM (Zhipu) | `glm-4.5` and `glm-4.6` are **unpriced** — see below |
 | minimax | MiniMax | `MiniMax-M2`…`M3` upstream ids, lowercased here |
 | mimo | MiMo (Xiaomi) | overseas PAYG for `mimo-v2.5` / `mimo-v2.5-pro`; `-asr` / `-tts*` stay **unpriced** |
+| ollama | Ollama | Cloud catalog, **unpriced**; ids and capability facts enroll daily from models.dev `ollama-cloud`, copying this registry's first-party window/ladder when the family has one |
 | opencode | OpenCode Zen | the seven current `*-free` / `big-pickle` rows are **$0** with `"free": true` — not unpriced |
 | cursor | Cursor | **prices none** — reseller; `hidden_models` only, trims uncommon `claude-*` / `gpt-5.*` / `gemini-*` |
 | antigravity | Antigravity | **prices none** — reseller; `hidden_models` only, trims non-current Gemini/Claude |
 | google-ai-studio | Google AI Studio | `hidden_models` trims niche Gemini (tts / music / robotics / research / gemma); the image family is **listed** — see below |
-| opencode-go | OpenCode Go | curated open-model subscription (`opencode.ai/zen/go`); DeepSeek Flash/Pro use the official effort ladders |
+| opencode-go | OpenCode Go | curated open-model subscription (`opencode.ai/zen/go`); new catalog ids enroll daily, facts copied from the first-party file when one exists |
 | qoder-intl | Qoder International | same opaque `*model` aliases as `qoder`, priced from the intl edition's own model set; `auto` hidden (router alias) |
 
 The registry supplies rates and (via `hidden_models`) a listing blacklist.
 What a deployment **serves** is still decided by its account pool's probes —
 enrolling an id here prices it, it does not turn the model on. On the four
-first-party catalogs the daily job will add a newly published id; it never
-removes one.
+first-party catalogs the daily job will add a newly published id; Ollama Cloud
+and OpenCode Go grow from their own catalogs the same way. It never removes one.
 
 ## Provenance and known limitations
 

@@ -199,5 +199,89 @@ class EnrollNewModelsTest(unittest.TestCase):
         self.assertNotIn("gemini-3-flash-preview", by_id)
 
 
+class CatalogEnrollTest(unittest.TestCase):
+    def test_skips_date_tags_and_foreign_providers(self):
+        known = {"deepseek-v4-flash", "glm-5.3"}
+        self.assertEqual(
+            sp.catalog_enroll_reason("ollama", "deepseek-v4-flash:0731", known),
+            "snapshot-of-present")
+        self.assertEqual(
+            sp.catalog_enroll_reason("ollama", "deepseek-v4-flash", known),
+            "already-present")
+        self.assertEqual(
+            sp.catalog_enroll_reason("qoder", "glm-5.3-flash", known),
+            "not-enrolled-provider")
+        self.assertIsNone(sp.catalog_enroll_reason("ollama", "glm-5.3-flash", known))
+        self.assertIsNone(sp.catalog_enroll_reason("ollama", "gemma4:31b", known))
+
+    def test_copies_first_party_and_skips_ollama_prices(self):
+        first_party = {
+            "glm-5.3-flash": {
+                "pricing_style": "openai",
+                "prompt_per_1m": 0.075,
+                "completion_per_1m": 0.25,
+                "cache_read_per_1m": 0.015,
+                "cache_write_per_1m": 0,
+                "context_window": 1000000,
+                "input_modalities": ["text", "image", "video"],
+                "effort_levels": ["low", "high", "max"],
+                "surface": "chat",
+            },
+            "k3": {
+                "pricing_style": "openai",
+                "prompt_per_1m": 3,
+                "completion_per_1m": 15,
+                "cache_read_per_1m": 0.3,
+                "cache_write_per_1m": 0,
+                "context_window": 1048576,
+                "effort_levels": ["low", "high", "max"],
+                "surface": "chat",
+            },
+        }
+        host = {
+            "glm-5.3-flash": {
+                "prompt_per_1m": 0.15,
+                "completion_per_1m": 0.5,
+                "context_window": 999,
+            },
+            "omen-alpha": {
+                "prompt_per_1m": 0.2,
+                "completion_per_1m": 0.66,
+                "cache_read_per_1m": 0.04,
+                "context_window": 500000,
+                "effort_levels": ["low", "high"],
+                "surface": "chat",
+            },
+        }
+        go = [{"model": "glm-5", "source": "manual"}]
+        added = sp.enroll_catalog_models(
+            "opencode-go", go,
+            ["glm-5.3-flash", "kimi-k3", "omen-alpha"],
+            first_party, host)
+        self.assertEqual(added, ["glm-5.3-flash", "kimi-k3", "omen-alpha"])
+        by_id = {m["model"]: m for m in go}
+        glm = by_id["glm-5.3-flash"]
+        self.assertEqual(glm["source"], "manual")
+        self.assertEqual(glm["prompt_per_1m"], 0.075)
+        self.assertEqual(glm["completion_per_1m"], 0.25)
+        self.assertEqual(glm["context_window"], 1000000)
+        self.assertEqual(glm["input_modalities"], ["text", "image", "video"])
+        self.assertEqual(by_id["kimi-k3"]["context_window"], 1048576)
+        self.assertEqual(by_id["kimi-k3"]["prompt_per_1m"], 3)
+        self.assertEqual(by_id["omen-alpha"]["prompt_per_1m"], 0.2)
+
+        ollama = [{"model": "deepseek-v4-flash", "source": "manual"}]
+        added = sp.enroll_catalog_models(
+            "ollama", ollama, ["glm-5.3-flash", "deepseek-v4-flash:0731"],
+            first_party, host)
+        self.assertEqual(added, ["glm-5.3-flash"])
+        row = {m["model"]: m for m in ollama}["glm-5.3-flash"]
+        self.assertNotIn("prompt_per_1m", row)
+        self.assertNotIn("pricing_style", row)
+        self.assertEqual(row["context_window"], 1000000)
+        self.assertEqual(row["effort_levels"], ["low", "high", "max"])
+        self.assertEqual(row["source"], "manual")
+
+
 if __name__ == "__main__":
     unittest.main()

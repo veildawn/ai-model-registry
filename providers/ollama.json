@@ -11,7 +11,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "deepseek-v4.1-flash",
@@ -35,6 +38,254 @@
       "effort_levels": [
         "high",
         "max"
+      ],
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
+      "model": "gemma4:31b",
+      "source": "manual",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "glm-5.1",
+      "source": "manual",
+      "context_window": 200000,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "glm-5.2",
+      "source": "manual",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "glm-5.3",
+      "source": "manual",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "glm-5.3-flash",
+      "source": "manual",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "gpt-oss:120b",
+      "source": "manual",
+      "context_window": 131072,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "gpt-oss:20b",
+      "source": "manual",
+      "context_window": 131072,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "kimi-k2.5",
+      "source": "manual",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "kimi-k2.6",
+      "source": "manual",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "kimi-k2.7-code",
+      "source": "manual",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "kimi-k3",
+      "source": "manual",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "minimax-m2.5",
+      "source": "manual",
+      "context_window": 204800,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "minimal",
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "minimax-m2.7",
+      "source": "manual",
+      "context_window": 204800,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "minimal",
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "minimax-m3",
+      "source": "manual",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "mistral-large-3:675b",
+      "source": "manual",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "nemotron-3-nano:30b",
+      "source": "manual",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "nemotron-3-super",
+      "source": "manual",
+      "context_window": 262144,
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "nemotron-3-ultra",
+      "source": "manual",
+      "context_window": 262144,
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "qwen3.5:397b",
+      "source": "manual",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
       ],
       "surface": "chat"
     }
