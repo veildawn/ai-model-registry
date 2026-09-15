@@ -26,7 +26,10 @@
       "cache_write_per_1m": 0.375,
       "source": "litellm",
       "context_window": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "minimax-m2.1-highspeed",
@@ -53,6 +56,9 @@
         "low",
         "medium",
         "high"
+      ],
+      "input_modalities": [
+        "text"
       ]
     },
     {
@@ -71,7 +77,10 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "minimax-m2.7",
@@ -88,6 +97,9 @@
         "low",
         "medium",
         "high"
+      ],
+      "input_modalities": [
+        "text"
       ]
     },
     {
@@ -99,7 +111,10 @@
       "cache_write_per_1m": 0.387918,
       "source": "manual",
       "context_window": 204800,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "minimax-m3",

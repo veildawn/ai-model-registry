@@ -692,8 +692,15 @@ def first_party_owner(model_id: str):
     return None
 
 
-def first_party_keys(model_id: str) -> tuple:
-    """Spellings to try when looking this id up in a first-party file."""
+def first_party_keys(model_id: str, *, pin_of: bool = True) -> tuple:
+    """Spellings to try when looking this id up in a first-party file.
+
+    `pin_of=False` is for STORING a row: a dated pin must not be indexed under
+    the floating id it is a pin of, or `grok-4.20-multi-agent-0309` (2M) would
+    replace `grok-4.20-multi-agent` (1M) and every reseller would copy the pin.
+    Lookup still passes `pin_of=True` so a pin not stored here finds the
+    floating row.
+    """
     mid = model_id.lower()
     names = []
     for name in (mid, bare_model_id(mid)):
@@ -708,7 +715,10 @@ def first_party_keys(model_id: str) -> tuple:
     keys = []
     seen = set()
     for name in names:
-        for candidate in (name, strip_suffixes(name), snapshot_of(name)):
+        candidates = [name, strip_suffixes(name)]
+        if pin_of:
+            candidates.append(snapshot_of(name))
+        for candidate in candidates:
             for key in FIRST_PARTY_SPELLINGS.get(candidate, (candidate,)):
                 if key and key not in seen:
                     seen.add(key)
@@ -753,7 +763,7 @@ def remember_first_party(index: dict, provider: str, models: list) -> None:
         facts = {k: row[k] for k in (*FIRST_PARTY_FACTS, *FIRST_PARTY_RATES)
                  if k in row}
         aliases = [a.lower() for a in row.get("aliases") or [] if a]
-        for key in (*first_party_keys(mid), *aliases):
+        for key in (*first_party_keys(mid, pin_of=False), *aliases):
             index[key] = facts
 
 

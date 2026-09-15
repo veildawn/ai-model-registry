@@ -21,6 +21,7 @@
         "low",
         "medium",
         "high",
+        "xhigh",
         "max"
       ]
     },
@@ -42,6 +43,7 @@
         "low",
         "medium",
         "high",
+        "xhigh",
         "max"
       ]
     },
@@ -83,7 +85,10 @@
       ],
       "source": "vendor-api",
       "context_window": 32768,
-      "surface": "image"
+      "surface": "image",
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "gemini-2.5-flash-lite",
@@ -178,8 +183,7 @@
       "context_window": 65536,
       "surface": "image",
       "effort_levels": [
-        "low",
-        "high"
+        "none"
       ]
     },
     {
@@ -238,8 +242,7 @@
       "context_window": 65536,
       "surface": "image",
       "effort_levels": [
-        "minimal",
-        "high"
+        "none"
       ]
     },
     {

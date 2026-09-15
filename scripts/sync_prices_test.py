@@ -452,6 +452,29 @@ class AllProviderFactsTest(unittest.TestCase):
                                    overwrite=False),
             [])
 
+    def test_dated_pin_does_not_replace_floating_id_in_index(self):
+        index = {}
+        sp.remember_first_party(index, "xai", [
+            {
+                "model": "grok-4.20-multi-agent",
+                "context_window": 1000000,
+                "surface": "chat",
+            },
+            {
+                "model": "grok-4.20-multi-agent-0309",
+                "context_window": 2000000,
+                "surface": "chat",
+            },
+        ])
+        self.assertEqual(index["grok-4.20-multi-agent"]["context_window"], 1000000)
+        self.assertEqual(index["grok-4.20-multi-agent-0309"]["context_window"], 2000000)
+        self.assertEqual(
+            sp.lookup_facts("grok-4.20-multi-agent", index)["context_window"],
+            1000000)
+        self.assertEqual(
+            sp.lookup_facts("grok-4.20-multi-agent-0309", index)["context_window"],
+            2000000)
+
 
 if __name__ == "__main__":
     unittest.main()

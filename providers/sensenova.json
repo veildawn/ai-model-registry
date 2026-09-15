@@ -33,16 +33,12 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "price_reviewed": "Canonical vendor list price estimate for reference; SenseNova Token Plan is billed in subscription credits, not USD/token.",
-      "context_window": 1048576,
+      "context_window": 1000000,
       "input_modalities": [
         "text"
       ],
       "effort_levels": [
-        "none",
-        "low",
-        "medium",
         "high",
-        "xhigh",
         "max"
       ],
       "surface": "chat"
@@ -56,15 +52,14 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "price_reviewed": "Canonical vendor list price estimate for reference; SenseNova Token Plan is billed in subscription credits, not USD/token.",
-      "context_window": 1048576,
+      "context_window": 1000000,
       "input_modalities": [
         "text"
       ],
       "effort_levels": [
-        "none",
         "low",
-        "medium",
-        "high"
+        "high",
+        "max"
       ],
       "surface": "chat"
     },
@@ -77,7 +72,7 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "price_reviewed": "Canonical vendor list price estimate for reference; SenseNova Token Plan is billed in subscription credits, not USD/token.",
-      "context_window": 1048576,
+      "context_window": 1000000,
       "input_modalities": [
         "text"
       ],
@@ -85,7 +80,9 @@
         "none",
         "low",
         "medium",
-        "high"
+        "high",
+        "xhigh",
+        "max"
       ],
       "surface": "chat"
     },
@@ -101,7 +98,8 @@
       "context_window": 1048576,
       "input_modalities": [
         "text",
-        "image"
+        "image",
+        "video"
       ],
       "effort_levels": [
         "low",

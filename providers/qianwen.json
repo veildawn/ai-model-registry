@@ -16,7 +16,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "glm-5.2",
@@ -35,7 +38,10 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "qwen3.6-flash",
@@ -49,7 +55,12 @@
       "effort_levels": [
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ]
     },
     {
       "model": "qwen3.7-max",
@@ -63,7 +74,10 @@
       "effort_levels": [
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "qwen3.7-plus",
@@ -97,7 +111,12 @@
         "medium",
         "xhigh"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ]
     }
   ]
 }

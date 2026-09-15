@@ -1,31 +1,39 @@
 {
-    "name": "siliconflow",
-    "display_name": "SiliconFlow",
-    "models": [
-        {
-            "model": "deepseek-ai/deepseek-v4-flash",
-            "source": "manual",
-            "context_window": 200000,
-            "effort_levels": [
-                "low",
-                "high",
-                "max"
-            ],
-            "aliases": [
-                "deepseek-v4-flash"
-            ]
-        },
-        {
-            "model": "deepseek-ai/deepseek-v4-pro",
-            "source": "manual",
-            "context_window": 200000,
-            "effort_levels": [
-                "high",
-                "max"
-            ],
-            "aliases": [
-                "deepseek-v4-pro"
-            ]
-        }
-    ]
+  "name": "siliconflow",
+  "display_name": "SiliconFlow",
+  "models": [
+    {
+      "model": "deepseek-ai/deepseek-v4-flash",
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "aliases": [
+        "deepseek-v4-flash"
+      ],
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "deepseek-ai/deepseek-v4-pro",
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "high",
+        "max"
+      ],
+      "aliases": [
+        "deepseek-v4-pro"
+      ],
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "chat"
+    }
+  ]
 }

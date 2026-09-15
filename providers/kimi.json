@@ -17,7 +17,12 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ]
     },
     {
       "model": "k3-256k",
