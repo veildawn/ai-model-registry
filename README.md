@@ -254,9 +254,10 @@ fetch fails). A new id on that list is added the same morning. Facts prefer
 this registry's first-party file for the family — GLM's window and ladder for
 `glm-5.3-flash`, Kimi's `k3` row for `kimi-k3` — then the **vendor's**
 models.dev row (Meta for Muse Spark, z.ai for GLM), then the surface host.
-Capability fields on those two files are **refreshed** when the vendor
-disagrees, so a dropped `pdf` modality or a stale MiniMax window does not sit
-forever. A vendor row that lists the id but **no** ladder removes a stored
+Capability fields on **every reseller copy** of a family this registry owns
+(not only Ollama and OpenCode Go) are **refreshed** when the vendor disagrees,
+so TokenHub's `deepseek-ai/…` spelling, OpenCode's `-free` SKUs, and a Qoder
+window all take the same facts. A vendor row that lists the id but **no** ladder removes a stored
 ladder (it was an aggregator's guess, not the vendor's). A vendor rate of
 **$0** is treated as unpublished, so a newly enrolled id takes the surface's
 real list instead of landing unpriced. OpenCode Go copies the first-party rate

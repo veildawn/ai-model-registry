@@ -392,5 +392,66 @@ class CatalogEnrollTest(unittest.TestCase):
         self.assertEqual(sp.clear_vendor_silent_effort(stale, facts, {}), [])
 
 
+class AllProviderFactsTest(unittest.TestCase):
+    def test_slash_and_free_and_dot_spellings(self):
+        self.assertEqual(sp.bare_model_id("deepseek-ai/deepseek-v4-flash"),
+                         "deepseek-v4-flash")
+        self.assertEqual(sp.bare_model_id("deepseek-v4-flash-free"),
+                         "deepseek-v4-flash")
+        self.assertEqual(sp.first_party_owner("deepseek-ai/deepseek-v4-flash"),
+                         "deepseek")
+        self.assertEqual(sp.first_party_owner("deepseek-v4-flash-free"), "deepseek")
+        self.assertTrue(sp.is_foreign_copy("siliconflow",
+                                           "deepseek-ai/deepseek-v4-flash"))
+        self.assertFalse(sp.is_foreign_copy("deepseek", "deepseek-v4-flash"))
+        keys = sp.first_party_keys("deepseek-ai/deepseek-v4-flash")
+        self.assertIn("deepseek-v4-flash", keys)
+        keys = sp.first_party_keys("deepseek-v4-flash-free")
+        self.assertIn("deepseek-v4-flash", keys)
+        keys = sp.first_party_keys("claude-opus-4.5")
+        self.assertIn("claude-opus-4-5", keys)
+        keys = sp.first_party_keys("kimi-k3")
+        self.assertIn("k3", keys)
+
+    def test_lookup_slash_id_hits_first_party(self):
+        first_party = {
+            "deepseek-v4-flash": {
+                "context_window": 1000000,
+                "input_modalities": ["text", "image"],
+                "effort_levels": ["low", "high", "max"],
+                "surface": "chat",
+            },
+        }
+        facts = sp.lookup_facts("deepseek-ai/deepseek-v4-flash", first_party)
+        self.assertEqual(facts["context_window"], 1000000)
+        self.assertEqual(facts["input_modalities"], ["text", "image"])
+        facts = sp.lookup_facts("deepseek-v4-flash-free", first_party)
+        self.assertEqual(facts["context_window"], 1000000)
+
+    def test_reseller_overwrites_stale_window_first_party_does_not(self):
+        facts = {
+            "context_window": 1000000,
+            "input_modalities": ["text", "image"],
+        }
+        stale = {
+            "model": "deepseek-ai/deepseek-v4-flash",
+            "context_window": 200000,
+            "input_modalities": ["text"],
+        }
+        changes = {f: after for f, _, after in sp.apply_catalog_facts(
+            stale, facts, sp.FIRST_PARTY_FACTS, overwrite=True)}
+        self.assertEqual(changes["context_window"], 1000000)
+        self.assertEqual(changes["input_modalities"], ["text", "image"])
+        owner = {
+            "model": "deepseek-v4-flash",
+            "context_window": 200000,
+            "input_modalities": ["text"],
+        }
+        self.assertEqual(
+            sp.apply_catalog_facts(owner, facts, sp.FIRST_PARTY_FACTS,
+                                   overwrite=False),
+            [])
+
+
 if __name__ == "__main__":
     unittest.main()
