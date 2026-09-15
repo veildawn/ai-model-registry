@@ -115,6 +115,16 @@
       "surface": "chat"
     },
     {
+      "model": "gpt-5.5-cyber",
+      "pricing_style": "openai",
+      "prompt_per_1m": 12.5,
+      "completion_per_1m": 75,
+      "cache_read_per_1m": 1.25,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "surface": "chat"
+    },
+    {
       "model": "gpt-5.5-pro",
       "pricing_style": "openai",
       "prompt_per_1m": 30,
