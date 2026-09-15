@@ -58,7 +58,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "deepseek-v4-flash-0731",
@@ -79,7 +82,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "deepseek-v4-pro",
@@ -97,7 +103,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "deepseek-v4-pro-0813",
@@ -117,7 +126,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "deepseek/deepseek-v4-flash-vision-exp",
@@ -153,7 +165,13 @@
       "source": "manual",
       "price_reviewed": "TokenHub list 6/22/1.5 CNY at ECB 6.7669. See Tencent 130055.",
       "context_window": 200000,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "glm-5-turbo",
@@ -165,7 +183,13 @@
       "source": "manual",
       "price_reviewed": "TokenHub list 7/26/1.8 CNY at ECB 6.7669. See Tencent 130055.",
       "context_window": 200000,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "glm-5.1",
@@ -180,7 +204,13 @@
       "source": "manual",
       "price_reviewed": "TokenHub list 8/28/2 CNY at ECB 6.7669. See Tencent 130055.",
       "context_window": 200000,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "glm-5.2",
@@ -197,14 +227,16 @@
       "context_window": 1000000,
       "effort_levels": [
         "none",
-        "minimal",
         "low",
         "medium",
         "high",
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "glm-5.3",
@@ -223,7 +255,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "glm-5.3-flash",
@@ -264,7 +299,10 @@
         "none",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "hy3-preview",
@@ -281,7 +319,10 @@
         "medium",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "hy4-preview",
@@ -296,7 +337,10 @@
         "none",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "kimi-k2.5",
@@ -325,14 +369,10 @@
       "source": "manual",
       "context_window": 262144,
       "surface": "chat",
-      "effort_levels": [
-        "none",
-        "minimal",
-        "low",
-        "medium",
-        "high",
-        "xhigh",
-        "max"
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
       ]
     },
     {
@@ -344,7 +384,12 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 262144,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ]
     },
     {
       "model": "kimi-k2.7-code-highspeed",
@@ -356,12 +401,10 @@
       "source": "manual",
       "context_window": 262144,
       "surface": "chat",
-      "effort_levels": [
-        "low",
-        "medium",
-        "high",
-        "xhigh",
-        "max"
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
       ]
     },
     {
@@ -382,7 +425,12 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ]
     },
     {
       "model": "minimax-m2.5",
@@ -396,7 +444,16 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 204800,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "minimal",
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "minimax-m2.7",
@@ -410,7 +467,16 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 204800,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "minimal",
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "minimax-m3",
@@ -424,7 +490,18 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high"
+      ]
     }
   ]
 }

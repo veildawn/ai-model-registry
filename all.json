@@ -335,6 +335,7 @@
             "low",
             "medium",
             "high",
+            "xhigh",
             "max"
           ]
         },
@@ -356,6 +357,7 @@
             "low",
             "medium",
             "high",
+            "xhigh",
             "max"
           ]
         },
@@ -397,7 +399,10 @@
           ],
           "source": "vendor-api",
           "context_window": 32768,
-          "surface": "image"
+          "surface": "image",
+          "effort_levels": [
+            "none"
+          ]
         },
         {
           "model": "gemini-2.5-flash-lite",
@@ -492,8 +497,7 @@
           "context_window": 65536,
           "surface": "image",
           "effort_levels": [
-            "low",
-            "high"
+            "none"
           ]
         },
         {
@@ -552,8 +556,7 @@
           "context_window": 65536,
           "surface": "image",
           "effort_levels": [
-            "minimal",
-            "high"
+            "none"
           ]
         },
         {
@@ -1248,7 +1251,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5",
@@ -1262,7 +1268,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5-turbo",
@@ -1276,7 +1285,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.1",
@@ -1290,7 +1302,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.2",
@@ -1309,7 +1324,10 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.3",
@@ -1370,7 +1388,15 @@
           "completion_per_1m": 12,
           "cache_read_per_1m": 0.2,
           "cache_write_per_1m": 0,
-          "source": "manual"
+          "source": "manual",
+          "context_window": 131072,
+          "input_modalities": [
+            "text",
+            "image",
+            "video",
+            "audio",
+            "pdf"
+          ]
         },
         {
           "model": "deep-research-preview-04-2026",
@@ -1379,7 +1405,15 @@
           "completion_per_1m": 12,
           "cache_read_per_1m": 0.2,
           "cache_write_per_1m": 0,
-          "source": "manual"
+          "source": "manual",
+          "context_window": 131072,
+          "input_modalities": [
+            "text",
+            "image",
+            "video",
+            "audio",
+            "pdf"
+          ]
         },
         {
           "model": "deep-research-pro-preview-12-2025",
@@ -1547,7 +1581,8 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "audio"
+          "surface": "audio",
+          "context_window": 8192
         },
         {
           "model": "gemini-2.5-pro",
@@ -2117,7 +2152,12 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "k3-256k",
@@ -2187,7 +2227,14 @@
           ],
           "source": "vendor-api",
           "context_window": 200000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "claude-opus-4.5",
@@ -2202,7 +2249,12 @@
           ],
           "source": "vendor-api",
           "context_window": 200000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "claude-opus-4.6",
@@ -2217,7 +2269,14 @@
           ],
           "source": "vendor-api",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "claude-opus-4.7",
@@ -2232,7 +2291,14 @@
           ],
           "source": "vendor-api",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "claude-opus-4.8",
@@ -2247,7 +2313,14 @@
           ],
           "source": "vendor-api",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "claude-opus-5",
@@ -2299,7 +2372,14 @@
           ],
           "source": "vendor-api",
           "context_window": 200000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "claude-sonnet-4.6",
@@ -2314,7 +2394,14 @@
           ],
           "source": "vendor-api",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "claude-sonnet-5",
@@ -2367,7 +2454,13 @@
           "cache_write_per_1m": 0,
           "source": "vendor-api",
           "context_window": 200000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "max"
+          ]
         },
         {
           "model": "gpt-5.6-luna",
@@ -2381,7 +2474,7 @@
             "image"
           ],
           "source": "vendor-api",
-          "context_window": 922000,
+          "context_window": 272000,
           "surface": "chat",
           "effort_levels": [
             "none",
@@ -2404,7 +2497,7 @@
             "image"
           ],
           "source": "vendor-api",
-          "context_window": 922000,
+          "context_window": 272000,
           "surface": "chat",
           "effort_levels": [
             "none",
@@ -2427,7 +2520,7 @@
             "image"
           ],
           "source": "vendor-api",
-          "context_window": 922000,
+          "context_window": 272000,
           "surface": "chat",
           "effort_levels": [
             "none",
@@ -2447,7 +2540,10 @@
           "cache_write_per_1m": 0.375,
           "source": "vendor-api",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "minimax-m2.5",
@@ -2457,8 +2553,17 @@
           "cache_read_per_1m": 0.03,
           "cache_write_per_1m": 0.375,
           "source": "vendor-api",
-          "context_window": 1000000,
-          "surface": "chat"
+          "context_window": 204800,
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "qwen3-coder-next",
@@ -2498,7 +2603,13 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ]
         },
         {
           "model": "mimo-v2.5-pro",
@@ -2514,7 +2625,10 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "mimo-v2.5-asr",
@@ -2597,7 +2711,10 @@
           "cache_write_per_1m": 0.375,
           "source": "litellm",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "minimax-m2.1-highspeed",
@@ -2624,6 +2741,9 @@
             "low",
             "medium",
             "high"
+          ],
+          "input_modalities": [
+            "text"
           ]
         },
         {
@@ -2642,7 +2762,10 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "minimax-m2.7",
@@ -2659,6 +2782,9 @@
             "low",
             "medium",
             "high"
+          ],
+          "input_modalities": [
+            "text"
           ]
         },
         {
@@ -2670,7 +2796,10 @@
           "cache_write_per_1m": 0.387918,
           "source": "manual",
           "context_window": 204800,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "minimax-m3",
@@ -2719,15 +2848,15 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "minimal",
             "low",
-            "medium",
             "high",
-            "xhigh",
-            "max",
-            "ultra"
+            "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ]
         },
         {
           "model": "deepseek-v4-pro",
@@ -2855,16 +2984,8 @@
           "context_window": 262144,
           "input_modalities": [
             "text",
-            "image"
-          ],
-          "effort_levels": [
-            "none",
-            "minimal",
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
+            "image",
+            "video"
           ],
           "surface": "chat"
         },
@@ -2874,7 +2995,8 @@
           "context_window": 262144,
           "input_modalities": [
             "text",
-            "image"
+            "image",
+            "video"
           ],
           "surface": "chat"
         },
@@ -2884,7 +3006,8 @@
           "context_window": 1048576,
           "input_modalities": [
             "text",
-            "image"
+            "image",
+            "video"
           ],
           "effort_levels": [
             "low",
@@ -3046,7 +3169,11 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ]
         },
         {
           "model": "deepseek-v4-pro",
@@ -3098,7 +3225,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.1",
@@ -3112,7 +3242,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.2",
@@ -3131,7 +3264,10 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.3",
@@ -3245,11 +3381,15 @@
           "cache_read_per_1m": 0.035,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 262144,
+          "context_window": 256000,
           "effort_levels": [
-            "max"
+            "none",
+            "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "hy3-preview",
@@ -3259,11 +3399,16 @@
           "cache_read_per_1m": 0.035,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 262144,
+          "context_window": 256000,
           "effort_levels": [
-            "max"
+            "low",
+            "medium",
+            "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "kimi-k2.5",
@@ -3274,10 +3419,12 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 262144,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "kimi-k2.6",
@@ -3288,10 +3435,12 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 262144,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "kimi-k2.7-code",
@@ -3302,10 +3451,12 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 262144,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "kimi-k3",
@@ -3321,7 +3472,12 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "minimax-m2.5",
@@ -3331,13 +3487,16 @@
           "cache_read_per_1m": 0.06,
           "cache_write_per_1m": 0.375,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 204800,
           "surface": "chat",
           "effort_levels": [
             "minimal",
             "low",
             "medium",
             "high"
+          ],
+          "input_modalities": [
+            "text"
           ]
         },
         {
@@ -3355,6 +3514,9 @@
             "low",
             "medium",
             "high"
+          ],
+          "input_modalities": [
+            "text"
           ]
         },
         {
@@ -3390,15 +3552,11 @@
             "text",
             "image",
             "audio",
-            "video"
+            "video",
+            "pdf"
           ],
           "source": "manual",
           "context_window": 262144,
-          "effort_levels": [
-            "low",
-            "medium",
-            "high"
-          ],
           "surface": "chat"
         },
         {
@@ -3409,13 +3567,11 @@
           "cache_read_per_1m": 0.0036,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
-          "effort_levels": [
-            "low",
-            "medium",
-            "high"
-          ],
-          "surface": "chat"
+          "context_window": 1048576,
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "mimo-v2.5",
@@ -3431,7 +3587,13 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ]
         },
         {
           "model": "mimo-v2.5-pro",
@@ -3447,7 +3609,10 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "muse-spark-1.3-contributor",
@@ -3462,6 +3627,7 @@
             "text",
             "image",
             "video",
+            "pdf",
             "audio"
           ],
           "effort_levels": [
@@ -3500,11 +3666,13 @@
           "cache_read_per_1m": 0.02,
           "cache_write_per_1m": 0.25,
           "source": "manual",
-          "context_window": 991808,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat"
+          "context_window": 1000000,
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "qwen3.6-plus",
@@ -3515,10 +3683,12 @@
           "cache_write_per_1m": 0.625,
           "source": "manual",
           "context_window": 1000000,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "qwen3.7-max",
@@ -3532,7 +3702,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "qwen3.7-plus",
@@ -3566,7 +3739,13 @@
             "medium",
             "xhigh"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video",
+            "pdf"
+          ]
         },
         {
           "model": "hy4-preview",
@@ -3614,7 +3793,9 @@
           "input_modalities": [
             "text",
             "image",
-            "video"
+            "video",
+            "pdf",
+            "audio"
           ],
           "source": "manual",
           "context_window": 1048576,
@@ -3663,7 +3844,11 @@
           "cache_write_per_1m": 0,
           "free": true,
           "source": "manual",
-          "surface": "chat"
+          "surface": "chat",
+          "context_window": 200000,
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "deepseek-v4-flash-free",
@@ -3679,7 +3864,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "hy3-free",
@@ -3693,7 +3881,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "laguna-s-2.1-free",
@@ -3709,7 +3900,11 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "context_window": 256000,
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "mimo-v2.5-free",
@@ -3725,7 +3920,13 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ]
         },
         {
           "model": "nemotron-3-ultra-free",
@@ -3736,7 +3937,11 @@
           "cache_write_per_1m": 0,
           "free": true,
           "source": "manual",
-          "surface": "chat"
+          "surface": "chat",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "nemotron-3.5-lightning-free",
@@ -3747,7 +3952,11 @@
           "cache_write_per_1m": 0,
           "free": true,
           "source": "manual",
-          "surface": "chat"
+          "surface": "chat",
+          "context_window": 262144,
+          "input_modalities": [
+            "text"
+          ]
         }
       ]
     },
@@ -3769,7 +3978,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.2",
@@ -3788,7 +4000,10 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "qwen3.6-flash",
@@ -3802,7 +4017,12 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "qwen3.7-max",
@@ -3816,7 +4036,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "qwen3.7-plus",
@@ -3850,7 +4073,12 @@
             "medium",
             "xhigh"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         }
       ]
     },
@@ -3875,7 +4103,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "deepseek-v4-pro",
@@ -3893,7 +4124,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.2",
@@ -3915,7 +4149,10 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "kimi-k2.7-code",
@@ -3929,7 +4166,12 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 262144,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "kimi-k3",
@@ -3948,6 +4190,11 @@
             "low",
             "high",
             "max"
+          ],
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
           ]
         },
         {
@@ -3962,7 +4209,18 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "qwen3.7-max",
@@ -3976,7 +4234,13 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 991808,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "max"
+          ]
         },
         {
           "model": "qwen3.7-plus",
@@ -3990,7 +4254,14 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 991808,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "max"
+          ]
         },
         {
           "model": "qwen3.8-max-preview",
@@ -4009,7 +4280,12 @@
             "medium",
             "xhigh"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         }
       ],
       "hidden_models": [
@@ -4037,7 +4313,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "deepseek-v4-pro",
@@ -4055,7 +4334,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.2",
@@ -4077,7 +4359,10 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "kimi-k2.7-code",
@@ -4091,7 +4376,12 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 262144,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "minimax-m2.7",
@@ -4105,7 +4395,16 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 204800,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "qwen3.6-flash",
@@ -4119,7 +4418,15 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "effort_levels": [
+            "max"
+          ]
         },
         {
           "model": "qwen3.7-max",
@@ -4133,7 +4440,13 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 991808,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "max"
+          ]
         },
         {
           "model": "qwen3.7-plus",
@@ -4147,7 +4460,14 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 991808,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "max"
+          ]
         },
         {
           "model": "qwen3.8-max-preview",
@@ -4166,7 +4486,12 @@
             "medium",
             "xhigh"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         }
       ],
       "hidden_models": [
@@ -4208,16 +4533,12 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "price_reviewed": "Canonical vendor list price estimate for reference; SenseNova Token Plan is billed in subscription credits, not USD/token.",
-          "context_window": 1048576,
+          "context_window": 1000000,
           "input_modalities": [
             "text"
           ],
           "effort_levels": [
-            "none",
-            "low",
-            "medium",
             "high",
-            "xhigh",
             "max"
           ],
           "surface": "chat"
@@ -4231,15 +4552,14 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "price_reviewed": "Canonical vendor list price estimate for reference; SenseNova Token Plan is billed in subscription credits, not USD/token.",
-          "context_window": 1048576,
+          "context_window": 1000000,
           "input_modalities": [
             "text"
           ],
           "effort_levels": [
-            "none",
             "low",
-            "medium",
-            "high"
+            "high",
+            "max"
           ],
           "surface": "chat"
         },
@@ -4252,7 +4572,7 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "price_reviewed": "Canonical vendor list price estimate for reference; SenseNova Token Plan is billed in subscription credits, not USD/token.",
-          "context_window": 1048576,
+          "context_window": 1000000,
           "input_modalities": [
             "text"
           ],
@@ -4260,7 +4580,9 @@
             "none",
             "low",
             "medium",
-            "high"
+            "high",
+            "xhigh",
+            "max"
           ],
           "surface": "chat"
         },
@@ -4276,7 +4598,8 @@
           "context_window": 1048576,
           "input_modalities": [
             "text",
-            "image"
+            "image",
+            "video"
           ],
           "effort_levels": [
             "low",
@@ -4331,7 +4654,7 @@
         {
           "model": "deepseek-ai/deepseek-v4-flash",
           "source": "manual",
-          "context_window": 200000,
+          "context_window": 1000000,
           "effort_levels": [
             "low",
             "high",
@@ -4339,19 +4662,27 @@
           ],
           "aliases": [
             "deepseek-v4-flash"
-          ]
+          ],
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat"
         },
         {
           "model": "deepseek-ai/deepseek-v4-pro",
           "source": "manual",
-          "context_window": 200000,
+          "context_window": 1000000,
           "effort_levels": [
             "high",
             "max"
           ],
           "aliases": [
             "deepseek-v4-pro"
-          ]
+          ],
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat"
         }
       ]
     },
@@ -4415,7 +4746,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "deepseek-v4-flash-0731",
@@ -4436,7 +4770,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "deepseek-v4-pro",
@@ -4454,7 +4791,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "deepseek-v4-pro-0813",
@@ -4474,7 +4814,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "deepseek/deepseek-v4-flash-vision-exp",
@@ -4510,7 +4853,13 @@
           "source": "manual",
           "price_reviewed": "TokenHub list 6/22/1.5 CNY at ECB 6.7669. See Tencent 130055.",
           "context_window": 200000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "max"
+          ]
         },
         {
           "model": "glm-5-turbo",
@@ -4522,7 +4871,13 @@
           "source": "manual",
           "price_reviewed": "TokenHub list 7/26/1.8 CNY at ECB 6.7669. See Tencent 130055.",
           "context_window": 200000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "max"
+          ]
         },
         {
           "model": "glm-5.1",
@@ -4537,7 +4892,13 @@
           "source": "manual",
           "price_reviewed": "TokenHub list 8/28/2 CNY at ECB 6.7669. See Tencent 130055.",
           "context_window": 200000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "max"
+          ]
         },
         {
           "model": "glm-5.2",
@@ -4554,14 +4915,16 @@
           "context_window": 1000000,
           "effort_levels": [
             "none",
-            "minimal",
             "low",
             "medium",
             "high",
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.3",
@@ -4580,7 +4943,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.3-flash",
@@ -4621,7 +4987,10 @@
             "none",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "hy3-preview",
@@ -4638,7 +5007,10 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "hy4-preview",
@@ -4653,7 +5025,10 @@
             "none",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "kimi-k2.5",
@@ -4682,14 +5057,10 @@
           "source": "manual",
           "context_window": 262144,
           "surface": "chat",
-          "effort_levels": [
-            "none",
-            "minimal",
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
           ]
         },
         {
@@ -4701,7 +5072,12 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 262144,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "kimi-k2.7-code-highspeed",
@@ -4713,12 +5089,10 @@
           "source": "manual",
           "context_window": 262144,
           "surface": "chat",
-          "effort_levels": [
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
           ]
         },
         {
@@ -4739,7 +5113,12 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "minimax-m2.5",
@@ -4753,7 +5132,16 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 204800,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "minimax-m2.7",
@@ -4767,7 +5155,16 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 204800,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "minimax-m3",
@@ -4781,7 +5178,18 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
         }
       ]
     },
@@ -4803,7 +5211,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "deepseek-v4-pro",
@@ -4818,7 +5229,10 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.1",
@@ -4829,7 +5243,13 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 200000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "max"
+          ]
         },
         {
           "model": "glm-5.2",
@@ -4848,7 +5268,10 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "hy3",
@@ -4863,6 +5286,9 @@
           "effort_levels": [
             "none",
             "high"
+          ],
+          "input_modalities": [
+            "text"
           ]
         },
         {
@@ -4875,14 +5301,10 @@
           "source": "manual",
           "context_window": 262144,
           "surface": "chat",
-          "effort_levels": [
-            "none",
-            "minimal",
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
           ]
         },
         {
@@ -4912,6 +5334,11 @@
             "low",
             "high",
             "max"
+          ],
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
           ]
         },
         {
@@ -4923,7 +5350,18 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
         }
       ],
       "hidden_models": [
@@ -5187,7 +5625,8 @@
           "input_modalities": [
             "text",
             "image"
-          ]
+          ],
+          "context_window": 16000
         },
         {
           "model": "grok-imagine-image-2.0",
@@ -5204,7 +5643,8 @@
           "input_modalities": [
             "text",
             "image"
-          ]
+          ],
+          "context_window": 64000
         },
         {
           "model": "grok-imagine-image-quality",
@@ -5221,7 +5661,8 @@
             "text",
             "image"
           ],
-          "surface": "image"
+          "surface": "image",
+          "context_window": 16000
         },
         {
           "model": "grok-imagine-video",
@@ -5239,7 +5680,8 @@
             "text",
             "image",
             "video"
-          ]
+          ],
+          "context_window": 1024
         },
         {
           "model": "grok-imagine-video-1.5",
@@ -5257,7 +5699,8 @@
             "text",
             "image",
             "audio"
-          ]
+          ],
+          "context_window": 1024
         }
       ]
     }

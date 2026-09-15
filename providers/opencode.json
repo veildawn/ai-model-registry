@@ -11,7 +11,11 @@
       "cache_write_per_1m": 0,
       "free": true,
       "source": "manual",
-      "surface": "chat"
+      "surface": "chat",
+      "context_window": 200000,
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "deepseek-v4-flash-free",
@@ -27,7 +31,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "hy3-free",
@@ -41,7 +48,10 @@
       "effort_levels": [
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "laguna-s-2.1-free",
@@ -57,7 +67,11 @@
         "medium",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "context_window": 256000,
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "mimo-v2.5-free",
@@ -73,7 +87,13 @@
         "medium",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ]
     },
     {
       "model": "nemotron-3-ultra-free",
@@ -84,7 +104,11 @@
       "cache_write_per_1m": 0,
       "free": true,
       "source": "manual",
-      "surface": "chat"
+      "surface": "chat",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "nemotron-3.5-lightning-free",
@@ -95,7 +119,11 @@
       "cache_write_per_1m": 0,
       "free": true,
       "source": "manual",
-      "surface": "chat"
+      "surface": "chat",
+      "context_window": 262144,
+      "input_modalities": [
+        "text"
+      ]
     }
   ]
 }

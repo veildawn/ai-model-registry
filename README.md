@@ -124,7 +124,7 @@ correction, not an API change.
   centrally, while a probe is one account's listing at one moment — the probe
   covers only what this file does not publish.
 - `input_modalities` (optional): what media the model can **read**, as
-  `text` / `image` / `audio` / `video` — see below.
+  `text` / `image` / `audio` / `video` / `pdf` — see below.
 - `effort_levels` (optional): the reasoning depths the model can be asked for —
   see below.
 - `surface` (optional): which API route **serves** the model — see below.
@@ -252,8 +252,16 @@ Cloud via models.dev's `ollama-cloud` host, OpenCode Go via
 `https://opencode.ai/zen/go/v1/models` (falling back to models.dev if that
 fetch fails). A new id on that list is added the same morning. Facts prefer
 this registry's first-party file for the family — GLM's window and ladder for
-`glm-5.3-flash`, Kimi's `k3` row for `kimi-k3` — then the surface's models.dev
-row. OpenCode Go copies the first-party rate card when one exists; Ollama
+`glm-5.3-flash`, Kimi's `k3` row for `kimi-k3` — then the **vendor's**
+models.dev row (Meta for Muse Spark, z.ai for GLM), then the surface host.
+Capability fields on **every reseller copy** of a family this registry owns
+(not only Ollama and OpenCode Go) are **refreshed** when the vendor disagrees,
+so TokenHub's `deepseek-ai/…` spelling, OpenCode's `-free` SKUs, and a Qoder
+window all take the same facts. A vendor row that lists the id but **no** ladder removes a stored
+ladder (it was an aggregator's guess, not the vendor's). A vendor rate of
+**$0** is treated as unpublished, so a newly enrolled id takes the surface's
+real list instead of landing unpriced. OpenCode Go copies the first-party rate
+card when one exists, and does not overwrite a rate already on the row. Ollama
 stays unpriced. Rows are `"source": "manual"` so a later litellm pass cannot
 overwrite a catalog judgement.
 
@@ -386,6 +394,9 @@ types, and a Kiro IDE builds its attach control from that answer.
   `["text", "image"]` on one that does not walks the user into a 400.
 - `text` is implied for every chat model; write it anyway so the list reads as a
   complete statement rather than a delta.
+- `pdf` is a first-party input on several vendors (Muse Spark, Claude, Gemini).
+  It is stored when the vendor publishes it; it is not inferred from "document"
+  in a model card.
 
 ### `effort_levels` (optional)
 

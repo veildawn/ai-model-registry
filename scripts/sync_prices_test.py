@@ -282,6 +282,199 @@ class CatalogEnrollTest(unittest.TestCase):
         self.assertEqual(row["effort_levels"], ["low", "high", "max"])
         self.assertEqual(row["source"], "manual")
 
+    def test_vendor_facts_win_over_stale_catalog_copy(self):
+        vendor = {
+            "muse-spark-1.3-contributor": {
+                "prompt_per_1m": 0.1,
+                "completion_per_1m": 0.2,
+                "cache_read_per_1m": 0.002,
+                "context_window": 1048576,
+                "input_modalities": ["text", "image", "video", "pdf", "audio"],
+                "effort_levels": ["minimal", "low", "medium", "high", "xhigh"],
+                "surface": "chat",
+            },
+        }
+        host = {
+            "muse-spark-1.3-contributor": {
+                "prompt_per_1m": 0.1,
+                "completion_per_1m": 0.2,
+                "context_window": 1048576,
+                "input_modalities": ["text", "image"],
+                "effort_levels": ["minimal", "low", "medium", "high", "xhigh", "max"],
+                "surface": "chat",
+            },
+        }
+        go = [{"model": "glm-5", "source": "manual"}]
+        added = sp.enroll_catalog_models(
+            "opencode-go", go, ["muse-spark-1.3-contributor"],
+            {}, host, vendor)
+        self.assertEqual(added, ["muse-spark-1.3-contributor"])
+        row = go[1]
+        self.assertEqual(row["input_modalities"],
+                         ["text", "image", "video", "pdf", "audio"])
+        self.assertEqual(row["effort_levels"],
+                         ["minimal", "low", "medium", "high", "xhigh"])
+        self.assertEqual(row["prompt_per_1m"], 0.1)
+        stale = {
+            "model": "muse-spark-1.3-contributor",
+            "input_modalities": ["text", "image", "video", "audio"],
+            "effort_levels": ["minimal", "low", "medium", "high", "xhigh", "max"],
+            "context_window": 262144,
+            "prompt_per_1m": 0.1,
+            "completion_per_1m": 0.2,
+            "cache_read_per_1m": 0.002,
+            "cache_write_per_1m": 0,
+        }
+        facts = sp.lookup_facts(
+            "muse-spark-1.3-contributor", {}, vendor, host)
+        changes = {f: after for f, _, after in sp.apply_catalog_facts(
+            stale, facts, sp.FIRST_PARTY_FACTS, overwrite=True)}
+        self.assertEqual(changes["input_modalities"],
+                         ["text", "image", "video", "pdf", "audio"])
+        self.assertEqual(changes["effort_levels"],
+                         ["minimal", "low", "medium", "high", "xhigh"])
+        self.assertEqual(changes["context_window"], 1048576)
+        rate_facts = dict(facts)
+        rate_facts["completion_per_1m"] = 9.99
+        rate_changes = sp.apply_catalog_facts(
+            stale, rate_facts, sp.FIRST_PARTY_RATES, overwrite=False)
+        self.assertEqual(rate_changes, [])
+
+    def test_vendor_zero_price_does_not_hide_host_rate(self):
+        vendor = {
+            "deepseek-v4.1-flash": {
+                "prompt_per_1m": 0,
+                "completion_per_1m": 0,
+                "context_window": 1000000,
+                "effort_levels": ["low", "high", "max"],
+                "surface": "chat",
+            },
+        }
+        host = {
+            "deepseek-v4.1-flash": {
+                "prompt_per_1m": 0.15,
+                "completion_per_1m": 0.6,
+                "cache_read_per_1m": 0.003,
+                "context_window": 1000000,
+                "input_modalities": ["text", "image"],
+                "surface": "chat",
+            },
+        }
+        facts = sp.lookup_facts("deepseek-v4.1-flash", {}, vendor, host)
+        self.assertEqual(facts["prompt_per_1m"], 0.15)
+        self.assertEqual(facts["completion_per_1m"], 0.6)
+        self.assertEqual(facts["effort_levels"], ["low", "high", "max"])
+        go = [{"model": "glm-5", "source": "manual"}]
+        added = sp.enroll_catalog_models(
+            "opencode-go", go, ["deepseek-v4.1-flash"], {}, host, vendor)
+        self.assertEqual(added, ["deepseek-v4.1-flash"])
+        row = {m["model"]: m for m in go}["deepseek-v4.1-flash"]
+        self.assertEqual(row["prompt_per_1m"], 0.15)
+        self.assertEqual(row["completion_per_1m"], 0.6)
+
+    def test_vendor_without_ladder_clears_aggregator_effort(self):
+        vendor = {
+            "kimi-k2.6": {
+                "context_window": 262144,
+                "input_modalities": ["text", "image", "video"],
+                "surface": "chat",
+            },
+        }
+        stale = {
+            "model": "kimi-k2.6",
+            "context_window": 262144,
+            "effort_levels": ["none", "minimal", "low", "medium", "high", "xhigh", "max"],
+        }
+        facts = sp.lookup_facts("kimi-k2.6", {}, vendor, {})
+        self.assertNotIn("effort_levels", facts)
+        cleared = sp.clear_vendor_silent_effort(stale, facts, vendor)
+        self.assertEqual(cleared, [("effort_levels", stale["effort_levels"], None)])
+        self.assertEqual(sp.clear_vendor_silent_effort(stale, facts, {}), [])
+
+
+class AllProviderFactsTest(unittest.TestCase):
+    def test_slash_and_free_and_dot_spellings(self):
+        self.assertEqual(sp.bare_model_id("deepseek-ai/deepseek-v4-flash"),
+                         "deepseek-v4-flash")
+        self.assertEqual(sp.bare_model_id("deepseek-v4-flash-free"),
+                         "deepseek-v4-flash")
+        self.assertEqual(sp.first_party_owner("deepseek-ai/deepseek-v4-flash"),
+                         "deepseek")
+        self.assertEqual(sp.first_party_owner("deepseek-v4-flash-free"), "deepseek")
+        self.assertTrue(sp.is_foreign_copy("siliconflow",
+                                           "deepseek-ai/deepseek-v4-flash"))
+        self.assertFalse(sp.is_foreign_copy("deepseek", "deepseek-v4-flash"))
+        keys = sp.first_party_keys("deepseek-ai/deepseek-v4-flash")
+        self.assertIn("deepseek-v4-flash", keys)
+        keys = sp.first_party_keys("deepseek-v4-flash-free")
+        self.assertIn("deepseek-v4-flash", keys)
+        keys = sp.first_party_keys("claude-opus-4.5")
+        self.assertIn("claude-opus-4-5", keys)
+        keys = sp.first_party_keys("kimi-k3")
+        self.assertIn("k3", keys)
+
+    def test_lookup_slash_id_hits_first_party(self):
+        first_party = {
+            "deepseek-v4-flash": {
+                "context_window": 1000000,
+                "input_modalities": ["text", "image"],
+                "effort_levels": ["low", "high", "max"],
+                "surface": "chat",
+            },
+        }
+        facts = sp.lookup_facts("deepseek-ai/deepseek-v4-flash", first_party)
+        self.assertEqual(facts["context_window"], 1000000)
+        self.assertEqual(facts["input_modalities"], ["text", "image"])
+        facts = sp.lookup_facts("deepseek-v4-flash-free", first_party)
+        self.assertEqual(facts["context_window"], 1000000)
+
+    def test_reseller_overwrites_stale_window_first_party_does_not(self):
+        facts = {
+            "context_window": 1000000,
+            "input_modalities": ["text", "image"],
+        }
+        stale = {
+            "model": "deepseek-ai/deepseek-v4-flash",
+            "context_window": 200000,
+            "input_modalities": ["text"],
+        }
+        changes = {f: after for f, _, after in sp.apply_catalog_facts(
+            stale, facts, sp.FIRST_PARTY_FACTS, overwrite=True)}
+        self.assertEqual(changes["context_window"], 1000000)
+        self.assertEqual(changes["input_modalities"], ["text", "image"])
+        owner = {
+            "model": "deepseek-v4-flash",
+            "context_window": 200000,
+            "input_modalities": ["text"],
+        }
+        self.assertEqual(
+            sp.apply_catalog_facts(owner, facts, sp.FIRST_PARTY_FACTS,
+                                   overwrite=False),
+            [])
+
+    def test_dated_pin_does_not_replace_floating_id_in_index(self):
+        index = {}
+        sp.remember_first_party(index, "xai", [
+            {
+                "model": "grok-4.20-multi-agent",
+                "context_window": 1000000,
+                "surface": "chat",
+            },
+            {
+                "model": "grok-4.20-multi-agent-0309",
+                "context_window": 2000000,
+                "surface": "chat",
+            },
+        ])
+        self.assertEqual(index["grok-4.20-multi-agent"]["context_window"], 1000000)
+        self.assertEqual(index["grok-4.20-multi-agent-0309"]["context_window"], 2000000)
+        self.assertEqual(
+            sp.lookup_facts("grok-4.20-multi-agent", index)["context_window"],
+            1000000)
+        self.assertEqual(
+            sp.lookup_facts("grok-4.20-multi-agent-0309", index)["context_window"],
+            2000000)
+
 
 if __name__ == "__main__":
     unittest.main()

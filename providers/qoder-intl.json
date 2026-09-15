@@ -19,7 +19,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "deepseek-v4-pro",
@@ -37,7 +40,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "glm-5.2",
@@ -59,7 +65,10 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "kimi-k2.7-code",
@@ -73,7 +82,12 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 262144,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ]
     },
     {
       "model": "kimi-k3",
@@ -92,6 +106,11 @@
         "low",
         "high",
         "max"
+      ],
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
       ]
     },
     {
@@ -106,7 +125,18 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "qwen3.7-max",
@@ -120,7 +150,13 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 991808,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "qwen3.7-plus",
@@ -134,7 +170,14 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 991808,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "qwen3.8-max-preview",
@@ -153,7 +196,12 @@
         "medium",
         "xhigh"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ]
     }
   ],
   "hidden_models": [

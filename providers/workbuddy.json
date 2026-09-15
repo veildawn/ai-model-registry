@@ -16,7 +16,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "deepseek-v4-pro",
@@ -31,7 +34,10 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "glm-5.1",
@@ -42,7 +48,13 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 200000,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "max"
+      ]
     },
     {
       "model": "glm-5.2",
@@ -61,7 +73,10 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "hy3",
@@ -76,6 +91,9 @@
       "effort_levels": [
         "none",
         "high"
+      ],
+      "input_modalities": [
+        "text"
       ]
     },
     {
@@ -88,14 +106,10 @@
       "source": "manual",
       "context_window": 262144,
       "surface": "chat",
-      "effort_levels": [
-        "none",
-        "minimal",
-        "low",
-        "medium",
-        "high",
-        "xhigh",
-        "max"
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
       ]
     },
     {
@@ -125,6 +139,11 @@
         "low",
         "high",
         "max"
+      ],
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
       ]
     },
     {
@@ -136,7 +155,18 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high"
+      ]
     }
   ],
   "hidden_models": [

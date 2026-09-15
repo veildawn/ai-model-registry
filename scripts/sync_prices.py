@@ -40,10 +40,13 @@ own catalog is the enrollment source (`CATALOG_ENROLL`) — OpenCode Go's
 id on that list is added the same morning. Row facts prefer this registry's
 first-party file for that family (DeepSeek, GLM, Kimi, MiniMax, MiMo, Qianwen,
 xAI, Codex): a context window and a ladder are properties of the MODEL, and
-the vendor row here is that fact. Prices on OpenCode Go copy the same first-
-party list when one exists, then the surface's own models.dev row; Ollama
-stays unpriced. A discount reseller with no catalog of its own is still left
-alone.
+the vendor row here is that fact. The same fact chain refreshes EVERY reseller
+copy (TokenHub, Qoder, SiliconFlow, OpenCode free SKUs, …), not only those two
+catalogs: `deepseek-ai/deepseek-v4-flash` and `deepseek-v4-flash-free` copy
+`deepseek-v4-flash`. Prices stay with the row — OpenCode Go copies a first-
+party list only when enrolling a new id; a discount shop's rates are never
+overwritten. Ollama stays unpriced. Enrollment itself is still catalog-only:
+a discount reseller with no catalog of its own is never auto-added.
 
 Enrollment is filtered so the daily job cannot dump a vendor's attic into a
 curated file. An id is added only when it is in the vendor's own namespace, has
@@ -146,7 +149,7 @@ VENDOR_HOSTS = frozenset({
     "meta", "microsoft", "minimax", "minimax-cn", "minimax-coding-plan",
     "minimax-cn-coding-plan", "mistral", "moonshotai", "moonshotai-cn",
     "nvidia", "openai", "tencent-coding-plan", "tencent-token-plan",
-    "tencent-tokenhub", "xai", "zai", "zai-coding-plan", "zhipuai",
+    "tencent-tokenhub", "xiaomi", "xai", "zai", "zai-coding-plan", "zhipuai",
     "zhipuai-coding-plan",
 })
 
@@ -262,6 +265,14 @@ CATALOG_ENROLL = {
     },
 }
 
+# models.dev host for a surface that is not in CATALOG_ENROLL. Used only as the
+# last fact source after this registry's first-party file and the vendor hosts.
+PROVIDER_MODELS_DEV_HOST = {
+    "opencode": "opencode",
+    "siliconflow": "siliconflow",
+    "tokenhub": "tencent-tokenhub",
+}
+
 # Provider file that owns a family in THIS registry. A reseller spelling
 # (`opencode-go/glm-5.3`) copies facts from that file rather than from an
 # aggregator, because the window and the ladder are the vendor's.
@@ -298,6 +309,15 @@ FIRST_PARTY_RATES = (
     "pricing_style", "prompt_per_1m", "completion_per_1m",
     "cache_read_per_1m", "cache_write_per_1m",
 )
+RATE_FIELDS = frozenset((
+    "prompt_per_1m", "completion_per_1m",
+    "cache_read_per_1m", "cache_write_per_1m",
+))
+
+# Media a model can READ. `pdf` is a first-party input on several vendors
+# (Muse Spark, Claude, Gemini); dropping it made those rows look text/vision
+# only. Order in a stored row is the upstream's order, not this tuple.
+KEEP_MODALITIES = ("text", "image", "audio", "video", "pdf")
 
 # An Ollama Cloud tag that is a dated snapshot (`deepseek-v4-flash:0731`), not
 # a size (`gemma4:31b`, `gpt-oss:120b`). Four digits after a colon matches how
@@ -649,28 +669,85 @@ def enroll_new_models(provider: str, models: list, idx: dict,
     return added
 
 
+def bare_model_id(model_id: str) -> str:
+    """The vendor id hiding behind a reseller spelling.
+
+    SiliconFlow stores `deepseek-ai/deepseek-v4-flash`; OpenCode stores
+    `deepseek-v4-flash-free`. Both are the same model as `deepseek-v4-flash`.
+    """
+    mid = model_id.lower()
+    if "/" in mid:
+        mid = mid.rsplit("/", 1)[-1]
+    if mid.endswith("-free"):
+        mid = mid[:-5]
+    return mid
+
+
 def first_party_owner(model_id: str):
     """The provider file that publishes this family's list, or None."""
-    mid = model_id.lower()
+    mid = bare_model_id(model_id)
     for pattern, owner in FIRST_PARTY_OWNER:
         if pattern.search(mid):
             return owner
     return None
 
 
-def first_party_keys(model_id: str) -> tuple:
-    """Spellings to try when looking this id up in a first-party file."""
+def first_party_keys(model_id: str, *, pin_of: bool = True) -> tuple:
+    """Spellings to try when looking this id up in a first-party file.
+
+    `pin_of=False` is for STORING a row: a dated pin must not be indexed under
+    the floating id it is a pin of, or `grok-4.20-multi-agent-0309` (2M) would
+    replace `grok-4.20-multi-agent` (1M) and every reseller would copy the pin.
+    Lookup still passes `pin_of=True` so a pin not stored here finds the
+    floating row.
+    """
     mid = model_id.lower()
+    names = []
+    for name in (mid, bare_model_id(mid)):
+        if name not in names:
+            names.append(name)
+    colon = names[-1].split(":")[0] if ":" in names[-1] else None
+    if colon and colon not in names:
+        names.append(colon)
+    respelled = re.sub(r"(?<=\d)\.(?=\d)", "-", bare_model_id(mid))
+    if respelled not in names:
+        names.append(respelled)
     keys = []
-    for name in (mid, strip_suffixes(mid), snapshot_of(mid)):
-        keys.extend(FIRST_PARTY_SPELLINGS.get(name, (name,)))
-    # Preserve order, drop duplicates.
-    out, seen = [], set()
-    for key in keys:
-        if key not in seen:
-            seen.add(key)
-            out.append(key)
-    return tuple(out)
+    seen = set()
+    for name in names:
+        candidates = [name, strip_suffixes(name)]
+        if pin_of:
+            candidates.append(snapshot_of(name))
+        for candidate in candidates:
+            for key in FIRST_PARTY_SPELLINGS.get(candidate, (candidate,)):
+                if key and key not in seen:
+                    seen.add(key)
+                    keys.append(key)
+    return tuple(keys)
+
+
+def models_dev_surface_host(provider: str, host_facts: dict) -> dict:
+    spec = CATALOG_ENROLL.get(provider) or {}
+    host = spec.get("models_dev_host") or PROVIDER_MODELS_DEV_HOST.get(provider)
+    if not host:
+        return {}
+    return host_facts.get(host) or {}
+
+
+def provider_pass_order(path: str) -> tuple:
+    """First-party files first so a same-run fill is what resellers copy."""
+    name = os.path.splitext(os.path.basename(path))[0]
+    owners = {owner for _, owner in FIRST_PARTY_OWNER}
+    if name in owners:
+        return (0, name)
+    if name in CATALOG_ENROLL:
+        return (1, name)
+    return (2, name)
+
+
+def is_foreign_copy(provider: str, model_id: str) -> bool:
+    owner = first_party_owner(model_id)
+    return owner is not None and owner != provider
 
 
 def remember_first_party(index: dict, provider: str, models: list) -> None:
@@ -686,7 +763,7 @@ def remember_first_party(index: dict, provider: str, models: list) -> None:
         facts = {k: row[k] for k in (*FIRST_PARTY_FACTS, *FIRST_PARTY_RATES)
                  if k in row}
         aliases = [a.lower() for a in row.get("aliases") or [] if a]
-        for key in (*first_party_keys(mid), *aliases):
+        for key in (*first_party_keys(mid, pin_of=False), *aliases):
             index[key] = facts
 
 
@@ -731,7 +808,7 @@ def facts_from_models_dev_model(model: dict) -> dict:
         facts["context_window"] = window
     modalities = [
         m for m in ((model.get("modalities") or {}).get("input") or [])
-        if m in ("text", "image", "audio", "video")
+        if m in KEEP_MODALITIES
     ]
     if modalities:
         facts["input_modalities"] = modalities
@@ -776,6 +853,51 @@ def index_models_dev_hosts(document) -> dict:
     return out
 
 
+def merge_vendor_facts(host_facts: dict) -> dict:
+    """bare id -> facts every first-party models.dev host agrees on.
+
+    Catalog rows were taking the surface's aggregator copy (and then never
+    overwriting it), so Muse Spark 1.3 Contributor dropped `pdf` and could not
+    pick up Meta's own ladder. Where two vendor hosts disagree on a field, that
+    field is dropped rather than arbitrated — same discipline as the collapsed
+    models.dev supplement.
+    """
+    claims = collections.defaultdict(lambda: collections.defaultdict(list))
+    for host in VENDOR_HOSTS:
+        for mid, facts in (host_facts.get(host) or {}).items():
+            if not facts:
+                continue
+            for field, value in facts.items():
+                if unpublished(field, value):
+                    continue
+                claims[mid.lower()][field].append(value)
+    out = {}
+    for mid, fields in claims.items():
+        agreed = {}
+        for field, values in fields.items():
+            encoded = {json.dumps(v, sort_keys=True) for v in values}
+            if len(encoded) == 1:
+                agreed[field] = values[0]
+        if agreed:
+            out[mid] = agreed
+    return out
+
+
+def unpublished(field: str, value) -> bool:
+    """A silence, not a published fact.
+
+    0 on a rate is 'no per-token price' in this registry and on models.dev.
+    Taking it as a value lets an unpriced vendor row hide the surface's real
+    list, which is how a newly enrolled DeepSeek Flash would land at $0.
+    `["none"]` is a real ladder and must not hit this.
+    """
+    if value in (None, [], ""):
+        return True
+    if field in RATE_FIELDS and value == 0:
+        return True
+    return False
+
+
 def lookup_facts(mid: str, *indexes) -> dict:
     """First non-empty facts dict among indexes, trying reseller spellings."""
     merged = {}
@@ -790,8 +912,9 @@ def lookup_facts(mid: str, *indexes) -> dict:
         if not found:
             continue
         for field, value in found.items():
-            if field not in merged and value not in (None, [], ""):
-                merged[field] = value
+            if field in merged or unpublished(field, value):
+                continue
+            merged[field] = value
     return merged
 
 
@@ -830,11 +953,11 @@ def build_catalog_row(model_id: str, spec: dict, facts: dict) -> collections.Ord
 
 def enroll_catalog_models(provider: str, models: list, catalog_ids: list,
                           first_party: dict, host_facts: dict,
-                          models_dev=None) -> list:
+                          vendor_facts=None) -> list:
     """Ids the surface's own catalog lists that this file does not yet carry.
 
-    Facts prefer the first-party file for that family, then the surface's
-    models.dev host, then the collapsed models.dev supplement. Insertion is
+    Facts prefer this registry's first-party file, then the vendor's models.dev
+    row (Meta for Spark, GLM for glm-*, …), then the surface host. Insertion is
     alphabetical, same as AUTO_ENROLL.
     """
     spec = CATALOG_ENROLL.get(provider)
@@ -849,7 +972,7 @@ def enroll_catalog_models(provider: str, models: list, catalog_ids: list,
             continue
         if catalog_enroll_reason(provider, mid, known):
             continue
-        facts = lookup_facts(mid, first_party, host_facts, models_dev or {})
+        facts = lookup_facts(mid, first_party, vendor_facts or {}, host_facts)
         row = build_catalog_row(mid, spec, facts)
         models.insert(bisect.bisect_left([m["model"] for m in models], mid), row)
         seen.add(mid)
@@ -859,31 +982,58 @@ def enroll_catalog_models(provider: str, models: list, catalog_ids: list,
     return added
 
 
-def fill_from_first_party(model: dict, first_party: dict, copy_prices: bool) -> list:
-    """Blank capability (and, when asked, rate) fields the vendor file can fill.
+def apply_catalog_facts(model: dict, facts: dict, fields, overwrite: bool) -> list:
+    """Capability (or rate) fields a catalog row should take from a stronger source.
 
-    Same rule as the models.dev supplement: a value already on the row stands.
-    Returns (field, before, after) triples; the caller writes.
+    `overwrite` is the catalog rule: a vendor window beats a stale reseller
+    copy. Rates stay out of that path so a Go list price is not replaced by
+    DeepSeek's. Returns (field, before, after) triples; the caller writes.
+    `after` of None means delete the field.
     """
-    facts = lookup_facts(model["model"], first_party)
     if not facts:
         return []
-    fields = FIRST_PARTY_FACTS + (FIRST_PARTY_RATES if copy_prices else ())
     changes = []
     for field in fields:
         value = facts.get(field)
-        if value in (None, [], ""):
+        if unpublished(field, value):
             continue
         current = model.get(field)
-        if field in FIRST_PARTY_RATES and field != "pricing_style":
-            if current is not None:
-                continue
-        elif current:
-            continue
         if current == value:
+            continue
+        if current not in (None, [], "") and not overwrite:
             continue
         changes.append((field, current, value))
     return changes
+
+
+def clear_vendor_silent_effort(model: dict, facts: dict, vendor_facts: dict) -> list:
+    """Remove a ladder the vendor publishes this id without.
+
+    Overwrite only replaces a field the stronger source STATES. kimi-k2.6's
+    vendor row has no effort list; an aggregator's full ladder had nowhere to
+    be corrected from. If the vendor lists the id and nobody in the fact chain
+    supplied a ladder, the stored one is not a vendor fact and comes off.
+    """
+    if facts.get("effort_levels"):
+        return []
+    current = model.get("effort_levels")
+    if not current:
+        return []
+    known = False
+    for key in first_party_keys(model["model"]):
+        if vendor_facts and key in vendor_facts:
+            known = True
+            break
+    if not known:
+        return []
+    return [("effort_levels", current, None)]
+
+
+def fill_from_first_party(model: dict, first_party: dict, copy_prices: bool) -> list:
+    """Blank fields only. Kept for tests; catalog refresh uses apply_catalog_facts."""
+    fields = FIRST_PARTY_FACTS + (FIRST_PARTY_RATES if copy_prices else ())
+    return apply_catalog_facts(model, lookup_facts(model["model"], first_party),
+                               fields, overwrite=False)
 
 
 def derived_match(provider: str, model_id: str, idx: dict):
@@ -959,7 +1109,7 @@ def upstream_modalities(entry: dict):
     """litellm's input media as our comma-separated form, or None if it says nothing."""
     modalities = entry.get("supported_modalities")
     if modalities:
-        keep = [m for m in modalities if m in ("text", "image", "audio", "video")]
+        keep = [m for m in modalities if m in KEEP_MODALITIES]
         return keep or None
     vision = entry.get("supports_vision")
     if vision is None:
@@ -1306,11 +1456,13 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
     wrote = False
     catalogs = catalogs or {}
     host_facts = host_facts or {}
+    vendor_facts = merge_vendor_facts(host_facts)
     # Built once, then refreshed after each first-party file so a GLM id
     # enrolled earlier in this run is what Ollama copies later in it.
     first_party = index_first_party(registry_dir)
 
-    for path in sorted(glob.glob(os.path.join(registry_dir, "providers", "*.json"))):
+    provider_files = glob.glob(os.path.join(registry_dir, "providers", "*.json"))
+    for path in sorted(provider_files, key=provider_pass_order):
         with open(path) as fh:
             doc = json.load(fh, object_pairs_hook=collections.OrderedDict)
         provider = doc["name"]
@@ -1332,7 +1484,7 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             catalog_here = enroll_catalog_models(
                 provider, models, catalogs.get(provider) or [],
                 first_party, host_facts.get(spec["models_dev_host"]) or {},
-                models_dev)
+                vendor_facts)
             if catalog_here:
                 dirty = True
                 enrolled.extend((provider, mid) for mid in catalog_here)
@@ -1427,17 +1579,37 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                         model[field] = value
                         dirty = True
 
-            # Catalog surfaces copy blank capability facts from this registry's
-            # first-party file before models.dev speaks. A window GLM publishes
-            # here is the one Ollama should carry, not an aggregator's 202752.
-            if spec is not None:
-                for field, before, after in fill_from_first_party(
-                        model, first_party, copy_prices=False):
-                    applied.append((provider, mid, field, before, after))
-                    proposed.add(field)
-                    if apply:
+            # Capability facts prefer this registry's first-party file, then
+            # the vendor's models.dev row, then the surface host. A catalog
+            # surface and any reseller copy of a family we own (TokenHub's
+            # `glm-5.3`, SiliconFlow's `deepseek-ai/…`, OpenCode's `-free`
+            # SKUs) OVERWRITE a stale window or a dropped modality. The
+            # family's own file only fills blanks, so a hand-authored vendor
+            # row stands. Rates never take this path.
+            surface_host = models_dev_surface_host(provider, host_facts)
+            foreign = is_foreign_copy(provider, mid)
+            if spec is not None or foreign:
+                facts = lookup_facts(mid, first_party, vendor_facts, surface_host)
+                overwrite = True
+            else:
+                facts = lookup_facts(mid, vendor_facts, surface_host)
+                overwrite = False
+            changes = apply_catalog_facts(
+                model, facts, FIRST_PARTY_FACTS, overwrite=overwrite)
+            if overwrite:
+                changes.extend(clear_vendor_silent_effort(model, facts, vendor_facts))
+            for field, before, after in changes:
+                applied.append((provider, mid, field, before, after))
+                proposed.add(field)
+                if apply:
+                    if after is None:
+                        model.pop(field, None)
+                    else:
                         model[field] = after
-                        dirty = True
+                    dirty = True
+            # Skip the collapsed aggregator vote when a stronger chain spoke:
+            # one host misreading an effort ladder must not outvote Meta / GLM.
+            skip_supplement = spec is not None or (foreign and bool(facts))
 
             # The models.dev supplement runs for every row, matched upstream or
             # not: it carries ids litellm has never listed, and a row that missed
@@ -1453,14 +1625,15 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             # lookup a family fills unevenly — `claude-4.5-sonnet` would take a
             # surface while `claude-4.5-sonnet-thinking`, the same model, took
             # none.
-            supplement = models_dev.get(mid.lower()) or models_dev.get(strip_suffixes(mid)) or {}
-            for field, value in sorted(supplement.items()):
-                if model.get(field) or field in proposed:
-                    continue
-                applied.append((provider, mid, field, model.get(field), value))
-                if apply:
-                    model[field] = value
-                    dirty = True
+            if not skip_supplement:
+                supplement = models_dev.get(mid.lower()) or models_dev.get(strip_suffixes(mid)) or {}
+                for field, value in sorted(supplement.items()):
+                    if model.get(field) or field in proposed:
+                        continue
+                    applied.append((provider, mid, field, model.get(field), value))
+                    if apply:
+                        model[field] = value
+                        dirty = True
 
         # Collected after the fills above, so the cross-provider check sees the
         # facts this run produced rather than the ones it started with.

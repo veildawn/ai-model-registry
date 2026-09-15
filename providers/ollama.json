@@ -21,15 +21,15 @@
       "source": "manual",
       "context_window": 1000000,
       "effort_levels": [
-        "minimal",
         "low",
-        "medium",
         "high",
-        "xhigh",
-        "max",
-        "ultra"
+        "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image"
+      ]
     },
     {
       "model": "deepseek-v4-pro",
@@ -157,16 +157,8 @@
       "context_window": 262144,
       "input_modalities": [
         "text",
-        "image"
-      ],
-      "effort_levels": [
-        "none",
-        "minimal",
-        "low",
-        "medium",
-        "high",
-        "xhigh",
-        "max"
+        "image",
+        "video"
       ],
       "surface": "chat"
     },
@@ -176,7 +168,8 @@
       "context_window": 262144,
       "input_modalities": [
         "text",
-        "image"
+        "image",
+        "video"
       ],
       "surface": "chat"
     },
@@ -186,7 +179,8 @@
       "context_window": 1048576,
       "input_modalities": [
         "text",
-        "image"
+        "image",
+        "video"
       ],
       "effort_levels": [
         "low",

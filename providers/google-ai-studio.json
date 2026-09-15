@@ -10,7 +10,15 @@
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 131072,
+      "input_modalities": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "pdf"
+      ]
     },
     {
       "model": "deep-research-preview-04-2026",
@@ -19,7 +27,15 @@
       "completion_per_1m": 12,
       "cache_read_per_1m": 0.2,
       "cache_write_per_1m": 0,
-      "source": "manual"
+      "source": "manual",
+      "context_window": 131072,
+      "input_modalities": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "pdf"
+      ]
     },
     {
       "model": "deep-research-pro-preview-12-2025",
@@ -187,7 +203,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "audio"
+      "surface": "audio",
+      "context_window": 8192
     },
     {
       "model": "gemini-2.5-pro",
