@@ -256,10 +256,13 @@ this registry's first-party file for the family — GLM's window and ladder for
 models.dev row (Meta for Muse Spark, z.ai for GLM), then the surface host.
 Capability fields on those two files are **refreshed** when the vendor
 disagrees, so a dropped `pdf` modality or a stale MiniMax window does not sit
-forever. OpenCode Go copies the first-party rate card when one exists, and
-does not overwrite a rate already on the row. Ollama stays unpriced. Rows are
-`"source": "manual"` so a later litellm pass cannot overwrite a catalog
-judgement.
+forever. A vendor row that lists the id but **no** ladder removes a stored
+ladder (it was an aggregator's guess, not the vendor's). A vendor rate of
+**$0** is treated as unpublished, so a newly enrolled id takes the surface's
+real list instead of landing unpriced. OpenCode Go copies the first-party rate
+card when one exists, and does not overwrite a rate already on the row. Ollama
+stays unpriced. Rows are `"source": "manual"` so a later litellm pass cannot
+overwrite a catalog judgement.
 
 Enrollment is not "copy the vendor's attic". An AUTO_ENROLL id is added only when it:
 

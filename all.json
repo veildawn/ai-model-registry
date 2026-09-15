@@ -2858,15 +2858,6 @@
             "image",
             "video"
           ],
-          "effort_levels": [
-            "none",
-            "minimal",
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
-          ],
           "surface": "chat"
         },
         {
@@ -3299,9 +3290,6 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 262144,
-          "effort_levels": [
-            "max"
-          ],
           "surface": "chat",
           "input_modalities": [
             "text",
@@ -3318,9 +3306,6 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 262144,
-          "effort_levels": [
-            "max"
-          ],
           "surface": "chat",
           "input_modalities": [
             "text",
@@ -3337,9 +3322,6 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 262144,
-          "effort_levels": [
-            "max"
-          ],
           "surface": "chat",
           "input_modalities": [
             "text",
@@ -3441,15 +3423,11 @@
             "text",
             "image",
             "audio",
+            "video",
             "pdf"
           ],
           "source": "manual",
           "context_window": 262144,
-          "effort_levels": [
-            "low",
-            "medium",
-            "high"
-          ],
           "surface": "chat"
         },
         {
@@ -3461,11 +3439,6 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 1048576,
-          "effort_levels": [
-            "low",
-            "medium",
-            "high"
-          ],
           "surface": "chat",
           "input_modalities": [
             "text"
@@ -3565,9 +3538,6 @@
           "cache_write_per_1m": 0.25,
           "source": "manual",
           "context_window": 1000000,
-          "effort_levels": [
-            "max"
-          ],
           "surface": "chat",
           "input_modalities": [
             "text",
@@ -3584,9 +3554,6 @@
           "cache_write_per_1m": 0.625,
           "source": "manual",
           "context_window": 1000000,
-          "effort_levels": [
-            "max"
-          ],
           "surface": "chat",
           "input_modalities": [
             "text",

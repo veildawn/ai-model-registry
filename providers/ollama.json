@@ -160,15 +160,6 @@
         "image",
         "video"
       ],
-      "effort_levels": [
-        "none",
-        "minimal",
-        "low",
-        "medium",
-        "high",
-        "xhigh",
-        "max"
-      ],
       "surface": "chat"
     },
     {

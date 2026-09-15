@@ -146,7 +146,7 @@ VENDOR_HOSTS = frozenset({
     "meta", "microsoft", "minimax", "minimax-cn", "minimax-coding-plan",
     "minimax-cn-coding-plan", "mistral", "moonshotai", "moonshotai-cn",
     "nvidia", "openai", "tencent-coding-plan", "tencent-token-plan",
-    "tencent-tokenhub", "xai", "zai", "zai-coding-plan", "zhipuai",
+    "tencent-tokenhub", "xiaomi", "xai", "zai", "zai-coding-plan", "zhipuai",
     "zhipuai-coding-plan",
 })
 
@@ -298,6 +298,10 @@ FIRST_PARTY_RATES = (
     "pricing_style", "prompt_per_1m", "completion_per_1m",
     "cache_read_per_1m", "cache_write_per_1m",
 )
+RATE_FIELDS = frozenset((
+    "prompt_per_1m", "completion_per_1m",
+    "cache_read_per_1m", "cache_write_per_1m",
+))
 
 # Media a model can READ. `pdf` is a first-party input on several vendors
 # (Muse Spark, Claude, Gemini); dropping it made those rows look text/vision
@@ -796,7 +800,7 @@ def merge_vendor_facts(host_facts: dict) -> dict:
             if not facts:
                 continue
             for field, value in facts.items():
-                if value in (None, [], ""):
+                if unpublished(field, value):
                     continue
                 claims[mid.lower()][field].append(value)
     out = {}
@@ -809,6 +813,21 @@ def merge_vendor_facts(host_facts: dict) -> dict:
         if agreed:
             out[mid] = agreed
     return out
+
+
+def unpublished(field: str, value) -> bool:
+    """A silence, not a published fact.
+
+    0 on a rate is 'no per-token price' in this registry and on models.dev.
+    Taking it as a value lets an unpriced vendor row hide the surface's real
+    list, which is how a newly enrolled DeepSeek Flash would land at $0.
+    `["none"]` is a real ladder and must not hit this.
+    """
+    if value in (None, [], ""):
+        return True
+    if field in RATE_FIELDS and value == 0:
+        return True
+    return False
 
 
 def lookup_facts(mid: str, *indexes) -> dict:
@@ -825,8 +844,9 @@ def lookup_facts(mid: str, *indexes) -> dict:
         if not found:
             continue
         for field, value in found.items():
-            if field not in merged and value not in (None, [], ""):
-                merged[field] = value
+            if field in merged or unpublished(field, value):
+                continue
+            merged[field] = value
     return merged
 
 
@@ -900,13 +920,14 @@ def apply_catalog_facts(model: dict, facts: dict, fields, overwrite: bool) -> li
     `overwrite` is the catalog rule: a vendor window beats a stale reseller
     copy. Rates stay out of that path so a Go list price is not replaced by
     DeepSeek's. Returns (field, before, after) triples; the caller writes.
+    `after` of None means delete the field.
     """
     if not facts:
         return []
     changes = []
     for field in fields:
         value = facts.get(field)
-        if value in (None, [], ""):
+        if unpublished(field, value):
             continue
         current = model.get(field)
         if current == value:
@@ -915,6 +936,29 @@ def apply_catalog_facts(model: dict, facts: dict, fields, overwrite: bool) -> li
             continue
         changes.append((field, current, value))
     return changes
+
+
+def clear_vendor_silent_effort(model: dict, facts: dict, vendor_facts: dict) -> list:
+    """Remove a ladder the vendor publishes this id without.
+
+    Overwrite only replaces a field the stronger source STATES. kimi-k2.6's
+    vendor row has no effort list; an aggregator's full ladder had nowhere to
+    be corrected from. If the vendor lists the id and nobody in the fact chain
+    supplied a ladder, the stored one is not a vendor fact and comes off.
+    """
+    if facts.get("effort_levels"):
+        return []
+    current = model.get("effort_levels")
+    if not current:
+        return []
+    known = False
+    for key in first_party_keys(model["model"]):
+        if vendor_facts and key in vendor_facts:
+            known = True
+            break
+    if not known:
+        return []
+    return [("effort_levels", current, None)]
 
 
 def fill_from_first_party(model: dict, first_party: dict, copy_prices: bool) -> list:
@@ -1473,15 +1517,19 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             # is skipped here: one aggregator misreading an effort ladder
             # must not outvote Meta / GLM / MiniMax.
             if spec is not None:
-                facts = lookup_facts(
-                    mid, first_party, vendor_facts,
-                    host_facts.get(spec["models_dev_host"]) or {})
-                for field, before, after in apply_catalog_facts(
-                        model, facts, FIRST_PARTY_FACTS, overwrite=True):
+                surface_host = host_facts.get(spec["models_dev_host"]) or {}
+                facts = lookup_facts(mid, first_party, vendor_facts, surface_host)
+                changes = apply_catalog_facts(
+                    model, facts, FIRST_PARTY_FACTS, overwrite=True)
+                changes.extend(clear_vendor_silent_effort(model, facts, vendor_facts))
+                for field, before, after in changes:
                     applied.append((provider, mid, field, before, after))
                     proposed.add(field)
                     if apply:
-                        model[field] = after
+                        if after is None:
+                            model.pop(field, None)
+                        else:
+                            model[field] = after
                         dirty = True
 
             # The models.dev supplement runs for every row, matched upstream or

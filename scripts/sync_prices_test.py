@@ -340,6 +340,57 @@ class CatalogEnrollTest(unittest.TestCase):
             stale, rate_facts, sp.FIRST_PARTY_RATES, overwrite=False)
         self.assertEqual(rate_changes, [])
 
+    def test_vendor_zero_price_does_not_hide_host_rate(self):
+        vendor = {
+            "deepseek-v4.1-flash": {
+                "prompt_per_1m": 0,
+                "completion_per_1m": 0,
+                "context_window": 1000000,
+                "effort_levels": ["low", "high", "max"],
+                "surface": "chat",
+            },
+        }
+        host = {
+            "deepseek-v4.1-flash": {
+                "prompt_per_1m": 0.15,
+                "completion_per_1m": 0.6,
+                "cache_read_per_1m": 0.003,
+                "context_window": 1000000,
+                "input_modalities": ["text", "image"],
+                "surface": "chat",
+            },
+        }
+        facts = sp.lookup_facts("deepseek-v4.1-flash", {}, vendor, host)
+        self.assertEqual(facts["prompt_per_1m"], 0.15)
+        self.assertEqual(facts["completion_per_1m"], 0.6)
+        self.assertEqual(facts["effort_levels"], ["low", "high", "max"])
+        go = [{"model": "glm-5", "source": "manual"}]
+        added = sp.enroll_catalog_models(
+            "opencode-go", go, ["deepseek-v4.1-flash"], {}, host, vendor)
+        self.assertEqual(added, ["deepseek-v4.1-flash"])
+        row = {m["model"]: m for m in go}["deepseek-v4.1-flash"]
+        self.assertEqual(row["prompt_per_1m"], 0.15)
+        self.assertEqual(row["completion_per_1m"], 0.6)
+
+    def test_vendor_without_ladder_clears_aggregator_effort(self):
+        vendor = {
+            "kimi-k2.6": {
+                "context_window": 262144,
+                "input_modalities": ["text", "image", "video"],
+                "surface": "chat",
+            },
+        }
+        stale = {
+            "model": "kimi-k2.6",
+            "context_window": 262144,
+            "effort_levels": ["none", "minimal", "low", "medium", "high", "xhigh", "max"],
+        }
+        facts = sp.lookup_facts("kimi-k2.6", {}, vendor, {})
+        self.assertNotIn("effort_levels", facts)
+        cleared = sp.clear_vendor_silent_effort(stale, facts, vendor)
+        self.assertEqual(cleared, [("effort_levels", stale["effort_levels"], None)])
+        self.assertEqual(sp.clear_vendor_silent_effort(stale, facts, {}), [])
+
 
 if __name__ == "__main__":
     unittest.main()
