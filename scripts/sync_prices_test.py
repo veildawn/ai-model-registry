@@ -282,6 +282,64 @@ class CatalogEnrollTest(unittest.TestCase):
         self.assertEqual(row["effort_levels"], ["low", "high", "max"])
         self.assertEqual(row["source"], "manual")
 
+    def test_vendor_facts_win_over_stale_catalog_copy(self):
+        vendor = {
+            "muse-spark-1.3-contributor": {
+                "prompt_per_1m": 0.1,
+                "completion_per_1m": 0.2,
+                "cache_read_per_1m": 0.002,
+                "context_window": 1048576,
+                "input_modalities": ["text", "image", "video", "pdf", "audio"],
+                "effort_levels": ["minimal", "low", "medium", "high", "xhigh"],
+                "surface": "chat",
+            },
+        }
+        host = {
+            "muse-spark-1.3-contributor": {
+                "prompt_per_1m": 0.1,
+                "completion_per_1m": 0.2,
+                "context_window": 1048576,
+                "input_modalities": ["text", "image"],
+                "effort_levels": ["minimal", "low", "medium", "high", "xhigh", "max"],
+                "surface": "chat",
+            },
+        }
+        go = [{"model": "glm-5", "source": "manual"}]
+        added = sp.enroll_catalog_models(
+            "opencode-go", go, ["muse-spark-1.3-contributor"],
+            {}, host, vendor)
+        self.assertEqual(added, ["muse-spark-1.3-contributor"])
+        row = go[1]
+        self.assertEqual(row["input_modalities"],
+                         ["text", "image", "video", "pdf", "audio"])
+        self.assertEqual(row["effort_levels"],
+                         ["minimal", "low", "medium", "high", "xhigh"])
+        self.assertEqual(row["prompt_per_1m"], 0.1)
+        stale = {
+            "model": "muse-spark-1.3-contributor",
+            "input_modalities": ["text", "image", "video", "audio"],
+            "effort_levels": ["minimal", "low", "medium", "high", "xhigh", "max"],
+            "context_window": 262144,
+            "prompt_per_1m": 0.1,
+            "completion_per_1m": 0.2,
+            "cache_read_per_1m": 0.002,
+            "cache_write_per_1m": 0,
+        }
+        facts = sp.lookup_facts(
+            "muse-spark-1.3-contributor", {}, vendor, host)
+        changes = {f: after for f, _, after in sp.apply_catalog_facts(
+            stale, facts, sp.FIRST_PARTY_FACTS, overwrite=True)}
+        self.assertEqual(changes["input_modalities"],
+                         ["text", "image", "video", "pdf", "audio"])
+        self.assertEqual(changes["effort_levels"],
+                         ["minimal", "low", "medium", "high", "xhigh"])
+        self.assertEqual(changes["context_window"], 1048576)
+        rate_facts = dict(facts)
+        rate_facts["completion_per_1m"] = 9.99
+        rate_changes = sp.apply_catalog_facts(
+            stale, rate_facts, sp.FIRST_PARTY_RATES, overwrite=False)
+        self.assertEqual(rate_changes, [])
+
 
 if __name__ == "__main__":
     unittest.main()

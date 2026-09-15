@@ -2719,15 +2719,15 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "minimal",
             "low",
-            "medium",
             "high",
-            "xhigh",
-            "max",
-            "ultra"
+            "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ]
         },
         {
           "model": "deepseek-v4-pro",
@@ -2855,7 +2855,8 @@
           "context_window": 262144,
           "input_modalities": [
             "text",
-            "image"
+            "image",
+            "video"
           ],
           "effort_levels": [
             "none",
@@ -2874,7 +2875,8 @@
           "context_window": 262144,
           "input_modalities": [
             "text",
-            "image"
+            "image",
+            "video"
           ],
           "surface": "chat"
         },
@@ -2884,7 +2886,8 @@
           "context_window": 1048576,
           "input_modalities": [
             "text",
-            "image"
+            "image",
+            "video"
           ],
           "effort_levels": [
             "low",
@@ -3046,7 +3049,11 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ]
         },
         {
           "model": "deepseek-v4-pro",
@@ -3098,7 +3105,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.1",
@@ -3112,7 +3122,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.2",
@@ -3131,7 +3144,10 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-5.3",
@@ -3245,11 +3261,15 @@
           "cache_read_per_1m": 0.035,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 262144,
+          "context_window": 256000,
           "effort_levels": [
-            "max"
+            "none",
+            "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "hy3-preview",
@@ -3259,11 +3279,16 @@
           "cache_read_per_1m": 0.035,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 262144,
+          "context_window": 256000,
           "effort_levels": [
-            "max"
+            "low",
+            "medium",
+            "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "kimi-k2.5",
@@ -3277,7 +3302,12 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "kimi-k2.6",
@@ -3291,7 +3321,12 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "kimi-k2.7-code",
@@ -3305,7 +3340,12 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "kimi-k3",
@@ -3321,7 +3361,12 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "minimax-m2.5",
@@ -3331,13 +3376,16 @@
           "cache_read_per_1m": 0.06,
           "cache_write_per_1m": 0.375,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 204800,
           "surface": "chat",
           "effort_levels": [
             "minimal",
             "low",
             "medium",
             "high"
+          ],
+          "input_modalities": [
+            "text"
           ]
         },
         {
@@ -3355,6 +3403,9 @@
             "low",
             "medium",
             "high"
+          ],
+          "input_modalities": [
+            "text"
           ]
         },
         {
@@ -3390,7 +3441,7 @@
             "text",
             "image",
             "audio",
-            "video"
+            "pdf"
           ],
           "source": "manual",
           "context_window": 262144,
@@ -3409,13 +3460,16 @@
           "cache_read_per_1m": 0.0036,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 1048576,
           "effort_levels": [
             "low",
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "mimo-v2.5",
@@ -3431,7 +3485,13 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ]
         },
         {
           "model": "mimo-v2.5-pro",
@@ -3447,7 +3507,10 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "muse-spark-1.3-contributor",
@@ -3462,6 +3525,7 @@
             "text",
             "image",
             "video",
+            "pdf",
             "audio"
           ],
           "effort_levels": [
@@ -3500,11 +3564,16 @@
           "cache_read_per_1m": 0.02,
           "cache_write_per_1m": 0.25,
           "source": "manual",
-          "context_window": 991808,
+          "context_window": 1000000,
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "qwen3.6-plus",
@@ -3518,7 +3587,12 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ]
         },
         {
           "model": "qwen3.7-max",
@@ -3532,7 +3606,10 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "qwen3.7-plus",
@@ -3566,7 +3643,13 @@
             "medium",
             "xhigh"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image",
+            "video",
+            "pdf"
+          ]
         },
         {
           "model": "hy4-preview",
@@ -3614,7 +3697,9 @@
           "input_modalities": [
             "text",
             "image",
-            "video"
+            "video",
+            "pdf",
+            "audio"
           ],
           "source": "manual",
           "context_window": 1048576,

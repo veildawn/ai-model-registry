@@ -299,6 +299,11 @@ FIRST_PARTY_RATES = (
     "cache_read_per_1m", "cache_write_per_1m",
 )
 
+# Media a model can READ. `pdf` is a first-party input on several vendors
+# (Muse Spark, Claude, Gemini); dropping it made those rows look text/vision
+# only. Order in a stored row is the upstream's order, not this tuple.
+KEEP_MODALITIES = ("text", "image", "audio", "video", "pdf")
+
 # An Ollama Cloud tag that is a dated snapshot (`deepseek-v4-flash:0731`), not
 # a size (`gemma4:31b`, `gpt-oss:120b`). Four digits after a colon matches how
 # Ollama pins a calendar build; a size tag has a unit suffix.
@@ -731,7 +736,7 @@ def facts_from_models_dev_model(model: dict) -> dict:
         facts["context_window"] = window
     modalities = [
         m for m in ((model.get("modalities") or {}).get("input") or [])
-        if m in ("text", "image", "audio", "video")
+        if m in KEEP_MODALITIES
     ]
     if modalities:
         facts["input_modalities"] = modalities
@@ -773,6 +778,36 @@ def index_models_dev_hosts(document) -> dict:
                 models[str(mid).lower()] = facts_from_models_dev_model(model)
         if models:
             out[host] = models
+    return out
+
+
+def merge_vendor_facts(host_facts: dict) -> dict:
+    """bare id -> facts every first-party models.dev host agrees on.
+
+    Catalog rows were taking the surface's aggregator copy (and then never
+    overwriting it), so Muse Spark 1.3 Contributor dropped `pdf` and could not
+    pick up Meta's own ladder. Where two vendor hosts disagree on a field, that
+    field is dropped rather than arbitrated — same discipline as the collapsed
+    models.dev supplement.
+    """
+    claims = collections.defaultdict(lambda: collections.defaultdict(list))
+    for host in VENDOR_HOSTS:
+        for mid, facts in (host_facts.get(host) or {}).items():
+            if not facts:
+                continue
+            for field, value in facts.items():
+                if value in (None, [], ""):
+                    continue
+                claims[mid.lower()][field].append(value)
+    out = {}
+    for mid, fields in claims.items():
+        agreed = {}
+        for field, values in fields.items():
+            encoded = {json.dumps(v, sort_keys=True) for v in values}
+            if len(encoded) == 1:
+                agreed[field] = values[0]
+        if agreed:
+            out[mid] = agreed
     return out
 
 
@@ -830,11 +865,11 @@ def build_catalog_row(model_id: str, spec: dict, facts: dict) -> collections.Ord
 
 def enroll_catalog_models(provider: str, models: list, catalog_ids: list,
                           first_party: dict, host_facts: dict,
-                          models_dev=None) -> list:
+                          vendor_facts=None) -> list:
     """Ids the surface's own catalog lists that this file does not yet carry.
 
-    Facts prefer the first-party file for that family, then the surface's
-    models.dev host, then the collapsed models.dev supplement. Insertion is
+    Facts prefer this registry's first-party file, then the vendor's models.dev
+    row (Meta for Spark, GLM for glm-*, …), then the surface host. Insertion is
     alphabetical, same as AUTO_ENROLL.
     """
     spec = CATALOG_ENROLL.get(provider)
@@ -849,7 +884,7 @@ def enroll_catalog_models(provider: str, models: list, catalog_ids: list,
             continue
         if catalog_enroll_reason(provider, mid, known):
             continue
-        facts = lookup_facts(mid, first_party, host_facts, models_dev or {})
+        facts = lookup_facts(mid, first_party, vendor_facts or {}, host_facts)
         row = build_catalog_row(mid, spec, facts)
         models.insert(bisect.bisect_left([m["model"] for m in models], mid), row)
         seen.add(mid)
@@ -859,31 +894,34 @@ def enroll_catalog_models(provider: str, models: list, catalog_ids: list,
     return added
 
 
-def fill_from_first_party(model: dict, first_party: dict, copy_prices: bool) -> list:
-    """Blank capability (and, when asked, rate) fields the vendor file can fill.
+def apply_catalog_facts(model: dict, facts: dict, fields, overwrite: bool) -> list:
+    """Capability (or rate) fields a catalog row should take from a stronger source.
 
-    Same rule as the models.dev supplement: a value already on the row stands.
-    Returns (field, before, after) triples; the caller writes.
+    `overwrite` is the catalog rule: a vendor window beats a stale reseller
+    copy. Rates stay out of that path so a Go list price is not replaced by
+    DeepSeek's. Returns (field, before, after) triples; the caller writes.
     """
-    facts = lookup_facts(model["model"], first_party)
     if not facts:
         return []
-    fields = FIRST_PARTY_FACTS + (FIRST_PARTY_RATES if copy_prices else ())
     changes = []
     for field in fields:
         value = facts.get(field)
         if value in (None, [], ""):
             continue
         current = model.get(field)
-        if field in FIRST_PARTY_RATES and field != "pricing_style":
-            if current is not None:
-                continue
-        elif current:
-            continue
         if current == value:
+            continue
+        if current not in (None, [], "") and not overwrite:
             continue
         changes.append((field, current, value))
     return changes
+
+
+def fill_from_first_party(model: dict, first_party: dict, copy_prices: bool) -> list:
+    """Blank fields only. Kept for tests; catalog refresh uses apply_catalog_facts."""
+    fields = FIRST_PARTY_FACTS + (FIRST_PARTY_RATES if copy_prices else ())
+    return apply_catalog_facts(model, lookup_facts(model["model"], first_party),
+                               fields, overwrite=False)
 
 
 def derived_match(provider: str, model_id: str, idx: dict):
@@ -959,7 +997,7 @@ def upstream_modalities(entry: dict):
     """litellm's input media as our comma-separated form, or None if it says nothing."""
     modalities = entry.get("supported_modalities")
     if modalities:
-        keep = [m for m in modalities if m in ("text", "image", "audio", "video")]
+        keep = [m for m in modalities if m in KEEP_MODALITIES]
         return keep or None
     vision = entry.get("supports_vision")
     if vision is None:
@@ -1306,6 +1344,7 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
     wrote = False
     catalogs = catalogs or {}
     host_facts = host_facts or {}
+    vendor_facts = merge_vendor_facts(host_facts)
     # Built once, then refreshed after each first-party file so a GLM id
     # enrolled earlier in this run is what Ollama copies later in it.
     first_party = index_first_party(registry_dir)
@@ -1332,7 +1371,7 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             catalog_here = enroll_catalog_models(
                 provider, models, catalogs.get(provider) or [],
                 first_party, host_facts.get(spec["models_dev_host"]) or {},
-                models_dev)
+                vendor_facts)
             if catalog_here:
                 dirty = True
                 enrolled.extend((provider, mid) for mid in catalog_here)
@@ -1427,12 +1466,18 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                         model[field] = value
                         dirty = True
 
-            # Catalog surfaces copy blank capability facts from this registry's
-            # first-party file before models.dev speaks. A window GLM publishes
-            # here is the one Ollama should carry, not an aggregator's 202752.
+            # Catalog surfaces refresh capability facts from this registry's
+            # first-party file, then the vendor's models.dev row, then the
+            # surface host. A stale window or a dropped `pdf` modality is
+            # overwritten; rates are not. The collapsed models.dev supplement
+            # is skipped here: one aggregator misreading an effort ladder
+            # must not outvote Meta / GLM / MiniMax.
             if spec is not None:
-                for field, before, after in fill_from_first_party(
-                        model, first_party, copy_prices=False):
+                facts = lookup_facts(
+                    mid, first_party, vendor_facts,
+                    host_facts.get(spec["models_dev_host"]) or {})
+                for field, before, after in apply_catalog_facts(
+                        model, facts, FIRST_PARTY_FACTS, overwrite=True):
                     applied.append((provider, mid, field, before, after))
                     proposed.add(field)
                     if apply:
@@ -1453,14 +1498,15 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             # lookup a family fills unevenly — `claude-4.5-sonnet` would take a
             # surface while `claude-4.5-sonnet-thinking`, the same model, took
             # none.
-            supplement = models_dev.get(mid.lower()) or models_dev.get(strip_suffixes(mid)) or {}
-            for field, value in sorted(supplement.items()):
-                if model.get(field) or field in proposed:
-                    continue
-                applied.append((provider, mid, field, model.get(field), value))
-                if apply:
-                    model[field] = value
-                    dirty = True
+            if spec is None:
+                supplement = models_dev.get(mid.lower()) or models_dev.get(strip_suffixes(mid)) or {}
+                for field, value in sorted(supplement.items()):
+                    if model.get(field) or field in proposed:
+                        continue
+                    applied.append((provider, mid, field, model.get(field), value))
+                    if apply:
+                        model[field] = value
+                        dirty = True
 
         # Collected after the fills above, so the cross-provider check sees the
         # facts this run produced rather than the ones it started with.
