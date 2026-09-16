@@ -5,6 +5,8 @@
 # namespace grew that this file does not yet have is enrolled the same way —
 # new row, delegated, then kept fresh. Antigravity enrolls matching Gemini ids
 # as `vendor-api` (it meters Google's list, same catalog as AI Studio).
+# Bedrock enrolls current Claude ids at AWS Geo / In-region Cross-region
+# Inference rates (not the cheaper Global tab).
 # Ollama Cloud and OpenCode Go enroll from their own catalogs (models.dev
 # ollama-cloud, opencode.ai/zen/go/v1/models), copying facts from this
 # registry's first-party file when the family has one. Existing Claude rows on

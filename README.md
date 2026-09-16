@@ -238,14 +238,23 @@ next run reverts it.** Take the row back by flipping its `source` to `manual`
 first.
 
 On the four first-party catalogs — `anthropic`, `codex` (OpenAI),
-`google-ai-studio` (Gemini), `xai` (Grok) — and on `antigravity` **for Gemini
-only** (the same ids AI Studio enrolls, metered at Google's list) the same job
-also **enrolls** an id the file does not yet have, when the vendor's own
-namespace publishes it. That is how `claude-fable-5-1` lands on Anthropic the
-morning after it ships, and how a new Gemini lands on both AI Studio and
-Antigravity. First-party rows are written with `"source": "litellm"`;
+`google-ai-studio` (Gemini), `xai` (Grok) — on `antigravity` **for Gemini
+only** (the same ids AI Studio enrolls, metered at Google's list), and on
+`bedrock` **for current Claude ids** the same job also **enrolls** an id the
+file does not yet have, when the vendor's own namespace publishes it. That is
+how `claude-fable-5-1` lands on Anthropic the morning after it ships, how a
+new Gemini lands on both AI Studio and Antigravity, and how Bedrock picks up
+`us.anthropic.claude-*` / in-region `anthropic.claude-*` inference profiles.
+First-party and Bedrock rows are written with `"source": "litellm"`;
 Antigravity Gemini rows with `"source": "vendor-api"`. The run that created
 them keeps their prices.
+
+Bedrock bills the [Geo and In-region Cross-region Inference](https://aws.amazon.com/bedrock/pricing/)
+table, not Global. LiteLLM stores that +10% list on `us.` / `eu.` / `au.` /
+`jp.` / `apac.` prefixes; in-region `anthropic.claude-*` ids are rewritten
+from that twin, because LiteLLM copies the cheaper Global tab onto the
+unsuffixed id. `us-gov.*` is not enrolled. Generation floors are borrowed
+from `anthropic.json` so an empty Bedrock file cannot dump Claude 3.
 
 `ollama` and `opencode-go` enroll from **their own catalog** instead: Ollama
 Cloud via models.dev's `ollama-cloud` host, OpenCode Go via
@@ -282,9 +291,11 @@ Resellers who publish their own price list are never enrolled from a vendor
 namespace: guessing which of a vendor's new ids a discount shop has turned on
 is not a price fact. Antigravity is the exception that is not a discount shop
 — it meters Google's list, so a new Gemini id is enrolled there alongside AI
-Studio. New Claude ids are not. Ollama Cloud and OpenCode Go are the other
-exception: they publish the list of ids they actually serve, so enrollment
-there is a catalog fact, not a guess.
+Studio. New Claude ids are not. Bedrock enrolls current Claude ids at AWS's
+Geo / In-region Cross-region Inference table, including geo-prefixed inference
+profiles. Ollama Cloud and OpenCode Go are the other exception: they publish
+the list of ids they actually serve, so enrollment there is a catalog fact, not
+a guess.
 
 A second upstream, [models.dev](https://models.dev/api.json), supplies the two
 fields litellm has no column for: `effort_levels`, and `surface` where a model's
@@ -310,7 +321,7 @@ rather than arbitrated.
 
 | `source` | rows | what it means |
 |---|---|---|
-| `litellm` | 74 | the vendor's own litellm namespace carries this exact id. Read, not inferred. |
+| `litellm` | 134 | the vendor's own litellm namespace carries this exact id. Read, not inferred. |
 | `vendor-api` | 43 | a surface that publishes no rates of its own and meters at the vendor's API list — `kiro` and `antigravity`. Written from the vendor's row after this surface's own suffixes are stripped. **Derived, not read**, which is why it is named apart: an audit needs to see the difference. |
 | `manual` | 158 | ours. The job compares this row's PRICES and reports, never writing them. |
 
@@ -496,6 +507,7 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | opencode | OpenCode Zen | the seven current `*-free` / `big-pickle` rows are **$0** with `"free": true` — not unpriced |
 | cursor | Cursor | **prices none** — reseller; `hidden_models` only, trims uncommon `claude-*` / `gpt-5.*` / `gemini-*` |
 | antigravity | Antigravity | **prices none** — reseller; `hidden_models` only, trims non-current Gemini/Claude |
+| bedrock | AWS Bedrock (Claude) | Geo / In-region Cross-region Inference rates for current `anthropic.claude-*` and geo-prefixed inference profiles; daily AUTO_ENROLL from LiteLLM |
 | google-ai-studio | Google AI Studio | `hidden_models` trims niche Gemini (tts / music / robotics / research / gemma); the image family is **listed** — see below |
 | opencode-go | OpenCode Go | curated open-model subscription (`opencode.ai/zen/go`); new catalog ids enroll daily, facts copied from the first-party file when one exists |
 | qoder-intl | Qoder International | same opaque `*model` aliases as `qoder`, priced from the intl edition's own model set; `auto` hidden (router alias) |
@@ -503,8 +515,9 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 The registry supplies rates and (via `hidden_models`) a listing blacklist.
 What a deployment **serves** is still decided by its account pool's probes —
 enrolling an id here prices it, it does not turn the model on. On the four
-first-party catalogs the daily job will add a newly published id; Ollama Cloud
-and OpenCode Go grow from their own catalogs the same way. It never removes one.
+first-party catalogs and Bedrock Claude the daily job will add a newly
+published id; Ollama Cloud and OpenCode Go grow from their own catalogs the
+same way. It never removes one.
 
 ## Provenance and known limitations
 
