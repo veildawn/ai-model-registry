@@ -3543,18 +3543,12 @@
           "cache_write_per_1m": 1.25,
           "input_modalities": [
             "text",
-            "image"
+            "image",
+            "pdf"
           ],
           "source": "vendor-api",
           "context_window": 200000,
-          "surface": "chat",
-          "effort_levels": [
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
-          ]
+          "surface": "chat"
         },
         {
           "model": "claude-opus-4.5",
@@ -3565,7 +3559,8 @@
           "cache_write_per_1m": 6.25,
           "input_modalities": [
             "text",
-            "image"
+            "image",
+            "pdf"
           ],
           "source": "vendor-api",
           "context_window": 200000,
@@ -3688,18 +3683,12 @@
           "cache_write_per_1m": 3.75,
           "input_modalities": [
             "text",
-            "image"
+            "image",
+            "pdf"
           ],
           "source": "vendor-api",
-          "context_window": 200000,
-          "surface": "chat",
-          "effort_levels": [
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
-          ]
+          "context_window": 1000000,
+          "surface": "chat"
         },
         {
           "model": "claude-sonnet-4.6",
