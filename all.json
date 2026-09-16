@@ -7,6 +7,7 @@
       "providers": [
         "anthropic",
         "antigravity",
+        "bedrock",
         "codex",
         "deepseek",
         "glm",
@@ -797,6 +798,1325 @@
         "gpt-oss-120b",
         "tab_flash_lite_preview",
         "tab_jump_flash_lite_preview"
+      ]
+    },
+    "providers/bedrock.json": {
+      "name": "bedrock",
+      "display_name": "AWS Bedrock (Claude)",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "anthropic.claude-fable-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 11,
+          "completion_per_1m": 55,
+          "cache_read_per_1m": 1.1,
+          "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "anthropic.claude-fable-5-1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 11,
+          "completion_per_1m": 55,
+          "cache_read_per_1m": 0.275,
+          "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "anthropic.claude-haiku-4-5-20251001-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 1.1,
+          "completion_per_1m": 5.5,
+          "cache_read_per_1m": 0.11,
+          "cache_write_per_1m": 1.375,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "anthropic.claude-opus-4-5-20251101-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "anthropic.claude-opus-4-6-v1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "anthropic.claude-opus-4-7",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "anthropic.claude-opus-4-8",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "anthropic.claude-opus-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.3,
+          "completion_per_1m": 16.5,
+          "cache_read_per_1m": 0.33,
+          "cache_write_per_1m": 4.125,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "anthropic.claude-sonnet-4-6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.3,
+          "completion_per_1m": 16.5,
+          "cache_read_per_1m": 0.33,
+          "cache_write_per_1m": 4.125,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "anthropic.claude-sonnet-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 2.2,
+          "completion_per_1m": 11,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 2.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "apac.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 1.1,
+          "completion_per_1m": 5.5,
+          "cache_read_per_1m": 0.11,
+          "cache_write_per_1m": 1.375,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "au.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 1.1,
+          "completion_per_1m": 5.5,
+          "cache_read_per_1m": 0.11,
+          "cache_write_per_1m": 1.375,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "au.anthropic.claude-opus-4-6-v1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "au.anthropic.claude-opus-4-7",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "au.anthropic.claude-opus-4-8",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "au.anthropic.claude-opus-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "au.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.3,
+          "completion_per_1m": 16.5,
+          "cache_read_per_1m": 0.33,
+          "cache_write_per_1m": 4.125,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "au.anthropic.claude-sonnet-4-6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.3,
+          "completion_per_1m": 16.5,
+          "cache_read_per_1m": 0.33,
+          "cache_write_per_1m": 4.125,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "au.anthropic.claude-sonnet-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 2.2,
+          "completion_per_1m": 11,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 2.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "eu.anthropic.claude-fable-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 11,
+          "completion_per_1m": 55,
+          "cache_read_per_1m": 1.1,
+          "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "eu.anthropic.claude-fable-5-1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 11,
+          "completion_per_1m": 55,
+          "cache_read_per_1m": 0.275,
+          "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "eu.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 1.1,
+          "completion_per_1m": 5.5,
+          "cache_read_per_1m": 0.11,
+          "cache_write_per_1m": 1.375,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "eu.anthropic.claude-opus-4-5-20251101-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "eu.anthropic.claude-opus-4-6-v1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "eu.anthropic.claude-opus-4-7",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "eu.anthropic.claude-opus-4-8",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "eu.anthropic.claude-opus-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "eu.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.3,
+          "completion_per_1m": 16.5,
+          "cache_read_per_1m": 0.33,
+          "cache_write_per_1m": 4.125,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "eu.anthropic.claude-sonnet-4-6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.3,
+          "completion_per_1m": 16.5,
+          "cache_read_per_1m": 0.33,
+          "cache_write_per_1m": 4.125,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "eu.anthropic.claude-sonnet-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 2.2,
+          "completion_per_1m": 11,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 2.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "global.anthropic.claude-fable-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 10,
+          "completion_per_1m": 50,
+          "cache_read_per_1m": 1,
+          "cache_write_per_1m": 12.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "global.anthropic.claude-fable-5-1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 10,
+          "completion_per_1m": 50,
+          "cache_read_per_1m": 0.25,
+          "cache_write_per_1m": 12.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 1.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "global.anthropic.claude-opus-4-5-20251101-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "global.anthropic.claude-opus-4-6-v1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "global.anthropic.claude-opus-4-7",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "global.anthropic.claude-opus-4-8",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "global.anthropic.claude-opus-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 25,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 6.25,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 3.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "global.anthropic.claude-sonnet-4-6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 3.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "global.anthropic.claude-sonnet-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 2.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "jp.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 1.1,
+          "completion_per_1m": 5.5,
+          "cache_read_per_1m": 0.11,
+          "cache_write_per_1m": 1.375,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "jp.anthropic.claude-opus-4-7",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "jp.anthropic.claude-opus-4-8",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "jp.anthropic.claude-opus-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "jp.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.3,
+          "completion_per_1m": 16.5,
+          "cache_read_per_1m": 0.33,
+          "cache_write_per_1m": 4.125,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "jp.anthropic.claude-sonnet-4-6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.3,
+          "completion_per_1m": 16.5,
+          "cache_read_per_1m": 0.33,
+          "cache_write_per_1m": 4.125,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "jp.anthropic.claude-sonnet-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 2.2,
+          "completion_per_1m": 11,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 2.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-fable-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 11,
+          "completion_per_1m": 55,
+          "cache_read_per_1m": 1.1,
+          "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-fable-5-1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 11,
+          "completion_per_1m": 55,
+          "cache_read_per_1m": 0.275,
+          "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 1.1,
+          "completion_per_1m": 5.5,
+          "cache_read_per_1m": 0.11,
+          "cache_write_per_1m": 1.375,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-opus-4-5-20251101-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-opus-4-6-v1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-opus-4-7",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-opus-4-8",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-opus-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.3,
+          "completion_per_1m": 16.5,
+          "cache_read_per_1m": 0.33,
+          "cache_write_per_1m": 4.125,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-sonnet-4-6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.3,
+          "completion_per_1m": 16.5,
+          "cache_read_per_1m": 0.33,
+          "cache_write_per_1m": 4.125,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-sonnet-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 2.2,
+          "completion_per_1m": 11,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 2.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        }
       ]
     },
     "providers/codex.json": {

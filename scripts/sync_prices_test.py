@@ -144,6 +144,28 @@ class EnrollReasonTest(unittest.TestCase):
                         {"mode": "embedding", "input_cost_per_token": 1e-7}),
             "unserved-surface")
 
+    def test_bedrock_geo_and_inregion_claude(self):
+        floors = {
+            "claude-fable": (5, 0),
+            "claude-opus": (4, 5),
+            "claude-sonnet": (4, 5),
+            "claude-haiku": (4, 5),
+        }
+        known = set()
+        def reason(mid, entry=None):
+            return sp.enroll_reason("bedrock", mid, entry or chat(), known, floors)
+        self.assertIsNone(reason("us.anthropic.claude-sonnet-4-6"))
+        self.assertIsNone(reason("anthropic.claude-sonnet-4-6"))
+        self.assertIsNone(reason("eu.anthropic.claude-haiku-4-5-20251001-v1:0"))
+        self.assertIsNone(reason("global.anthropic.claude-opus-4-8"))
+        self.assertEqual(reason("us-gov.anthropic.claude-sonnet-4-6"), "gov-region")
+        self.assertEqual(reason("anthropic.claude-3-opus-20240229-v1:0"),
+                         "outside-include")
+        self.assertEqual(reason("claude-sonnet-4-5-20250929-v1:0"),
+                         "outside-include")
+        self.assertEqual(reason("us.anthropic.claude-opus-4-1"), "below-floor")
+        self.assertEqual(reason("meta.llama3-1-70b"), "outside-include")
+
 
 class EnrollNewModelsTest(unittest.TestCase):
     def test_inserts_alphabetically_and_delegates(self):
@@ -197,6 +219,66 @@ class EnrollNewModelsTest(unittest.TestCase):
         self.assertEqual(by_id["gemini-3.9-flash"]["source"], "vendor-api")
         self.assertEqual(by_id["gemini-3.9-flash"]["pricing_style"], "openai")
         self.assertNotIn("gemini-3-flash-preview", by_id)
+
+    def test_bedrock_inregion_takes_geo_rates_and_keeps_global(self):
+        models = []
+        idx = {
+            "bedrock_converse": {
+                "anthropic.claude-sonnet-4-6": (
+                    "anthropic.claude-sonnet-4-6",
+                    chat(prompt=3, completion=15, cache_read=0.3, cache_write=3.75)),
+                "us.anthropic.claude-sonnet-4-6": (
+                    "us.anthropic.claude-sonnet-4-6",
+                    chat(prompt=3.3, completion=16.5, cache_read=0.33, cache_write=4.125)),
+                "eu.anthropic.claude-sonnet-4-6": (
+                    "eu.anthropic.claude-sonnet-4-6",
+                    chat(prompt=3.3, completion=16.5, cache_read=0.33, cache_write=4.125)),
+                "global.anthropic.claude-sonnet-4-6": (
+                    "global.anthropic.claude-sonnet-4-6",
+                    chat(prompt=3, completion=15, cache_read=0.3, cache_write=3.75)),
+                "us-gov.anthropic.claude-sonnet-4-6": (
+                    "us-gov.anthropic.claude-sonnet-4-6",
+                    chat(prompt=3.6, completion=18, cache_read=0.36, cache_write=4.5)),
+                "anthropic.claude-opus-4-1": (
+                    "anthropic.claude-opus-4-1",
+                    chat(prompt=15, completion=75)),
+            }
+        }
+        added = sp.enroll_new_models(
+            "bedrock", models, idx, {},
+            registry_dir=os.path.dirname(HERE))
+        # floors_from anthropic.json in this checkout
+        by_id = {m["model"]: m for m in models}
+        self.assertIn("anthropic.claude-sonnet-4-6", added)
+        self.assertIn("us.anthropic.claude-sonnet-4-6", added)
+        self.assertIn("global.anthropic.claude-sonnet-4-6", added)
+        self.assertNotIn("us-gov.anthropic.claude-sonnet-4-6", by_id)
+        self.assertNotIn("anthropic.claude-opus-4-1", by_id)
+        inregion = by_id["anthropic.claude-sonnet-4-6"]
+        self.assertEqual(inregion["prompt_per_1m"], 3.3)
+        self.assertEqual(inregion["completion_per_1m"], 16.5)
+        self.assertEqual(inregion["cache_read_per_1m"], 0.33)
+        self.assertEqual(inregion["cache_write_per_1m"], 4.125)
+        self.assertEqual(inregion["pricing_style"], "anthropic")
+        self.assertEqual(inregion["source"], "litellm")
+        self.assertEqual(by_id["global.anthropic.claude-sonnet-4-6"]["prompt_per_1m"], 3)
+        self.assertEqual(by_id["us.anthropic.claude-sonnet-4-6"]["prompt_per_1m"], 3.3)
+
+    def test_bedrock_prefers_dated_foundation_model_id(self):
+        models = []
+        idx = {
+            "bedrock_converse": {
+                "us.anthropic.claude-haiku-4-5": (
+                    "us.anthropic.claude-haiku-4-5", chat(prompt=1.1, completion=5.5)),
+                "us.anthropic.claude-haiku-4-5-20251001-v1:0": (
+                    "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+                    chat(prompt=1.1, completion=5.5)),
+            }
+        }
+        added = sp.enroll_new_models(
+            "bedrock", models, idx, {},
+            registry_dir=os.path.dirname(HERE))
+        self.assertEqual(added, ["us.anthropic.claude-haiku-4-5-20251001-v1:0"])
 
 
 class CatalogEnrollTest(unittest.TestCase):
@@ -412,6 +494,13 @@ class AllProviderFactsTest(unittest.TestCase):
         self.assertIn("claude-opus-4-5", keys)
         keys = sp.first_party_keys("kimi-k3")
         self.assertIn("k3", keys)
+        keys = sp.first_party_keys("us.anthropic.claude-haiku-4-5-20251001-v1:0")
+        self.assertIn("claude-haiku-4-5-20251001", keys)
+        self.assertIn("claude-haiku-4-5", keys)
+        self.assertEqual(
+            sp.first_party_owner("us.anthropic.claude-sonnet-4-6"), "anthropic")
+        self.assertTrue(sp.is_foreign_copy(
+            "bedrock", "anthropic.claude-sonnet-4-6"))
 
     def test_lookup_slash_id_hits_first_party(self):
         first_party = {

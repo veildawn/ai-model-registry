@@ -25,13 +25,14 @@ occasionally right and always rotting, which is the state this registry was in �
 its only freshness signal was a "last full refresh" date in the README that
 nothing checked.
 
-Four vendor files, and Antigravity, also ENROLL ids the catalog does not yet
-have. Matching only keeps a row fresh; it cannot notice that Anthropic shipped
-`claude-fable-5-1` or OpenAI shipped `gpt-5.7` if nobody typed the id in.
-`AUTO_ENROLL` is that notice, scoped to the first-party catalogs a new frontier
-model actually lands in (Anthropic, OpenAI/Codex, Google AI Studio, xAI) and to
-Antigravity for Gemini only — the same ids AI Studio enrolls, metered at
-Google's list.
+Four vendor files, Antigravity, and Bedrock also ENROLL ids the catalog does
+not yet have. Matching only keeps a row fresh; it cannot notice that Anthropic
+shipped `claude-fable-5-1` or OpenAI shipped `gpt-5.7` if nobody typed the id
+in. `AUTO_ENROLL` is that notice, scoped to the first-party catalogs a new
+frontier model actually lands in (Anthropic, OpenAI/Codex, Google AI Studio,
+xAI), to Antigravity for Gemini only — the same ids AI Studio enrolls, metered
+at Google's list — and to Bedrock for current Claude ids, metered at AWS's
+Geo and In-region Cross-region Inference table.
 
 Ollama Cloud and OpenCode Go are the other case: they publish a CURATED list,
 not a discount of whoever shipped this week, so guessing is not required. Their
@@ -190,6 +191,7 @@ EFFORTS = ("none", "minimal", "low", "medium", "high", "xhigh", "max")
 # compare against, let alone delegate to.
 NAMESPACES = {
     "anthropic": ["anthropic"],
+    "bedrock": ["bedrock_converse", "bedrock"],
     "codex": ["openai"],
     "google-ai-studio": ["gemini"],
     "deepseek": ["deepseek"],
@@ -242,6 +244,20 @@ AUTO_ENROLL = {
         "drop_gemini_preview": True,
         "surfaces": frozenset({"chat", "image", "video"}),
     },
+    # AWS Bedrock Claude plugin. The live catalog is ListFoundationModels plus
+    # ListInferenceProfiles, so ids are `anthropic.claude-*` (in-region) and
+    # `us.` / `eu.` / `au.` / `jp.` / `apac.` prefixes (geo). Rates come from
+    # AWS's Geo and In-region Cross-region Inference table, not Global: that
+    # tab is the +10% list LiteLLM stores on the geo prefixes, and in-region
+    # `anthropic.*` rows are rewritten from that twin rather than from the
+    # cheaper Global number LiteLLM copies onto the unsuffixed id.
+    "bedrock": {
+        "include": re.compile(r"^claude-(fable|mythos|opus|sonnet|haiku)-"),
+        "pricing_style": "anthropic",
+        "surfaces": frozenset({"chat", "image", "video"}),
+        "floors_from": "anthropic",
+        "dated_first": True,
+    },
 }
 
 # Surfaces that publish their own curated catalog. Enrollment is "this id is
@@ -277,7 +293,7 @@ PROVIDER_MODELS_DEV_HOST = {
 # (`opencode-go/glm-5.3`) copies facts from that file rather than from an
 # aggregator, because the window and the ladder are the vendor's.
 FIRST_PARTY_OWNER = (
-    (re.compile(r"^claude-"), "anthropic"),
+    (re.compile(r"(?:^|[\./])claude-"), "anthropic"),
     (re.compile(r"^gpt-image-"), "codex"),
     (re.compile(r"^gpt-"), "codex"),
     (re.compile(r"^gemini-"), "google-ai-studio"),
@@ -337,8 +353,10 @@ SKIP_ENROLL = re.compile(
 )
 
 # A vendor's dated snapshot of an id this registry already stores undated, or
-# the other way around. Anthropic writes -YYYYMMDD, OpenAI writes -YYYY-MM-DD.
-RELEASE_DATE = re.compile(r"(?:-20\d{6}|-\d{4}-\d{2}-\d{2})$")
+# the other way around. Anthropic writes -YYYYMMDD, OpenAI writes -YYYY-MM-DD,
+# Bedrock pins a foundation-model version as -YYYYMMDD-vN:0 on the same date.
+RELEASE_DATE = re.compile(
+    r"(?:-20\d{6}(?:-v\d+(?::\d+)?)?|-\d{4}-\d{2}-\d{2})$")
 
 # gemini-2.5-flash-lite-preview-09-2025 is a snapshot of gemini-2.5-flash-lite,
 # which the file already has. The -preview suffix on gemini-3-flash-preview is
@@ -500,6 +518,48 @@ def family_floors(models: list) -> dict:
     return floors
 
 
+# Geo prefixes AWS puts on a Bedrock inference profile. `us-gov` is listed
+# first so it is not eaten by `us`. Global is a different (cheaper) price tab.
+BEDROCK_GEO_PREFIXES = ("us.", "eu.", "au.", "jp.", "apac.")
+BEDROCK_PROFILE_PREFIX = re.compile(
+    r"^(?:global|us-gov|us|eu|au|jp|apac)\.")
+
+
+def family_id(model_id: str) -> str:
+    """The vendor family id hiding behind a Bedrock profile spelling.
+
+    `us.anthropic.claude-sonnet-4-6` and `anthropic.claude-sonnet-4-6` are
+    the same Claude SKU the anthropic file stores as `claude-sonnet-4-6`.
+    """
+    mid = model_id.lower()
+    mid = BEDROCK_PROFILE_PREFIX.sub("", mid)
+    if mid.startswith("anthropic."):
+        mid = mid[len("anthropic."):]
+    return mid
+
+
+def bedrock_price_entry(model_id: str, found, idx: dict):
+    """The upstream row whose RATES are AWS Geo / In-region Inference.
+
+    LiteLLM prices unsuffixed `anthropic.claude-*` (in-region) at the Global
+    tab for Claude 4.5+. The Geo and In-region tab is the +10% list, stored
+    on `us.` / `eu.` / `au.` / `jp.` / `apac.` prefixes. In-region ids take
+    that twin; geo prefixes and Global already carry the right number.
+    """
+    if not found:
+        return found
+    mid = model_id.lower()
+    if not mid.startswith("anthropic.claude-"):
+        return found
+    for namespace in NAMESPACES.get("bedrock", []):
+        models = idx.get(namespace, {})
+        for prefix in BEDROCK_GEO_PREFIXES:
+            twin = models.get(prefix + mid)
+            if twin and per_1m(twin[1], "input_cost_per_token") is not None:
+                return twin
+    return found
+
+
 def snapshot_of(model_id: str) -> str:
     """The id this one is a dated/preview/pinned snapshot of, if any."""
     mid = model_id.lower()
@@ -535,7 +595,7 @@ def enroll_store_id(provider: str, model_id: str) -> str:
 
 
 def enroll_pricing_style(spec: dict, model_id: str) -> str:
-    if model_id.startswith("claude-"):
+    if family_id(model_id).startswith("claude-"):
         return "anthropic"
     return spec.get("pricing_style") or "openai"
 
@@ -568,6 +628,7 @@ def enroll_reason(provider: str, model_id: str, entry: dict, known: set,
     if spec is None:
         return "not-enrolled-provider"
     mid = model_id.lower()
+    check = family_id(mid)
     present = expand_enroll_known(known)
     if mid in present:
         return "already-present"
@@ -583,13 +644,19 @@ def enroll_reason(provider: str, model_id: str, entry: dict, known: set,
     # claude-haiku-4-5-20251001).
     if mid in {strip_release_date(k) for k in present}:
         return "undated-sibling"
-    if SKIP_ENROLL.search(mid):
+    if mid.startswith("us-gov."):
+        return "gov-region"
+    if provider == "bedrock":
+        body = BEDROCK_PROFILE_PREFIX.sub("", mid)
+        if not body.startswith("anthropic.claude-"):
+            return "outside-include"
+    if SKIP_ENROLL.search(mid) or SKIP_ENROLL.search(check):
         return "skipped-pattern"
-    if not spec["include"].search(mid):
+    if not spec["include"].search(check):
         return "outside-include"
     # claude-mythos-preview is an alias of the versioned Mythos line, not a
     # shipping id of its own.
-    if re.match(r"^claude-(?:fable|mythos|opus|sonnet|haiku)-preview$", mid):
+    if re.match(r"^claude-(?:fable|mythos|opus|sonnet|haiku)-preview$", check):
         return "unversioned-preview"
     surface = upstream_surface(entry)
     if surface not in spec["surfaces"]:
@@ -600,7 +667,7 @@ def enroll_reason(provider: str, model_id: str, entry: dict, known: set,
         return "unpriced"
     if not prompt and not completion:
         return "zero-price"
-    parsed = family_version(mid)
+    parsed = family_version(check)
     if parsed:
         family, version = parsed
         floor = floors.get(family)
@@ -633,8 +700,45 @@ def build_enrolled_row(model_id: str, entry: dict, pricing_style: str,
     return row
 
 
+def provider_floors(provider: str, models: list, registry_dir=None) -> dict:
+    """Generation floor for AUTO_ENROLL, optionally borrowed from another file.
+
+    Bedrock is an empty catalog until the first enroll: it has no floor of its
+    own, and without one it would dump every Claude line LiteLLM still carries.
+    Anthropic already decided the generation this registry serves, so that
+    file's floor is the one Bedrock uses.
+    """
+    spec = AUTO_ENROLL.get(provider) or {}
+    donor = spec.get("floors_from")
+    if donor and registry_dir:
+        path = os.path.join(registry_dir, "providers", f"{donor}.json")
+        if os.path.exists(path):
+            with open(path) as fh:
+                doc = json.load(fh)
+            donor_models = [
+                row for entry in doc.get("models", []) for row in expand_family(entry)]
+            return family_floors(donor_models)
+    return family_floors(models)
+
+
+def namespace_enroll_items(provider: str, namespace: str, idx: dict):
+    """Upstream ids for one namespace, dated pins first when the spec asks.
+
+    Bedrock's live catalog is the dated foundation-model id
+    (`…-20250929-v1:0`). Alphabetical order would enroll the floating spelling
+    first and then treat the dated pin as a snapshot of it.
+    """
+    items = list((idx.get(namespace) or {}).items())
+    spec = AUTO_ENROLL.get(provider) or {}
+    if spec.get("dated_first"):
+        items.sort(key=lambda kv: (0 if RELEASE_DATE.search(kv[0]) else 1, kv[0]))
+    else:
+        items.sort()
+    return items
+
+
 def enroll_new_models(provider: str, models: list, idx: dict,
-                      models_dev: dict) -> list:
+                      models_dev: dict, registry_dir=None) -> list:
     """Ids the vendor publishes that this file does not yet carry.
 
     Appends matching rows onto `models` (the expanded per-id list) and returns
@@ -645,22 +749,24 @@ def enroll_new_models(provider: str, models: list, idx: dict,
     if spec is None:
         return []
     known = {m["model"].lower() for m in models}
-    floors = family_floors(models)
+    floors = provider_floors(provider, models, registry_dir)
     added = []
     seen = set(expand_enroll_known(known))
     source = spec.get("source", "litellm")
     for namespace in enroll_namespaces(provider):
-        for bare, (_key, entry) in sorted(idx.get(namespace, {}).items()):
+        for bare, (_key, entry) in namespace_enroll_items(provider, namespace, idx):
             store_id = enroll_store_id(provider, bare)
             if store_id in seen:
                 continue
-            if enroll_reason(provider, store_id, entry, known, floors):
+            priced = bedrock_price_entry(store_id, (_key, entry), idx)
+            priced_entry = priced[1] if priced else entry
+            if enroll_reason(provider, store_id, priced_entry, known, floors):
                 continue
-            supplement = models_dev.get(bare) or models_dev.get(store_id) or models_dev.get(strip_suffixes(store_id)) or {}
+            supplement = models_dev.get(bare) or models_dev.get(store_id) or models_dev.get(strip_suffixes(store_id)) or models_dev.get(family_id(store_id)) or {}
             models.insert(
                 bisect.bisect_left([m["model"] for m in models], store_id),
                 build_enrolled_row(
-                    store_id, entry, enroll_pricing_style(spec, store_id),
+                    store_id, priced_entry, enroll_pricing_style(spec, store_id),
                     supplement, source=source))
             seen.add(store_id)
             seen.update(expand_enroll_known({store_id}))
@@ -712,6 +818,13 @@ def first_party_keys(model_id: str, *, pin_of: bool = True) -> tuple:
     respelled = re.sub(r"(?<=\d)\.(?=\d)", "-", bare_model_id(mid))
     if respelled not in names:
         names.append(respelled)
+    family = family_id(mid)
+    if family not in names:
+        names.append(family)
+    # Bedrock's `…-20251001-v1:0` is Anthropic's `…-20251001`.
+    dropped_fm = re.sub(r"-v\d+(?::\d+)?$", "", family)
+    if dropped_fm not in names:
+        names.append(dropped_fm)
     keys = []
     seen = set()
     for name in names:
@@ -1474,7 +1587,8 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
         models = discover_families(
             [row for entry in doc.get("models", []) for row in expand_family(entry)])
 
-        enrolled_here = enroll_new_models(provider, models, idx, models_dev)
+        enrolled_here = enroll_new_models(
+            provider, models, idx, models_dev, registry_dir=registry_dir)
         if enrolled_here:
             dirty = True
             enrolled.extend((provider, mid) for mid in enrolled_here)
@@ -1512,6 +1626,8 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                     break
             if not found:
                 found = derived_match(provider, mid, idx)
+            if provider == "bedrock" and found:
+                found = bedrock_price_entry(mid, found, idx)
             matched = bool(found)
 
             if source in WRITTEN and not matched:
@@ -1783,14 +1899,15 @@ def render(applied, disagree, orphans, unclassified, capability, counts, contest
         verb_enroll = "Enrolled" if apply else "Would enroll"
         w(f"## {verb_enroll} new ids")
         w("")
-        w("AUTO_ENROLL (Anthropic, OpenAI/Codex, Google AI Studio, xAI, and "
-          "Antigravity's Gemini ids) reads the vendor's litellm namespace. "
-          "CATALOG_ENROLL (Ollama Cloud, OpenCode Go) reads that surface's own "
-          "model list. First-party AUTO_ENROLL rows are `source: litellm`; "
-          "Antigravity Gemini rows are `source: vendor-api`; catalog rows are "
-          "`source: manual` with facts copied from this registry's vendor file "
-          "when one exists. A discount reseller with no catalog of its own is "
-          "never enrolled this way.")
+        w("AUTO_ENROLL (Anthropic, OpenAI/Codex, Google AI Studio, xAI, "
+          "Antigravity's Gemini ids, and Bedrock Claude) reads the vendor's "
+          "litellm namespace. Bedrock bills Geo and In-region Cross-region "
+          "Inference, not Global. CATALOG_ENROLL (Ollama Cloud, OpenCode Go) "
+          "reads that surface's own model list. First-party AUTO_ENROLL rows "
+          "are `source: litellm`; Antigravity Gemini rows are "
+          "`source: vendor-api`; catalog rows are `source: manual` with facts "
+          "copied from this registry's vendor file when one exists. A discount "
+          "reseller with no catalog of its own is never enrolled this way.")
         w("")
         for provider, model in enrolled:
             w(f"- {provider}: `{model}`")

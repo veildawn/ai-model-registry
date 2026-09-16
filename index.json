@@ -3,6 +3,7 @@
   "providers": [
     "anthropic",
     "antigravity",
+    "bedrock",
     "codex",
     "deepseek",
     "glm",
