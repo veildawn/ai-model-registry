@@ -189,7 +189,7 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 200000,
+      "context_window": 1000000,
       "surface": "chat",
       "effort_levels": [
         "low",
@@ -387,7 +387,7 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 200000,
+      "context_window": 1000000,
       "surface": "chat",
       "effort_levels": [
         "low",
@@ -627,7 +627,7 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 200000,
+      "context_window": 1000000,
       "surface": "chat",
       "effort_levels": [
         "low",
@@ -867,7 +867,7 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 200000,
+      "context_window": 1000000,
       "surface": "chat",
       "effort_levels": [
         "low",
@@ -1021,7 +1021,7 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 200000,
+      "context_window": 1000000,
       "surface": "chat",
       "effort_levels": [
         "low",
@@ -1261,7 +1261,7 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 200000,
+      "context_window": 1000000,
       "surface": "chat",
       "effort_levels": [
         "low",

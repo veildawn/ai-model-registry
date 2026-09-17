@@ -714,6 +714,21 @@
         "xhigh"
       ],
       "surface": "chat"
+    },
+    {
+      "model": "union-alpha",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "chat"
     }
   ]
 }

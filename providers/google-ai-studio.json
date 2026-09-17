@@ -166,7 +166,7 @@
         "video"
       ],
       "source": "litellm",
-      "context_window": 32768,
+      "context_window": 65536,
       "effort_levels": [
         "none"
       ],
@@ -234,7 +234,7 @@
         "text"
       ],
       "source": "litellm",
-      "context_window": 1048576,
+      "context_window": 8192,
       "effort_levels": [
         "none"
       ],
@@ -332,7 +332,7 @@
         "image"
       ],
       "source": "litellm",
-      "context_window": 65536,
+      "context_window": 131072,
       "effort_levels": [
         "none"
       ],
@@ -598,9 +598,9 @@
     {
       "model": "gemini-flash-latest",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.3,
-      "completion_per_1m": 2.5,
-      "cache_read_per_1m": 0.03,
+      "prompt_per_1m": 0.75,
+      "completion_per_1m": 3.75,
+      "cache_read_per_1m": 0.075,
       "cache_write_per_1m": 0,
       "input_modalities": [
         "text",
@@ -621,9 +621,9 @@
     {
       "model": "gemini-flash-lite-latest",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.1,
-      "completion_per_1m": 0.4,
-      "cache_read_per_1m": 0.01,
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 2.5,
+      "cache_read_per_1m": 0.03,
       "cache_write_per_1m": 0,
       "input_modalities": [
         "text",
@@ -661,9 +661,9 @@
     {
       "model": "gemini-pro-latest",
       "pricing_style": "openai",
-      "prompt_per_1m": 1.25,
-      "completion_per_1m": 10,
-      "cache_read_per_1m": 0.125,
+      "prompt_per_1m": 2,
+      "completion_per_1m": 12,
+      "cache_read_per_1m": 0.2,
       "cache_write_per_1m": 0,
       "input_modalities": [
         "text",

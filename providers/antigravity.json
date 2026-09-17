@@ -84,7 +84,7 @@
         "video"
       ],
       "source": "vendor-api",
-      "context_window": 32768,
+      "context_window": 65536,
       "surface": "image",
       "effort_levels": [
         "none"
@@ -198,7 +198,7 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 65536,
+      "context_window": 131072,
       "effort_levels": [
         "none"
       ],
