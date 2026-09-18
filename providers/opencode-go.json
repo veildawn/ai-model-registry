@@ -39,7 +39,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 393216
     },
     {
       "model": "deepseek-v4-flash-vision-exp",
@@ -77,7 +78,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 393216
     },
     {
       "model": "deepseek-v4.1-flash",
@@ -114,7 +116,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "glm-5.1",
@@ -131,7 +134,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "glm-5.2",
@@ -153,7 +157,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "glm-5.3",
@@ -172,7 +177,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "glm-5.3-flash",
@@ -193,7 +199,8 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     },
     {
       "model": "gpt-5.6-luna",
@@ -216,7 +223,8 @@
       "input_modalities": [
         "text",
         "image"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "grok-4.5",
@@ -236,7 +244,8 @@
       "input_modalities": [
         "text",
         "image"
-      ]
+      ],
+      "output_ceiling": 500000
     },
     {
       "model": "grok-4.6",
@@ -257,7 +266,8 @@
         "high",
         "xhigh"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 500000
     },
     {
       "model": "hy3",
@@ -383,7 +393,8 @@
       ],
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 8192
     },
     {
       "model": "minimax-m2.7",
@@ -425,7 +436,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "mimo-v2-omni",
@@ -591,7 +603,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "qwen3.7-plus",
@@ -609,7 +622,8 @@
       "input_modalities": [
         "text",
         "image"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "qwen3.8-max",

@@ -14,7 +14,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 393216
     },
     {
       "model": "deepseek-v4.1-flash",
@@ -42,7 +43,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 393216
     },
     {
       "model": "gemma4:31b",
@@ -64,7 +66,8 @@
       "effort_levels": [
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     },
     {
       "model": "glm-5.2",
@@ -81,7 +84,8 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     },
     {
       "model": "glm-5.3",
@@ -95,7 +99,8 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     },
     {
       "model": "glm-5.3-flash",
@@ -111,7 +116,8 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     },
     {
       "model": "gpt-oss:120b",
@@ -202,7 +208,8 @@
         "medium",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 8192
     },
     {
       "model": "minimax-m2.7",
@@ -234,7 +241,8 @@
         "medium",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     },
     {
       "model": "mistral-large-3:675b",

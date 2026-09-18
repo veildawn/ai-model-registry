@@ -17,7 +17,8 @@
       "input_modalities": [
         "text"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 393216
     },
     {
       "model": "deepseek-ai/deepseek-v4-pro",
@@ -33,7 +34,8 @@
       "input_modalities": [
         "text"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 393216
     }
   ]
 }

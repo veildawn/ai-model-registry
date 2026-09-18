@@ -54,7 +54,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "claude-fable-5-1",
@@ -76,7 +77,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "claude-haiku-4-5-20251001",
@@ -98,7 +100,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 64000
         },
         {
           "model": "claude-mythos-5",
@@ -120,7 +123,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "claude-mythos-5-1",
@@ -135,7 +139,8 @@
           ],
           "source": "litellm",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "claude-opus-4-5-20251101",
@@ -155,7 +160,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "claude-opus-4-6",
@@ -177,7 +183,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "claude-opus-4-7",
@@ -199,7 +206,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "claude-opus-4-8",
@@ -221,7 +229,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "claude-opus-5",
@@ -243,7 +252,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "claude-sonnet-4-5-20250929",
@@ -265,7 +275,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "claude-sonnet-4-6",
@@ -287,7 +298,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "claude-sonnet-5",
@@ -309,7 +321,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         }
       ]
     },
@@ -338,7 +351,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "claude-sonnet-4-6",
@@ -360,7 +374,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "gemini-2.5-flash",
@@ -378,6 +393,7 @@
           "source": "vendor-api",
           "context_window": 1048576,
           "surface": "chat",
+          "output_ceiling": 65536,
           "variants": {
             "suffixes": [
               "",
@@ -403,7 +419,8 @@
           "surface": "image",
           "effort_levels": [
             "none"
-          ]
+          ],
+          "output_ceiling": 32768
         },
         {
           "model": "gemini-2.5-flash-lite",
@@ -420,7 +437,8 @@
           ],
           "source": "vendor-api",
           "context_window": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-2.5-pro",
@@ -437,7 +455,8 @@
           ],
           "source": "vendor-api",
           "context_window": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3-flash",
@@ -455,6 +474,7 @@
           "source": "vendor-api",
           "context_window": 1048576,
           "surface": "chat",
+          "output_ceiling": 65536,
           "variants": {
             "suffixes": [
               "",
@@ -481,7 +501,8 @@
           "effort_levels": [
             "low",
             "high"
-          ]
+          ],
+          "output_ceiling": 65535
         },
         {
           "model": "gemini-3-pro-image",
@@ -499,7 +520,8 @@
           "surface": "image",
           "effort_levels": [
             "none"
-          ]
+          ],
+          "output_ceiling": 32768
         },
         {
           "model": "gemini-3.1-flash-image",
@@ -517,7 +539,8 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "image"
+          "surface": "image",
+          "output_ceiling": 32768
         },
         {
           "model": "gemini-3.1-flash-lite",
@@ -540,7 +563,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3.1-flash-lite-image",
@@ -558,7 +582,8 @@
           "surface": "image",
           "effort_levels": [
             "none"
-          ]
+          ],
+          "output_ceiling": 4096
         },
         {
           "model": "gemini-3.1-pro",
@@ -581,6 +606,7 @@
             "medium",
             "high"
           ],
+          "output_ceiling": 65536,
           "variants": {
             "suffixes": [
               "-high",
@@ -610,6 +636,7 @@
             "medium",
             "high"
           ],
+          "output_ceiling": 65536,
           "variants": {
             "suffixes": [
               "-extra-low",
@@ -638,7 +665,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3.6-flash",
@@ -662,6 +690,7 @@
             "medium",
             "high"
           ],
+          "output_ceiling": 65536,
           "variants": {
             "suffixes": [
               "-high",
@@ -692,6 +721,7 @@
             "medium",
             "high"
           ],
+          "output_ceiling": 65536,
           "variants": {
             "suffixes": [
               "-high",
@@ -723,6 +753,7 @@
             "medium",
             "high"
           ],
+          "output_ceiling": 65536,
           "variants": {
             "suffixes": [
               "-high",
@@ -825,7 +856,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "anthropic.claude-fable-5-1",
@@ -847,7 +879,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "anthropic.claude-haiku-4-5-20251001-v1:0",
@@ -869,7 +902,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "anthropic.claude-opus-4-5-20251101-v1:0",
@@ -889,7 +923,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "anthropic.claude-opus-4-6-v1",
@@ -911,7 +946,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "anthropic.claude-opus-4-7",
@@ -933,7 +969,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "anthropic.claude-opus-4-8",
@@ -955,7 +992,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "anthropic.claude-opus-5",
@@ -977,7 +1015,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "anthropic.claude-sonnet-4-5-20250929-v1:0",
@@ -999,7 +1038,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "anthropic.claude-sonnet-4-6",
@@ -1021,7 +1061,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "anthropic.claude-sonnet-5",
@@ -1043,7 +1084,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "apac.anthropic.claude-haiku-4-5-20251001-v1:0",
@@ -1065,7 +1107,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "au.anthropic.claude-haiku-4-5-20251001-v1:0",
@@ -1087,7 +1130,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "au.anthropic.claude-opus-4-6-v1",
@@ -1109,7 +1153,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "au.anthropic.claude-opus-4-7",
@@ -1131,7 +1176,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "au.anthropic.claude-opus-4-8",
@@ -1153,7 +1199,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "au.anthropic.claude-opus-5",
@@ -1175,7 +1222,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "au.anthropic.claude-sonnet-4-5-20250929-v1:0",
@@ -1197,7 +1245,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "au.anthropic.claude-sonnet-4-6",
@@ -1219,7 +1268,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "au.anthropic.claude-sonnet-5",
@@ -1241,7 +1291,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "eu.anthropic.claude-fable-5",
@@ -1263,7 +1314,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "eu.anthropic.claude-fable-5-1",
@@ -1285,7 +1337,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "eu.anthropic.claude-haiku-4-5-20251001-v1:0",
@@ -1307,7 +1360,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "eu.anthropic.claude-opus-4-5-20251101-v1:0",
@@ -1327,7 +1381,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "eu.anthropic.claude-opus-4-6-v1",
@@ -1349,7 +1404,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "eu.anthropic.claude-opus-4-7",
@@ -1371,7 +1427,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "eu.anthropic.claude-opus-4-8",
@@ -1393,7 +1450,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "eu.anthropic.claude-opus-5",
@@ -1415,7 +1473,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "eu.anthropic.claude-sonnet-4-5-20250929-v1:0",
@@ -1437,7 +1496,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "eu.anthropic.claude-sonnet-4-6",
@@ -1459,7 +1519,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "eu.anthropic.claude-sonnet-5",
@@ -1481,7 +1542,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "global.anthropic.claude-fable-5",
@@ -1503,7 +1565,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "global.anthropic.claude-fable-5-1",
@@ -1525,7 +1588,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
@@ -1547,7 +1611,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "global.anthropic.claude-opus-4-5-20251101-v1:0",
@@ -1567,7 +1632,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "global.anthropic.claude-opus-4-6-v1",
@@ -1589,7 +1655,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "global.anthropic.claude-opus-4-7",
@@ -1611,7 +1678,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "global.anthropic.claude-opus-4-8",
@@ -1633,7 +1701,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "global.anthropic.claude-opus-5",
@@ -1655,7 +1724,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
@@ -1677,7 +1747,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "global.anthropic.claude-sonnet-4-6",
@@ -1699,7 +1770,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "global.anthropic.claude-sonnet-5",
@@ -1721,7 +1793,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "jp.anthropic.claude-haiku-4-5-20251001-v1:0",
@@ -1743,7 +1816,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "jp.anthropic.claude-opus-4-7",
@@ -1765,7 +1839,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "jp.anthropic.claude-opus-4-8",
@@ -1787,7 +1862,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "jp.anthropic.claude-opus-5",
@@ -1809,7 +1885,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "jp.anthropic.claude-sonnet-4-5-20250929-v1:0",
@@ -1831,7 +1908,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "jp.anthropic.claude-sonnet-4-6",
@@ -1853,7 +1931,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "jp.anthropic.claude-sonnet-5",
@@ -1875,7 +1954,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "us.anthropic.claude-fable-5",
@@ -1897,7 +1977,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "us.anthropic.claude-fable-5-1",
@@ -1919,7 +2000,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
@@ -1941,7 +2023,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "us.anthropic.claude-opus-4-5-20251101-v1:0",
@@ -1961,7 +2044,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "us.anthropic.claude-opus-4-6-v1",
@@ -1983,7 +2067,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "us.anthropic.claude-opus-4-7",
@@ -2005,7 +2090,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "us.anthropic.claude-opus-4-8",
@@ -2027,7 +2113,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "us.anthropic.claude-opus-5",
@@ -2049,7 +2136,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
@@ -2071,7 +2159,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "us.anthropic.claude-sonnet-4-6",
@@ -2093,7 +2182,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "us.anthropic.claude-sonnet-5",
@@ -2115,7 +2205,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         }
       ]
     },
@@ -2145,7 +2236,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.4-mini",
@@ -2168,7 +2260,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.4-nano",
@@ -2190,7 +2283,8 @@
             "medium",
             "high",
             "xhigh"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.4-pro",
@@ -2210,7 +2304,8 @@
             "medium",
             "high",
             "xhigh"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.5",
@@ -2233,7 +2328,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.5-cyber",
@@ -2263,7 +2359,8 @@
             "medium",
             "high",
             "xhigh"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.6",
@@ -2285,7 +2382,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.6-cyber",
@@ -2300,7 +2398,8 @@
           ],
           "source": "litellm",
           "context_window": 400000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.6-luna",
@@ -2323,7 +2422,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.6-sol",
@@ -2346,7 +2446,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.6-terra",
@@ -2369,7 +2470,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-6-astra",
@@ -2391,7 +2493,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-image-2",
@@ -2480,7 +2583,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-pro",
@@ -2499,7 +2603,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 393216
         }
       ]
     },
@@ -2555,7 +2660,8 @@
             "text",
             "image"
           ],
-          "surface": "image"
+          "surface": "image",
+          "output_ceiling": 32768
         },
         {
           "model": "gemini-2.0-flash",
@@ -2572,7 +2678,8 @@
           ],
           "source": "litellm",
           "context_window": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 8192
         },
         {
           "model": "gemini-2.0-flash-001",
@@ -2589,7 +2696,8 @@
           ],
           "source": "litellm",
           "context_window": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 8192
         },
         {
           "model": "gemini-2.0-flash-lite",
@@ -2606,7 +2714,8 @@
           ],
           "source": "litellm",
           "context_window": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 8192
         },
         {
           "model": "gemini-2.0-flash-lite-001",
@@ -2623,7 +2732,8 @@
           ],
           "source": "litellm",
           "context_window": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 8192
         },
         {
           "model": "gemini-2.5-computer-use-preview-10-2025",
@@ -2638,7 +2748,8 @@
           ],
           "source": "litellm",
           "context_window": 128000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 64000
         },
         {
           "model": "gemini-2.5-flash",
@@ -2655,7 +2766,8 @@
           ],
           "source": "litellm",
           "context_window": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-2.5-flash-image",
@@ -2675,7 +2787,8 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "image"
+          "surface": "image",
+          "output_ceiling": 32768
         },
         {
           "model": "gemini-2.5-flash-lite",
@@ -2692,7 +2805,8 @@
           ],
           "source": "litellm",
           "context_window": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-2.5-flash-preview-tts",
@@ -2709,7 +2823,8 @@
             "none"
           ],
           "surface": "audio",
-          "context_window": 8192
+          "context_window": 8192,
+          "output_ceiling": 16384
         },
         {
           "model": "gemini-2.5-pro",
@@ -2726,7 +2841,8 @@
           ],
           "source": "litellm",
           "context_window": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-2.5-pro-preview-tts",
@@ -2743,7 +2859,8 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 16384
         },
         {
           "model": "gemini-3-flash-preview",
@@ -2766,7 +2883,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3-pro-image",
@@ -2784,7 +2902,8 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "image"
+          "surface": "image",
+          "output_ceiling": 32768
         },
         {
           "model": "gemini-3-pro-image-preview",
@@ -2802,7 +2921,8 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "image"
+          "surface": "image",
+          "output_ceiling": 32768
         },
         {
           "model": "gemini-3-pro-preview",
@@ -2823,7 +2943,8 @@
           "effort_levels": [
             "low",
             "high"
-          ]
+          ],
+          "output_ceiling": 65535
         },
         {
           "model": "gemini-3.1-flash-image",
@@ -2841,7 +2962,8 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "image"
+          "surface": "image",
+          "output_ceiling": 32768
         },
         {
           "model": "gemini-3.1-flash-image-preview",
@@ -2859,7 +2981,8 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "image"
+          "surface": "image",
+          "output_ceiling": 32768
         },
         {
           "model": "gemini-3.1-flash-lite",
@@ -2882,7 +3005,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3.1-flash-lite-image",
@@ -2900,7 +3024,8 @@
             "none"
           ],
           "context_window": 65536,
-          "surface": "image"
+          "surface": "image",
+          "output_ceiling": 4096
         },
         {
           "model": "gemini-3.1-flash-lite-preview",
@@ -2923,7 +3048,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3.1-flash-tts-preview",
@@ -2940,7 +3066,8 @@
             "none"
           ],
           "context_window": 8192,
-          "surface": "audio"
+          "surface": "audio",
+          "output_ceiling": 16384
         },
         {
           "model": "gemini-3.1-pro-preview",
@@ -2962,7 +3089,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3.1-pro-preview-customtools",
@@ -2984,7 +3112,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3.5-flash",
@@ -3007,7 +3136,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3.5-flash-lite",
@@ -3030,7 +3160,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3.6-flash",
@@ -3053,7 +3184,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3.7-flash",
@@ -3075,7 +3207,8 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3.8-flash",
@@ -3098,7 +3231,8 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-flash-latest",
@@ -3121,7 +3255,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-flash-lite-latest",
@@ -3144,7 +3279,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-omni-flash-preview",
@@ -3161,7 +3297,8 @@
           ],
           "source": "litellm",
           "context_window": 131072,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-pro-latest",
@@ -3183,7 +3320,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-robotics-er-1.5-preview",
@@ -3200,7 +3338,8 @@
           ],
           "source": "litellm",
           "context_window": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 65535
         },
         {
           "model": "gemini-robotics-er-1.6-preview",
@@ -3215,7 +3354,8 @@
           ],
           "source": "manual",
           "context_window": 131072,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 65536
         },
         {
           "model": "nano-banana-pro-preview",
@@ -3233,7 +3373,8 @@
             "none"
           ],
           "context_window": 131072,
-          "surface": "image"
+          "surface": "image",
+          "output_ceiling": 32768
         }
       ],
       "hidden_models": [
@@ -3280,7 +3421,8 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 32000
         },
         {
           "model": "glm-4.5-air",
@@ -3297,7 +3439,8 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 32000
         },
         {
           "model": "glm-4.6",
@@ -3314,7 +3457,8 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "glm-4.7",
@@ -3331,7 +3475,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5",
@@ -3348,7 +3493,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5-turbo",
@@ -3382,7 +3528,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.2",
@@ -3404,7 +3551,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.3",
@@ -3423,7 +3571,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.3-flash",
@@ -3445,7 +3594,8 @@
             "max"
           ],
           "surface": "chat",
-          "price_reviewed": "rates are z.ai's USD list, as published on models.dev (zai and zhipuai rows agree); litellm has no zai-namespace row for this id"
+          "price_reviewed": "rates are z.ai's USD list, as published on models.dev (zai and zhipuai rows agree); litellm has no zai-namespace row for this id",
+          "output_ceiling": 128000
         }
       ],
       "hidden_models": [
@@ -3548,7 +3698,8 @@
           ],
           "source": "vendor-api",
           "context_window": 200000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 64000
         },
         {
           "model": "claude-opus-4.5",
@@ -3569,7 +3720,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 64000
         },
         {
           "model": "claude-opus-4.6",
@@ -3591,7 +3743,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "claude-opus-4.7",
@@ -3613,7 +3766,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "claude-opus-4.8",
@@ -3635,7 +3789,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "claude-opus-5",
@@ -3657,7 +3812,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "claude-sonnet-4",
@@ -3672,7 +3828,8 @@
           ],
           "source": "vendor-api",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 64000
         },
         {
           "model": "claude-sonnet-4.5",
@@ -3688,7 +3845,8 @@
           ],
           "source": "vendor-api",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 64000
         },
         {
           "model": "claude-sonnet-4.6",
@@ -3710,7 +3868,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "claude-sonnet-5",
@@ -3732,7 +3891,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "deepseek-3.2",
@@ -3769,7 +3929,8 @@
           ],
           "effort_levels": [
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.6-luna",
@@ -3792,7 +3953,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.6-sol",
@@ -3815,7 +3977,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.6-terra",
@@ -3838,7 +4001,8 @@
             "high",
             "xhigh",
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "minimax-m2.1",
@@ -3852,7 +4016,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 8192
         },
         {
           "model": "minimax-m2.5",
@@ -3872,7 +4037,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 8192
         },
         {
           "model": "qwen3-coder-next",
@@ -4009,7 +4175,8 @@
           ],
           "source": "litellm",
           "context_window": 200000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 8192
         },
         {
           "model": "minimax-m2.1",
@@ -4023,7 +4190,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 8192
         },
         {
           "model": "minimax-m2.1-highspeed",
@@ -4053,7 +4221,8 @@
           ],
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 8192
         },
         {
           "model": "minimax-m2.5-highspeed",
@@ -4130,7 +4299,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 128000
         }
       ]
     },
@@ -4150,7 +4320,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4.1-flash",
@@ -4178,7 +4349,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "gemma4:31b",
@@ -4200,7 +4372,8 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.2",
@@ -4217,7 +4390,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.3",
@@ -4231,7 +4405,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.3-flash",
@@ -4247,7 +4422,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-oss:120b",
@@ -4338,7 +4514,8 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 8192
         },
         {
           "model": "minimax-m2.7",
@@ -4370,7 +4547,8 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "mistral-large-3:675b",
@@ -4462,7 +4640,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-flash-vision-exp",
@@ -4500,7 +4679,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4.1-flash",
@@ -4537,7 +4717,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.1",
@@ -4554,7 +4735,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.2",
@@ -4576,7 +4758,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.3",
@@ -4595,7 +4778,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.3-flash",
@@ -4616,7 +4800,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "gpt-5.6-luna",
@@ -4639,7 +4824,8 @@
           "input_modalities": [
             "text",
             "image"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "grok-4.5",
@@ -4659,7 +4845,8 @@
           "input_modalities": [
             "text",
             "image"
-          ]
+          ],
+          "output_ceiling": 500000
         },
         {
           "model": "grok-4.6",
@@ -4680,7 +4867,8 @@
             "high",
             "xhigh"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 500000
         },
         {
           "model": "hy3",
@@ -4806,7 +4994,8 @@
           ],
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 8192
         },
         {
           "model": "minimax-m2.7",
@@ -4848,7 +5037,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "mimo-v2-omni",
@@ -5014,7 +5204,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "qwen3.7-plus",
@@ -5032,7 +5223,8 @@
           "input_modalities": [
             "text",
             "image"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "qwen3.8-max",
@@ -5191,7 +5383,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "hy3-free",
@@ -5305,7 +5498,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "glm-5.2",
@@ -5327,7 +5521,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "qwen3.6-flash",
@@ -5363,7 +5558,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "qwen3.7-plus",
@@ -5381,7 +5577,8 @@
           "effort_levels": [
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 65536
         },
         {
           "model": "qwen3.8-max-preview",
@@ -5438,18 +5635,16 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
             "low",
             "medium",
-            "high",
-            "xhigh",
-            "max"
+            "xhigh"
           ],
           "surface": "chat",
           "input_modalities": [
             "text",
             "image",
-            "video"
+            "video",
+            "pdf"
           ]
         },
         {
@@ -5466,12 +5661,9 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
             "low",
             "medium",
-            "high",
-            "xhigh",
-            "max"
+            "xhigh"
           ],
           "surface": "chat",
           "input_modalities": [
@@ -5491,15 +5683,15 @@
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 991808,
           "surface": "chat",
           "input_modalities": [
             "text"
           ],
           "effort_levels": [
-            "none",
             "max"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "qwen3.7-plus",
@@ -5512,16 +5704,16 @@
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 991808,
           "surface": "chat",
           "input_modalities": [
             "text",
             "image"
           ],
           "effort_levels": [
-            "none",
             "max"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "qwen3.7-flash",
@@ -5556,16 +5748,14 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
-            "low",
-            "medium",
             "high",
             "max"
           ],
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-flash",
@@ -5581,16 +5771,15 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
             "low",
-            "medium",
             "high",
             "max"
           ],
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "glm-5.3",
@@ -5605,18 +5794,15 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
             "low",
-            "medium",
             "high",
-            "xhigh",
             "max"
           ],
           "surface": "chat",
           "input_modalities": [
-            "text",
-            "image"
-          ]
+            "text"
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.3-flash",
@@ -5631,11 +5817,8 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
             "low",
-            "medium",
             "high",
-            "xhigh",
             "max"
           ],
           "surface": "chat",
@@ -5643,7 +5826,8 @@
             "text",
             "image",
             "video"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.2",
@@ -5668,7 +5852,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "kimi-k3",
@@ -5681,11 +5866,9 @@
           "cache_read_per_1m": 0.295556,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 1048576,
           "effort_levels": [
-            "none",
             "low",
-            "medium",
             "high",
             "max"
           ],
@@ -5735,11 +5918,19 @@
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 204800,
+          "context_window": 1000000,
           "surface": "chat",
           "input_modalities": [
             "text",
             "image"
+          ],
+          "output_ceiling": 128000,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high"
           ]
         }
       ],
@@ -5777,18 +5968,16 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
             "low",
             "medium",
-            "high",
-            "xhigh",
-            "max"
+            "xhigh"
           ],
           "surface": "chat",
           "input_modalities": [
             "text",
             "image",
-            "video"
+            "video",
+            "pdf"
           ]
         },
         {
@@ -5805,12 +5994,9 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
             "low",
             "medium",
-            "high",
-            "xhigh",
-            "max"
+            "xhigh"
           ],
           "surface": "chat",
           "input_modalities": [
@@ -5830,15 +6016,15 @@
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 991808,
           "surface": "chat",
           "input_modalities": [
             "text"
           ],
           "effort_levels": [
-            "none",
             "max"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "qwen3.7-plus",
@@ -5851,16 +6037,16 @@
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 991808,
           "surface": "chat",
           "input_modalities": [
             "text",
             "image"
           ],
           "effort_levels": [
-            "none",
             "max"
-          ]
+          ],
+          "output_ceiling": 65536
         },
         {
           "model": "qwen3.7-flash",
@@ -5895,16 +6081,14 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
-            "low",
-            "medium",
             "high",
             "max"
           ],
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-flash",
@@ -5920,16 +6104,15 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
             "low",
-            "medium",
             "high",
             "max"
           ],
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "glm-5.3",
@@ -5944,18 +6127,15 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
             "low",
-            "medium",
             "high",
-            "xhigh",
             "max"
           ],
           "surface": "chat",
           "input_modalities": [
-            "text",
-            "image"
-          ]
+            "text"
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.3-flash",
@@ -5970,11 +6150,8 @@
           "source": "manual",
           "context_window": 1000000,
           "effort_levels": [
-            "none",
             "low",
-            "medium",
             "high",
-            "xhigh",
             "max"
           ],
           "surface": "chat",
@@ -5982,7 +6159,8 @@
             "text",
             "image",
             "video"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.2",
@@ -6007,7 +6185,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "kimi-k3",
@@ -6020,11 +6199,9 @@
           "cache_read_per_1m": 0.295556,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 1048576,
           "effort_levels": [
-            "none",
             "low",
-            "medium",
             "high",
             "max"
           ],
@@ -6074,11 +6251,19 @@
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 204800,
+          "context_window": 1000000,
           "surface": "chat",
           "input_modalities": [
             "text",
             "image"
+          ],
+          "output_ceiling": 128000,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high"
           ]
         }
       ],
@@ -6127,7 +6312,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-flash",
@@ -6147,7 +6333,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 393216
         },
         {
           "model": "glm-5.2",
@@ -6170,7 +6357,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "kimi-k3",
@@ -6252,7 +6440,8 @@
           "input_modalities": [
             "text"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-ai/deepseek-v4-pro",
@@ -6268,7 +6457,8 @@
           "input_modalities": [
             "text"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 393216
         }
       ]
     },
@@ -6335,7 +6525,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-flash-0731",
@@ -6359,7 +6550,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-pro",
@@ -6380,7 +6572,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-pro-0813",
@@ -6403,7 +6596,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek/deepseek-v4-flash-vision-exp",
@@ -6445,7 +6639,8 @@
           ],
           "effort_levels": [
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5-turbo",
@@ -6484,7 +6679,8 @@
           ],
           "effort_levels": [
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.2",
@@ -6510,7 +6706,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.3",
@@ -6532,7 +6729,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.3-flash",
@@ -6554,7 +6752,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 128000
         },
         {
           "model": "hy3",
@@ -6727,7 +6926,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 8192
         },
         {
           "model": "minimax-m2.7",
@@ -6775,7 +6975,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 128000
         }
       ]
     },
@@ -6800,7 +7001,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-pro",
@@ -6818,7 +7020,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "glm-5.1",
@@ -6835,7 +7038,8 @@
           ],
           "effort_levels": [
             "max"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "glm-5.2",
@@ -6857,7 +7061,8 @@
           "surface": "chat",
           "input_modalities": [
             "text"
-          ]
+          ],
+          "output_ceiling": 128000
         },
         {
           "model": "hy3",
@@ -6947,7 +7152,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "output_ceiling": 128000
         }
       ],
       "hidden_models": [
@@ -6972,7 +7178,8 @@
           ],
           "source": "litellm",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 1000000
         },
         {
           "model": "grok-4.20-0309-non-reasoning",
@@ -6990,7 +7197,8 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 1000000
         },
         {
           "model": "grok-4.20-0309-reasoning",
@@ -7010,7 +7218,8 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 1000000
         },
         {
           "model": "grok-4.20-multi-agent",
@@ -7031,7 +7240,8 @@
             "medium",
             "high",
             "xhigh"
-          ]
+          ],
+          "output_ceiling": 1000000
         },
         {
           "model": "grok-4.20-multi-agent-0309",
@@ -7052,7 +7262,8 @@
             "high",
             "xhigh"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 1000000
         },
         {
           "model": "grok-4.20-non-reasoning",
@@ -7067,7 +7278,8 @@
           ],
           "source": "litellm",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 1000000
         },
         {
           "model": "grok-4.20-reasoning",
@@ -7082,7 +7294,8 @@
           ],
           "source": "litellm",
           "context_window": 1000000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 1000000
         },
         {
           "model": "grok-4.3",
@@ -7103,7 +7316,8 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 1000000
         },
         {
           "model": "grok-4.5",
@@ -7123,7 +7337,8 @@
             "medium",
             "high"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 500000
         },
         {
           "model": "grok-4.6",
@@ -7144,7 +7359,8 @@
             "high",
             "xhigh"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 500000
         },
         {
           "model": "grok-build-0.1",
@@ -7164,7 +7380,8 @@
             "text",
             "image"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 256000
         },
         {
           "model": "grok-code-fast",
@@ -7179,7 +7396,8 @@
           ],
           "source": "litellm",
           "context_window": 256000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 256000
         },
         {
           "model": "grok-code-fast-1",
@@ -7194,7 +7412,8 @@
           ],
           "source": "litellm",
           "context_window": 256000,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 256000
         },
         {
           "model": "grok-imagine-image",

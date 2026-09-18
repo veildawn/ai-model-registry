@@ -34,7 +34,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 393216
     },
     {
       "model": "hy3-free",

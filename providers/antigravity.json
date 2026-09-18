@@ -23,7 +23,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "claude-sonnet-4-6",
@@ -45,7 +46,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "gemini-2.5-flash",
@@ -63,6 +65,7 @@
       "source": "vendor-api",
       "context_window": 1048576,
       "surface": "chat",
+      "output_ceiling": 65536,
       "variants": {
         "suffixes": [
           "",
@@ -88,7 +91,8 @@
       "surface": "image",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "output_ceiling": 32768
     },
     {
       "model": "gemini-2.5-flash-lite",
@@ -105,7 +109,8 @@
       ],
       "source": "vendor-api",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-2.5-pro",
@@ -122,7 +127,8 @@
       ],
       "source": "vendor-api",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3-flash",
@@ -140,6 +146,7 @@
       "source": "vendor-api",
       "context_window": 1048576,
       "surface": "chat",
+      "output_ceiling": 65536,
       "variants": {
         "suffixes": [
           "",
@@ -166,7 +173,8 @@
       "effort_levels": [
         "low",
         "high"
-      ]
+      ],
+      "output_ceiling": 65535
     },
     {
       "model": "gemini-3-pro-image",
@@ -184,7 +192,8 @@
       "surface": "image",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "output_ceiling": 32768
     },
     {
       "model": "gemini-3.1-flash-image",
@@ -202,7 +211,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "image"
+      "surface": "image",
+      "output_ceiling": 32768
     },
     {
       "model": "gemini-3.1-flash-lite",
@@ -225,7 +235,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3.1-flash-lite-image",
@@ -243,7 +254,8 @@
       "surface": "image",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "output_ceiling": 4096
     },
     {
       "model": "gemini-3.1-pro",
@@ -266,6 +278,7 @@
         "medium",
         "high"
       ],
+      "output_ceiling": 65536,
       "variants": {
         "suffixes": [
           "-high",
@@ -295,6 +308,7 @@
         "medium",
         "high"
       ],
+      "output_ceiling": 65536,
       "variants": {
         "suffixes": [
           "-extra-low",
@@ -323,7 +337,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3.6-flash",
@@ -347,6 +362,7 @@
         "medium",
         "high"
       ],
+      "output_ceiling": 65536,
       "variants": {
         "suffixes": [
           "-high",
@@ -377,6 +393,7 @@
         "medium",
         "high"
       ],
+      "output_ceiling": 65536,
       "variants": {
         "suffixes": [
           "-high",
@@ -408,6 +425,7 @@
         "medium",
         "high"
       ],
+      "output_ceiling": 65536,
       "variants": {
         "suffixes": [
           "-high",

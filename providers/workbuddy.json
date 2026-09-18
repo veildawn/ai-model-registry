@@ -19,7 +19,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 393216
     },
     {
       "model": "deepseek-v4-pro",
@@ -37,7 +38,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 393216
     },
     {
       "model": "glm-5.1",
@@ -54,7 +56,8 @@
       ],
       "effort_levels": [
         "max"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "glm-5.2",
@@ -76,7 +79,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "hy3",
@@ -166,7 +170,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 128000
     }
   ],
   "hidden_models": [

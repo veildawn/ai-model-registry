@@ -30,18 +30,16 @@
       "source": "manual",
       "context_window": 1000000,
       "effort_levels": [
-        "none",
         "low",
         "medium",
-        "high",
-        "xhigh",
-        "max"
+        "xhigh"
       ],
       "surface": "chat",
       "input_modalities": [
         "text",
         "image",
-        "video"
+        "video",
+        "pdf"
       ]
     },
     {
@@ -58,12 +56,9 @@
       "source": "manual",
       "context_window": 1000000,
       "effort_levels": [
-        "none",
         "low",
         "medium",
-        "high",
-        "xhigh",
-        "max"
+        "xhigh"
       ],
       "surface": "chat",
       "input_modalities": [
@@ -83,15 +78,15 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 991808,
       "surface": "chat",
       "input_modalities": [
         "text"
       ],
       "effort_levels": [
-        "none",
         "max"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "qwen3.7-plus",
@@ -104,16 +99,16 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 991808,
       "surface": "chat",
       "input_modalities": [
         "text",
         "image"
       ],
       "effort_levels": [
-        "none",
         "max"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "qwen3.7-flash",
@@ -148,16 +143,14 @@
       "source": "manual",
       "context_window": 1000000,
       "effort_levels": [
-        "none",
-        "low",
-        "medium",
         "high",
         "max"
       ],
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 393216
     },
     {
       "model": "deepseek-v4-flash",
@@ -173,16 +166,15 @@
       "source": "manual",
       "context_window": 1000000,
       "effort_levels": [
-        "none",
         "low",
-        "medium",
         "high",
         "max"
       ],
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 393216
     },
     {
       "model": "glm-5.3",
@@ -197,18 +189,15 @@
       "source": "manual",
       "context_window": 1000000,
       "effort_levels": [
-        "none",
         "low",
-        "medium",
         "high",
-        "xhigh",
         "max"
       ],
       "surface": "chat",
       "input_modalities": [
-        "text",
-        "image"
-      ]
+        "text"
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "glm-5.3-flash",
@@ -223,11 +212,8 @@
       "source": "manual",
       "context_window": 1000000,
       "effort_levels": [
-        "none",
         "low",
-        "medium",
         "high",
-        "xhigh",
         "max"
       ],
       "surface": "chat",
@@ -235,7 +221,8 @@
         "text",
         "image",
         "video"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "glm-5.2",
@@ -260,7 +247,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "kimi-k3",
@@ -273,11 +261,9 @@
       "cache_read_per_1m": 0.295556,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 1048576,
       "effort_levels": [
-        "none",
         "low",
-        "medium",
         "high",
         "max"
       ],
@@ -327,11 +313,19 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 204800,
+      "context_window": 1000000,
       "surface": "chat",
       "input_modalities": [
         "text",
         "image"
+      ],
+      "output_ceiling": 128000,
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high"
       ]
     }
   ],

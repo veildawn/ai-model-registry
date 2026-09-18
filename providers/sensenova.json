@@ -41,7 +41,8 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 393216
     },
     {
       "model": "deepseek-v4-flash",
@@ -61,7 +62,8 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 393216
     },
     {
       "model": "glm-5.2",
@@ -84,7 +86,8 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     },
     {
       "model": "kimi-k3",

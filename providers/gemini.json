@@ -50,7 +50,8 @@
         "text",
         "image"
       ],
-      "surface": "image"
+      "surface": "image",
+      "output_ceiling": 32768
     },
     {
       "model": "gemini-2.0-flash",
@@ -67,7 +68,8 @@
       ],
       "source": "litellm",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 8192
     },
     {
       "model": "gemini-2.0-flash-001",
@@ -84,7 +86,8 @@
       ],
       "source": "litellm",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 8192
     },
     {
       "model": "gemini-2.0-flash-lite",
@@ -101,7 +104,8 @@
       ],
       "source": "litellm",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 8192
     },
     {
       "model": "gemini-2.0-flash-lite-001",
@@ -118,7 +122,8 @@
       ],
       "source": "litellm",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 8192
     },
     {
       "model": "gemini-2.5-computer-use-preview-10-2025",
@@ -133,7 +138,8 @@
       ],
       "source": "litellm",
       "context_window": 128000,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 64000
     },
     {
       "model": "gemini-2.5-flash",
@@ -150,7 +156,8 @@
       ],
       "source": "litellm",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-2.5-flash-image",
@@ -170,7 +177,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "image"
+      "surface": "image",
+      "output_ceiling": 32768
     },
     {
       "model": "gemini-2.5-flash-lite",
@@ -187,7 +195,8 @@
       ],
       "source": "litellm",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-2.5-flash-preview-tts",
@@ -204,7 +213,8 @@
         "none"
       ],
       "surface": "audio",
-      "context_window": 8192
+      "context_window": 8192,
+      "output_ceiling": 16384
     },
     {
       "model": "gemini-2.5-pro",
@@ -221,7 +231,8 @@
       ],
       "source": "litellm",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-2.5-pro-preview-tts",
@@ -238,7 +249,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 16384
     },
     {
       "model": "gemini-3-flash-preview",
@@ -261,7 +273,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3-pro-image",
@@ -279,7 +292,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "image"
+      "surface": "image",
+      "output_ceiling": 32768
     },
     {
       "model": "gemini-3-pro-image-preview",
@@ -297,7 +311,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "image"
+      "surface": "image",
+      "output_ceiling": 32768
     },
     {
       "model": "gemini-3-pro-preview",
@@ -318,7 +333,8 @@
       "effort_levels": [
         "low",
         "high"
-      ]
+      ],
+      "output_ceiling": 65535
     },
     {
       "model": "gemini-3.1-flash-image",
@@ -336,7 +352,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "image"
+      "surface": "image",
+      "output_ceiling": 32768
     },
     {
       "model": "gemini-3.1-flash-image-preview",
@@ -354,7 +371,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "image"
+      "surface": "image",
+      "output_ceiling": 32768
     },
     {
       "model": "gemini-3.1-flash-lite",
@@ -377,7 +395,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3.1-flash-lite-image",
@@ -395,7 +414,8 @@
         "none"
       ],
       "context_window": 65536,
-      "surface": "image"
+      "surface": "image",
+      "output_ceiling": 4096
     },
     {
       "model": "gemini-3.1-flash-lite-preview",
@@ -418,7 +438,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3.1-flash-tts-preview",
@@ -435,7 +456,8 @@
         "none"
       ],
       "context_window": 8192,
-      "surface": "audio"
+      "surface": "audio",
+      "output_ceiling": 16384
     },
     {
       "model": "gemini-3.1-pro-preview",
@@ -457,7 +479,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3.1-pro-preview-customtools",
@@ -479,7 +502,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3.5-flash",
@@ -502,7 +526,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3.5-flash-lite",
@@ -525,7 +550,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3.6-flash",
@@ -548,7 +574,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3.7-flash",
@@ -570,7 +597,8 @@
         "medium",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-3.8-flash",
@@ -593,7 +621,8 @@
         "medium",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-flash-latest",
@@ -616,7 +645,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-flash-lite-latest",
@@ -639,7 +669,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-omni-flash-preview",
@@ -656,7 +687,8 @@
       ],
       "source": "litellm",
       "context_window": 131072,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-pro-latest",
@@ -678,7 +710,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "gemini-robotics-er-1.5-preview",
@@ -695,7 +728,8 @@
       ],
       "source": "litellm",
       "context_window": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65535
     },
     {
       "model": "gemini-robotics-er-1.6-preview",
@@ -710,7 +744,8 @@
       ],
       "source": "manual",
       "context_window": 131072,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "nano-banana-pro-preview",
@@ -728,7 +763,8 @@
         "none"
       ],
       "context_window": 131072,
-      "surface": "image"
+      "surface": "image",
+      "output_ceiling": 32768
     }
   ],
   "hidden_models": [

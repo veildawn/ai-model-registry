@@ -19,7 +19,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 393216
     },
     {
       "model": "glm-5.2",
@@ -41,7 +42,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "qwen3.6-flash",
@@ -77,7 +79,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "qwen3.7-plus",
@@ -95,7 +98,8 @@
       "effort_levels": [
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "qwen3.8-max-preview",

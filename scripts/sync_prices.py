@@ -319,7 +319,8 @@ FIRST_PARTY_SPELLINGS = {
 # (`copy_prices`); `source` / `price_reviewed` / `aliases` stay with the row
 # they were written on.
 FIRST_PARTY_FACTS = (
-    "context_window", "input_modalities", "effort_levels", "surface",
+    "context_window", "output_ceiling", "input_modalities", "effort_levels",
+    "surface",
 )
 FIRST_PARTY_RATES = (
     "pricing_style", "prompt_per_1m", "completion_per_1m",
@@ -1244,8 +1245,13 @@ def capability_facts(entry: dict):
     nothing and the caller leaves the field alone.
     """
     window = entry.get("max_input_tokens")
+    ceiling = entry.get("max_output_tokens")
     return (
         ("context_window", window if window else None),
+        # The most a response may run to, as the vendor publishes it. Consumers
+        # folding into a dialect with a required output ceiling (Messages'
+        # max_tokens) read this instead of guessing from the model id.
+        ("output_ceiling", ceiling if ceiling else None),
         ("input_modalities", upstream_modalities(entry)),
         ("surface", upstream_surface(entry)),
     )
@@ -1539,7 +1545,7 @@ def contested_model_facts(rows: list) -> list:
     silent drop is the right RUNTIME behaviour and a bad reporting one — the
     fact looks published, and nothing says why it never arrives.
     """
-    facts = ("context_window", "surface")
+    facts = ("context_window", "output_ceiling", "surface")
     byid = collections.defaultdict(lambda: collections.defaultdict(dict))
     for provider, row in rows:
         for field in facts:

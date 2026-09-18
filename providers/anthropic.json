@@ -23,7 +23,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "claude-fable-5-1",
@@ -45,7 +46,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "claude-haiku-4-5-20251001",
@@ -67,7 +69,8 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 64000
     },
     {
       "model": "claude-mythos-5",
@@ -89,7 +92,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "claude-mythos-5-1",
@@ -104,7 +108,8 @@
       ],
       "source": "litellm",
       "context_window": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     },
     {
       "model": "claude-opus-4-5-20251101",
@@ -124,7 +129,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 64000
     },
     {
       "model": "claude-opus-4-6",
@@ -146,7 +152,8 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     },
     {
       "model": "claude-opus-4-7",
@@ -168,7 +175,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "claude-opus-4-8",
@@ -190,7 +198,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "claude-opus-5",
@@ -212,7 +221,8 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     },
     {
       "model": "claude-sonnet-4-5-20250929",
@@ -234,7 +244,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "output_ceiling": 64000
     },
     {
       "model": "claude-sonnet-4-6",
@@ -256,7 +267,8 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     },
     {
       "model": "claude-sonnet-5",
@@ -278,7 +290,8 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 128000
     }
   ]
 }

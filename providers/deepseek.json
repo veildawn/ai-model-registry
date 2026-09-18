@@ -21,7 +21,8 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 393216
     },
     {
       "model": "deepseek-v4-pro",
@@ -40,7 +41,8 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 393216
     }
   ]
 }

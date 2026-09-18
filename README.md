@@ -123,6 +123,9 @@ correction, not an API change.
   outranks a deployment's own probe: the registry is reviewed and corrected
   centrally, while a probe is one account's listing at one moment — the probe
   covers only what this file does not publish.
+- `output_ceiling` (optional): the vendor's published maximum response length in
+  tokens. A host folding a request into a dialect with a required output limit
+  (Messages' `max_tokens`) reads this instead of guessing from the model id.
 - `input_modalities` (optional): what media the model can **read**, as
   `text` / `image` / `audio` / `video` / `pdf` — see below.
 - `effort_levels` (optional): the reasoning depths the model can be asked for —
