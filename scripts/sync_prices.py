@@ -193,7 +193,7 @@ NAMESPACES = {
     "anthropic": ["anthropic"],
     "bedrock": ["bedrock_converse", "bedrock"],
     "codex": ["openai"],
-    "google-ai-studio": ["gemini"],
+    "gemini": ["gemini"],
     "deepseek": ["deepseek"],
     "xai": ["xai"],
     "glm": ["zai"],
@@ -221,7 +221,7 @@ AUTO_ENROLL = {
         "pricing_style": "openai",
         "surfaces": frozenset({"chat", "image", "video"}),
     },
-    "google-ai-studio": {
+    "gemini": {
         "include": re.compile(r"^gemini-\d"),
         "pricing_style": "openai",
         "surfaces": frozenset({"chat", "image", "video"}),
@@ -296,7 +296,7 @@ FIRST_PARTY_OWNER = (
     (re.compile(r"(?:^|[\./])claude-"), "anthropic"),
     (re.compile(r"^gpt-image-"), "codex"),
     (re.compile(r"^gpt-"), "codex"),
-    (re.compile(r"^gemini-"), "google-ai-studio"),
+    (re.compile(r"^gemini-"), "gemini"),
     (re.compile(r"^grok-"), "xai"),
     (re.compile(r"^deepseek"), "deepseek"),
     (re.compile(r"^glm-"), "glm"),

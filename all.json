@@ -11,7 +11,7 @@
         "codex",
         "deepseek",
         "glm",
-        "google-ai-studio",
+        "gemini",
         "kimi",
         "kiro",
         "mimo",
@@ -2503,201 +2503,8 @@
         }
       ]
     },
-    "providers/glm.json": {
-      "name": "glm",
-      "display_name": "GLM (Zhipu)",
-      "list_prices": true,
-      "models": [
-        {
-          "model": "glm-4.5",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.6,
-          "completion_per_1m": 2.2,
-          "cache_read_per_1m": 0,
-          "cache_write_per_1m": 0,
-          "input_modalities": [
-            "text"
-          ],
-          "source": "litellm",
-          "context_window": 128000,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat"
-        },
-        {
-          "model": "glm-4.5-air",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.2,
-          "completion_per_1m": 1.1,
-          "cache_read_per_1m": 0.035467,
-          "cache_write_per_1m": 0,
-          "input_modalities": [
-            "text"
-          ],
-          "source": "litellm",
-          "context_window": 128000,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat"
-        },
-        {
-          "model": "glm-4.6",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.6,
-          "completion_per_1m": 2.2,
-          "cache_read_per_1m": 0.11,
-          "cache_write_per_1m": 0,
-          "input_modalities": [
-            "text"
-          ],
-          "source": "litellm",
-          "context_window": 200000,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat"
-        },
-        {
-          "model": "glm-4.7",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.6,
-          "completion_per_1m": 2.2,
-          "cache_read_per_1m": 0.11,
-          "cache_write_per_1m": 0,
-          "source": "litellm",
-          "context_window": 200000,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat",
-          "input_modalities": [
-            "text"
-          ]
-        },
-        {
-          "model": "glm-5",
-          "pricing_style": "openai",
-          "prompt_per_1m": 1,
-          "completion_per_1m": 3.2,
-          "cache_read_per_1m": 0.2,
-          "cache_write_per_1m": 0,
-          "source": "litellm",
-          "context_window": 200000,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat",
-          "input_modalities": [
-            "text"
-          ]
-        },
-        {
-          "model": "glm-5-turbo",
-          "pricing_style": "openai",
-          "prompt_per_1m": 1.034447,
-          "completion_per_1m": 3.842232,
-          "cache_read_per_1m": 0.266001,
-          "cache_write_per_1m": 0,
-          "source": "manual",
-          "context_window": 200000,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat",
-          "input_modalities": [
-            "text"
-          ]
-        },
-        {
-          "model": "glm-5.1",
-          "pricing_style": "openai",
-          "prompt_per_1m": 1.4,
-          "completion_per_1m": 4.4,
-          "cache_read_per_1m": 0.26,
-          "cache_write_per_1m": 0,
-          "source": "litellm",
-          "context_window": 200000,
-          "effort_levels": [
-            "max"
-          ],
-          "surface": "chat",
-          "input_modalities": [
-            "text"
-          ]
-        },
-        {
-          "model": "glm-5.2",
-          "pricing_style": "openai",
-          "prompt_per_1m": 1.182225,
-          "completion_per_1m": 4.137788,
-          "cache_read_per_1m": 0.295556,
-          "cache_write_per_1m": 0,
-          "source": "manual",
-          "context_window": 1000000,
-          "effort_levels": [
-            "none",
-            "low",
-            "medium",
-            "high",
-            "xhigh",
-            "max"
-          ],
-          "surface": "chat",
-          "input_modalities": [
-            "text"
-          ]
-        },
-        {
-          "model": "glm-5.3",
-          "pricing_style": "openai",
-          "prompt_per_1m": 1.4,
-          "completion_per_1m": 4.4,
-          "cache_read_per_1m": 0.26,
-          "cache_write_per_1m": 0,
-          "input_modalities": [
-            "text"
-          ],
-          "source": "litellm",
-          "context_window": 1000000,
-          "effort_levels": [
-            "low",
-            "high",
-            "max"
-          ],
-          "surface": "chat"
-        },
-        {
-          "model": "glm-5.3-flash",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.075,
-          "completion_per_1m": 0.25,
-          "cache_read_per_1m": 0.015,
-          "cache_write_per_1m": 0,
-          "input_modalities": [
-            "text",
-            "image",
-            "video"
-          ],
-          "source": "manual",
-          "context_window": 1000000,
-          "effort_levels": [
-            "low",
-            "high",
-            "max"
-          ],
-          "surface": "chat",
-          "price_reviewed": "rates are z.ai's USD list, as published on models.dev (zai and zhipuai rows agree); litellm has no zai-namespace row for this id"
-        }
-      ],
-      "hidden_models": [
-        "glm-4.5",
-        "glm-4.6"
-      ]
-    },
-    "providers/google-ai-studio.json": {
-      "name": "google-ai-studio",
+    "providers/gemini.json": {
+      "name": "gemini",
       "display_name": "Google AI Studio",
       "list_prices": true,
       "models": [
@@ -3451,6 +3258,199 @@
         "gemma-4-31b-it",
         "lyria-3-clip-preview",
         "lyria-3-pro-preview"
+      ]
+    },
+    "providers/glm.json": {
+      "name": "glm",
+      "display_name": "GLM (Zhipu)",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "glm-4.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.6,
+          "completion_per_1m": 2.2,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 128000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-4.5-air",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2,
+          "completion_per_1m": 1.1,
+          "cache_read_per_1m": 0.035467,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 128000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-4.6",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.6,
+          "completion_per_1m": 2.2,
+          "cache_read_per_1m": 0.11,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-4.7",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.6,
+          "completion_per_1m": 2.2,
+          "cache_read_per_1m": 0.11,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "glm-5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 3.2,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "glm-5-turbo",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.034447,
+          "completion_per_1m": 3.842232,
+          "cache_read_per_1m": 0.266001,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "glm-5.1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.4,
+          "completion_per_1m": 4.4,
+          "cache_read_per_1m": 0.26,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 200000,
+          "effort_levels": [
+            "max"
+          ],
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "glm-5.2",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.182225,
+          "completion_per_1m": 4.137788,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "glm-5.3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.4,
+          "completion_per_1m": 4.4,
+          "cache_read_per_1m": 0.26,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "glm-5.3-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.075,
+          "completion_per_1m": 0.25,
+          "cache_read_per_1m": 0.015,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "source": "manual",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat",
+          "price_reviewed": "rates are z.ai's USD list, as published on models.dev (zai and zhipuai rows agree); litellm has no zai-namespace row for this id"
+        }
+      ],
+      "hidden_models": [
+        "glm-4.5",
+        "glm-4.6"
       ]
     },
     "providers/kimi.json": {

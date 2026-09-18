@@ -97,19 +97,19 @@ class EnrollReasonTest(unittest.TestCase):
 
     def test_skips_gemini_snapshots_and_zero_price(self):
         self.assertEqual(
-            self.reason("google-ai-studio", "gemini-2.5-flash-lite-preview-09-2025"),
+            self.reason("gemini", "gemini-2.5-flash-lite-preview-09-2025"),
             "snapshot-of-present")
         self.assertEqual(
-            self.reason("google-ai-studio", "gemini-2.5-flash-lite-preview-06-17"),
+            self.reason("gemini", "gemini-2.5-flash-lite-preview-06-17"),
             "snapshot-of-present")
         self.assertEqual(
-            self.reason("google-ai-studio", "gemini-2.0-flash-001"),
+            self.reason("gemini", "gemini-2.0-flash-001"),
             "snapshot-of-present")
         self.assertEqual(
-            self.reason("google-ai-studio", "gemini-exp-1206",
+            self.reason("gemini", "gemini-exp-1206",
                         chat(prompt=0, completion=0)),
             "skipped-pattern")
-        self.assertIsNone(self.reason("google-ai-studio", "gemini-3.9-flash"))
+        self.assertIsNone(self.reason("gemini", "gemini-3.9-flash"))
 
     def test_skips_old_grok_keeps_new(self):
         self.assertEqual(self.reason("xai", "grok-3"), "outside-include")

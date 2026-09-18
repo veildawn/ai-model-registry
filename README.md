@@ -238,7 +238,7 @@ next run reverts it.** Take the row back by flipping its `source` to `manual`
 first.
 
 On the four first-party catalogs — `anthropic`, `codex` (OpenAI),
-`google-ai-studio` (Gemini), `xai` (Grok) — on `antigravity` **for Gemini
+`gemini` (Gemini), `xai` (Grok) — on `antigravity` **for Gemini
 only** (the same ids AI Studio enrolls, metered at Google's list), and on
 `bedrock` **for current Claude ids** the same job also **enrolls** an id the
 file does not yet have, when the vendor's own namespace publishes it. That is
@@ -508,7 +508,7 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | cursor | Cursor | **prices none** — reseller; `hidden_models` only, trims uncommon `claude-*` / `gpt-5.*` / `gemini-*` |
 | antigravity | Antigravity | **prices none** — reseller; `hidden_models` only, trims non-current Gemini/Claude |
 | bedrock | AWS Bedrock (Claude) | Geo / In-region Cross-region Inference rates for current `anthropic.claude-*` and geo-prefixed inference profiles; daily AUTO_ENROLL from LiteLLM |
-| google-ai-studio | Google AI Studio | `hidden_models` trims niche Gemini (tts / music / robotics / research / gemma); the image family is **listed** — see below |
+| gemini | Google AI Studio | `hidden_models` trims niche Gemini (tts / music / robotics / research / gemma); the image family is **listed** — see below |
 | opencode-go | OpenCode Go | curated open-model subscription (`opencode.ai/zen/go`); new catalog ids enroll daily, facts copied from the first-party file when one exists |
 | qoder-intl | Qoder International | same opaque `*model` aliases as `qoder`, priced from the intl edition's own model set; `auto` hidden (router alias) |
 
@@ -625,7 +625,7 @@ something rather than nothing.
 Every image-generation id was in `hidden_models` until the service grew an
 `/v1/images/generations` route for the Gemini family and xAI. They are now
 advertised: `gemini-*-image*` and `nano-banana-pro-preview` under
-`google-ai-studio`, `gemini-3.1-flash-image` under `antigravity`, and
+`gemini`, `gemini-3.1-flash-image` under `antigravity`, and
 `grok-imagine-image` / `grok-imagine-image-quality` under `xai`.
 
 The Gemini ids carry real per-token rates, so they bill correctly. **The two xAI
@@ -683,7 +683,7 @@ them, and a wrong declaration is worse here than no declaration:
 | qianwen | `qwen3.6-flash`, `qwen3.7-max`, `qwen3.7-plus`, `qwen3.8-max-preview`, + resold `deepseek-v4-pro` / `glm-5.2` |
 | qoder, qoder-intl, workbuddy | every entry (all resold CN models above, plus `hy3`, `kimi-k2.6/2.7/k3`) |
 | antigravity | `tab_flash_lite_preview`, `tab_jump_flash_lite_preview` |
-| google-ai-studio | `deep-research-*` (3) |
+| gemini | `deep-research-*` (3) |
 | xai | `grok-build-0.1`, `grok-imagine-*` (4) |
 | codex | `gpt-image-2`, `gpt-image-2.5` |
 | mimo | `mimo-v2.5-asr`, `mimo-v2.5-tts*` (3) |
