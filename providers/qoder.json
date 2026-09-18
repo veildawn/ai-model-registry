@@ -198,6 +198,55 @@
         "image",
         "video"
       ]
+    },
+    {
+      "model": "qwen3.8-max",
+      "aliases": [
+        "qmodel_38max"
+      ],
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 6,
+      "cache_read_per_1m": 0.25,
+      "cache_write_per_1m": 2.5,
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "xhigh"
+      ],
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ]
+    },
+    {
+      "model": "qwen3.8-flash",
+      "aliases": [
+        "qfmodel",
+        "q38fmodel"
+      ],
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.47,
+      "cache_read_per_1m": 0.016,
+      "cache_write_per_1m": 0.2,
+      "source": "manual",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "xhigh"
+      ],
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ]
     }
   ],
   "hidden_models": [
