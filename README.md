@@ -535,7 +535,7 @@ number — several entries encode a judgement call, not a fact.
 
 ### Currency
 
-`glm`, `kimi`, and `minimax` publish in **CNY**. This file is USD-only, so those
+`glm`, `kimi`, `minimax`, and `stepfun` publish in **CNY**. This file is USD-only, so those
 rates were converted at:
 
 > **USD/CNY = 6.7669** — ECB reference rate, 2026-07-16
@@ -553,7 +553,8 @@ conversion of its CN list — `zai/glm-4.7` at 0.6/2.2 where the CNY list gave
 is a real change in what gets billed, taken knowingly in exchange for never
 having to re-derive them again. The frozen rate now survives only on the rows
 litellm cannot match: `kimi` (`k3`, `k3-256k`), `glm-5-turbo`, `glm-5.2`,
-`qwen3.6-flash`, `qwen3.8-max-preview`, and the resold copies of all of those.
+`qwen3.6-flash`, `qwen3.8-max-preview`, StepFun Step Plan's token-priced
+`step-*` / `stepaudio-*` rows, and the resold copies of all of those.
 
 ### Variable pricing is flattened
 

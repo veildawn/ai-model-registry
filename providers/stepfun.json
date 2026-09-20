@@ -1,0 +1,185 @@
+{
+  "name": "stepfun",
+  "display_name": "StepFun",
+  "models": [
+    {
+      "model": "step-5-preview",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.034447,
+      "completion_per_1m": 2.955563,
+      "cache_read_per_1m": 0.051722,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "StepFun official list (7/20/0.35 CNY) at ECB 6.7669; Step Plan settles in subscription credits (1M Credit = 1 CNY).",
+      "context_window": 1000000,
+      "output_ceiling": 1000000,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "step-3.7-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.199501,
+      "completion_per_1m": 1.197003,
+      "cache_read_per_1m": 0.0399,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "StepFun official list (1.35/8.1/0.27 CNY) at ECB 6.7669; Step Plan settles in subscription credits (1M Credit = 1 CNY).",
+      "context_window": 256000,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "step-3.5-flash-2603",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.103445,
+      "completion_per_1m": 0.310334,
+      "cache_read_per_1m": 0.020689,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "StepFun official list (0.7/2.1/0.14 CNY) at ECB 6.7669; Step Plan settles in subscription credits (1M Credit = 1 CNY).",
+      "context_window": 256000,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "low",
+        "high"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "step-3.5-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.103445,
+      "completion_per_1m": 0.310334,
+      "cache_read_per_1m": 0.020689,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "StepFun official list (0.7/2.1/0.14 CNY) at ECB 6.7669; Step Plan settles in subscription credits (1M Credit = 1 CNY).",
+      "context_window": 256000,
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "step-router-v1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Unpriced per-token: Step Plan bills the hit engine (deepseek-v4-pro or step-3.7-flash); no single USD-per-token list.",
+      "output_ceiling": 250000,
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "stepaudio-2.5-chat",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.477782,
+      "completion_per_1m": 3.694454,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "StepFun official list (10/25/2 CNY) at ECB 6.7669; Step Plan settles in subscription credits (1M Credit = 1 CNY).",
+      "input_modalities": [
+        "text",
+        "audio"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "stepaudio-2.5-realtime",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.477782,
+      "completion_per_1m": 10.344471,
+      "cache_read_per_1m": 0.295556,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "StepFun official list (10/70/2 CNY) at ECB 6.7669; Step Plan settles in subscription credits (1M Credit = 1 CNY).",
+      "input_modalities": [
+        "text",
+        "audio"
+      ],
+      "effort_levels": [
+        "none"
+      ],
+      "surface": "audio"
+    },
+    {
+      "model": "stepaudio-2.5-tts",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Unpriced per-token: billed at 5.8 CNY / 10k characters (Step Plan settles in subscription credits).",
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "none"
+      ],
+      "surface": "audio"
+    },
+    {
+      "model": "stepaudio-2.5-asr",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Unpriced per-token: billed at 0.15 CNY / hour (Step Plan settles in subscription credits).",
+      "input_modalities": [
+        "audio"
+      ],
+      "effort_levels": [
+        "none"
+      ],
+      "surface": "audio"
+    },
+    {
+      "model": "step-image-edit-2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Unpriced per-token: billed at 0.02 CNY / image (Step Plan settles in subscription credits).",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none"
+      ],
+      "surface": "image"
+    }
+  ]
+}
