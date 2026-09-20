@@ -2226,7 +2226,7 @@
           "free": true,
           "source": "manual",
           "price_reviewed": "Cline's own free tier: its catalog endpoint lists this id under `free` and the desktop app prices it at all-zero rates, so $0 is the published price rather than a missing one.",
-          "context_window": 1048576,
+          "context_window": 1000000,
           "output_ceiling": 384000,
           "input_modalities": [
             "text",
@@ -2278,8 +2278,8 @@
           "free": true,
           "source": "manual",
           "price_reviewed": "Cline's own free tier: its catalog endpoint lists this id under `free` and the desktop app prices it at all-zero rates, so $0 is the published price rather than a missing one.",
-          "context_window": 1310720,
-          "output_ceiling": 131072,
+          "context_window": 1000000,
+          "output_ceiling": 128000,
           "input_modalities": [
             "text",
             "image",
@@ -6661,7 +6661,12 @@
           "input_modalities": [
             "text"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "step-router-v1",

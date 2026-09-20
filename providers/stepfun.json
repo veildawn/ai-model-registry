@@ -79,7 +79,12 @@
       "input_modalities": [
         "text"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "step-router-v1",
