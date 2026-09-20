@@ -508,6 +508,7 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | mimo | MiMo (Xiaomi) | overseas PAYG for `mimo-v2.5` / `mimo-v2.5-pro`; `-asr` / `-tts*` stay **unpriced** |
 | ollama | Ollama | Cloud catalog, **unpriced**; ids and capability facts enroll daily from models.dev `ollama-cloud`, copying this registry's first-party window/ladder when the family has one |
 | opencode | OpenCode Zen | the seven current `*-free` / `big-pickle` rows are **$0** with `"free": true` — not unpriced |
+| cline | Cline | its five free-tier ids (`cline-free/*`, `z-ai/glm-5.3-flash`, `poolside/laguna-s-2.1:free`) are **$0** with `"free": true` — Cline's own catalog publishes them under `free`, so $0 is a price and not a missing one. Cline Pass (`cline-pass/*`) and Cline Cloud (`cline-cloud/*`) ids settle in the subscription and stay **unpriced** |
 | cursor | Cursor | **prices none** — reseller; `hidden_models` only, trims uncommon `claude-*` / `gpt-5.*` / `gemini-*` |
 | antigravity | Antigravity | **prices none** — reseller; `hidden_models` only, trims non-current Gemini/Claude |
 | bedrock | AWS Bedrock (Claude) | Geo / In-region Cross-region Inference rates for current `anthropic.claude-*` and geo-prefixed inference profiles; daily AUTO_ENROLL from LiteLLM |

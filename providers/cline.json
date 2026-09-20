@@ -1,0 +1,116 @@
+{
+  "name": "cline",
+  "display_name": "Cline",
+  "models": [
+    {
+      "model": "cline-free/deepseek-v4.1-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "free": true,
+      "source": "manual",
+      "price_reviewed": "Cline's own free tier: its catalog endpoint lists this id under `free` and the desktop app prices it at all-zero rates, so $0 is the published price rather than a missing one.",
+      "context_window": 1048576,
+      "output_ceiling": 384000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ]
+    },
+    {
+      "model": "cline-free/muse-spark-1.3-contributor",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "free": true,
+      "source": "manual",
+      "price_reviewed": "Cline's own free tier: its catalog endpoint lists this id under `free` and the desktop app prices it at all-zero rates, so $0 is the published price rather than a missing one.",
+      "context_window": 1048576,
+      "output_ceiling": 943718,
+      "input_modalities": [
+        "text",
+        "image",
+        "video",
+        "pdf",
+        "audio"
+      ],
+      "surface": "chat",
+      "effort_levels": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "model": "z-ai/glm-5.3-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "free": true,
+      "source": "manual",
+      "price_reviewed": "Cline's own free tier: its catalog endpoint lists this id under `free` and the desktop app prices it at all-zero rates, so $0 is the published price rather than a missing one.",
+      "context_window": 1310720,
+      "output_ceiling": 131072,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ]
+    },
+    {
+      "model": "cline-free/solar-pro4",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "free": true,
+      "source": "manual",
+      "price_reviewed": "Cline's own free tier: its catalog endpoint lists this id under `free` and the desktop app prices it at all-zero rates, so $0 is the published price rather than a missing one.",
+      "context_window": 524288,
+      "output_ceiling": 131072,
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "poolside/laguna-s-2.1:free",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "free": true,
+      "source": "manual",
+      "price_reviewed": "Cline's own free tier: its catalog endpoint lists this id under `free` and the desktop app prices it at all-zero rates, so $0 is the published price rather than a missing one.",
+      "context_window": 262144,
+      "output_ceiling": 32768,
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "chat"
+    }
+  ]
+}
