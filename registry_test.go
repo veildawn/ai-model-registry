@@ -151,6 +151,7 @@ func TestStepFunOfficialModels(t *testing.T) {
 		"step-5-preview":         "low,medium,high",
 		"step-3.7-flash":         "low,medium,high",
 		"step-3.5-flash-2603":    "low,high",
+		"step-3.5-flash":         "low,medium,high",
 		"stepaudio-2.5-realtime": "none",
 		"stepaudio-2.5-tts":      "none",
 		"stepaudio-2.5-asr":      "none",

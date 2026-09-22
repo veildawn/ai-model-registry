@@ -177,6 +177,8 @@ SURFACES = {
     "realtime": "audio",
     "video_generation": "video",
     "rerank": "rerank",
+    # evaluation is the Jev wire: /v1/systemone serves it, so it is a fact.
+    "evaluation": "decision",
 }
 
 # The reasoning levels this registry publishes, weakest first. A ladder read from

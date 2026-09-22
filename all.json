@@ -27,6 +27,7 @@
         "siliconflow",
         "stepfun",
         "tokenhub",
+        "typesafe",
         "workbuddy",
         "xai"
       ]
@@ -7343,6 +7344,28 @@
             "high"
           ],
           "output_ceiling": 128000
+        }
+      ]
+    },
+    "providers/typesafe.json": {
+      "name": "typesafe",
+      "display_name": "TypeSafe",
+      "models": [
+        {
+          "model": "jev-1.13.0",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.042,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "input $42/Btok, output free — docs.typesafe.ai/models (2026-09-22). Note: at this rate a request under ~119 input tokens bills $0 after the $1e-5 granularity step; that is rounding, not a free tier.",
+          "context_window": 64000,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "decision",
+          "output_ceiling": 28800
         }
       ]
     },
