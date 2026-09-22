@@ -398,6 +398,24 @@
       ]
     },
     {
+      "model": "mimo-v2.6-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.14,
+      "completion_per_1m": 0.28,
+      "cache_read_per_1m": 0.0028,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video",
+        "pdf"
+      ],
+      "surface": "chat"
+    },
+    {
       "model": "minimax-m2.5",
       "pricing_style": "openai",
       "prompt_per_1m": 0.3,
@@ -533,6 +551,24 @@
       "input_modalities": [
         "text"
       ]
+    },
+    {
+      "model": "mimo-v2.6-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.435,
+      "completion_per_1m": 0.87,
+      "cache_read_per_1m": 0.0036,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video",
+        "pdf"
+      ],
+      "surface": "chat"
     },
     {
       "model": "muse-spark-1.3-contributor",
