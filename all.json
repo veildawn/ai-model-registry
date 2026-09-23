@@ -6562,6 +6562,29 @@
           "output_ceiling": 393216
         },
         {
+          "model": "deepseek-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Unpriced: SenseNova Token Plan settles in subscription credits and publishes no USD-per-token list price for this model.",
+          "context_window": 1048576,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
           "model": "glm-5.2",
           "pricing_style": "openai",
           "prompt_per_1m": 1.182225,
@@ -6623,7 +6646,7 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "chat"
+          "surface": "image"
         },
         {
           "model": "sensenova-u1.5-lite",
@@ -6642,7 +6665,7 @@
           "effort_levels": [
             "none"
           ],
-          "surface": "chat"
+          "surface": "image"
         }
       ]
     },
