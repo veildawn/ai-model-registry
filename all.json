@@ -6939,7 +6939,8 @@
           ],
           "surface": "chat",
           "input_modalities": [
-            "text"
+            "text",
+            "image"
           ],
           "output_ceiling": 393216
         },
@@ -6964,7 +6965,8 @@
           ],
           "surface": "chat",
           "input_modalities": [
-            "text"
+            "text",
+            "image"
           ],
           "output_ceiling": 393216
         },
@@ -7185,6 +7187,7 @@
           "context_window": 262144,
           "effort_levels": [
             "none",
+            "low",
             "high"
           ],
           "surface": "chat",
@@ -7382,7 +7385,8 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image"
+            "image",
+            "video"
           ],
           "effort_levels": [
             "none",
