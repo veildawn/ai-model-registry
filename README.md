@@ -499,7 +499,7 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | name | display | notes |
 |---|---|---|
 | anthropic | Anthropic | canonical `claude-*` ids |
-| codex | OpenAI (Codex) | `gpt-5.4` / `gpt-5.5` / `gpt-5.6-*` / `gpt-6-astra`; `gpt-image-2` / `gpt-image-2.5` is the images route — see below |
+| codex | OpenAI (Codex) | `gpt-5.4` / `gpt-5.5` / `gpt-5.6-*` / `gpt-6-*`; `gpt-image-2` / `gpt-image-2.5` is the images route — see below |
 | xai | xAI | `grok-*`; the four `grok-imagine-*` entries are **unpriced** — see below |
 | kimi | Kimi (Moonshot) | `k3` priced; the two `kimi-for-coding*` are **unpriced** — see below |
 | deepseek | DeepSeek | `deepseek-v4-flash` / `deepseek-v4-pro` |
@@ -668,7 +668,7 @@ published fact, by id prefix rather than one id at a time:
 |---|---|---|
 | `claude-*` (every provider's spelling) | text + image | the whole Claude 3+ line reads images |
 | `gemini-*`, `nano-banana-*` | text + image | natively multimodal; the `*-tts` heads are text-only and were written that way |
-| `gpt-5*`, `gpt-6-astra` | text + image | the GPT-5 line and GPT-6 Astra read images |
+| `gpt-5*`, `gpt-6*` | text + image | the GPT-5 and GPT-6 lines read images |
 | `gpt-oss-120b*` | text | the open-weight model is text-only |
 | `grok-4*` | text + image | Grok 4 reads images |
 | `deepseek-3.2`, `deepseek-v3*` | text | DeepSeek's chat line is text-only; vision ships as separate `-VL` models |

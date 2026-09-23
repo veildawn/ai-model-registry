@@ -285,6 +285,54 @@
       "output_ceiling": 128000
     },
     {
+      "model": "gpt-6-luna",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.1,
+      "completion_per_1m": 0.5,
+      "cache_read_per_1m": 0.01,
+      "cache_write_per_1m": 0.125,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "manual",
+      "context_window": 272000,
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat",
+      "output_ceiling": 128000
+    },
+    {
+      "model": "gpt-6-sol",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "manual",
+      "context_window": 272000,
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat",
+      "output_ceiling": 128000
+    },
+    {
       "model": "gpt-image-2",
       "pricing_style": "openai",
       "prompt_per_1m": 5,
