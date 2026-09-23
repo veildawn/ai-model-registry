@@ -410,8 +410,7 @@
         "text",
         "image",
         "audio",
-        "video",
-        "pdf"
+        "video"
       ],
       "surface": "chat"
     },
@@ -565,8 +564,7 @@
         "text",
         "image",
         "audio",
-        "video",
-        "pdf"
+        "video"
       ],
       "surface": "chat"
     },

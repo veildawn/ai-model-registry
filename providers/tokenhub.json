@@ -60,8 +60,7 @@
       ],
       "surface": "chat",
       "input_modalities": [
-        "text",
-        "image"
+        "text"
       ],
       "output_ceiling": 393216
     },
@@ -86,8 +85,7 @@
       ],
       "surface": "chat",
       "input_modalities": [
-        "text",
-        "image"
+        "text"
       ],
       "output_ceiling": 393216
     },
@@ -506,8 +504,7 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
       ],
       "effort_levels": [
         "none",
