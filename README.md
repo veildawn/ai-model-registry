@@ -122,20 +122,95 @@ AI_PROXY_REGISTRY_SIGNING_SEED=<hex> python3 scripts/sign_bundle.py --check
 ```
 
 The seed is an environment variable only: never committed, never written to
-disk, never printed except by `--keygen`. The sync workflow signs in the same
-run that regenerates the bundle, and fails the job when the secret is absent —
-pushing an unsigned bundle would be worse than not pushing, because every
-deployment would refuse it.
+disk, never printed except by `--keygen`. Here it lives as the
+`AI_PROXY_REGISTRY_SIGNING_SEED` repository secret, and CI is its routine holder:
+every workflow that can move the bundle signs in the same run that writes it and
+fails rather than pushing a bundle whose signature does not verify — worse than
+not pushing, because every deployment would refuse it and quietly keep the
+registry it already had. [Publishing](#publishing) is the whole flow.
 
 The signature file is deterministic (same bundle, same key, same bytes): no
-timestamp, so `--check` is a byte comparison and a stale signature is
-un-committable rather than merely discouraged.
+timestamp, so `--check` is a byte comparison and two runs over one bundle write
+the identical file.
 
 `scripts/ed25519.py` is the signing primitive — RFC 8032 from the standard
 library, with no third-party dependency, because the daily price job runs on a
 bare runner. `python3 scripts/ed25519.py --selftest` checks it against a vector
 produced by Go's `crypto/ed25519`, which is the implementation the consumer
 verifies with.
+
+## Publishing
+
+Every consumer reads this repository from `main`, so publishing is a commit that
+lands there with the bundle and its signature in agreement. Three writers
+produce those commits, and one rule covers all of them.
+
+**A push that can move the bundle must leave it signed.** `all.json` is
+generated from `index.json` + `providers/*.json`, and `all.json.sig` signs its
+digest: together they are one artifact in two files. A bundle whose signature
+does not verify is refused by every consumer, so a merge that lands without one
+does not reach any deployment at all: each keeps the registry it already had, at
+worst the embedded module's.
+
+| writer | writes | signs |
+| --- | --- | --- |
+| a person, via PR | `providers/*.json`, `index.json` | `sign-bundle.yml`, after the merge |
+| `sync-firstparty.yml` (hourly) | one first-party channel's ids and rates | in the same run, before pushing |
+| `sync-prices.yml` (daily) | delegated rows, then the bundle | in the same run, before pushing |
+
+`.github/workflows/sign-bundle.yml` is what makes the PR path safe. It runs on
+every push to `main` that touches the bundle's inputs or outputs, regenerates
+`all.json` from the files beside it, signs it, and commits the pair **only when
+one of them actually moved**. When they already agree — the usual case for the
+two sync jobs' own pushes, which signed what they wrote — it exits without a
+commit. A push made with the default `GITHUB_TOKEN` does not trigger workflows,
+so the commit it writes cannot call it back.
+
+### By hand, with the seed
+
+```bash
+git switch -c feat/<something>
+# edit providers/<name>.json — keep model ids unique in the file, and check the
+# row's `source` first (see Editing)
+python3 scripts/bundle.py --check            # fails when all.json is out of date
+python3 scripts/bundle.py                    # rebuild it
+AI_PROXY_REGISTRY_SIGNING_SEED=<hex> python3 scripts/sign_bundle.py
+AI_PROXY_REGISTRY_SIGNING_SEED=<hex> python3 scripts/sign_bundle.py --check
+go test ./...                                # index, embedded files, bundle agreement
+```
+
+Open the PR; the merge is the publish. Without the seed, commit the provider
+files and the regenerated `all.json` and let `sign-bundle.yml` sign after the
+merge — signing is CI's job, not a reviewer's, and passing the seed around is how
+it stops being a secret.
+
+### What a merge does and does not move
+
+- **The HTTP path.** Nothing further: a deployment syncs `all.json` from `main`
+  at startup, every 24h, and on demand, and verifies the signature before it uses
+  anything. Merging is deploying.
+- **The Go module.** A commit here is not a module release by itself; consumers
+  pin a version in `go.mod`. When the embedded fallback should carry the change —
+  a deploy that must work with no network, or a release that should not depend on
+  the sync having succeeded — bump it on the consumer side
+  (`go get github.com/veildawn/ai-model-registry@main && go mod tidy`) in the same
+  change that needs it.
+
+### When it goes wrong
+
+- **`AI_PROXY_REGISTRY_SIGNING_SEED is not set`.** The secret is missing, or a
+  rotation was half applied. Generate a seed
+  (`python3 scripts/sign_bundle.py --keygen`), store it as the repository secret,
+  commit the printed public key as `keys/registry-signing.pub`, and re-run the
+  job.
+- **A commit on `main` whose signature does not verify.** Re-run
+  `sign-bundle.yml` (`gh workflow run sign-bundle.yml`, or the Actions tab): it
+  regenerates, re-signs, and commits. Never hand-edit `all.json` to match a
+  signature — the file is generated; fix the files it is generated from and let
+  the job rebuild both.
+- **Rotating the key is a two-sided change.** The public key a consumer verifies
+  against is pinned in the consumer's own binary, so the new key has to ship in a
+  consumer release *before* this repository starts signing with the new seed.
 
 ## Provider file schema
 
@@ -779,6 +854,8 @@ python3 scripts/bundle.py                 # rebuild all.json
 python3 scripts/sign_bundle.py            # re-sign it (needs the seed)
 ```
 
-A bundle whose signature is stale is refused by every consumer, so the second
-command is not optional: `sign_bundle.py --check` is the same comparison CI
-makes, and it is what catches a push that rebuilt one and not the other.
+Neither command is optional in the end: a bundle whose signature is stale is
+refused by every consumer. If you hold the seed, run both and let
+`sign_bundle.py --check` prove it; if you do not, rebuild `all.json` and let
+`sign-bundle.yml` sign after the merge. [Publishing](#publishing) spells out the
+whole flow.
