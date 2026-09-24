@@ -1,6 +1,7 @@
 {
   "name": "stepfun",
   "display_name": "StepFun",
+  "list_prices": true,
   "models": [
     {
       "model": "step-5-preview",

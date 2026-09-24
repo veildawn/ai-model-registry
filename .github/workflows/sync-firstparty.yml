@@ -34,6 +34,7 @@ jobs:
           - mimo
           - minimax
           - qianwen
+          - stepfun
           - xai
     runs-on: ubuntu-latest
     steps:
@@ -62,6 +63,12 @@ jobs:
         run: |
           set -euo pipefail
           python3 scripts/sync_mimo.py
+
+      - name: sync stepfun if stepfun channel
+        if: steps.filter.outputs.skip != 'true' && matrix.provider == 'stepfun'
+        run: |
+          set -euo pipefail
+          python3 scripts/sync_stepfun.py
 
       - name: sync provider prices and effort levels
         if: steps.filter.outputs.skip != 'true'

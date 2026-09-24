@@ -337,6 +337,7 @@ FIRST_PARTY_OWNER = (
     (re.compile(r"^minimax-"), "minimax"),
     (re.compile(r"^mimo-"), "mimo"),
     (re.compile(r"^qwen"), "qianwen"),
+    (re.compile(r"^step(?:-audio|-|audio)"), "stepfun"),
 )
 
 # Reseller spellings of an id the vendor file stores differently. Lookups try
