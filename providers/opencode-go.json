@@ -227,6 +227,30 @@
       "output_ceiling": 128000
     },
     {
+      "model": "gpt-6-luna",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.1,
+      "completion_per_1m": 0.5,
+      "cache_read_per_1m": 0.01,
+      "cache_write_per_1m": 0.125,
+      "source": "manual",
+      "context_window": 272000,
+      "output_ceiling": 128000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
       "model": "grok-4.5",
       "pricing_style": "openai",
       "prompt_per_1m": 2,
@@ -782,6 +806,29 @@
         "low",
         "medium",
         "xhigh"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "space-bunny-free",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
       ],
       "surface": "chat"
     },

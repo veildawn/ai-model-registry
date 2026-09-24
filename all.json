@@ -932,6 +932,22 @@
           "output_ceiling": 64000
         },
         {
+          "model": "anthropic.claude-mythos-5-1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 11,
+          "completion_per_1m": 55,
+          "cache_read_per_1m": 0.275,
+          "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat"
+        },
+        {
           "model": "anthropic.claude-opus-4-5-20251101-v1:0",
           "pricing_style": "anthropic",
           "prompt_per_1m": 5.5,
@@ -1137,6 +1153,29 @@
           "output_ceiling": 128000
         },
         {
+          "model": "apac.anthropic.claude-fable-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 11,
+          "completion_per_1m": 55,
+          "cache_read_per_1m": 1.1,
+          "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
           "model": "apac.anthropic.claude-haiku-4-5-20251001-v1:0",
           "pricing_style": "anthropic",
           "prompt_per_1m": 1.1,
@@ -1158,6 +1197,167 @@
             "max"
           ],
           "output_ceiling": 64000
+        },
+        {
+          "model": "apac.anthropic.claude-opus-4-7",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "apac.anthropic.claude-opus-4-8",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "apac.anthropic.claude-opus-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 5.5,
+          "completion_per_1m": 27.5,
+          "cache_read_per_1m": 0.55,
+          "cache_write_per_1m": 6.875,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "apac.anthropic.claude-opus-5-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 4.4,
+          "completion_per_1m": 22,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 5.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "apac.anthropic.claude-sonnet-4-6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.3,
+          "completion_per_1m": 16.5,
+          "cache_read_per_1m": 0.33,
+          "cache_write_per_1m": 4.125,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "apac.anthropic.claude-sonnet-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 2.2,
+          "completion_per_1m": 11,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 2.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "au.anthropic.claude-fable-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 11,
+          "completion_per_1m": 55,
+          "cache_read_per_1m": 1.1,
+          "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "au.anthropic.claude-haiku-4-5-20251001-v1:0",
@@ -1710,6 +1910,22 @@
           "output_ceiling": 64000
         },
         {
+          "model": "global.anthropic.claude-mythos-5-1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 10,
+          "completion_per_1m": 50,
+          "cache_read_per_1m": 0.25,
+          "cache_write_per_1m": 12.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat"
+        },
+        {
           "model": "global.anthropic.claude-opus-4-5-20251101-v1:0",
           "pricing_style": "anthropic",
           "prompt_per_1m": 5,
@@ -2166,6 +2382,45 @@
             "max"
           ],
           "output_ceiling": 64000
+        },
+        {
+          "model": "us.anthropic.claude-mythos-5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 11,
+          "completion_per_1m": 55,
+          "cache_read_per_1m": 1.1,
+          "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "us.anthropic.claude-mythos-5-1",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 11,
+          "completion_per_1m": 55,
+          "cache_read_per_1m": 0.275,
+          "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat"
         },
         {
           "model": "us.anthropic.claude-opus-4-5-20251101-v1:0",
@@ -2956,7 +3211,9 @@
             "video",
             "audio",
             "pdf"
-          ]
+          ],
+          "output_ceiling": 65536,
+          "surface": "chat"
         },
         {
           "model": "deep-research-preview-04-2026",
@@ -2973,7 +3230,9 @@
             "video",
             "audio",
             "pdf"
-          ]
+          ],
+          "output_ceiling": 65536,
+          "surface": "chat"
         },
         {
           "model": "deep-research-pro-preview-12-2025",
@@ -3245,7 +3504,7 @@
             "image"
           ],
           "source": "litellm",
-          "context_window": 65536,
+          "context_window": 131072,
           "effort_levels": [
             "none"
           ],
@@ -3310,7 +3569,7 @@
             "none"
           ],
           "surface": "image",
-          "output_ceiling": 32768
+          "output_ceiling": 65536
         },
         {
           "model": "gemini-3.1-flash-lite",
@@ -5156,6 +5415,30 @@
           "output_ceiling": 128000
         },
         {
+          "model": "gpt-6-luna",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.5,
+          "cache_read_per_1m": 0.01,
+          "cache_write_per_1m": 0.125,
+          "source": "manual",
+          "context_window": 272000,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
           "model": "grok-4.5",
           "pricing_style": "openai",
           "prompt_per_1m": 2,
@@ -5711,6 +5994,29 @@
             "low",
             "medium",
             "xhigh"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "space-bunny-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1048576,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
           ],
           "surface": "chat"
         },
