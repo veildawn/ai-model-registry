@@ -202,6 +202,7 @@ NAMESPACES = {
     "kimi": ["moonshot"],
     "minimax": ["minimax"],
     "qianwen": ["dashscope"],
+    "mimo": ["xiaomi_mimo"],
 }
 
 # Provider files that gain a new row when the vendor's namespace grows. The
@@ -212,6 +213,36 @@ NAMESPACES = {
 #
 # pricing_style is a file-level convention, not an upstream column.
 AUTO_ENROLL = {
+    "deepseek": {
+        "include": re.compile(r"^deepseek-"),
+        "pricing_style": "openai",
+        "surfaces": frozenset({"chat"}),
+    },
+    "glm": {
+        "include": re.compile(r"^glm-"),
+        "pricing_style": "openai",
+        "surfaces": frozenset({"chat"}),
+    },
+    "kimi": {
+        "include": re.compile(r"^(?:kimi-|moonshot-)"),
+        "pricing_style": "openai",
+        "surfaces": frozenset({"chat"}),
+    },
+    "minimax": {
+        "include": re.compile(r"^(?:minimax-|MiniMax-|speech-)"),
+        "pricing_style": "openai",
+        "surfaces": frozenset({"chat", "audio"}),
+    },
+    "qianwen": {
+        "include": re.compile(r"^qwen"),
+        "pricing_style": "openai",
+        "surfaces": frozenset({"chat", "image", "video"}),
+    },
+    "mimo": {
+        "include": re.compile(r"^mimo-"),
+        "pricing_style": "openai",
+        "surfaces": frozenset({"chat", "audio"}),
+    },
     "anthropic": {
         "include": re.compile(r"^claude-(fable|mythos|opus|sonnet|haiku)-"),
         "pricing_style": "anthropic",
@@ -1565,7 +1596,7 @@ def contested_model_facts(rows: list) -> list:
 
 
 def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
-         catalogs=None, host_facts=None):
+         catalogs=None, host_facts=None, target_providers=None):
     idx = index_upstream(upstream)
     applied, disagree, orphans, unclassified, capability, enrolled = [], [], [], [], [], []
     counts = collections.Counter()
@@ -1583,10 +1614,13 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
     first_party = index_first_party(registry_dir)
 
     provider_files = glob.glob(os.path.join(registry_dir, "providers", "*.json"))
+    target_set = set(target_providers) if target_providers else None
     for path in sorted(provider_files, key=provider_pass_order):
         with open(path) as fh:
             doc = json.load(fh, object_pairs_hook=collections.OrderedDict)
         provider = doc["name"]
+        if target_set and provider not in target_set:
+            continue
         dirty = False
 
         # Everything below works on one entry per SERVED id, exactly as it did
@@ -1959,6 +1993,7 @@ def main() -> int:
     parser.add_argument("--check", action="store_true",
                         help="report only; write nothing")
     parser.add_argument("--out", help="also write the report here")
+    parser.add_argument("--provider", action="append", help="only sync these specific providers (can be repeated)")
     args = parser.parse_args()
 
     try:

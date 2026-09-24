@@ -1,0 +1,102 @@
+name: sync first-party provider channels
+
+on:
+  schedule:
+    # Run once an hour (at minute 15)
+    - cron: "15 * * * *"
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: "Specific provider to sync (optional, e.g. mimo, anthropic, codex...)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-firstparty
+  cancel-in-progress: false
+
+jobs:
+  sync-channel:
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        provider:
+          - anthropic
+          - codex
+          - deepseek
+          - gemini
+          - glm
+          - kimi
+          - mimo
+          - minimax
+          - qianwen
+          - xai
+    runs-on: ubuntu-latest
+    steps:
+      - name: check if should run
+        id: filter
+        run: |
+          if [ -n "${{ github.event.inputs.provider }}" ] && [ "${{ github.event.inputs.provider }}" != "${{ matrix.provider }}" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.filter.outputs.skip != 'true'
+        with:
+          fetch-depth: 0
+
+      - name: set up python
+        if: steps.filter.outputs.skip != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: sync mimo if mimo channel
+        if: steps.filter.outputs.skip != 'true' && matrix.provider == 'mimo'
+        run: |
+          set -euo pipefail
+          python3 scripts/sync_mimo.py
+
+      - name: sync provider prices and effort levels
+        if: steps.filter.outputs.skip != 'true'
+        run: |
+          set -euo pipefail
+          # Pull latest main in case a preceding matrix job pushed
+          git pull --rebase origin main || true
+          python3 scripts/sync_prices.py --provider ${{ matrix.provider }} || true
+          python3 scripts/bundle.py
+
+      - name: check for changes
+        if: steps.filter.outputs.skip != 'true'
+        id: check_changes
+        run: |
+          if [ -n "$(git status --porcelain providers all.json)" ]; then
+            echo "changed=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: sign bundle if seed is present
+        if: steps.filter.outputs.skip != 'true' && steps.check_changes.outputs.changed == '1'
+        env:
+          AI_PROXY_REGISTRY_SIGNING_SEED: ${{ secrets.AI_PROXY_REGISTRY_SIGNING_SEED }}
+        run: |
+          set -euo pipefail
+          if [ -n "${AI_PROXY_REGISTRY_SIGNING_SEED:-}" ]; then
+            python3 scripts/sign_bundle.py
+          fi
+
+      - name: commit and push
+        if: steps.filter.outputs.skip != 'true' && steps.check_changes.outputs.changed == '1'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add providers all.json all.json.sig || true
+          git commit -m "chore(${{ matrix.provider }}): auto sync models, rates, and reasoning levels"
+          git pull --rebase origin main || true
+          git push origin main
