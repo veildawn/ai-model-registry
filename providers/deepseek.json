@@ -4,6 +4,111 @@
   "list_prices": true,
   "models": [
     {
+      "model": "deepseek-chat",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.28,
+      "completion_per_1m": 0.42,
+      "cache_read_per_1m": 0.028,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 131072,
+      "output_ceiling": 8192,
+      "surface": "chat"
+    },
+    {
+      "model": "deepseek-coder",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.14,
+      "completion_per_1m": 0.28,
+      "cache_read_per_1m": 0.014,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 128000,
+      "output_ceiling": 4096,
+      "surface": "chat"
+    },
+    {
+      "model": "deepseek-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.006,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 393216,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ]
+    },
+    {
+      "model": "deepseek-r1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.55,
+      "completion_per_1m": 2.19,
+      "cache_read_per_1m": 0.14,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 65536,
+      "output_ceiling": 8192,
+      "surface": "chat",
+      "effort_levels": [
+        "high"
+      ],
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
+      "model": "deepseek-reasoner",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.28,
+      "completion_per_1m": 0.42,
+      "cache_read_per_1m": 0.028,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 131072,
+      "output_ceiling": 65536,
+      "surface": "chat"
+    },
+    {
+      "model": "deepseek-v3",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.27,
+      "completion_per_1m": 1.1,
+      "cache_read_per_1m": 0.07,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 65536,
+      "output_ceiling": 8192,
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
+      "model": "deepseek-v3.2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.28,
+      "completion_per_1m": 0.4,
+      "cache_read_per_1m": 0.028,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 163840,
+      "output_ceiling": 163840,
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
       "model": "deepseek-v4-flash",
       "pricing_style": "openai",
       "prompt_per_1m": 0.22,

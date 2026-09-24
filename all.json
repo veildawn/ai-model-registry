@@ -2644,7 +2644,7 @@
           "source": "manual",
           "price_reviewed": "Cline's own free tier: its catalog endpoint lists this id under `free` and the desktop app prices it at all-zero rates, so $0 is the published price rather than a missing one.",
           "context_window": 1000000,
-          "output_ceiling": 384000,
+          "output_ceiling": 393216,
           "input_modalities": [
             "text",
             "image"
@@ -3154,6 +3154,111 @@
       "display_name": "DeepSeek",
       "list_prices": true,
       "models": [
+        {
+          "model": "deepseek-chat",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.28,
+          "completion_per_1m": 0.42,
+          "cache_read_per_1m": 0.028,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 8192,
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-coder",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.014,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 128000,
+          "output_ceiling": 4096,
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.006,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "deepseek-r1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.55,
+          "completion_per_1m": 2.19,
+          "cache_read_per_1m": 0.14,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 65536,
+          "output_ceiling": 8192,
+          "surface": "chat",
+          "effort_levels": [
+            "high"
+          ],
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "deepseek-reasoner",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.28,
+          "completion_per_1m": 0.42,
+          "cache_read_per_1m": 0.028,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 65536,
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek-v3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.27,
+          "completion_per_1m": 1.1,
+          "cache_read_per_1m": 0.07,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 65536,
+          "output_ceiling": 8192,
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "deepseek-v3.2",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.28,
+          "completion_per_1m": 0.4,
+          "cache_read_per_1m": 0.028,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 163840,
+          "output_ceiling": 163840,
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
         {
           "model": "deepseek-v4-flash",
           "pricing_style": "openai",
@@ -4006,6 +4111,18 @@
       "list_prices": true,
       "models": [
         {
+          "model": "glm-4-32b-0414-128k",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.1,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 128000,
+          "output_ceiling": 32000,
+          "surface": "chat"
+        },
+        {
           "model": "glm-4.5",
           "pricing_style": "openai",
           "prompt_per_1m": 0.6,
@@ -4040,6 +4157,50 @@
           ],
           "surface": "chat",
           "output_ceiling": 32000
+        },
+        {
+          "model": "glm-4.5-airx",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.1,
+          "completion_per_1m": 4.5,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 128000,
+          "output_ceiling": 32000,
+          "surface": "chat"
+        },
+        {
+          "model": "glm-4.5-x",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.2,
+          "completion_per_1m": 8.9,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 128000,
+          "output_ceiling": 32000,
+          "surface": "chat"
+        },
+        {
+          "model": "glm-4.5v",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.6,
+          "completion_per_1m": 1.8,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 128000,
+          "output_ceiling": 32000,
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "high"
+          ]
         },
         {
           "model": "glm-4.6",
@@ -4094,6 +4255,18 @@
             "text"
           ],
           "output_ceiling": 128000
+        },
+        {
+          "model": "glm-5-code",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.2,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 200000,
+          "output_ceiling": 128000,
+          "surface": "chat"
         },
         {
           "model": "glm-5-turbo",
@@ -4274,6 +4447,180 @@
             "high",
             "max"
           ],
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.6,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 262144,
+          "output_ceiling": 262144,
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k2.6",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.16,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 262144,
+          "output_ceiling": 262144,
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "kimi-k2.7-code",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.95,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.19,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 262144,
+          "output_ceiling": 262144,
+          "surface": "chat"
+        },
+        {
+          "model": "kimi-k3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "moonshot-v1-128k",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 131072,
+          "surface": "chat"
+        },
+        {
+          "model": "moonshot-v1-128k-vision-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 131072,
+          "surface": "chat"
+        },
+        {
+          "model": "moonshot-v1-32k",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 32768,
+          "output_ceiling": 32768,
+          "surface": "chat"
+        },
+        {
+          "model": "moonshot-v1-32k-vision-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 32768,
+          "output_ceiling": 32768,
+          "surface": "chat"
+        },
+        {
+          "model": "moonshot-v1-8k",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2,
+          "completion_per_1m": 2,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 8192,
+          "output_ceiling": 8192,
+          "surface": "chat"
+        },
+        {
+          "model": "moonshot-v1-8k-vision-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2,
+          "completion_per_1m": 2,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 8192,
+          "output_ceiling": 8192,
+          "surface": "chat"
+        },
+        {
+          "model": "moonshot-v1-auto",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 131072,
           "surface": "chat"
         }
       ]
@@ -4880,6 +5227,25 @@
           "context_window": 1000000
         },
         {
+          "model": "minimax-m2.1-lightning",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.4,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0.375,
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 8192,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
           "model": "minimax-m2.5",
           "pricing_style": "openai",
           "prompt_per_1m": 0.3,
@@ -4920,6 +5286,18 @@
           "input_modalities": [
             "text"
           ]
+        },
+        {
+          "model": "minimax-m2.5-lightning",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.4,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0.375,
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 8192,
+          "surface": "chat"
         },
         {
           "model": "minimax-m2.7",
@@ -5012,7 +5390,8 @@
           "input_modalities": [
             "text",
             "image"
-          ]
+          ],
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-pro",
@@ -5137,7 +5516,8 @@
             "text",
             "image"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 262144
         },
         {
           "model": "kimi-k2.6",
@@ -5145,10 +5525,19 @@
           "context_window": 262144,
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 262144,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "kimi-k2.7-code",
@@ -5156,10 +5545,10 @@
           "context_window": 262144,
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 262144
         },
         {
           "model": "kimi-k3",
@@ -5167,15 +5556,15 @@
           "context_window": 1048576,
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
           ],
           "effort_levels": [
             "low",
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 1048576
         },
         {
           "model": "minimax-m2.5",
@@ -5297,7 +5686,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-flash",
@@ -5376,7 +5766,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 393216
         },
         {
           "model": "glm-5",
@@ -5511,7 +5902,7 @@
           "cache_read_per_1m": 0.01,
           "cache_write_per_1m": 0.125,
           "source": "manual",
-          "context_window": 272000,
+          "context_window": 922000,
           "output_ceiling": 128000,
           "input_modalities": [
             "text",
@@ -5641,9 +6032,9 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
-          ]
+            "image"
+          ],
+          "output_ceiling": 262144
         },
         {
           "model": "kimi-k2.6",
@@ -5657,8 +6048,17 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
+          ],
+          "output_ceiling": 262144,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
           ]
         },
         {
@@ -5673,9 +6073,9 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
-          ]
+            "image"
+          ],
+          "output_ceiling": 262144
         },
         {
           "model": "kimi-k3",
@@ -5694,9 +6094,9 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
-          ]
+            "image"
+          ],
+          "output_ceiling": 1048576
         },
         {
           "model": "mimo-v2.6-flash",
@@ -6091,17 +6491,17 @@
           "cache_write_per_1m": 0.2,
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
           ],
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 991808,
           "effort_levels": [
             "low",
             "medium",
             "xhigh"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 131072
         },
         {
           "model": "space-bunny-free",
@@ -6322,6 +6722,157 @@
           "output_ceiling": 128000
         },
         {
+          "model": "qwen-coder",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.5,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 16384,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen-max",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.6,
+          "completion_per_1m": 6.4,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 30720,
+          "output_ceiling": 8192,
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "qwen-plus",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.4,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 129024,
+          "output_ceiling": 16384,
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "qwen-turbo",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.05,
+          "completion_per_1m": 0.2,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 129024,
+          "output_ceiling": 16384,
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "qwen3-next-80b-a3b-instruct",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 262144,
+          "output_ceiling": 65536,
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "qwen3-next-80b-a3b-thinking",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "litellm",
+          "context_window": 262144,
+          "output_ceiling": 65536,
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
+        },
+        {
+          "model": "qwen3-vl-235b-a22b-instruct",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.4,
+          "completion_per_1m": 1.6,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 32768,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3-vl-235b-a22b-thinking",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.4,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 32768,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3-vl-32b-instruct",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.16,
+          "completion_per_1m": 0.64,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 32768,
+          "surface": "chat"
+        },
+        {
+          "model": "qwen3-vl-32b-thinking",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.16,
+          "completion_per_1m": 2.87,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 32768,
+          "surface": "chat"
+        },
+        {
           "model": "qwen3.6-flash",
           "pricing_style": "openai",
           "prompt_per_1m": 0.177334,
@@ -6378,6 +6929,27 @@
           "output_ceiling": 65536
         },
         {
+          "model": "qwen3.8-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.47,
+          "cache_read_per_1m": 0.016,
+          "cache_write_per_1m": 0.2,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 991808,
+          "output_ceiling": 131072,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "xhigh"
+          ]
+        },
+        {
           "model": "qwen3.8-max-preview",
           "pricing_style": "openai",
           "prompt_per_1m": 0.17,
@@ -6397,6 +6969,22 @@
             "image",
             "video"
           ]
+        },
+        {
+          "model": "qwen3.8-omni-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.47,
+          "cache_read_per_1m": 0.016,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 991808,
+          "output_ceiling": 131072,
+          "surface": "chat"
         }
       ]
     },
@@ -6456,7 +7044,7 @@
           "cache_read_per_1m": 0.016,
           "cache_write_per_1m": 0.2,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 991808,
           "effort_levels": [
             "low",
             "medium",
@@ -6465,9 +7053,9 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
-          ]
+            "image"
+          ],
+          "output_ceiling": 131072
         },
         {
           "model": "qwen3.7-max",
@@ -6672,9 +7260,9 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
-          ]
+            "image"
+          ],
+          "output_ceiling": 1048576
         },
         {
           "model": "kimi-k2.8-preview",
@@ -6789,7 +7377,7 @@
           "cache_read_per_1m": 0.016,
           "cache_write_per_1m": 0.2,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 991808,
           "effort_levels": [
             "low",
             "medium",
@@ -6798,9 +7386,9 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
-          ]
+            "image"
+          ],
+          "output_ceiling": 131072
         },
         {
           "model": "qwen3.7-max",
@@ -7005,9 +7593,9 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
-          ]
+            "image"
+          ],
+          "output_ceiling": 1048576
         },
         {
           "model": "kimi-k2.8-preview",
@@ -7142,19 +7730,18 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "price_reviewed": "Unpriced: SenseNova Token Plan settles in subscription credits and publishes no USD-per-token list price for this model.",
-          "context_window": 1048576,
+          "context_window": 1000000,
           "input_modalities": [
-            "text"
+            "text",
+            "image"
           ],
           "effort_levels": [
-            "none",
             "low",
-            "medium",
             "high",
-            "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 393216
         },
         {
           "model": "glm-5.2",
@@ -7192,15 +7779,15 @@
           "context_window": 1048576,
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
           ],
           "effort_levels": [
             "low",
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 1048576
         },
         {
           "model": "sensenova-u1-fast",
@@ -7514,7 +8101,8 @@
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 393216
         },
         {
           "model": "deepseek-v4-flash",
@@ -7839,7 +8427,12 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 262144,
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 262144,
+          "input_modalities": [
+            "text",
+            "image"
+          ]
         },
         {
           "model": "kimi-k2.6",
@@ -7856,8 +8449,17 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
+          ],
+          "output_ceiling": 262144,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
           ]
         },
         {
@@ -7872,9 +8474,9 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
-          ]
+            "image"
+          ],
+          "output_ceiling": 262144
         },
         {
           "model": "kimi-k2.7-code-highspeed",
@@ -7913,9 +8515,9 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
-          ]
+            "image"
+          ],
+          "output_ceiling": 1048576
         },
         {
           "model": "minimax-m2.5",
@@ -8128,8 +8730,17 @@
           "surface": "chat",
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
+          ],
+          "output_ceiling": 262144,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
           ]
         },
         {
@@ -8162,9 +8773,9 @@
           ],
           "input_modalities": [
             "text",
-            "image",
-            "video"
-          ]
+            "image"
+          ],
+          "output_ceiling": 1048576
         },
         {
           "model": "minimax-m3",

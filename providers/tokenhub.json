@@ -39,7 +39,8 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 393216
     },
     {
       "model": "deepseek-v4-flash",
@@ -364,7 +365,12 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 262144,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ]
     },
     {
       "model": "kimi-k2.6",
@@ -381,8 +387,17 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
+      ],
+      "output_ceiling": 262144,
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
       ]
     },
     {
@@ -397,9 +412,9 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
-      ]
+        "image"
+      ],
+      "output_ceiling": 262144
     },
     {
       "model": "kimi-k2.7-code-highspeed",
@@ -438,9 +453,9 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
-      ]
+        "image"
+      ],
+      "output_ceiling": 1048576
     },
     {
       "model": "minimax-m2.5",

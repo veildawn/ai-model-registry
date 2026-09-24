@@ -44,6 +44,25 @@
       "context_window": 1000000
     },
     {
+      "model": "minimax-m2.1-lightning",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 2.4,
+      "cache_read_per_1m": 0.03,
+      "cache_write_per_1m": 0.375,
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 8192,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
       "model": "minimax-m2.5",
       "pricing_style": "openai",
       "prompt_per_1m": 0.3,
@@ -84,6 +103,18 @@
       "input_modalities": [
         "text"
       ]
+    },
+    {
+      "model": "minimax-m2.5-lightning",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 2.4,
+      "cache_read_per_1m": 0.03,
+      "cache_write_per_1m": 0.375,
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 8192,
+      "surface": "chat"
     },
     {
       "model": "minimax-m2.7",

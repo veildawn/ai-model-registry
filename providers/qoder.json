@@ -54,7 +54,7 @@
       "cache_read_per_1m": 0.016,
       "cache_write_per_1m": 0.2,
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 991808,
       "effort_levels": [
         "low",
         "medium",
@@ -63,9 +63,9 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
-      ]
+        "image"
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "qwen3.7-max",
@@ -270,9 +270,9 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
-      ]
+        "image"
+      ],
+      "output_ceiling": 1048576
     },
     {
       "model": "kimi-k2.8-preview",

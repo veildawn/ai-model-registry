@@ -46,6 +46,157 @@
       "output_ceiling": 128000
     },
     {
+      "model": "qwen-coder",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.5,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 16384,
+      "surface": "chat"
+    },
+    {
+      "model": "qwen-max",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.6,
+      "completion_per_1m": 6.4,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 30720,
+      "output_ceiling": 8192,
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
+      "model": "qwen-plus",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.4,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 129024,
+      "output_ceiling": 16384,
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
+      "model": "qwen-turbo",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.05,
+      "completion_per_1m": 0.2,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 129024,
+      "output_ceiling": 16384,
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
+      "model": "qwen3-next-80b-a3b-instruct",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 262144,
+      "output_ceiling": 65536,
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
+      "model": "qwen3-next-80b-a3b-thinking",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 262144,
+      "output_ceiling": 65536,
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
+      "model": "qwen3-vl-235b-a22b-instruct",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.4,
+      "completion_per_1m": 1.6,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 131072,
+      "output_ceiling": 32768,
+      "surface": "chat"
+    },
+    {
+      "model": "qwen3-vl-235b-a22b-thinking",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.4,
+      "completion_per_1m": 4,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 131072,
+      "output_ceiling": 32768,
+      "surface": "chat"
+    },
+    {
+      "model": "qwen3-vl-32b-instruct",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.16,
+      "completion_per_1m": 0.64,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 131072,
+      "output_ceiling": 32768,
+      "surface": "chat"
+    },
+    {
+      "model": "qwen3-vl-32b-thinking",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.16,
+      "completion_per_1m": 2.87,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 131072,
+      "output_ceiling": 32768,
+      "surface": "chat"
+    },
+    {
       "model": "qwen3.6-flash",
       "pricing_style": "openai",
       "prompt_per_1m": 0.177334,
@@ -102,6 +253,27 @@
       "output_ceiling": 65536
     },
     {
+      "model": "qwen3.8-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.47,
+      "cache_read_per_1m": 0.016,
+      "cache_write_per_1m": 0.2,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 991808,
+      "output_ceiling": 131072,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "xhigh"
+      ]
+    },
+    {
       "model": "qwen3.8-max-preview",
       "pricing_style": "openai",
       "prompt_per_1m": 0.17,
@@ -121,6 +293,22 @@
         "image",
         "video"
       ]
+    },
+    {
+      "model": "qwen3.8-omni-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.47,
+      "cache_read_per_1m": 0.016,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 991808,
+      "output_ceiling": 131072,
+      "surface": "chat"
     }
   ]
 }

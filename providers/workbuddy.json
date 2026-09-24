@@ -112,8 +112,17 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
+      ],
+      "output_ceiling": 262144,
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
       ]
     },
     {
@@ -146,9 +155,9 @@
       ],
       "input_modalities": [
         "text",
-        "image",
-        "video"
-      ]
+        "image"
+      ],
+      "output_ceiling": 1048576
     },
     {
       "model": "minimax-m3",

@@ -4,6 +4,18 @@
   "list_prices": true,
   "models": [
     {
+      "model": "glm-4-32b-0414-128k",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.1,
+      "completion_per_1m": 0.1,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 128000,
+      "output_ceiling": 32000,
+      "surface": "chat"
+    },
+    {
       "model": "glm-4.5",
       "pricing_style": "openai",
       "prompt_per_1m": 0.6,
@@ -38,6 +50,50 @@
       ],
       "surface": "chat",
       "output_ceiling": 32000
+    },
+    {
+      "model": "glm-4.5-airx",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.1,
+      "completion_per_1m": 4.5,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 128000,
+      "output_ceiling": 32000,
+      "surface": "chat"
+    },
+    {
+      "model": "glm-4.5-x",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2.2,
+      "completion_per_1m": 8.9,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 128000,
+      "output_ceiling": 32000,
+      "surface": "chat"
+    },
+    {
+      "model": "glm-4.5v",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.6,
+      "completion_per_1m": 1.8,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 128000,
+      "output_ceiling": 32000,
+      "surface": "chat",
+      "effort_levels": [
+        "none",
+        "high"
+      ]
     },
     {
       "model": "glm-4.6",
@@ -92,6 +148,18 @@
         "text"
       ],
       "output_ceiling": 128000
+    },
+    {
+      "model": "glm-5-code",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.2,
+      "completion_per_1m": 5,
+      "cache_read_per_1m": 0.3,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 200000,
+      "output_ceiling": 128000,
+      "surface": "chat"
     },
     {
       "model": "glm-5-turbo",

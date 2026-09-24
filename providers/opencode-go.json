@@ -20,7 +20,8 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 393216
     },
     {
       "model": "deepseek-v4-flash",
@@ -99,7 +100,8 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 393216
     },
     {
       "model": "glm-5",
@@ -234,7 +236,7 @@
       "cache_read_per_1m": 0.01,
       "cache_write_per_1m": 0.125,
       "source": "manual",
-      "context_window": 272000,
+      "context_window": 922000,
       "output_ceiling": 128000,
       "input_modalities": [
         "text",
@@ -364,9 +366,9 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
-      ]
+        "image"
+      ],
+      "output_ceiling": 262144
     },
     {
       "model": "kimi-k2.6",
@@ -380,8 +382,17 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
+      ],
+      "output_ceiling": 262144,
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
       ]
     },
     {
@@ -396,9 +407,9 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
-      ]
+        "image"
+      ],
+      "output_ceiling": 262144
     },
     {
       "model": "kimi-k3",
@@ -417,9 +428,9 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
-      ]
+        "image"
+      ],
+      "output_ceiling": 1048576
     },
     {
       "model": "mimo-v2.6-flash",
@@ -814,17 +825,17 @@
       "cache_write_per_1m": 0.2,
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
       ],
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 991808,
       "effort_levels": [
         "low",
         "medium",
         "xhigh"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 131072
     },
     {
       "model": "space-bunny-free",

@@ -71,6 +71,180 @@
         "max"
       ],
       "surface": "chat"
+    },
+    {
+      "model": "kimi-k2.5",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.6,
+      "completion_per_1m": 3,
+      "cache_read_per_1m": 0.1,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 262144,
+      "output_ceiling": 262144,
+      "surface": "chat"
+    },
+    {
+      "model": "kimi-k2.6",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.95,
+      "completion_per_1m": 4,
+      "cache_read_per_1m": 0.16,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 262144,
+      "output_ceiling": 262144,
+      "surface": "chat",
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "model": "kimi-k2.7-code",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.95,
+      "completion_per_1m": 4,
+      "cache_read_per_1m": 0.19,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 262144,
+      "output_ceiling": 262144,
+      "surface": "chat"
+    },
+    {
+      "model": "kimi-k3",
+      "pricing_style": "openai",
+      "prompt_per_1m": 3,
+      "completion_per_1m": 15,
+      "cache_read_per_1m": 0.3,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1048576,
+      "output_ceiling": 1048576,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ]
+    },
+    {
+      "model": "moonshot-v1-128k",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 5,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 131072,
+      "output_ceiling": 131072,
+      "surface": "chat"
+    },
+    {
+      "model": "moonshot-v1-128k-vision-preview",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 5,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 131072,
+      "output_ceiling": 131072,
+      "surface": "chat"
+    },
+    {
+      "model": "moonshot-v1-32k",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1,
+      "completion_per_1m": 3,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 32768,
+      "output_ceiling": 32768,
+      "surface": "chat"
+    },
+    {
+      "model": "moonshot-v1-32k-vision-preview",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1,
+      "completion_per_1m": 3,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 32768,
+      "output_ceiling": 32768,
+      "surface": "chat"
+    },
+    {
+      "model": "moonshot-v1-8k",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.2,
+      "completion_per_1m": 2,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 8192,
+      "output_ceiling": 8192,
+      "surface": "chat"
+    },
+    {
+      "model": "moonshot-v1-8k-vision-preview",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.2,
+      "completion_per_1m": 2,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 8192,
+      "output_ceiling": 8192,
+      "surface": "chat"
+    },
+    {
+      "model": "moonshot-v1-auto",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 5,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "source": "litellm",
+      "context_window": 131072,
+      "output_ceiling": 131072,
+      "surface": "chat"
     }
   ]
 }

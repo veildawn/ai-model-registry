@@ -13,7 +13,7 @@
       "source": "manual",
       "price_reviewed": "Cline's own free tier: its catalog endpoint lists this id under `free` and the desktop app prices it at all-zero rates, so $0 is the published price rather than a missing one.",
       "context_window": 1000000,
-      "output_ceiling": 384000,
+      "output_ceiling": 393216,
       "input_modalities": [
         "text",
         "image"
