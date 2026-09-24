@@ -127,7 +127,13 @@
       "cache_read_per_1m": 1.25,
       "cache_write_per_1m": 0,
       "source": "litellm",
-      "surface": "chat"
+      "surface": "chat",
+      "context_window": 272000,
+      "output_ceiling": 128000,
+      "input_modalities": [
+        "text",
+        "image"
+      ]
     },
     {
       "model": "gpt-5.5-pro",

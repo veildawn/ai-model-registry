@@ -11,8 +11,13 @@ providers carries its own independent price row.
 index.json            # {"version": 1, "providers": ["anthropic", ...]}
 providers/<name>.json # one file per provider
 all.json              # GENERATED: every file above, in one document
+all.json.sig          # GENERATED: all.json's digest, signed (see below)
+keys/registry-signing.pub  # the public key that signature is checked against
 go.mod, registry.go   # the same files, embedded, for offline consumers
 ```
+
+`all.json.sig` is signed, not generated-and-forgotten: it is what makes the
+HTTP path trustworthy. See [Signing](#signing) below.
 
 ### `all.json` — why it exists
 
@@ -85,6 +90,52 @@ Bumping the fallback on the consumer side is `go get
 github.com/veildawn/ai-model-registry@main && go mod tidy`. Untagged pseudo-
 versions are fine — `main` is the only branch and every commit here is a fact
 correction, not an API change.
+
+## Signing
+
+A price is a billing fact, and the HTTP path reads it from a **mutable ref**
+(`raw.githubusercontent.com/veildawn/ai-model-registry/main`) — whatever that
+URL answers at the moment of the fetch. The Go module is pinned in a consumer's
+`go.mod` and checksummed in `go.sum`, so the offline copy cannot be tampered
+with; the live sync had nothing equivalent. A mirror, a poisoned cache, or a
+push that should not have been made all looked the same from the outside.
+
+`all.json.sig` closes that. It signs the digest of `all.json`, bound to the
+artifact's name:
+
+```
+"all.json\n<sha256 of all.json, hex>\n"
+```
+
+The consumer verifies the signature against a public key **pinned in its own
+binary** and refuses the bundle when it does not check out — the sync fails
+loudly and the deployment keeps the registry it already had (at worst the
+embedded module's), rather than billing against bytes nobody can vouch for.
+The key being pinned in the consumer rather than read from here is deliberate:
+a key published next to the data it protects would be rotated by whoever
+compromised the data.
+
+```bash
+python3 scripts/sign_bundle.py --keygen     # a new seed, printed once
+AI_PROXY_REGISTRY_SIGNING_SEED=<hex> python3 scripts/sign_bundle.py
+AI_PROXY_REGISTRY_SIGNING_SEED=<hex> python3 scripts/sign_bundle.py --check
+```
+
+The seed is an environment variable only: never committed, never written to
+disk, never printed except by `--keygen`. The sync workflow signs in the same
+run that regenerates the bundle, and fails the job when the secret is absent —
+pushing an unsigned bundle would be worse than not pushing, because every
+deployment would refuse it.
+
+The signature file is deterministic (same bundle, same key, same bytes): no
+timestamp, so `--check` is a byte comparison and a stale signature is
+un-committable rather than merely discouraged.
+
+`scripts/ed25519.py` is the signing primitive — RFC 8032 from the standard
+library, with no third-party dependency, because the daily price job runs on a
+bare runner. `python3 scripts/ed25519.py --selftest` checks it against a vector
+produced by Go's `crypto/ed25519`, which is the implementation the consumer
+verifies with.
 
 ## Provider file schema
 
@@ -719,3 +770,15 @@ Adding or removing a provider means editing **both** `index.json` and
 `providers/<name>.json`. `go test ./...` here checks the two agree — the Go
 module embeds `providers/*.json` by glob, so a file the index does not list
 compiles fine and is simply never read.
+
+Editing anything that lands in `all.json` — which is every provider file —
+means two generated files, not one:
+
+```bash
+python3 scripts/bundle.py                 # rebuild all.json
+python3 scripts/sign_bundle.py            # re-sign it (needs the seed)
+```
+
+A bundle whose signature is stale is refused by every consumer, so the second
+command is not optional: `sign_bundle.py --check` is the same comparison CI
+makes, and it is what catches a push that rebuilt one and not the other.

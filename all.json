@@ -2874,7 +2874,13 @@
           "cache_read_per_1m": 1.25,
           "cache_write_per_1m": 0,
           "source": "litellm",
-          "surface": "chat"
+          "surface": "chat",
+          "context_window": 272000,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image"
+          ]
         },
         {
           "model": "gpt-5.5-pro",
@@ -4782,7 +4788,10 @@
           "source": "manual",
           "effort_levels": [
             "none"
-          ]
+          ],
+          "context_window": 8192,
+          "output_ceiling": 2048,
+          "surface": "audio"
         },
         {
           "model": "mimo-v2.5-tts",

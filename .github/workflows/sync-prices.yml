@@ -93,13 +93,37 @@ jobs:
         if: steps.sync.outputs.code != '2'
         run: python3 scripts/bundle.py --check
 
+      # Consumers fetch the bundle over HTTP from a mutable ref, and a price is
+      # a billing fact. The signature is what lets them tell this repository's
+      # bundle from anything else answering on that URL, so it is regenerated in
+      # the same run as the bytes it covers and committed with them. Without the
+      # seed the job stops here rather than pushing an unsigned bundle: the
+      # proxy refuses those, so an unsigned push would silently end every
+      # deployment's price updates.
+      - name: sign the bundle
+        if: steps.sync.outputs.code != '2'
+        env:
+          AI_PROXY_REGISTRY_SIGNING_SEED: ${{ secrets.AI_PROXY_REGISTRY_SIGNING_SEED }}
+        run: |
+          set -euo pipefail
+          if [ -z "${AI_PROXY_REGISTRY_SIGNING_SEED}" ]; then
+            echo "::error::AI_PROXY_REGISTRY_SIGNING_SEED is not set. Run 'python3 scripts/sign_bundle.py --keygen', store the seed as that secret, and commit the printed public key as keys/registry-signing.pub. The proxy refuses a bundle without a valid signature, so this job cannot push one."
+            exit 1
+          fi
+          python3 scripts/sign_bundle.py
+          python3 scripts/sign_bundle.py --check
+          if [ -n "$(git status --porcelain all.json.sig)" ]; then
+            echo "changed=1" >> "$GITHUB_OUTPUT"
+          fi
+        id: sign
+
       - name: commit
-        if: steps.sync.outputs.changed == '1' || steps.bundle.outputs.changed == '1'
+        if: steps.sync.outputs.changed == '1' || steps.bundle.outputs.changed == '1' || steps.sign.outputs.changed == '1'
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add providers all.json
+          git add providers all.json all.json.sig
           git commit --file - <<'MSG'
           chore: sync delegated rows from upstream
 
@@ -109,7 +133,9 @@ jobs:
 
           all.json is regenerated from those files by scripts/bundle.py and
           committed with them, so the one-GET bundle consumers fetch can never
-          be older than the files it is built from.
+          be older than the files it is built from. all.json.sig signs that
+          bundle's digest; the proxy refuses a bundle whose signature does not
+          verify against the key pinned in its own binary.
           MSG
           git push
 

@@ -128,7 +128,10 @@
       "source": "manual",
       "effort_levels": [
         "none"
-      ]
+      ],
+      "context_window": 8192,
+      "output_ceiling": 2048,
+      "surface": "audio"
     },
     {
       "model": "mimo-v2.5-tts",
