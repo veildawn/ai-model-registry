@@ -83,19 +83,22 @@ jobs:
         if: steps.filter.outputs.skip != 'true'
         id: check_changes
         run: |
-          if [ -n "$(git status --porcelain providers all.json)" ]; then
+          if [ -n "$(git status --porcelain providers all.json all.json.sig)" ]; then
             echo "changed=1" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: sign bundle if seed is present
+      - name: sign the bundle
         if: steps.filter.outputs.skip != 'true' && steps.check_changes.outputs.changed == '1'
         env:
           AI_PROXY_REGISTRY_SIGNING_SEED: ${{ secrets.AI_PROXY_REGISTRY_SIGNING_SEED }}
         run: |
           set -euo pipefail
-          if [ -n "${AI_PROXY_REGISTRY_SIGNING_SEED:-}" ]; then
-            python3 scripts/sign_bundle.py
+          if [ -z "${AI_PROXY_REGISTRY_SIGNING_SEED:-}" ]; then
+            echo "::error::AI_PROXY_REGISTRY_SIGNING_SEED is not set. The proxy refuses an unsigned bundle, so this job cannot push one."
+            exit 1
           fi
+          python3 scripts/sign_bundle.py
+          python3 scripts/sign_bundle.py --check
 
       - name: commit and push
         if: steps.filter.outputs.skip != 'true' && steps.check_changes.outputs.changed == '1'
@@ -103,7 +106,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add providers all.json all.json.sig || true
+          git add providers all.json all.json.sig
           git commit -m "chore(${{ matrix.provider }}): auto sync models, rates, and reasoning levels"
           git pull --rebase origin main || true
           git push origin main
