@@ -3043,7 +3043,7 @@
             "image"
           ],
           "source": "manual",
-          "context_window": 272000,
+          "context_window": 922000,
           "effort_levels": [
             "none",
             "low",
