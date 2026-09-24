@@ -65,6 +65,12 @@ func TestEmbeddedFilesMatchIndex(t *testing.T) {
 	}
 }
 
+// The delegated sync enrolls an id the vendor's namespace grew that this file
+// does not have (AUTO_ENROLL in scripts/sync_prices.py), so the file now carries
+// litellm rows beside the two official ones — the shape every other first-party
+// file already has. What this test protects is narrower: the official pins are
+// still present, still manual (the sync never rewrites a manual row), and still
+// at DeepSeek's list rates.
 func TestDeepSeekOfficialOffPeakPricing(t *testing.T) {
 	body, err := registry.Files.ReadFile("providers/deepseek.json")
 	if err != nil {
@@ -94,8 +100,7 @@ func TestDeepSeekOfficialOffPeakPricing(t *testing.T) {
 	for _, model := range provider.Models {
 		expected, ok := want[model.Model]
 		if !ok {
-			t.Errorf("unexpected DeepSeek model %q", model.Model)
-			continue
+			continue // a row the sync enrolled; not this test's business
 		}
 		delete(want, model.Model)
 		if model.Source != "manual" {
