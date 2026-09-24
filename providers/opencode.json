@@ -82,7 +82,7 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 1048576,
       "effort_levels": [
         "low",
         "medium",
@@ -94,7 +94,8 @@
         "image",
         "audio",
         "video"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "nemotron-3-ultra-free",

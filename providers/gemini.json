@@ -692,7 +692,13 @@
       "source": "litellm",
       "context_window": 131072,
       "surface": "chat",
-      "output_ceiling": 65536
+      "output_ceiling": 65536,
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "gemini-pro-latest",

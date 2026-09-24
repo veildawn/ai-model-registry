@@ -149,7 +149,13 @@
       "source": "litellm",
       "context_window": 1000000,
       "surface": "chat",
-      "output_ceiling": 1000000
+      "output_ceiling": 1000000,
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ]
     },
     {
       "model": "grok-4.20-reasoning-gv2",

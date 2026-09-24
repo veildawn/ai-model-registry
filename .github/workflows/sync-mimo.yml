@@ -1,0 +1,66 @@
+name: sync mimo first-party models
+
+on:
+  schedule:
+    # Run once an hour (at minute 23 to avoid top-of-hour contention)
+    - cron: "23 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-mimo
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: sync mimo from official documentation
+        id: sync_mimo
+        run: |
+          set -euo pipefail
+          python3 scripts/sync_mimo.py
+
+      - name: sync downstream facts and bundle
+        id: sync_prices
+        run: |
+          set -euo pipefail
+          # sync_prices propagates mimo first-party facts to opencode-go and regenerates all.json
+          python3 scripts/sync_prices.py || true
+          python3 scripts/bundle.py
+
+      - name: check for changes
+        id: check_changes
+        run: |
+          if [ -n "$(git status --porcelain providers all.json)" ]; then
+            echo "changed=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: sign bundle if seed is present
+        if: steps.check_changes.outputs.changed == '1'
+        env:
+          AI_PROXY_REGISTRY_SIGNING_SEED: ${{ secrets.AI_PROXY_REGISTRY_SIGNING_SEED }}
+        run: |
+          set -euo pipefail
+          if [ -n "${AI_PROXY_REGISTRY_SIGNING_SEED:-}" ]; then
+            python3 scripts/sign_bundle.py
+          fi
+
+      - name: commit and push
+        if: steps.check_changes.outputs.changed == '1'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add providers all.json all.json.sig || true
+          git commit -m "chore(mimo): sync MiMo first-party models and specs from official docs"
+          git push

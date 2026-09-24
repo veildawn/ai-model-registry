@@ -4,6 +4,75 @@
   "list_prices": true,
   "models": [
     {
+      "model": "mimo-v2.6-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.435,
+      "completion_per_1m": 0.87,
+      "cache_read_per_1m": 0.0036,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1048576,
+      "output_ceiling": 128000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ]
+    },
+    {
+      "model": "mimo-v2.6-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.14,
+      "completion_per_1m": 0.28,
+      "cache_read_per_1m": 0.0028,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1048576,
+      "output_ceiling": 128000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ]
+    },
+    {
+      "model": "mimo-v2.6-pro-ultraspeed",
+      "pricing_style": "openai",
+      "prompt_per_1m": 4.35,
+      "completion_per_1m": 8.7,
+      "cache_read_per_1m": 0.036,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1048576,
+      "output_ceiling": 128000,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ]
+    },
+    {
       "model": "mimo-v2.5",
       "pricing_style": "openai",
       "prompt_per_1m": 0.14,
@@ -11,7 +80,8 @@
       "cache_read_per_1m": 0.0028,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 1048576,
+      "output_ceiling": 128000,
       "effort_levels": [
         "low",
         "medium",
@@ -33,7 +103,8 @@
       "cache_read_per_1m": 0.0036,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 1048576,
+      "output_ceiling": 128000,
       "effort_levels": [
         "low",
         "medium",
@@ -41,7 +112,10 @@
       ],
       "surface": "chat",
       "input_modalities": [
-        "text"
+        "text",
+        "image",
+        "audio",
+        "video"
       ]
     },
     {
