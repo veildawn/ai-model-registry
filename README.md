@@ -66,7 +66,7 @@ python3 scripts/bundle.py
 ## Two ways to read this data
 
 Over **HTTP** (raw.githubusercontent), which is how a running deployment stays
-current: it syncs at startup, every 24h, and on demand from the admin panel.
+current: it syncs at startup, hourly, and on demand from the admin panel.
 This is the path that wins whenever it succeeds, and it reads `all.json`.
 
 As a **Go module**, which is the offline fallback a consumer builds in:
@@ -187,7 +187,7 @@ it stops being a secret.
 ### What a merge does and does not move
 
 - **The HTTP path.** Nothing further: a deployment syncs `all.json` from `main`
-  at startup, every 24h, and on demand, and verifies the signature before it uses
+  at startup, hourly, and on demand, and verifies the signature before it uses
   anything. Merging is deploying.
 - **The Go module.** A commit here is not a module release by itself; consumers
   pin a version in `go.mod`. When the embedded fallback should carry the change —
