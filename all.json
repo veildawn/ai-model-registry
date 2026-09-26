@@ -7,12 +7,13 @@
       "providers": [
         "anthropic",
         "antigravity",
+        "ark",
         "bedrock",
         "cline",
         "codex",
         "deepseek",
-        "glm",
         "gemini",
+        "glm",
         "kimi",
         "kiro",
         "mimo",
@@ -855,6 +856,126 @@
         "gpt-oss-120b",
         "tab_flash_lite_preview",
         "tab_jump_flash_lite_preview"
+      ]
+    },
+    "providers/ark.json": {
+      "name": "ark",
+      "display_name": "Volcengine Ark",
+      "models": [
+        {
+          "model": "doubao-seed-evolving",
+          "context_window": 1048576,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "source": "manual"
+        },
+        {
+          "model": "doubao-seed-2.1-pro",
+          "context_window": 262144,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "source": "manual"
+        },
+        {
+          "model": "doubao-seed-2.1-lite",
+          "context_window": 262144,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "source": "manual"
+        },
+        {
+          "model": "doubao-seed-2.0-mini",
+          "context_window": 262144,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "source": "manual"
+        },
+        {
+          "model": "doubao-seed-2.1-turbo",
+          "context_window": 262144,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "source": "manual"
+        },
+        {
+          "model": "doubao-seed-2.0-lite",
+          "context_window": 262144,
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "source": "manual"
+        }
       ]
     },
     "providers/bedrock.json": {
