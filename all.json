@@ -6220,6 +6220,21 @@
           "output_ceiling": 1048576
         },
         {
+          "model": "longcat-2.5-preview-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat"
+        },
+        {
           "model": "mimo-v2.6-flash",
           "pricing_style": "openai",
           "prompt_per_1m": 0.14,
