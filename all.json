@@ -7120,7 +7120,13 @@
           "source": "litellm",
           "context_window": 991808,
           "output_ceiling": 131072,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "xhigh"
+          ]
         }
       ]
     },
