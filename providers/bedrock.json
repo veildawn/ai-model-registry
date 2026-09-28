@@ -294,6 +294,29 @@
       "output_ceiling": 128000
     },
     {
+      "model": "anthropic.claude-sonnet-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 2.2,
+      "completion_per_1m": 11,
+      "cache_read_per_1m": 0.22,
+      "cache_write_per_1m": 2.75,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
       "model": "apac.anthropic.claude-fable-5",
       "pricing_style": "anthropic",
       "prompt_per_1m": 11,
@@ -456,6 +479,29 @@
     },
     {
       "model": "apac.anthropic.claude-sonnet-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 2.2,
+      "completion_per_1m": 11,
+      "cache_read_per_1m": 0.22,
+      "cache_write_per_1m": 2.75,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
+      "model": "apac.anthropic.claude-sonnet-5-5",
       "pricing_style": "anthropic",
       "prompt_per_1m": 2.2,
       "completion_per_1m": 11,
@@ -706,6 +752,29 @@
         "max"
       ],
       "output_ceiling": 128000
+    },
+    {
+      "model": "au.anthropic.claude-sonnet-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 2.2,
+      "completion_per_1m": 11,
+      "cache_read_per_1m": 0.22,
+      "cache_write_per_1m": 2.75,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "eu.anthropic.claude-fable-5",
@@ -980,6 +1049,29 @@
         "max"
       ],
       "output_ceiling": 128000
+    },
+    {
+      "model": "eu.anthropic.claude-sonnet-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 2.2,
+      "completion_per_1m": 11,
+      "cache_read_per_1m": 0.22,
+      "cache_write_per_1m": 2.75,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "global.anthropic.claude-fable-5",
@@ -1272,6 +1364,29 @@
       "output_ceiling": 128000
     },
     {
+      "model": "global.anthropic.claude-sonnet-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2.5,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
       "model": "jp.anthropic.claude-haiku-4-5-20251001-v1:0",
       "pricing_style": "anthropic",
       "prompt_per_1m": 1.1,
@@ -1454,6 +1569,29 @@
         "max"
       ],
       "output_ceiling": 128000
+    },
+    {
+      "model": "jp.anthropic.claude-sonnet-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 2.2,
+      "completion_per_1m": 11,
+      "cache_read_per_1m": 0.22,
+      "cache_write_per_1m": 2.75,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "us.anthropic.claude-fable-5",
@@ -1767,6 +1905,29 @@
         "max"
       ],
       "output_ceiling": 128000
+    },
+    {
+      "model": "us.anthropic.claude-sonnet-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 2.2,
+      "completion_per_1m": 11,
+      "cache_read_per_1m": 0.22,
+      "cache_write_per_1m": 2.75,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     }
   ]
 }
