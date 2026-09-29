@@ -190,3 +190,81 @@ func TestStepFunOfficialModels(t *testing.T) {
 		t.Errorf("missing StepFun model %q", model)
 	}
 }
+
+// TestTokenHubV41FlashPinsTheOffPeakChoice covers the two spellings of
+// DeepSeek-V4.1-Flash TokenHub serves — `deepseek/deepseek-flash` (原厂直供,
+// DeepSeek's own supply) and `deepseek-v4.1-flash` (platform-hosted). Tencent
+// bills both on a peak/off-peak table and the rows deliberately store the
+// off-peak column, so a change to either number means somebody re-decided that
+// flattening rather than refreshed a rate.
+func TestTokenHubV41FlashPinsTheOffPeakChoice(t *testing.T) {
+	body, err := registry.Files.ReadFile("providers/tokenhub.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var provider struct {
+		Models []struct {
+			Model           string   `json:"model"`
+			PromptPer1M     float64  `json:"prompt_per_1m"`
+			CompletionPer1M float64  `json:"completion_per_1m"`
+			CacheReadPer1M  float64  `json:"cache_read_per_1m"`
+			CacheWritePer1M float64  `json:"cache_write_per_1m"`
+			Source          string   `json:"source"`
+			ContextWindow   int      `json:"context_window"`
+			OutputCeiling   int      `json:"output_ceiling"`
+			InputModalities []string `json:"input_modalities"`
+			EffortLevels    []string `json:"effort_levels"`
+		} `json:"models"`
+	}
+	if err := json.Unmarshal(body, &provider); err != nil {
+		t.Fatal(err)
+	}
+
+	// 1 / 4 / 0.02 CNY per 1M at the repo's frozen ECB rate of 6.7669.
+	const (
+		input     = 0.147778
+		output    = 0.591113
+		cacheRead = 0.002956
+	)
+	want := map[string]bool{
+		"deepseek/deepseek-flash": false,
+		"deepseek-v4.1-flash":     false,
+	}
+	for _, model := range provider.Models {
+		seen, ok := want[model.Model]
+		if !ok {
+			continue
+		}
+		if seen {
+			t.Errorf("%s is published twice", model.Model)
+		}
+		want[model.Model] = true
+
+		if model.PromptPer1M != input || model.CompletionPer1M != output ||
+			model.CacheReadPer1M != cacheRead || model.CacheWritePer1M != 0 {
+			t.Errorf("%s rates = %v/%v/%v/%v, want off-peak %v/%v/%v/0",
+				model.Model, model.PromptPer1M, model.CompletionPer1M,
+				model.CacheReadPer1M, model.CacheWritePer1M, input, output, cacheRead)
+		}
+		if model.Source != "manual" {
+			t.Errorf("%s source = %q, want manual so the daily sync cannot rewrite it",
+				model.Model, model.Source)
+		}
+		// Tencent publishes 1M context / 384k output, and the model reads images.
+		if model.ContextWindow != 1000000 || model.OutputCeiling != 393216 {
+			t.Errorf("%s window/ceiling = %d/%d, want 1000000/393216",
+				model.Model, model.ContextWindow, model.OutputCeiling)
+		}
+		if got := strings.Join(model.InputModalities, ","); got != "text,image" {
+			t.Errorf("%s input_modalities = %q, want %q", model.Model, got, "text,image")
+		}
+		if got := strings.Join(model.EffortLevels, ","); got != "low,high,max" {
+			t.Errorf("%s effort_levels = %q, want %q", model.Model, got, "low,high,max")
+		}
+	}
+	for model, found := range want {
+		if !found {
+			t.Errorf("missing TokenHub V4.1 Flash row %q", model)
+		}
+	}
+}
