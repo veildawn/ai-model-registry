@@ -339,6 +339,29 @@
       "output_ceiling": 128000
     },
     {
+      "model": "gpt-6.1-sol",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.1,
+      "cache_write_per_1m": 2.5,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 922000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
       "model": "gpt-image-2",
       "pricing_style": "openai",
       "prompt_per_1m": 5,
