@@ -5956,6 +5956,20 @@
           "surface": "chat"
         },
         {
+          "model": "mistral-large-4",
+          "source": "manual",
+          "context_window": 524288,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
           "model": "nemotron-3-nano:30b",
           "source": "manual",
           "context_window": 1048576,
