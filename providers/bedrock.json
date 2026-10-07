@@ -73,6 +73,29 @@
       "output_ceiling": 64000
     },
     {
+      "model": "anthropic.claude-haiku-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 0.11,
+      "completion_per_1m": 0.55,
+      "cache_read_per_1m": 0.011,
+      "cache_write_per_1m": 0.1375,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
       "model": "anthropic.claude-mythos-5-1",
       "pricing_style": "anthropic",
       "prompt_per_1m": 11,
@@ -363,6 +386,29 @@
       "output_ceiling": 64000
     },
     {
+      "model": "apac.anthropic.claude-haiku-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 0.11,
+      "completion_per_1m": 0.55,
+      "cache_read_per_1m": 0.011,
+      "cache_write_per_1m": 0.1375,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
       "model": "apac.anthropic.claude-opus-4-7",
       "pricing_style": "anthropic",
       "prompt_per_1m": 5.5,
@@ -568,6 +614,29 @@
         "max"
       ],
       "output_ceiling": 64000
+    },
+    {
+      "model": "au.anthropic.claude-haiku-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 0.11,
+      "completion_per_1m": 0.55,
+      "cache_read_per_1m": 0.011,
+      "cache_write_per_1m": 0.1375,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "au.anthropic.claude-opus-4-6-v1",
@@ -844,6 +913,29 @@
         "max"
       ],
       "output_ceiling": 64000
+    },
+    {
+      "model": "eu.anthropic.claude-haiku-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 0.11,
+      "completion_per_1m": 0.55,
+      "cache_read_per_1m": 0.011,
+      "cache_write_per_1m": 0.1375,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "eu.anthropic.claude-opus-4-5-20251101-v1:0",
@@ -1143,6 +1235,29 @@
       "output_ceiling": 64000
     },
     {
+      "model": "global.anthropic.claude-haiku-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 0.1,
+      "completion_per_1m": 0.5,
+      "cache_read_per_1m": 0.01,
+      "cache_write_per_1m": 0.125,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
       "model": "global.anthropic.claude-mythos-5-1",
       "pricing_style": "anthropic",
       "prompt_per_1m": 10,
@@ -1410,6 +1525,29 @@
       "output_ceiling": 64000
     },
     {
+      "model": "jp.anthropic.claude-haiku-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 0.11,
+      "completion_per_1m": 0.55,
+      "cache_read_per_1m": 0.011,
+      "cache_write_per_1m": 0.1375,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
       "model": "jp.anthropic.claude-opus-4-7",
       "pricing_style": "anthropic",
       "prompt_per_1m": 5.5,
@@ -1661,6 +1799,29 @@
         "max"
       ],
       "output_ceiling": 64000
+    },
+    {
+      "model": "us.anthropic.claude-haiku-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 0.11,
+      "completion_per_1m": 0.55,
+      "cache_read_per_1m": 0.011,
+      "cache_write_per_1m": 0.1375,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "us.anthropic.claude-mythos-5",

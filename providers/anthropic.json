@@ -73,6 +73,29 @@
       "output_ceiling": 64000
     },
     {
+      "model": "claude-haiku-5-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 0.1,
+      "completion_per_1m": 0.5,
+      "cache_read_per_1m": 0.01,
+      "cache_write_per_1m": 0.125,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
       "model": "claude-mythos-5",
       "pricing_style": "anthropic",
       "prompt_per_1m": 10,
@@ -321,7 +344,7 @@
       "pricing_style": "anthropic",
       "prompt_per_1m": 2,
       "completion_per_1m": 10,
-      "cache_read_per_1m": 0.2,
+      "cache_read_per_1m": 0.1,
       "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
