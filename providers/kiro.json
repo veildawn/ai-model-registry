@@ -163,7 +163,7 @@
         "pdf"
       ],
       "source": "vendor-api",
-      "context_window": 1000000,
+      "context_window": 200000,
       "surface": "chat",
       "output_ceiling": 64000
     },

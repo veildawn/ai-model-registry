@@ -1347,7 +1347,7 @@
           "pricing_style": "anthropic",
           "prompt_per_1m": 2.2,
           "completion_per_1m": 11,
-          "cache_read_per_1m": 0.22,
+          "cache_read_per_1m": 0.11,
           "cache_write_per_1m": 2.75,
           "input_modalities": [
             "text",
@@ -1577,7 +1577,7 @@
           "pricing_style": "anthropic",
           "prompt_per_1m": 2.2,
           "completion_per_1m": 11,
-          "cache_read_per_1m": 0.22,
+          "cache_read_per_1m": 0.11,
           "cache_write_per_1m": 2.75,
           "input_modalities": [
             "text",
@@ -1853,7 +1853,7 @@
           "pricing_style": "anthropic",
           "prompt_per_1m": 2.2,
           "completion_per_1m": 11,
-          "cache_read_per_1m": 0.22,
+          "cache_read_per_1m": 0.11,
           "cache_write_per_1m": 2.75,
           "input_modalities": [
             "text",
@@ -2173,7 +2173,7 @@
           "pricing_style": "anthropic",
           "prompt_per_1m": 2.2,
           "completion_per_1m": 11,
-          "cache_read_per_1m": 0.22,
+          "cache_read_per_1m": 0.11,
           "cache_write_per_1m": 2.75,
           "input_modalities": [
             "text",
@@ -2509,7 +2509,7 @@
           "pricing_style": "anthropic",
           "prompt_per_1m": 2,
           "completion_per_1m": 10,
-          "cache_read_per_1m": 0.2,
+          "cache_read_per_1m": 0.1,
           "cache_write_per_1m": 2.5,
           "input_modalities": [
             "text",
@@ -2739,7 +2739,7 @@
           "pricing_style": "anthropic",
           "prompt_per_1m": 2.2,
           "completion_per_1m": 11,
-          "cache_read_per_1m": 0.22,
+          "cache_read_per_1m": 0.11,
           "cache_write_per_1m": 2.75,
           "input_modalities": [
             "text",
@@ -3098,7 +3098,7 @@
           "pricing_style": "anthropic",
           "prompt_per_1m": 2.2,
           "completion_per_1m": 11,
-          "cache_read_per_1m": 0.22,
+          "cache_read_per_1m": 0.11,
           "cache_write_per_1m": 2.75,
           "input_modalities": [
             "text",
@@ -5304,7 +5304,7 @@
             "pdf"
           ],
           "source": "vendor-api",
-          "context_window": 1000000,
+          "context_window": 200000,
           "surface": "chat",
           "output_ceiling": 64000
         },

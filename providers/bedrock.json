@@ -321,7 +321,7 @@
       "pricing_style": "anthropic",
       "prompt_per_1m": 2.2,
       "completion_per_1m": 11,
-      "cache_read_per_1m": 0.22,
+      "cache_read_per_1m": 0.11,
       "cache_write_per_1m": 2.75,
       "input_modalities": [
         "text",
@@ -551,7 +551,7 @@
       "pricing_style": "anthropic",
       "prompt_per_1m": 2.2,
       "completion_per_1m": 11,
-      "cache_read_per_1m": 0.22,
+      "cache_read_per_1m": 0.11,
       "cache_write_per_1m": 2.75,
       "input_modalities": [
         "text",
@@ -827,7 +827,7 @@
       "pricing_style": "anthropic",
       "prompt_per_1m": 2.2,
       "completion_per_1m": 11,
-      "cache_read_per_1m": 0.22,
+      "cache_read_per_1m": 0.11,
       "cache_write_per_1m": 2.75,
       "input_modalities": [
         "text",
@@ -1147,7 +1147,7 @@
       "pricing_style": "anthropic",
       "prompt_per_1m": 2.2,
       "completion_per_1m": 11,
-      "cache_read_per_1m": 0.22,
+      "cache_read_per_1m": 0.11,
       "cache_write_per_1m": 2.75,
       "input_modalities": [
         "text",
@@ -1483,7 +1483,7 @@
       "pricing_style": "anthropic",
       "prompt_per_1m": 2,
       "completion_per_1m": 10,
-      "cache_read_per_1m": 0.2,
+      "cache_read_per_1m": 0.1,
       "cache_write_per_1m": 2.5,
       "input_modalities": [
         "text",
@@ -1713,7 +1713,7 @@
       "pricing_style": "anthropic",
       "prompt_per_1m": 2.2,
       "completion_per_1m": 11,
-      "cache_read_per_1m": 0.22,
+      "cache_read_per_1m": 0.11,
       "cache_write_per_1m": 2.75,
       "input_modalities": [
         "text",
@@ -2072,7 +2072,7 @@
       "pricing_style": "anthropic",
       "prompt_per_1m": 2.2,
       "completion_per_1m": 11,
-      "cache_read_per_1m": 0.22,
+      "cache_read_per_1m": 0.11,
       "cache_write_per_1m": 2.75,
       "input_modalities": [
         "text",
