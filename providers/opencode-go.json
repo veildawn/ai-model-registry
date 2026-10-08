@@ -582,10 +582,7 @@
       ],
       "surface": "chat",
       "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
+        "text"
       ],
       "output_ceiling": 128000
     },

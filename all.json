@@ -5610,10 +5610,7 @@
           ],
           "surface": "chat",
           "input_modalities": [
-            "text",
-            "image",
-            "audio",
-            "video"
+            "text"
           ]
         },
         {
@@ -5647,11 +5644,11 @@
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
           "source": "manual",
+          "context_window": 8192,
+          "output_ceiling": 2048,
           "effort_levels": [
             "none"
           ],
-          "context_window": 8192,
-          "output_ceiling": 2048,
           "surface": "audio"
         },
         {
@@ -6776,10 +6773,7 @@
           ],
           "surface": "chat",
           "input_modalities": [
-            "text",
-            "image",
-            "audio",
-            "video"
+            "text"
           ],
           "output_ceiling": 128000
         },
@@ -7201,10 +7195,7 @@
           ],
           "surface": "chat",
           "input_modalities": [
-            "text",
-            "image",
-            "audio",
-            "video"
+            "text"
           ],
           "output_ceiling": 128000
         },
