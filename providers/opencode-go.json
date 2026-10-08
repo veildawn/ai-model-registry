@@ -3,6 +3,29 @@
   "display_name": "OpenCode Go",
   "models": [
     {
+      "model": "claude-haiku-5-5",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.1,
+      "completion_per_1m": 0.5,
+      "cache_read_per_1m": 0.01,
+      "cache_write_per_1m": 0.125,
+      "source": "manual",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
       "model": "deepseek-flash",
       "pricing_style": "openai",
       "prompt_per_1m": 0.15,
@@ -892,6 +915,28 @@
         "high",
         "xhigh",
         "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "step-5-preview-free",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.034447,
+      "completion_per_1m": 2.955563,
+      "cache_read_per_1m": 0.051722,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000,
+      "output_ceiling": 1000000,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
       ],
       "surface": "chat"
     },

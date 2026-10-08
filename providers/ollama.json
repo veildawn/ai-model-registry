@@ -268,7 +268,7 @@
     {
       "model": "mistral-large-4",
       "source": "manual",
-      "context_window": 524288,
+      "context_window": 1048576,
       "input_modalities": [
         "text",
         "image"
