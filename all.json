@@ -7440,7 +7440,12 @@
           "source": "litellm",
           "context_window": 131072,
           "output_ceiling": 32768,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "qwen3-vl-32b-instruct",
