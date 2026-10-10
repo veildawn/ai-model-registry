@@ -129,6 +129,8 @@ func TestStepFunOfficialModels(t *testing.T) {
 			CacheWritePer1M float64  `json:"cache_write_per_1m"`
 			Source          string   `json:"source"`
 			Surface         string   `json:"surface"`
+			ContextWindow   int      `json:"context_window"`
+			OutputCeiling   int      `json:"output_ceiling"`
 			EffortLevels    []string `json:"effort_levels"`
 		} `json:"models"`
 	}
@@ -188,6 +190,58 @@ func TestStepFunOfficialModels(t *testing.T) {
 	}
 	for model := range want {
 		t.Errorf("missing StepFun model %q", model)
+	}
+}
+
+// TestStep5WindowAndCeilingAreDifferentNumbers pins the one Step 5 fact that
+// looks like a typo when it is not: Step publishes a 1M-token CONTEXT window
+// and a 64k maximum RESPONSE as two separate figures, and the window must never
+// be copied into the ceiling.
+//
+// It was copied, once, and the cost was not a display oddity. A consumer
+// folding a request into a dialect with a required output bound (Messages'
+// max_tokens) reads output_ceiling to fill it, so step-5-preview asked upstream
+// for max_tokens=1000000 on a model whose own ceiling is 64000 — a request the
+// upstream refuses, on the flagship id, on every Claude-shaped client.
+//
+// The spec sheet's "max_tokens defaults to INF" is why this is a ceiling worth
+// storing rather than leaving blank: the vendor states 64k as the maximum
+// response length, and a blank would make the host fall back to a floor two
+// orders of magnitude below what the model will actually return.
+func TestStep5WindowAndCeilingAreDifferentNumbers(t *testing.T) {
+	for _, file := range []string{"providers/stepfun.json", "providers/opencode-go.json"} {
+		body, err := registry.Files.ReadFile(file)
+		if err != nil {
+			t.Fatalf("%s: %v", file, err)
+		}
+		var provider struct {
+			Models []struct {
+				Model         string `json:"model"`
+				ContextWindow int    `json:"context_window"`
+				OutputCeiling int    `json:"output_ceiling"`
+			} `json:"models"`
+		}
+		if err := json.Unmarshal(body, &provider); err != nil {
+			t.Fatalf("%s: %v", file, err)
+		}
+		for _, model := range provider.Models {
+			// Scoped by ID, not by window: opencode-go resells a dozen
+			// 1M-context models and every other vendor publishes its own
+			// ceiling. The 1M/64k pair is a Step 5 fact and nothing else's.
+			if !strings.HasPrefix(model.Model, "step-5") {
+				continue
+			}
+			if model.ContextWindow != 1000000 {
+				t.Errorf("%s %s context_window = %d, want 1000000", file, model.Model, model.ContextWindow)
+				continue
+			}
+			if model.OutputCeiling != 64000 {
+				t.Errorf("%s %s output_ceiling = %d, want 64000 — the context "+
+					"window is 1M and the maximum response is 64k; conflating them "+
+					"makes a Messages fold ask for more output than the model allows",
+					file, model.Model, model.OutputCeiling)
+			}
+		}
 	}
 }
 

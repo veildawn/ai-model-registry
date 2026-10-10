@@ -13,7 +13,7 @@
       "source": "manual",
       "price_reviewed": "StepFun official list (7/20/0.35 CNY) at ECB 6.7669; Step Plan settles in subscription credits (1M Credit = 1 CNY).",
       "context_window": 1000000,
-      "output_ceiling": 1000000,
+      "output_ceiling": 64000,
       "input_modalities": [
         "text",
         "image",

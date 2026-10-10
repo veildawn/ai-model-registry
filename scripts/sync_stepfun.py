@@ -96,7 +96,14 @@ def sync_stepfun(check: bool = False) -> tuple[int, list[str]]:
     specs = {
         "step-5-preview": {
             "context_window": 1000000,
-            "output_ceiling": 1000000,
+            # The published maximum RESPONSE length, not the context window.
+            # Step's spec sheet lists 1M tokens of context and 64k of output as
+            # separate figures; writing the window here made every Messages fold
+            # for this model ask upstream for max_tokens=1000000 and get
+            # rejected. The docs also state max_tokens defaults to INF and is
+            # bounded by the context length, so 64000 is the vendor's own
+            # ceiling, not a conservative guess.
+            "output_ceiling": 64000,
             "input_modalities": ["text", "image", "video"],
             "effort_levels": ["low", "medium", "high"],
             "surface": "chat",
