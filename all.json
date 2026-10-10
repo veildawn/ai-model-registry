@@ -3305,6 +3305,481 @@
             "text"
           ],
           "surface": "chat"
+        },
+        {
+          "model": "cline-pass/deepseek-v4.1-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.22,
+          "completion_per_1m": 0.66,
+          "cache_read_per_1m": 0.007,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "cline-pass/mimo-v2.6-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Xiaomi MiMo official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 1048576,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/mimo-v2.6-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.435,
+          "completion_per_1m": 0.87,
+          "cache_read_per_1m": 0.0036,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Xiaomi MiMo official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 1048576,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/glm-5.3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.4,
+          "completion_per_1m": 4.4,
+          "cache_read_per_1m": 0.26,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Zhipu official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "cline-pass/deepseek-v4-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.66,
+          "completion_per_1m": 1.98,
+          "cache_read_per_1m": 0.022,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "cline-pass/qwen3.8-max",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.0,
+          "completion_per_1m": 6.0,
+          "cache_read_per_1m": 0.25,
+          "cache_write_per_1m": 2.5,
+          "source": "manual",
+          "price_reviewed": "Qwen official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image",
+            "video",
+            "pdf"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "xhigh"
+          ]
+        },
+        {
+          "model": "cline-pass/muse-spark-1.3-contributor",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.2,
+          "cache_read_per_1m": 0.002,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Muse Spark contributor list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 1048576,
+          "output_ceiling": 943718,
+          "input_modalities": [
+            "text",
+            "image",
+            "video",
+            "pdf",
+            "audio"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "cline-pass/kimi-k3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.955563,
+          "completion_per_1m": 14.777816,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Moonshot official list (20/100/2 CNY) at ECB 6.7669; Cline Pass settles in subscription credits.",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "cline-pass/glm-5.3-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.075,
+          "completion_per_1m": 0.25,
+          "cache_read_per_1m": 0.015,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Zhipu official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "cline-pass/qwen3.7-plus",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.295556,
+          "completion_per_1m": 1.182225,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Qwen official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 991808,
+          "output_ceiling": 65536,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "max"
+          ]
+        },
+        {
+          "model": "cline-pass/qwen3.7-max",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.5,
+          "completion_per_1m": 7.5,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Qwen official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 991808,
+          "output_ceiling": 65536,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "max"
+          ]
+        },
+        {
+          "model": "cline-pass/minimax-m3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.06,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "MiniMax official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/mimo-v2.5-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.435,
+          "completion_per_1m": 0.87,
+          "cache_read_per_1m": 0.0036,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Xiaomi MiMo official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 1048576,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "cline-pass/mimo-v2.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Xiaomi MiMo official list rates for reference; Cline Pass settles in subscription credits.",
+          "context_window": 1048576,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "cline-cloud/deepseek-v4.1-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.22,
+          "completion_per_1m": 0.66,
+          "cache_read_per_1m": 0.007,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates for reference; Cline Cloud settles in subscription credits.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "anthropic/claude-sonnet-5.5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 2.0,
+          "completion_per_1m": 10.0,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 2.5,
+          "source": "manual",
+          "price_reviewed": "Anthropic official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "anthropic/claude-opus-5.5",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 4.0,
+          "completion_per_1m": 20.0,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 5.0,
+          "source": "manual",
+          "price_reviewed": "Anthropic official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "x-ai/grok-4.7",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.0,
+          "completion_per_1m": 6.0,
+          "cache_read_per_1m": 0.5,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "xAI official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 500000,
+          "output_ceiling": 500000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ]
+        },
+        {
+          "model": "openai/gpt-6-astra",
+          "pricing_style": "openai",
+          "prompt_per_1m": 10.0,
+          "completion_per_1m": 50.0,
+          "cache_read_per_1m": 1.0,
+          "cache_write_per_1m": 12.5,
+          "source": "manual",
+          "price_reviewed": "OpenAI official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 272000,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "openai/gpt-6.1-sol",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.0,
+          "completion_per_1m": 10.0,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 2.5,
+          "source": "manual",
+          "price_reviewed": "OpenAI official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 922000,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "moonshotai/kimi-k3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.955563,
+          "completion_per_1m": 14.777816,
+          "cache_read_per_1m": 0.295556,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Moonshot official list (20/100/2 CNY) at ECB 6.7669 as served over Cline OpenRouter passthrough.",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
         }
       ]
     },
