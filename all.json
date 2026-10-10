@@ -6427,6 +6427,21 @@
       "display_name": "Ollama",
       "models": [
         {
+          "model": "deepseek-v4-flash",
+          "source": "manual",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
           "model": "deepseek-v4.1-flash",
           "source": "manual",
           "context_window": 1000000,
