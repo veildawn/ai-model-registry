@@ -7897,6 +7897,12 @@
           "context_window": 262144,
           "input_modalities": [
             "text"
+          ],
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high"
           ]
         }
       ]
