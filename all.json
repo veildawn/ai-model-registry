@@ -4229,7 +4229,12 @@
           "source": "litellm",
           "context_window": 131072,
           "output_ceiling": 8192,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "low",
+            "high"
+          ]
         },
         {
           "model": "deepseek-coder",
@@ -6746,6 +6751,16 @@
       "name": "opencode-go",
       "display_name": "OpenCode Go",
       "models": [
+        {
+          "model": "cat-jam-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "surface": "chat"
+        },
         {
           "model": "claude-haiku-5-5",
           "pricing_style": "openai",

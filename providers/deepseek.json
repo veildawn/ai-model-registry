@@ -13,7 +13,12 @@
       "source": "litellm",
       "context_window": 131072,
       "output_ceiling": 8192,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "none",
+        "low",
+        "high"
+      ]
     },
     {
       "model": "deepseek-coder",
