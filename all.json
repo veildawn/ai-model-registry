@@ -837,6 +837,29 @@
           }
         },
         {
+          "model": "gemini-4-argon",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "output_ceiling": 65536,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
           "model": "gemini-pro-agent",
           "pricing_style": "openai",
           "prompt_per_1m": 2,
@@ -5005,6 +5028,29 @@
           "output_ceiling": 65536
         },
         {
+          "model": "gemini-4-argon",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "output_ceiling": 65536,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
           "model": "gemini-flash-latest",
           "pricing_style": "openai",
           "prompt_per_1m": 0.75,
@@ -6759,7 +6805,18 @@
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "surface": "chat"
+          "surface": "chat",
+          "context_window": 262144,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "claude-haiku-5-5",

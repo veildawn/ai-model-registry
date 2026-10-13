@@ -10,7 +10,18 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "surface": "chat"
+      "surface": "chat",
+      "context_window": 262144,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "claude-haiku-5-5",
