@@ -5893,7 +5893,12 @@
           "source": "vendor-api",
           "context_window": 1000000,
           "surface": "chat",
-          "output_ceiling": 64000
+          "output_ceiling": 64000,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
         },
         {
           "model": "claude-sonnet-4.5",
