@@ -280,6 +280,22 @@
       "surface": "chat"
     },
     {
+      "model": "muse-spark-open",
+      "source": "manual",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "surface": "chat"
+    },
+    {
       "model": "nemotron-3-nano:30b",
       "source": "manual",
       "context_window": 1048576,

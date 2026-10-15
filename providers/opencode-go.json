@@ -11,7 +11,7 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "surface": "chat",
-      "context_window": 262144,
+      "context_window": 1048576,
       "input_modalities": [
         "text"
       ],
@@ -959,6 +959,28 @@
         "high",
         "xhigh",
         "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "step-5-preview",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.034447,
+      "completion_per_1m": 2.955563,
+      "cache_read_per_1m": 0.051722,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000,
+      "output_ceiling": 64000,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
       ],
       "surface": "chat"
     },
