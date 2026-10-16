@@ -450,7 +450,7 @@
       ],
       "source": "vendor-api",
       "context_window": 1048576,
-      "output_ceiling": 65536,
+      "output_ceiling": 1048576,
       "surface": "chat",
       "effort_levels": [
         "low",
