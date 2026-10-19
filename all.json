@@ -3333,10 +3333,10 @@
         {
           "model": "cline-pass/deepseek-v4.1-flash",
           "pricing_style": "openai",
-          "prompt_per_1m": 0.22,
-          "completion_per_1m": 0.66,
-          "cache_read_per_1m": 0.007,
-          "cache_write_per_1m": 0,
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.006,
+          "cache_write_per_1m": 0.0,
           "source": "manual",
           "price_reviewed": "DeepSeek official list rates for reference; Cline Pass settles in subscription credits.",
           "context_window": 1000000,
@@ -3496,12 +3496,12 @@
         {
           "model": "cline-pass/kimi-k3",
           "pricing_style": "openai",
-          "prompt_per_1m": 2.955563,
-          "completion_per_1m": 14.777816,
-          "cache_read_per_1m": 0.295556,
-          "cache_write_per_1m": 0,
+          "prompt_per_1m": 3.0,
+          "completion_per_1m": 15.0,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 0.0,
           "source": "manual",
-          "price_reviewed": "Moonshot official list (20/100/2 CNY) at ECB 6.7669; Cline Pass settles in subscription credits.",
+          "price_reviewed": "Moonshot official list rates for reference; Cline Pass settles in subscription credits.",
           "context_window": 1048576,
           "output_ceiling": 1048576,
           "input_modalities": [
@@ -3518,10 +3518,10 @@
         {
           "model": "cline-pass/glm-5.3-flash",
           "pricing_style": "openai",
-          "prompt_per_1m": 0.075,
-          "completion_per_1m": 0.25,
-          "cache_read_per_1m": 0.015,
-          "cache_write_per_1m": 0,
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.5,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0.0,
           "source": "manual",
           "price_reviewed": "Zhipu official list rates for reference; Cline Pass settles in subscription credits.",
           "context_window": 1000000,
@@ -3541,10 +3541,10 @@
         {
           "model": "cline-pass/qwen3.7-plus",
           "pricing_style": "openai",
-          "prompt_per_1m": 0.295556,
-          "completion_per_1m": 1.182225,
-          "cache_read_per_1m": 0,
-          "cache_write_per_1m": 0,
+          "prompt_per_1m": 0.4,
+          "completion_per_1m": 1.6,
+          "cache_read_per_1m": 0.04,
+          "cache_write_per_1m": 0.5,
           "source": "manual",
           "price_reviewed": "Qwen official list rates for reference; Cline Pass settles in subscription credits.",
           "context_window": 991808,
@@ -3564,7 +3564,7 @@
           "prompt_per_1m": 2.5,
           "completion_per_1m": 7.5,
           "cache_read_per_1m": 0.5,
-          "cache_write_per_1m": 0,
+          "cache_write_per_1m": 3.125,
           "source": "manual",
           "price_reviewed": "Qwen official list rates for reference; Cline Pass settles in subscription credits.",
           "context_window": 991808,
@@ -3604,10 +3604,10 @@
         {
           "model": "cline-pass/mimo-v2.5-pro",
           "pricing_style": "openai",
-          "prompt_per_1m": 0.435,
-          "completion_per_1m": 0.87,
-          "cache_read_per_1m": 0.0036,
-          "cache_write_per_1m": 0,
+          "prompt_per_1m": 1.74,
+          "completion_per_1m": 3.48,
+          "cache_read_per_1m": 0.0145,
+          "cache_write_per_1m": 0.0,
           "source": "manual",
           "price_reviewed": "Xiaomi MiMo official list rates for reference; Cline Pass settles in subscription credits.",
           "context_window": 1048576,
@@ -3649,10 +3649,10 @@
         {
           "model": "cline-cloud/deepseek-v4.1-flash",
           "pricing_style": "openai",
-          "prompt_per_1m": 0.22,
-          "completion_per_1m": 0.66,
-          "cache_read_per_1m": 0.007,
-          "cache_write_per_1m": 0,
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.006,
+          "cache_write_per_1m": 0.0,
           "source": "manual",
           "price_reviewed": "DeepSeek official list rates for reference; Cline Cloud settles in subscription credits.",
           "context_window": 1000000,
@@ -3790,12 +3790,12 @@
         {
           "model": "moonshotai/kimi-k3",
           "pricing_style": "openai",
-          "prompt_per_1m": 2.955563,
-          "completion_per_1m": 14.777816,
-          "cache_read_per_1m": 0.295556,
-          "cache_write_per_1m": 0,
+          "prompt_per_1m": 3.0,
+          "completion_per_1m": 15.0,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 0.0,
           "source": "manual",
-          "price_reviewed": "Moonshot official list (20/100/2 CNY) at ECB 6.7669 as served over Cline OpenRouter passthrough.",
+          "price_reviewed": "Moonshot official list rates as served over Cline OpenRouter passthrough.",
           "context_window": 1048576,
           "output_ceiling": 1048576,
           "input_modalities": [
@@ -3807,6 +3807,416 @@
             "low",
             "high",
             "max"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-chat",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.28,
+          "completion_per_1m": 0.42,
+          "cache_read_per_1m": 0.028,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 131072,
+          "output_ceiling": 8192,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "low",
+            "high"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-reasoner",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.28,
+          "completion_per_1m": 0.42,
+          "cache_read_per_1m": 0.028,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 131072,
+          "output_ceiling": 65536,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "high"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-r1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.55,
+          "completion_per_1m": 2.19,
+          "cache_read_per_1m": 0.14,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 65536,
+          "output_ceiling": 8192,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "high"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-v3",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.27,
+          "completion_per_1m": 1.1,
+          "cache_read_per_1m": 0.07,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 65536,
+          "output_ceiling": 8192,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "deepseek/deepseek-v3.1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.25,
+          "completion_per_1m": 0.95,
+          "cache_read_per_1m": 0.13,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 163840,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-v3.2",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.28,
+          "completion_per_1m": 0.4,
+          "cache_read_per_1m": 0.028,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 163840,
+          "output_ceiling": 163840,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-v3.2-thinking",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.28,
+          "completion_per_1m": 0.4,
+          "cache_read_per_1m": 0.028,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 163840,
+          "output_ceiling": 163840,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-v4-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.22,
+          "completion_per_1m": 0.66,
+          "cache_read_per_1m": 0.007,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-v4-flash-0731",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.22,
+          "completion_per_1m": 0.66,
+          "cache_read_per_1m": 0.007,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-v4-flash-vision-exp",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.22,
+          "completion_per_1m": 0.66,
+          "cache_read_per_1m": 0.007,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 1000000,
+          "output_ceiling": 384000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-v4-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.66,
+          "completion_per_1m": 1.98,
+          "cache_read_per_1m": 0.022,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-v4-pro-0813",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.66,
+          "completion_per_1m": 1.98,
+          "cache_read_per_1m": 0.022,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-v4.1-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.006,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-v4.1-flash-1017",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.6,
+          "cache_read_per_1m": 0.003,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates (off-peak $0.15/$0.60/$0.003; peak $0.30/$1.20/$0.006) for DeepSeek-V4.1-Flash-1017 as served over Cline OpenRouter passthrough.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-v4.1-flash-fast",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.6,
+          "completion_per_1m": 2.4,
+          "cache_read_per_1m": 0.012,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "deepseek/deepseek-coder",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.014,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 128000,
+          "output_ceiling": 4096,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "anthropic/claude-sonnet-4-6",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 3.0,
+          "completion_per_1m": 15.0,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 3.75,
+          "source": "manual",
+          "price_reviewed": "Anthropic official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
+          "model": "google/gemini-2.5-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 10.0,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "Google official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 1048576,
+          "output_ceiling": 65536,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "openai/gpt-4o",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2.5,
+          "completion_per_1m": 10.0,
+          "cache_read_per_1m": 1.25,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "OpenAI official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 128000,
+          "output_ceiling": 16384,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "minimax/minimax-m2.5",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0.375,
+          "source": "manual",
+          "price_reviewed": "MiniMax official list rates as served over Cline OpenRouter passthrough.",
+          "context_window": 204800,
+          "output_ceiling": 8192,
+          "input_modalities": [
+            "text"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
           ]
         }
       ]

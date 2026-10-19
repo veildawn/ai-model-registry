@@ -322,3 +322,63 @@ func TestTokenHubV41FlashPinsTheOffPeakChoice(t *testing.T) {
 		}
 	}
 }
+
+func TestClineDeepSeekAndPassModels(t *testing.T) {
+	body, err := registry.Files.ReadFile("providers/cline.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var provider struct {
+		Models []struct {
+			Model           string   `json:"model"`
+			PromptPer1M     float64  `json:"prompt_per_1m"`
+			CompletionPer1M float64  `json:"completion_per_1m"`
+			CacheReadPer1M  float64  `json:"cache_read_per_1m"`
+			CacheWritePer1M float64  `json:"cache_write_per_1m"`
+			Source          string   `json:"source"`
+			ContextWindow   int      `json:"context_window"`
+			OutputCeiling   int      `json:"output_ceiling"`
+			InputModalities []string `json:"input_modalities"`
+			EffortLevels    []string `json:"effort_levels"`
+		} `json:"models"`
+	}
+	if err := json.Unmarshal(body, &provider); err != nil {
+		t.Fatal(err)
+	}
+
+	type facts struct {
+		prompt, completion, cacheRead, cacheWrite float64
+		window, ceiling                           int
+	}
+	want := map[string]facts{
+		"cline-pass/deepseek-v4.1-flash": {0.30, 1.20, 0.006, 0, 1000000, 393216},
+		"cline-pass/glm-5.3-flash":       {0.15, 0.50, 0.03, 0, 1000000, 128000},
+		"cline-pass/kimi-k3":             {3.0, 15.0, 0.30, 0, 1048576, 1048576},
+		"cline-pass/mimo-v2.5-pro":       {1.74, 3.48, 0.0145, 0, 1048576, 128000},
+		"deepseek/deepseek-chat":          {0.28, 0.42, 0.028, 0, 131072, 8192},
+		"deepseek/deepseek-reasoner":      {0.28, 0.42, 0.028, 0, 131072, 65536},
+		"deepseek/deepseek-r1":               {0.55, 2.19, 0.14, 0, 65536, 8192},
+		"deepseek/deepseek-v4.1-flash":       {0.30, 1.20, 0.006, 0, 1000000, 393216},
+		"deepseek/deepseek-v4.1-flash-1017":  {0.15, 0.60, 0.003, 0, 1000000, 393216},
+		"deepseek/deepseek-v4-pro":           {0.66, 1.98, 0.022, 0, 1000000, 393216},
+	}
+
+	for _, model := range provider.Models {
+		expected, ok := want[model.Model]
+		if !ok {
+			continue
+		}
+		delete(want, model.Model)
+		if model.Source != "manual" {
+			t.Errorf("%s source = %q, want manual", model.Model, model.Source)
+		}
+		got := facts{model.PromptPer1M, model.CompletionPer1M, model.CacheReadPer1M, model.CacheWritePer1M, model.ContextWindow, model.OutputCeiling}
+		if got != expected {
+			t.Errorf("%s facts = %#v, want %#v", model.Model, got, expected)
+		}
+	}
+	for model := range want {
+		t.Errorf("missing Cline model %q", model)
+	}
+}
+
