@@ -7114,6 +7114,24 @@
           "output_ceiling": 128000
         },
         {
+          "model": "minimax-m3.1-flash",
+          "source": "manual",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
           "model": "mistral-large-3:675b",
           "source": "manual",
           "context_window": 262144,
