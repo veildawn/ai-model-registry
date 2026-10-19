@@ -721,6 +721,29 @@
       ]
     },
     {
+      "model": "minimax-m3.1-flash-free",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.6,
+      "cache_read_per_1m": 0.015,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
       "model": "muse-spark-1.3-contributor",
       "pricing_style": "openai",
       "prompt_per_1m": 0.1,
