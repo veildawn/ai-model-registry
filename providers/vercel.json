@@ -8039,8 +8039,7 @@
       "surface": "video",
       "input_modalities": [
         "text",
-        "image",
-        "pdf"
+        "image"
       ],
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models (2026-10-17).",
       "context_window": 1024
@@ -8078,13 +8077,8 @@
       "input_modalities": [
         "text"
       ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
-      ],
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models (2026-10-17)."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models (2026-10-17).",
+      "context_window": 15000
     },
     {
       "model": "spacexai/grok-voice-think-fast-1.0",
