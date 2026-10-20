@@ -3353,6 +3353,28 @@
           ]
         },
         {
+          "model": "cline-pass/deepseek-v4.1-flash-1017",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 1.2,
+          "cache_read_per_1m": 0.006,
+          "cache_write_per_1m": 0.0,
+          "source": "manual",
+          "price_reviewed": "Cline serves DeepSeek-V4.1-Flash-1017 under this versioned id; DeepSeek official list rates for reference, Cline Pass settles in subscription credits.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
           "model": "cline-pass/mimo-v2.6-flash",
           "pricing_style": "openai",
           "prompt_per_1m": 0.14,

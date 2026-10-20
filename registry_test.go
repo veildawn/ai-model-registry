@@ -352,15 +352,20 @@ func TestClineDeepSeekAndPassModels(t *testing.T) {
 	}
 	want := map[string]facts{
 		"cline-pass/deepseek-v4.1-flash": {0.30, 1.20, 0.006, 0, 1000000, 393216},
-		"cline-pass/glm-5.3-flash":       {0.15, 0.50, 0.03, 0, 1000000, 128000},
-		"cline-pass/kimi-k3":             {3.0, 15.0, 0.30, 0, 1048576, 1048576},
-		"cline-pass/mimo-v2.5-pro":       {1.74, 3.48, 0.0145, 0, 1048576, 128000},
-		"deepseek/deepseek-chat":          {0.28, 0.42, 0.028, 0, 131072, 8192},
-		"deepseek/deepseek-reasoner":      {0.28, 0.42, 0.028, 0, 131072, 65536},
-		"deepseek/deepseek-r1":               {0.55, 2.19, 0.14, 0, 65536, 8192},
-		"deepseek/deepseek-v4.1-flash":       {0.30, 1.20, 0.006, 0, 1000000, 393216},
-		"deepseek/deepseek-v4.1-flash-1017":  {0.15, 0.60, 0.003, 0, 1000000, 393216},
-		"deepseek/deepseek-v4-pro":           {0.66, 1.98, 0.022, 0, 1000000, 393216},
+		// Cline serves DeepSeek-V4.1-Flash under a versioned id too. It carries
+		// the same underlying model, so it must publish the same 1M window the
+		// unversioned row does — a missing row here drops /v1/models to the
+		// 200K floor, which is what happened before this row existed.
+		"cline-pass/deepseek-v4.1-flash-1017": {0.30, 1.20, 0.006, 0, 1000000, 393216},
+		"cline-pass/glm-5.3-flash":            {0.15, 0.50, 0.03, 0, 1000000, 128000},
+		"cline-pass/kimi-k3":                  {3.0, 15.0, 0.30, 0, 1048576, 1048576},
+		"cline-pass/mimo-v2.5-pro":            {1.74, 3.48, 0.0145, 0, 1048576, 128000},
+		"deepseek/deepseek-chat":              {0.28, 0.42, 0.028, 0, 131072, 8192},
+		"deepseek/deepseek-reasoner":          {0.28, 0.42, 0.028, 0, 131072, 65536},
+		"deepseek/deepseek-r1":                {0.55, 2.19, 0.14, 0, 65536, 8192},
+		"deepseek/deepseek-v4.1-flash":        {0.30, 1.20, 0.006, 0, 1000000, 393216},
+		"deepseek/deepseek-v4.1-flash-1017":   {0.15, 0.60, 0.003, 0, 1000000, 393216},
+		"deepseek/deepseek-v4-pro":            {0.66, 1.98, 0.022, 0, 1000000, 393216},
 	}
 
 	for _, model := range provider.Models {
@@ -381,4 +386,3 @@ func TestClineDeepSeekAndPassModels(t *testing.T) {
 		t.Errorf("missing Cline model %q", model)
 	}
 }
-
