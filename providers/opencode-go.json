@@ -116,7 +116,7 @@
       "cache_read_per_1m": 0.0028,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 1048576,
       "effort_levels": [
         "low",
         "high",

@@ -829,7 +829,7 @@
       "cache_write_per_1m": 0.0,
       "source": "manual",
       "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
-      "context_window": 1000000,
+      "context_window": 1048576,
       "output_ceiling": 384000,
       "input_modalities": [
         "text",

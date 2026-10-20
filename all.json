@@ -3973,7 +3973,7 @@
           "cache_write_per_1m": 0.0,
           "source": "manual",
           "price_reviewed": "DeepSeek official list rates as served over Cline OpenRouter passthrough.",
-          "context_window": 1000000,
+          "context_window": 1048576,
           "output_ceiling": 384000,
           "input_modalities": [
             "text",
@@ -7147,7 +7147,8 @@
           "context_window": 1048576,
           "input_modalities": [
             "text",
-            "image"
+            "image",
+            "pdf"
           ],
           "effort_levels": [
             "none",
@@ -7328,7 +7329,7 @@
           "cache_read_per_1m": 0.0028,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 1048576,
           "effort_levels": [
             "low",
             "high",
@@ -8641,7 +8642,7 @@
           "prompt_per_1m": 2.5,
           "completion_per_1m": 7.5,
           "cache_read_per_1m": 0.5,
-          "cache_write_per_1m": 0,
+          "cache_write_per_1m": 3.125,
           "source": "litellm",
           "context_window": 991808,
           "effort_levels": [
@@ -9979,7 +9980,7 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "price_reviewed": "TokenHub 原厂直供 vision off-peak list (1.5/4.5/0.05 CNY). See Tencent 130055.",
-          "context_window": 1000000,
+          "context_window": 1048576,
           "input_modalities": [
             "text",
             "image"
@@ -10722,8 +10723,7 @@
           "input_modalities": [
             "text",
             "image",
-            "video",
-            "audio"
+            "video"
           ],
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models (2026-10-17)."
         },
@@ -12586,7 +12586,7 @@
           "cache_write_per_1m": 0.0,
           "source": "vendor-api",
           "surface": "chat",
-          "context_window": 1000000,
+          "context_window": 1048576,
           "output_ceiling": 1048576,
           "input_modalities": [
             "text",
@@ -13581,7 +13581,8 @@
           "input_modalities": [
             "text",
             "image",
-            "video"
+            "video",
+            "pdf"
           ],
           "effort_levels": [
             "minimal",

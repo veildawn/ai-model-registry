@@ -226,7 +226,7 @@
       "prompt_per_1m": 2.5,
       "completion_per_1m": 7.5,
       "cache_read_per_1m": 0.5,
-      "cache_write_per_1m": 0,
+      "cache_write_per_1m": 3.125,
       "source": "litellm",
       "context_window": 991808,
       "effort_levels": [
