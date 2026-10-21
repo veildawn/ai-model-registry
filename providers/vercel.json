@@ -215,7 +215,10 @@
       "input_modalities": [
         "text"
       ],
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models (2026-10-17)."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models (2026-10-17).",
+      "effort_levels": [
+        "high"
+      ]
     },
     {
       "model": "alibaba/qwen3-vl-instruct",

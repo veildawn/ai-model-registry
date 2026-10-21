@@ -130,6 +130,9 @@
       "surface": "chat",
       "input_modalities": [
         "text"
+      ],
+      "effort_levels": [
+        "high"
       ]
     },
     {
