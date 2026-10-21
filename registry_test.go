@@ -245,12 +245,14 @@ func TestStep5WindowAndCeilingAreDifferentNumbers(t *testing.T) {
 	}
 }
 
-// TestTokenHubV41FlashPinsTheOffPeakChoice covers the two spellings of
+// TestTokenHubV41FlashPinsTheOffPeakChoice covers the three spellings of
 // DeepSeek-V4.1-Flash TokenHub serves — `deepseek/deepseek-flash` (原厂直供,
-// DeepSeek's own supply) and `deepseek-v4.1-flash` (platform-hosted). Tencent
-// bills both on a peak/off-peak table and the rows deliberately store the
-// off-peak column, so a change to either number means somebody re-decided that
-// flattening rather than refreshed a rate.
+// DeepSeek's own supply), `deepseek-v4.1-flash` and `deepseek-v4.1-flash-1017`
+// (platform-hosted; the -1017 id names the V4.1-Flash-1017 build the Tencent
+// 130051 model list publishes on its own row). Tencent bills all three on a
+// peak/off-peak table and the rows deliberately store the off-peak column, so a
+// change to any number means somebody re-decided that flattening rather than
+// refreshed a rate.
 func TestTokenHubV41FlashPinsTheOffPeakChoice(t *testing.T) {
 	body, err := registry.Files.ReadFile("providers/tokenhub.json")
 	if err != nil {
@@ -281,8 +283,9 @@ func TestTokenHubV41FlashPinsTheOffPeakChoice(t *testing.T) {
 		cacheRead = 0.002956
 	)
 	want := map[string]bool{
-		"deepseek/deepseek-flash": false,
-		"deepseek-v4.1-flash":     false,
+		"deepseek/deepseek-flash":  false,
+		"deepseek-v4.1-flash":      false,
+		"deepseek-v4.1-flash-1017": false,
 	}
 	for _, model := range provider.Models {
 		seen, ok := want[model.Model]
