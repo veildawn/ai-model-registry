@@ -300,6 +300,26 @@
         "image"
       ],
       "surface": "chat"
+    },
+    {
+      "model": "clef:27b",
+      "source": "manual",
+      "context_window": 65536,
+      "surface": "decision",
+      "input_modalities": [
+        "text",
+        "image"
+      ]
+    },
+    {
+      "model": "clef:cloud",
+      "source": "manual",
+      "context_window": 65536,
+      "surface": "decision",
+      "input_modalities": [
+        "text",
+        "image"
+      ]
     }
   ]
 }
