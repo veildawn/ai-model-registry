@@ -7792,6 +7792,27 @@
           "output_ceiling": 1048576
         },
         {
+          "model": "kimi-k3.1-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 2,
+          "source": "manual",
+          "context_window": 1048576,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
           "model": "longcat-2.5-preview-free",
           "pricing_style": "openai",
           "prompt_per_1m": 0,
