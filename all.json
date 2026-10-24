@@ -7440,6 +7440,29 @@
           "output_ceiling": 393216
         },
         {
+          "model": "gemini-4-argon",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
           "model": "gemini-4-argon-contributor",
           "pricing_style": "openai",
           "prompt_per_1m": 4,
