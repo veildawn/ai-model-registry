@@ -6073,7 +6073,7 @@
       "cache_write_per_1m": 0.25,
       "source": "vendor-api",
       "surface": "chat",
-      "context_window": 272000,
+      "context_window": 922000,
       "output_ceiling": 128000,
       "input_modalities": [
         "text",
@@ -6141,7 +6141,7 @@
       "cache_write_per_1m": 5.0,
       "source": "vendor-api",
       "surface": "chat",
-      "context_window": 272000,
+      "context_window": 922000,
       "output_ceiling": 128000,
       "input_modalities": [
         "text",
@@ -6210,7 +6210,7 @@
       "cache_write_per_1m": 2.5,
       "source": "vendor-api",
       "surface": "chat",
-      "context_window": 272000,
+      "context_window": 922000,
       "output_ceiling": 128000,
       "input_modalities": [
         "text",
@@ -6279,7 +6279,7 @@
       "cache_write_per_1m": 12.5,
       "source": "vendor-api",
       "surface": "chat",
-      "context_window": 272000,
+      "context_window": 922000,
       "output_ceiling": 128000,
       "input_modalities": [
         "text",
@@ -6436,7 +6436,7 @@
       "cache_write_per_1m": 2.5,
       "source": "vendor-api",
       "surface": "chat",
-      "context_window": 272000,
+      "context_window": 922000,
       "output_ceiling": 128000,
       "input_modalities": [
         "text",

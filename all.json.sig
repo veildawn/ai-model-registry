@@ -1,7 +1,7 @@
 {
   "algorithm": "ed25519",
   "artifact": "all.json",
-  "sha256": "fa567b49c1db26b0d68852708c48dd47041a8bd8d51e849a5b42cebeefbd12bc",
+  "sha256": "abad3df2602042a4d14c3c6dc9524210ac09b91ea1797da06f2794aaee842b4a",
   "key_id": "ed25519:7454620c5dac2bc6",
-  "sig": "c86bdad9b415d3fbeac14f9cadaddc453b9d9c7b8174a76590611c054ab66e54622094a4d051344ea48f1fc2f89934dc993f85d8d6bc0f3b36164ec15e1d4c01"
+  "sig": "34bc24d8cbfe610bcaec4f63c8143c93bc1ee23b6ed2be5d29a63f6231459614eb72be0ddffcf7f7994d7d8ccfcf5bdfc66024283bb01147edec05807fe7b603"
 }

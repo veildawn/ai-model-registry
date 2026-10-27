@@ -626,7 +626,7 @@
       "cache_write_per_1m": 12.5,
       "source": "manual",
       "price_reviewed": "OpenAI official list rates as served over Cline OpenRouter passthrough.",
-      "context_window": 272000,
+      "context_window": 922000,
       "output_ceiling": 128000,
       "input_modalities": [
         "text",
