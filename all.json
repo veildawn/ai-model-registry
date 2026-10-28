@@ -6169,7 +6169,31 @@
           "prompt_per_1m": 3,
           "completion_per_1m": 15,
           "cache_read_per_1m": 0.3,
-          "cache_write_per_1m": 0,
+          "cache_write_per_1m": 3,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
+          "model": "kimi-k3.1-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 2,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
           "input_modalities": [
             "text",
             "image"
@@ -7952,15 +7976,15 @@
           "context_window": 1048576,
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
           ],
           "effort_levels": [
             "low",
             "high",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 1048576
         },
         {
           "model": "longcat-2.5-preview-free",
@@ -15941,8 +15965,7 @@
           "output_ceiling": 1048576,
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
           ],
           "effort_levels": [
             "low",

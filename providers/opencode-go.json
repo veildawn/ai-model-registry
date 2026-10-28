@@ -577,15 +577,15 @@
       "context_window": 1048576,
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
       ],
       "effort_levels": [
         "low",
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 1048576
     },
     {
       "model": "longcat-2.5-preview-free",

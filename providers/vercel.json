@@ -5245,8 +5245,7 @@
       "output_ceiling": 1048576,
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
       ],
       "effort_levels": [
         "low",
