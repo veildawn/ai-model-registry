@@ -19,21 +19,6 @@
       "surface": "chat"
     },
     {
-      "model": "deepseek-v4-flash",
-      "source": "manual",
-      "context_window": 1000000,
-      "output_ceiling": 393216,
-      "input_modalities": [
-        "text"
-      ],
-      "effort_levels": [
-        "low",
-        "high",
-        "max"
-      ],
-      "surface": "chat"
-    },
-    {
       "model": "deepseek-v4.1-flash",
       "source": "manual",
       "context_window": 1000000,
@@ -366,26 +351,6 @@
         "image"
       ],
       "surface": "chat"
-    },
-    {
-      "model": "clef:27b",
-      "source": "manual",
-      "context_window": 65536,
-      "surface": "decision",
-      "input_modalities": [
-        "text",
-        "image"
-      ]
-    },
-    {
-      "model": "clef:cloud",
-      "source": "manual",
-      "context_window": 65536,
-      "surface": "decision",
-      "input_modalities": [
-        "text",
-        "image"
-      ]
     }
   ]
 }

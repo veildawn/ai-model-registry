@@ -207,7 +207,7 @@
         "image"
       ],
       "source": "manual",
-      "context_window": 922000,
+      "context_window": 272000,
       "effort_levels": [
         "none",
         "low",
@@ -231,7 +231,7 @@
         "image"
       ],
       "source": "manual",
-      "context_window": 922000,
+      "context_window": 272000,
       "effort_levels": [
         "none",
         "low",
@@ -255,7 +255,7 @@
         "image"
       ],
       "source": "manual",
-      "context_window": 922000,
+      "context_window": 272000,
       "effort_levels": [
         "none",
         "low",
@@ -279,7 +279,7 @@
         "image"
       ],
       "source": "manual",
-      "context_window": 922000,
+      "context_window": 272000,
       "effort_levels": [
         "low",
         "medium",
@@ -326,7 +326,7 @@
         "image"
       ],
       "source": "manual",
-      "context_window": 922000,
+      "context_window": 272000,
       "effort_levels": [
         "none",
         "low",
@@ -368,6 +368,9 @@
       "completion_per_1m": 5,
       "cache_read_per_1m": 0.05,
       "cache_write_per_1m": 1.25,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
       "input_modalities": [
         "text",
         "image"
@@ -400,7 +403,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "image"
+      "surface": "image",
+      "image_in_per_1m": 8
     },
     {
       "model": "gpt-image-2.5",
@@ -431,7 +435,8 @@
         "image"
       ],
       "source": "litellm",
-      "surface": "image"
+      "surface": "image",
+      "image_in_per_1m": 8
     },
     {
       "model": "gpt-image-2.5-sunburst",
@@ -445,7 +450,8 @@
         "image"
       ],
       "source": "litellm",
-      "surface": "image"
+      "surface": "image",
+      "image_in_per_1m": 8
     }
   ]
 }

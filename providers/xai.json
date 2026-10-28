@@ -17,7 +17,8 @@
       "source": "litellm",
       "context_window": 1000000,
       "surface": "chat",
-      "output_ceiling": 1000000
+      "output_ceiling": 1000000,
+      "image_in_per_1m": 1.25
     },
     {
       "model": "grok-4.20-0309-non-reasoning",
@@ -57,7 +58,8 @@
         "high"
       ],
       "surface": "chat",
-      "output_ceiling": 1000000
+      "output_ceiling": 1000000,
+      "image_in_per_1m": 1.25
     },
     {
       "model": "grok-4.20-multi-agent",
@@ -79,7 +81,8 @@
         "high",
         "xhigh"
       ],
-      "output_ceiling": 1000000
+      "output_ceiling": 1000000,
+      "image_in_per_1m": 1.25
     },
     {
       "model": "grok-4.20-multi-agent-0309",
@@ -117,7 +120,8 @@
       "source": "litellm",
       "context_window": 1000000,
       "surface": "chat",
-      "output_ceiling": 1000000
+      "output_ceiling": 1000000,
+      "image_in_per_1m": 1.25
     },
     {
       "model": "grok-4.20-non-reasoning-gv2",
@@ -133,7 +137,8 @@
       "source": "litellm",
       "context_window": 1000000,
       "output_ceiling": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "image_in_per_1m": 1.25
     },
     {
       "model": "grok-4.20-reasoning",
@@ -155,7 +160,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "image_in_per_1m": 1.25
     },
     {
       "model": "grok-4.20-reasoning-gv2",
@@ -171,7 +177,8 @@
       "source": "litellm",
       "context_window": 1000000,
       "output_ceiling": 1000000,
-      "surface": "chat"
+      "surface": "chat",
+      "image_in_per_1m": 1.25
     },
     {
       "model": "grok-4.3",
@@ -193,7 +200,8 @@
         "high"
       ],
       "surface": "chat",
-      "output_ceiling": 1000000
+      "output_ceiling": 1000000,
+      "image_in_per_1m": 1.25
     },
     {
       "model": "grok-4.5",
@@ -214,7 +222,8 @@
         "high"
       ],
       "surface": "chat",
-      "output_ceiling": 500000
+      "output_ceiling": 500000,
+      "image_in_per_1m": 2
     },
     {
       "model": "grok-4.6",
@@ -295,7 +304,8 @@
       "source": "litellm",
       "context_window": 256000,
       "surface": "chat",
-      "output_ceiling": 256000
+      "output_ceiling": 256000,
+      "image_in_per_1m": 1
     },
     {
       "model": "grok-code-fast-1",
@@ -311,7 +321,8 @@
       "source": "litellm",
       "context_window": 256000,
       "surface": "chat",
-      "output_ceiling": 256000
+      "output_ceiling": 256000,
+      "image_in_per_1m": 1
     },
     {
       "model": "grok-imagine-image",

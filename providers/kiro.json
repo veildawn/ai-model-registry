@@ -268,7 +268,7 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 922000,
+      "context_window": 272000,
       "surface": "chat",
       "effort_levels": [
         "none",
@@ -292,7 +292,7 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 922000,
+      "context_window": 272000,
       "surface": "chat",
       "effort_levels": [
         "none",
@@ -316,7 +316,7 @@
         "image"
       ],
       "source": "vendor-api",
-      "context_window": 922000,
+      "context_window": 272000,
       "surface": "chat",
       "effort_levels": [
         "none",

@@ -359,10 +359,12 @@ FIRST_PARTY_FACTS = (
 FIRST_PARTY_RATES = (
     "pricing_style", "prompt_per_1m", "completion_per_1m",
     "cache_read_per_1m", "cache_write_per_1m",
+    "audio_in_per_1m", "audio_out_per_1m", "image_in_per_1m",
 )
 RATE_FIELDS = frozenset((
     "prompt_per_1m", "completion_per_1m",
     "cache_read_per_1m", "cache_write_per_1m",
+    "audio_in_per_1m", "audio_out_per_1m", "image_in_per_1m",
 ))
 
 # Media a model can READ. `pdf` is a first-party input on several vendors
@@ -444,6 +446,14 @@ RATES = [
     ("completion_per_1m", "output_cost_per_token"),
     ("cache_read_per_1m", "cache_read_input_token_cost"),
     ("cache_write_per_1m", "cache_creation_input_token_cost"),
+    # Modality token prices, litellm's same per-token scale x 1M. An upstream
+    # that does not split media leaves the column absent, and the sync skips
+    # None rather than writing 0 over a hand-set value (an existing row keeps
+    # whatever it had; only a NEW row records the explicit 0, the same
+    # convention the four text buckets use).
+    ("audio_in_per_1m", "input_cost_per_audio_token"),
+    ("audio_out_per_1m", "output_cost_per_audio_token"),
+    ("image_in_per_1m", "input_cost_per_image_token"),
 ]
 
 # Rates are clean decimals on both sides; this only absorbs float noise from the

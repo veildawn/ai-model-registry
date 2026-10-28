@@ -66,6 +66,7 @@
       "context_window": 1048576,
       "surface": "chat",
       "output_ceiling": 65536,
+      "audio_in_per_1m": 1,
       "variants": {
         "suffixes": [
           "",
@@ -92,7 +93,8 @@
       "effort_levels": [
         "none"
       ],
-      "output_ceiling": 32768
+      "output_ceiling": 32768,
+      "audio_in_per_1m": 1
     },
     {
       "model": "gemini-2.5-flash-lite",
@@ -110,7 +112,8 @@
       "source": "vendor-api",
       "context_window": 1048576,
       "surface": "chat",
-      "output_ceiling": 65536
+      "output_ceiling": 65536,
+      "audio_in_per_1m": 0.3
     },
     {
       "model": "gemini-2.5-pro",
@@ -147,6 +150,7 @@
       "context_window": 1048576,
       "surface": "chat",
       "output_ceiling": 65536,
+      "audio_in_per_1m": 1,
       "variants": {
         "suffixes": [
           "",
@@ -236,7 +240,8 @@
         "medium",
         "high"
       ],
-      "output_ceiling": 65536
+      "output_ceiling": 65536,
+      "audio_in_per_1m": 0.5
     },
     {
       "model": "gemini-3.1-flash-lite-image",
@@ -309,6 +314,7 @@
         "high"
       ],
       "output_ceiling": 65536,
+      "audio_in_per_1m": 1.5,
       "variants": {
         "suffixes": [
           "-extra-low",

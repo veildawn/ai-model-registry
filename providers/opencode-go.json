@@ -175,6 +175,9 @@
       "completion_per_1m": 10,
       "cache_read_per_1m": 0.1,
       "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
       "source": "manual",
       "context_window": 1048576,
       "output_ceiling": 1048576,
@@ -323,7 +326,7 @@
       "cache_read_per_1m": 0.02,
       "cache_write_per_1m": 0.25,
       "source": "manual",
-      "context_window": 922000,
+      "context_window": 272000,
       "effort_levels": [
         "none",
         "low",
@@ -472,6 +475,9 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
       "source": "manual",
       "context_window": 262144,
       "input_modalities": [
@@ -564,6 +570,9 @@
       "completion_per_1m": 10,
       "cache_read_per_1m": 0.2,
       "cache_write_per_1m": 2,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
       "source": "manual",
       "context_window": 1048576,
       "input_modalities": [
@@ -785,29 +794,9 @@
       "completion_per_1m": 0.6,
       "cache_read_per_1m": 0.015,
       "cache_write_per_1m": 0,
-      "source": "manual",
-      "context_window": 1000000,
-      "input_modalities": [
-        "text",
-        "image",
-        "video"
-      ],
-      "effort_levels": [
-        "low",
-        "medium",
-        "high",
-        "xhigh",
-        "max"
-      ],
-      "surface": "chat"
-    },
-    {
-      "model": "minimax-m3.1-flash-free",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.15,
-      "completion_per_1m": 0.6,
-      "cache_read_per_1m": 0.015,
-      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
       "source": "manual",
       "context_window": 1000000,
       "input_modalities": [

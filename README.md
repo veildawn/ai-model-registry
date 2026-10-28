@@ -227,6 +227,15 @@ it stops being a secret.
       "completion_per_1m": 15,
       "cache_read_per_1m": 0.3,
       "cache_write_per_1m": 3.75,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "video_in_per_1m": 0,
+      "per_image": 0,
+      "video_per_second": 0,
+      "tts_per_1m_chars": 0,
+      "asr_per_second": 0,
+      "rate_variants": [],
       "context_window": 200000,
       "input_modalities": ["text", "image"],
       "surface": "chat",
@@ -242,6 +251,38 @@ it stops being a secret.
 - `pricing_style`: `openai` (cached tokens are a discounted subset of prompt tokens)
   or `anthropic` (input / cache_read / cache_write / output are separate buckets).
 - All prices are USD per 1M tokens.
+- `audio_in_per_1m` / `audio_out_per_1m` / `image_in_per_1m` / `video_in_per_1m`
+  (optional): modality token prices, USD per 1M tokens **of that modality**. A
+  vendor that folds media into the text rate states nothing here — the consumer
+  falls back to the text price, which is what such a vendor bills. Synced from
+  litellm's `input_cost_per_audio_token` / `output_cost_per_audio_token` /
+  `input_cost_per_image_token` where the namespaces match.
+- `per_image` / `video_per_second` / `tts_per_1m_chars` / `asr_per_second`
+  (optional): unit prices for generation surfaces the token buckets cannot
+  express — one generated image, one second of generated video, one million
+  synthesized characters, one second of transcribed audio. A row may carry only
+  these (token buckets all zero): that is a priced row, not an unpriced one.
+- `rate_variants` (optional): condition-scoped amendments to the fields above —
+  the base card is one tier, and each variant states when it applies and what
+  it changes. Fields per variant:
+  - `name` — recorded on the bill (`usage_events.rate_variant`) for invoice
+    reconciliation.
+  - `utc_window_minutes` — daily UTC windows as flat `[start, end)` pairs of
+    minutes since midnight (multiple pairs OR; `end > 1440` means next day).
+  - `weekdays_only` — the windows count only Monday–Friday UTC.
+  - `invert_window` — select everything OUTSIDE the windows instead (the
+    spelling for an off-peak variant whose base card is the peak list).
+  - `min_input_tokens` — applies only at or above this billed input size (the
+    long-context tier).
+  - `multiplier` — scale every non-zero base rate by this.
+  - explicit rate fields (`prompt_per_1m` … `video_in_per_1m`) — replace the
+    scaled value field by field; zero means inherit.
+  The consumer resolves which variant a request bills under at settle time,
+  keyed on the request's START clock; the registry only states the schedules.
+  The one imprecision a static condition accepts: a vendor's HOLIDAY calendar.
+  A weekday holiday inside an inverted window's peak is priced at the discount
+  (correct by construction); inside a non-inverted peak window it is priced at
+  peak for those hours.
 - Model ids are **lowercase**; the service lowercases the account's upstream model
   id before matching, so `MiniMax-M2` upstream matches `minimax-m2` here.
 - A model id may appear under multiple providers with different prices.

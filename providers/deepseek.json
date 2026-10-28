@@ -51,6 +51,22 @@
         "low",
         "high",
         "max"
+      ],
+      "rate_variants": [
+        {
+          "name": "offpeak",
+          "utc_window_minutes": [
+            60,
+            240,
+            360,
+            600
+          ],
+          "weekdays_only": true,
+          "invert_window": true,
+          "prompt_per_1m": 0.15,
+          "cache_read_per_1m": 0.003,
+          "completion_per_1m": 0.6
+        }
       ]
     },
     {
@@ -116,9 +132,9 @@
     {
       "model": "deepseek-v4-flash",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.22,
-      "completion_per_1m": 0.66,
-      "cache_read_per_1m": 0.007,
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.6,
+      "cache_read_per_1m": 0.003,
       "cache_write_per_1m": 0,
       "source": "manual",
       "price_reviewed": "off-peak list; litellm publishes the peak rate. See the README's DeepSeek row.",
@@ -132,7 +148,20 @@
         "max"
       ],
       "surface": "chat",
-      "output_ceiling": 393216
+      "output_ceiling": 393216,
+      "rate_variants": [
+        {
+          "name": "peak",
+          "utc_window_minutes": [
+            60,
+            240,
+            360,
+            600
+          ],
+          "weekdays_only": true,
+          "multiplier": 2
+        }
+      ]
     },
     {
       "model": "deepseek-v4-pro",
@@ -152,7 +181,20 @@
         "max"
       ],
       "surface": "chat",
-      "output_ceiling": 393216
+      "output_ceiling": 393216,
+      "rate_variants": [
+        {
+          "name": "peak",
+          "utc_window_minutes": [
+            60,
+            240,
+            360,
+            600
+          ],
+          "weekdays_only": true,
+          "multiplier": 2
+        }
+      ]
     }
   ]
 }

@@ -44,7 +44,7 @@ func TestVercelModelSurfacesAndPricing(t *testing.T) {
 		"convaiinnovations/laya":        "decision",
 		"openai/gpt-4.1-mini":           "chat",
 		"deepseek/deepseek-r1":          "chat",
-		"openai/gpt-image-1":            "image",
+		"openai/gpt-image-2":            "image",
 		"bfl/flux-3-image":              "image",
 		"openai/whisper-1":              "audio",
 		"openai/tts-1":                  "audio",

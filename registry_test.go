@@ -84,6 +84,11 @@ func TestDeepSeekOfficialOffPeakPricing(t *testing.T) {
 			CacheReadPer1M  float64 `json:"cache_read_per_1m"`
 			CacheWritePer1M float64 `json:"cache_write_per_1m"`
 			Source          string  `json:"source"`
+			RateVariants    []struct {
+				Name         string  `json:"name"`
+				Multiplier   float64 `json:"multiplier"`
+				WeekdaysOnly bool    `json:"weekdays_only"`
+			} `json:"rate_variants"`
 		} `json:"models"`
 	}
 	if err := json.Unmarshal(body, &provider); err != nil {
@@ -94,7 +99,10 @@ func TestDeepSeekOfficialOffPeakPricing(t *testing.T) {
 		prompt, completion, cacheRead, cacheWrite float64
 	}
 	want := map[string]rates{
-		"deepseek-v4-flash": {0.22, 0.66, 0.007, 0},
+		// The vendor's DISCOUNT tier is the base card (2026-10-28 list:
+		// off-peak applies outside weekdays 01:00-04:00 & 06:00-10:00 UTC);
+		// the peak tier rides each row as a x2 rate variant.
+		"deepseek-v4-flash": {0.15, 0.60, 0.003, 0},
 		"deepseek-v4-pro":   {0.66, 1.98, 0.022, 0},
 	}
 	for _, model := range provider.Models {
@@ -108,6 +116,10 @@ func TestDeepSeekOfficialOffPeakPricing(t *testing.T) {
 		}
 		if got := (rates{model.PromptPer1M, model.CompletionPer1M, model.CacheReadPer1M, model.CacheWritePer1M}); got != expected {
 			t.Errorf("%s rates = %#v, want %#v", model.Model, got, expected)
+		}
+		if len(model.RateVariants) != 1 || model.RateVariants[0].Name != "peak" ||
+			model.RateVariants[0].Multiplier != 2 || !model.RateVariants[0].WeekdaysOnly {
+			t.Errorf("%s rate variants = %#v, want one weekday peak at x2", model.Model, model.RateVariants)
 		}
 	}
 	for model := range want {
@@ -245,14 +257,12 @@ func TestStep5WindowAndCeilingAreDifferentNumbers(t *testing.T) {
 	}
 }
 
-// TestTokenHubV41FlashPinsTheOffPeakChoice covers the three spellings of
+// TestTokenHubV41FlashPinsTheOffPeakChoice covers the two spellings of
 // DeepSeek-V4.1-Flash TokenHub serves — `deepseek/deepseek-flash` (原厂直供,
-// DeepSeek's own supply), `deepseek-v4.1-flash` and `deepseek-v4.1-flash-1017`
-// (platform-hosted; the -1017 id names the V4.1-Flash-1017 build the Tencent
-// 130051 model list publishes on its own row). Tencent bills all three on a
-// peak/off-peak table and the rows deliberately store the off-peak column, so a
-// change to any number means somebody re-decided that flattening rather than
-// refreshed a rate.
+// DeepSeek's own supply) and `deepseek-v4.1-flash` (platform-hosted). Tencent
+// bills both on a peak/off-peak table and the rows deliberately store the
+// off-peak column, so a change to either number means somebody re-decided that
+// flattening rather than refreshed a rate.
 func TestTokenHubV41FlashPinsTheOffPeakChoice(t *testing.T) {
 	body, err := registry.Files.ReadFile("providers/tokenhub.json")
 	if err != nil {
@@ -283,9 +293,8 @@ func TestTokenHubV41FlashPinsTheOffPeakChoice(t *testing.T) {
 		cacheRead = 0.002956
 	)
 	want := map[string]bool{
-		"deepseek/deepseek-flash":  false,
-		"deepseek-v4.1-flash":      false,
-		"deepseek-v4.1-flash-1017": false,
+		"deepseek/deepseek-flash": false,
+		"deepseek-v4.1-flash":     false,
 	}
 	for _, model := range provider.Models {
 		seen, ok := want[model.Model]
@@ -354,21 +363,16 @@ func TestClineDeepSeekAndPassModels(t *testing.T) {
 		window, ceiling                           int
 	}
 	want := map[string]facts{
-		"cline-pass/deepseek-v4.1-flash": {0.30, 1.20, 0.006, 0, 1000000, 393216},
-		// Cline serves DeepSeek-V4.1-Flash under a versioned id too. It carries
-		// the same underlying model, so it must publish the same 1M window the
-		// unversioned row does — a missing row here drops /v1/models to the
-		// 200K floor, which is what happened before this row existed.
-		"cline-pass/deepseek-v4.1-flash-1017": {0.30, 1.20, 0.006, 0, 1000000, 393216},
-		"cline-pass/glm-5.3-flash":            {0.15, 0.50, 0.03, 0, 1000000, 128000},
-		"cline-pass/kimi-k3":                  {3.0, 15.0, 0.30, 0, 1048576, 1048576},
-		"cline-pass/mimo-v2.5-pro":            {1.74, 3.48, 0.0145, 0, 1048576, 128000},
-		"deepseek/deepseek-chat":              {0.28, 0.42, 0.028, 0, 131072, 8192},
-		"deepseek/deepseek-reasoner":          {0.28, 0.42, 0.028, 0, 131072, 65536},
-		"deepseek/deepseek-r1":                {0.55, 2.19, 0.14, 0, 65536, 8192},
-		"deepseek/deepseek-v4.1-flash":        {0.30, 1.20, 0.006, 0, 1000000, 393216},
-		"deepseek/deepseek-v4.1-flash-1017":   {0.15, 0.60, 0.003, 0, 1000000, 393216},
-		"deepseek/deepseek-v4-pro":            {0.66, 1.98, 0.022, 0, 1000000, 393216},
+		"cline-pass/deepseek-v4.1-flash":    {0.30, 1.20, 0.006, 0, 1000000, 393216},
+		"cline-pass/glm-5.3-flash":          {0.15, 0.50, 0.03, 0, 1000000, 128000},
+		"cline-pass/kimi-k3":                {3.0, 15.0, 0.30, 0, 1048576, 1048576},
+		"cline-pass/mimo-v2.5-pro":          {1.74, 3.48, 0.0145, 0, 1048576, 128000},
+		"deepseek/deepseek-chat":            {0.28, 0.42, 0.028, 0, 131072, 8192},
+		"deepseek/deepseek-reasoner":        {0.28, 0.42, 0.028, 0, 131072, 65536},
+		"deepseek/deepseek-r1":              {0.55, 2.19, 0.14, 0, 65536, 8192},
+		"deepseek/deepseek-v4.1-flash":      {0.30, 1.20, 0.006, 0, 1000000, 393216},
+		"deepseek/deepseek-v4.1-flash-1017": {0.15, 0.60, 0.003, 0, 1000000, 393216},
+		"deepseek/deepseek-v4-pro":          {0.66, 1.98, 0.022, 0, 1000000, 393216},
 	}
 
 	for _, model := range provider.Models {

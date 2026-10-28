@@ -4,6 +4,38 @@
   "list_prices": true,
   "models": [
     {
+      "model": "cogvideox-3",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "video_per_second": 0.04,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "manual",
+      "surface": "video",
+      "price_reviewed": "z.ai USD list prices CogVideoX-3 at $0.20 PER VIDEO; stated here as the 5-second clip rate (0.20/5) because the schema bills seconds."
+    },
+    {
+      "model": "cogview-4",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "per_image": 0.01,
+      "input_modalities": [
+        "text"
+      ],
+      "source": "manual",
+      "context_window": 4096,
+      "surface": "image",
+      "price_reviewed": "z.ai USD list: $0.01 per image (docs.z.ai/guides/overview/pricing, 2026-10-28)."
+    },
+    {
       "model": "glm-4-32b-0414-128k",
       "pricing_style": "openai",
       "prompt_per_1m": 0.1,
@@ -261,6 +293,21 @@
       "surface": "chat",
       "price_reviewed": "rates are z.ai's USD list, as published on models.dev (zai and zhipuai rows agree); litellm has no zai-namespace row for this id",
       "output_ceiling": 128000
+    },
+    {
+      "model": "glm-asr-2512",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "asr_per_second": 4e-05,
+      "input_modalities": [
+        "audio"
+      ],
+      "source": "manual",
+      "surface": "audio",
+      "price_reviewed": "z.ai USD list: $0.03/1M tokens, about $0.0024 per minute (docs.z.ai/guides/overview/pricing, 2026-10-28); stated per second as the page's own per-minute figure / 60."
     }
   ],
   "hidden_models": [

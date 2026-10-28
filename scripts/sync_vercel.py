@@ -66,6 +66,69 @@ def build_vercel_entry(row: dict) -> dict:
     entry["completion_per_1m"] = completion_per_1m
     entry["cache_read_per_1m"] = cache_read_per_1m
     entry["cache_write_per_1m"] = cache_write_per_1m
+
+    # Audio token splits and unit prices (per image, per generated-video
+    # second, per speech character, per transcribed second) — the columns the
+    # four token buckets cannot express. Scale choices stay conservative and
+    # documented: the MIDDLE resolution where a vendor prices video per
+    # resolution, and 1024x1024 where image prices key on size.
+    if p.get("audio_input_token_cost") is not None:
+        entry["audio_in_per_1m"] = round(float(p["audio_input_token_cost"]) * 1_000_000, 6)
+    if p.get("audio_output_token_cost") is not None:
+        entry["audio_out_per_1m"] = round(float(p["audio_output_token_cost"]) * 1_000_000, 6)
+    if p.get("image") is not None:
+        try:
+            entry["per_image"] = round(float(p["image"]), 6)
+        except (TypeError, ValueError):
+            pass
+    if p.get("speech_input_character_cost") is not None:
+        entry["tts_per_1m_chars"] = round(float(p["speech_input_character_cost"]) * 1_000_000, 6)
+    if p.get("transcription_duration_cost_per_second") is not None:
+        entry["asr_per_second"] = round(float(p["transcription_duration_cost_per_second"]), 8)
+    duration = p.get("video_duration_pricing")
+    if isinstance(duration, list) and duration:
+        by_res = {str(t.get("resolution")): t.get("cost_per_second") for t in duration if isinstance(t, dict)}
+        pick = by_res.get("720p")
+        if pick is None and len(duration) == 1:
+            pick = duration[0].get("cost_per_second")
+        if pick is not None:
+            entry["video_per_second"] = round(float(pick), 6)
+    dim = p.get("image_dimension_quality_pricing")
+    if isinstance(dim, list) and dim and "per_image" not in entry:
+        by_size = {str(t.get("size")): t.get("cost") for t in dim if isinstance(t, dict)}
+        pick = by_size.get("1024x1024")
+        if pick is None and len(dim) == 1:
+            pick = dim[0].get("cost")
+        if pick is not None:
+            entry["per_image"] = round(float(pick), 6)
+
+    # Time-tiered pricing: vercel's own shape is multiplier + UTC minute
+    # windows with weekdays, published as rate_variants on the row (the base
+    # card stays the off-peak list the fields above carry). The holiday
+    # calendar a vendor states (peak_pricing.holiday_calendar) is beyond a
+    # static condition; the variant prices holiday weekdays at peak, the one
+    # imprecision this accepts.
+    peak = p.get("peak_pricing")
+    if isinstance(peak, dict) and peak.get("multiplier") and isinstance(peak.get("windows"), list):
+        windows, weekdays = [], False
+        for w in peak["windows"]:
+            if not isinstance(w, dict):
+                continue
+            start, end = w.get("start_minute_utc"), w.get("end_minute_utc")
+            if not isinstance(start, int) or not isinstance(end, int):
+                continue
+            windows += [start, end]
+            if w.get("days_of_week") in ([1, 2, 3, 4, 5], None):
+                weekdays = weekdays or w.get("days_of_week") == [1, 2, 3, 4, 5]
+        if windows:
+            variant = collections.OrderedDict()
+            variant["name"] = "peak"
+            variant["utc_window_minutes"] = windows
+            if weekdays:
+                variant["weekdays_only"] = True
+            variant["multiplier"] = float(peak["multiplier"])
+            entry["rate_variants"] = [variant]
+
     entry["source"] = "vendor-api"
 
     if inp is not None and float(inp) == 0.0 and float(out or 0.0) == 0.0:
