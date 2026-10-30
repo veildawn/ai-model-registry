@@ -9693,9 +9693,7 @@
       "output_ceiling": 128000,
       "input_modalities": [
         "text",
-        "image",
-        "video",
-        "pdf"
+        "image"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."

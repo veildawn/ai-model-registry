@@ -6012,6 +6012,25 @@
           "output_ceiling": 128000
         },
         {
+          "model": "glm-5v-turbo",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.2,
+          "completion_per_1m": 4,
+          "cache_read_per_1m": 0.24,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 200000,
+          "output_ceiling": 128000,
+          "surface": "chat"
+        },
+        {
           "model": "glm-asr-2512",
           "pricing_style": "openai",
           "prompt_per_1m": 0,
@@ -7337,7 +7356,8 @@
             "pdf"
           ],
           "effort_levels": [
-            "none",
+            "low",
+            "medium",
             "high"
           ],
           "surface": "chat"
@@ -20413,9 +20433,7 @@
           "output_ceiling": 128000,
           "input_modalities": [
             "text",
-            "image",
-            "video",
-            "pdf"
+            "image"
           ],
           "surface": "chat",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."

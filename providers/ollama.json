@@ -294,7 +294,8 @@
         "pdf"
       ],
       "effort_levels": [
-        "none",
+        "low",
+        "medium",
         "high"
       ],
       "surface": "chat"
