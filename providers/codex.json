@@ -291,6 +291,25 @@
       "output_ceiling": 128000
     },
     {
+      "model": "gpt-6-astra-law",
+      "pricing_style": "openai",
+      "prompt_per_1m": 10,
+      "completion_per_1m": 50,
+      "cache_read_per_1m": 1,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 922000,
+      "output_ceiling": 128000,
+      "surface": "chat"
+    },
+    {
       "model": "gpt-6-luna",
       "pricing_style": "openai",
       "prompt_per_1m": 0.1,
