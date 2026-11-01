@@ -7308,6 +7308,42 @@
           "output_ceiling": 1048576
         },
         {
+          "model": "mimo-v2.6-flash",
+          "source": "manual",
+          "context_window": 1048576,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "mimo-v2.6-pro",
+          "source": "manual",
+          "context_window": 1048576,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat"
+        },
+        {
           "model": "minimax-m2.5",
           "source": "manual",
           "context_window": 204800,
