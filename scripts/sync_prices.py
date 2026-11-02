@@ -98,7 +98,13 @@ aggregators: where one publishes a ladder it wins outright, and unanimity
 across the remaining hosts decides only for ids the vendor is silent on. An
 output ceiling is narrower still — only the model's own publisher (Moonshot for
 Kimi, not NVIDIA hosting the same weights) outranks the aggregators, so one
-reseller's cap cannot contest the publisher's number away.
+reseller's cap cannot contest the publisher's number away. A dated pin fills
+the floating id only when the publisher does not list that spelling
+(`doubao-seed-2-1-pro-260628` for `doubao-seed-2.1-pro`). `-highspeed` and
+`-ultraspeed` copy the unsuffixed sibling in the same file. `--provider` still
+blank-fills this field on every other file, so the hourly job does not leave
+a new id's ceiling for the daily run. A ceiling already stored is not replaced
+on that pass.
 
 Usage:
     python3 scripts/sync_prices.py                     # apply, then report
@@ -1152,7 +1158,240 @@ def index_output_ceilings(host_facts: dict) -> dict:
         if chosen:
             for bare in group:
                 decisions[bare] = chosen
+    attach_dated_publisher_pins(decisions, host_facts)
     return decisions
+
+
+# Volcengine pins a Doubao snapshot as -YYMMDD (`-260628`). Anthropic pins
+# -YYYYMMDD. Neither is a version. A four-digit pin (`-0825`, `-001`) is left
+# to snapshot_of; treating every trailing number as a date would glue a version
+# onto the wrong floating id.
+PUBLISHER_PIN_DATE = re.compile(r"-(?:20\d{6}|2\d{5})$")
+
+# Same model, faster route. Not part of SURFACE_SUFFIX: that expression also
+# decides which ids share a price, and a highspeed row has its own rate card.
+SPEED_SUFFIX = re.compile(r"-(?:highspeed|ultraspeed)$")
+
+
+def attach_dated_publisher_pins(decisions: dict, host_facts: dict) -> None:
+    """Fill a floating id from the publisher's dated pins.
+
+    Volcengine lists `doubao-seed-2-1-pro-260628` and does not list
+    `doubao-seed-2.1-pro`. The floating spelling wins when a publisher host
+    does list it: `doubao-seed-2.0-lite` on the coding-plan host stays 32000
+    even though the dated pin says 131072. Aggregator pins are not read.
+    Two pins that float to the same id and disagree leave it blank.
+    """
+    collected = collections.defaultdict(list)
+    for host, models in (host_facts or {}).items():
+        if not isinstance(models, dict):
+            continue
+        for mid, facts in models.items():
+            if not isinstance(facts, dict):
+                continue
+            bare = str(mid).split("/")[-1].lower()
+            if not PUBLISHER_PIN_DATE.search(bare):
+                continue
+            floated = PUBLISHER_PIN_DATE.sub("", bare)
+            dotted = re.sub(r"(?<=\d)-(?=\d)", ".", floated)
+            hosts = output_publisher_hosts(floated) or output_publisher_hosts(dotted)
+            if not hosts or host not in hosts:
+                continue
+            ceiling = facts.get("output_ceiling")
+            if not ceiling:
+                continue
+            collected[frozenset((floated, dotted))].append(ceiling)
+    for names, vals in collected.items():
+        if any(name in decisions for name in names):
+            continue
+        agreed = set(vals)
+        if len(agreed) != 1:
+            continue
+        chosen = next(iter(agreed))
+        for name in names:
+            decisions[name] = chosen
+
+
+def inherit_speed_tier_ceilings(models: list, proposed: dict) -> list:
+    """Blank `-highspeed` / `-ultraspeed` rows take the sibling's ceiling.
+
+    The sibling is the same file's unsuffixed id. Its ceiling may be litellm's
+    number; this does not open a second vote against models.dev. Returns
+    (model, before, ceiling) and does not mutate.
+    """
+    stored = {m["model"].lower(): m.get("output_ceiling") for m in models}
+    out = []
+    for model in models:
+        mid = model["model"].lower()
+        if model.get("surface") == "embedding":
+            continue
+        if model.get("output_ceiling") or proposed.get(mid):
+            continue
+        base = SPEED_SUFFIX.sub("", mid)
+        if base == mid:
+            continue
+        ceiling = proposed.get(base) or stored.get(base)
+        if not ceiling:
+            continue
+        out.append((model, model.get("output_ceiling"), ceiling))
+    return out
+
+
+def proposed_output_ceiling(provider: str, model: dict, ceilings: dict,
+                            surface_host: dict, first_party: dict):
+    """Ceiling a blank row outside this run's `--provider` should take, or None.
+
+    A blank reseller row takes the first-party ceiling. A ceiling already
+    stored — including a Vercel catalog max_tokens — is left for the daily
+    full sync, which is the pass that may overwrite a foreign copy. An
+    embedding row is never filled.
+    """
+    if model.get("output_ceiling") or model.get("surface") == "embedding":
+        return None
+    if is_foreign_copy(provider, model["model"]) or provider in CATALOG_ENROLL:
+        party = lookup_facts(model["model"], first_party).get("output_ceiling")
+        if party:
+            return party
+    return models_dev_output_ceiling(model, model["model"], ceilings, surface_host)
+
+
+def applicable_ceiling_updates(entries: list, updates: dict) -> dict:
+    """The updates a stored file can take without splitting a variant family.
+
+    Keyed by the served id (base + suffix). A family is included only when
+    every suffix lands on one ceiling.
+    """
+    kept = {}
+    for entry in entries:
+        if not isinstance(entry, dict) or not entry.get("model"):
+            continue
+        suffixes = (entry.get("variants") or {}).get("suffixes") or []
+        if not suffixes:
+            mid = entry["model"].lower()
+            ceiling = updates.get(mid)
+            if ceiling and entry.get("output_ceiling") != ceiling:
+                kept[mid] = ceiling
+            continue
+        proposed = []
+        ids = []
+        for suffix in suffixes:
+            mid = (entry["model"] + suffix).lower()
+            ids.append(mid)
+            proposed.append(updates.get(mid, entry.get("output_ceiling")))
+        if not proposed or any(value is None for value in proposed):
+            continue
+        if len(set(proposed)) != 1:
+            continue
+        ceiling = proposed[0]
+        if entry.get("output_ceiling") == ceiling:
+            continue
+        for mid in ids:
+            kept[mid] = ceiling
+    return kept
+
+
+def assign_stored_ceilings(entries: list, updates: dict) -> bool:
+    """Write ceilings onto stored rows without reshaping variant families.
+
+    A family stores one shared ceiling. It is set only when every suffix
+    resolves to that same number; a partial fill would split the family the
+    next time it is collapsed.
+    """
+    changed = False
+    for entry in entries:
+        if not isinstance(entry, dict) or not entry.get("model"):
+            continue
+        variants = entry.get("variants") or {}
+        suffixes = variants.get("suffixes") or []
+        if not suffixes:
+            mid = entry["model"].lower()
+            ceiling = updates.get(mid)
+            if ceiling and entry.get("output_ceiling") != ceiling:
+                entry["output_ceiling"] = ceiling
+                changed = True
+            continue
+        proposed = []
+        for suffix in suffixes:
+            mid = (entry["model"] + suffix).lower()
+            proposed.append(updates.get(mid, entry.get("output_ceiling")))
+        if not proposed or any(value is None for value in proposed):
+            continue
+        if len(set(proposed)) != 1:
+            continue
+        ceiling = proposed[0]
+        if entry.get("output_ceiling") != ceiling:
+            entry["output_ceiling"] = ceiling
+            changed = True
+    return changed
+
+
+def overlay_party_ceilings(index: dict, provider: str, proposed: dict) -> None:
+    """Index ceilings this pass decided, including ones `--check` did not write.
+
+    remember_first_party copies the row as stored. A ceiling that is only
+    proposed still has to reach a reseller file later in the same run.
+    """
+    for mid, ceiling in proposed.items():
+        if not ceiling or first_party_owner(mid) != provider:
+            continue
+        keys = first_party_keys(mid, pin_of=False)
+        existing = None
+        for key in keys:
+            if key in index:
+                existing = index[key]
+                break
+        facts = dict(existing or {})
+        facts["output_ceiling"] = ceiling
+        for key in keys:
+            index[key] = facts
+
+
+def fill_ceilings_outside_target(registry_dir, provider_files, target_set,
+                                 ceilings, host_facts, first_party, applied,
+                                 apply) -> bool:
+    """Blank-fill, and copy first-party ceilings, on files this run did not rewrite.
+
+    Returns whether a provider file was written.
+    """
+    wrote = False
+    for path in sorted(provider_files, key=provider_pass_order):
+        with open(path) as fh:
+            doc = json.load(fh, object_pairs_hook=collections.OrderedDict)
+        provider = doc["name"]
+        if provider in target_set:
+            continue
+        models = [row for entry in doc.get("models", [])
+                  for row in expand_family(entry)]
+        surface_host = models_dev_surface_host(provider, host_facts)
+        updates = {}
+        pending = {}
+        before = {}
+        for model in models:
+            mid = model["model"]
+            ceiling = proposed_output_ceiling(
+                provider, model, ceilings, surface_host, first_party)
+            if not ceiling or ceiling == model.get("output_ceiling"):
+                continue
+            updates[mid.lower()] = ceiling
+            pending[mid.lower()] = ceiling
+            before[mid.lower()] = model.get("output_ceiling")
+        for model, was, ceiling in inherit_speed_tier_ceilings(models, pending):
+            mid = model["model"].lower()
+            updates[mid] = ceiling
+            pending[mid] = ceiling
+            before[mid] = was
+        kept = applicable_ceiling_updates(doc.get("models", []), updates)
+        if not kept:
+            continue
+        for mid, ceiling in kept.items():
+            applied.append((provider, mid, "output_ceiling", before.get(mid), ceiling))
+        if not assign_stored_ceilings(doc.get("models", []), kept):
+            continue
+        if apply:
+            wrote = True
+            with open(path, "w") as fh:
+                fh.write(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")
+    return wrote
 
 
 def output_lookup_keys(model_id: str) -> tuple:
@@ -1855,6 +2094,10 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
         # write, so the matching logic never has to know a family from a row.
         models = discover_families(
             [row for entry in doc.get("models", []) for row in expand_family(entry)])
+        # Ceilings this pass decided, including ones not written because
+        # --check. The speed-tier copy and the reseller overlay read it, so a
+        # dry run reports the same fills an apply would write.
+        proposed_ceilings = {}
 
         enrolled_here = enroll_new_models(
             provider, models, idx, models_dev, registry_dir=registry_dir)
@@ -1960,6 +2203,8 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                         continue
                     applied.append((provider, mid, field, current, value))
                     proposed.add(field)
+                    if field == "output_ceiling":
+                        proposed_ceilings[mid.lower()] = value
                     if apply:
                         model[field] = value
                         dirty = True
@@ -1996,6 +2241,8 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             for field, before, after in changes:
                 applied.append((provider, mid, field, before, after))
                 proposed.add(field)
+                if field == "output_ceiling" and after:
+                    proposed_ceilings[mid.lower()] = after
                 if apply:
                     if after is None:
                         model.pop(field, None)
@@ -2046,14 +2293,25 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                     applied.append((provider, mid, "output_ceiling",
                                     model.get("output_ceiling"), ceiling))
                     proposed.add("output_ceiling")
+                    proposed_ceilings[mid.lower()] = ceiling
                     if apply:
                         model["output_ceiling"] = ceiling
                         dirty = True
+
+        for model, before, ceiling in inherit_speed_tier_ceilings(
+                models, proposed_ceilings):
+            mid = model["model"]
+            applied.append((provider, mid, "output_ceiling", before, ceiling))
+            proposed_ceilings[mid.lower()] = ceiling
+            if apply:
+                model["output_ceiling"] = ceiling
+                dirty = True
 
         # Collected after the fills above, so the cross-provider check sees the
         # facts this run produced rather than the ones it started with.
         everything.extend((provider, model) for model in models)
         remember_first_party(first_party, provider, models)
+        overlay_party_ceilings(first_party, provider, proposed_ceilings)
 
         # The canonical stored shape for these rows. A file that is merely not in
         # it yet — the state every file is in before variant families existed —
@@ -2068,6 +2326,17 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             doc["models"] = canonical
             with open(path, "w") as fh:
                 fh.write(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")
+
+    # `--provider` rewrites that file and, until now, left every other file
+    # untouched. The hourly job runs one provider at a time, so a blank
+    # ceiling — a Doubao id whose publisher only lists a dated pin, a speed
+    # tier, a reseller row with no ceiling yet — waited for the daily full
+    # sync. This pass fills blanks only.
+    if target_set:
+        if fill_ceilings_outside_target(
+                registry_dir, provider_files, target_set, ceilings,
+                host_facts, first_party, applied, apply):
+            wrote = True
 
     # all.json is a copy of everything written above, so a run that rewrote a
     # provider file and stopped would leave the registry publishing two answers
@@ -2289,7 +2558,8 @@ def main() -> int:
 
     applied, disagree, orphans, unclassified, capability, counts, contested, enrolled = sync(
         args.registry, upstream, models_dev, apply=not args.check,
-        catalogs=catalogs, host_facts=host_facts)
+        catalogs=catalogs, host_facts=host_facts,
+        target_providers=args.provider)
     report = render(applied, disagree, orphans, unclassified, capability, counts,
                     contested, enrolled, apply=not args.check)
     print(report)

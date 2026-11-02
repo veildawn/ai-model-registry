@@ -975,7 +975,8 @@
             "image"
           ],
           "surface": "chat",
-          "source": "manual"
+          "source": "manual",
+          "output_ceiling": 256000
         },
         {
           "model": "doubao-seed-2.1-lite",
@@ -1013,7 +1014,8 @@
             "image"
           ],
           "surface": "chat",
-          "source": "manual"
+          "source": "manual",
+          "output_ceiling": 131072
         },
         {
           "model": "doubao-seed-2.1-turbo",
@@ -6884,7 +6886,7 @@
           "cache_write_per_1m": 0,
           "source": "manual",
           "context_window": 8192,
-          "output_ceiling": 2048,
+          "output_ceiling": 2000,
           "effort_levels": [
             "none"
           ],
@@ -6898,11 +6900,12 @@
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
           "source": "manual",
+          "context_window": 8192,
+          "output_ceiling": 8000,
           "effort_levels": [
             "none"
           ],
-          "surface": "audio",
-          "output_ceiling": 8192
+          "surface": "audio"
         },
         {
           "model": "mimo-v2.5-tts-voiceclone",
@@ -6912,11 +6915,12 @@
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
           "source": "manual",
+          "context_window": 8192,
+          "output_ceiling": 8000,
           "effort_levels": [
             "none"
           ],
-          "surface": "audio",
-          "output_ceiling": 8192
+          "surface": "audio"
         },
         {
           "model": "mimo-v2.5-tts-voicedesign",
@@ -6926,11 +6930,12 @@
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
           "source": "manual",
+          "context_window": 8192,
+          "output_ceiling": 8000,
           "effort_levels": [
             "none"
           ],
-          "surface": "audio",
-          "output_ceiling": 8192
+          "surface": "audio"
         }
       ]
     },
@@ -6977,7 +6982,8 @@
           "cache_read_per_1m": 0.031033,
           "cache_write_per_1m": 0.387918,
           "source": "manual",
-          "context_window": 1000000
+          "context_window": 1000000,
+          "output_ceiling": 8192
         },
         {
           "model": "minimax-m2.1-lightning",

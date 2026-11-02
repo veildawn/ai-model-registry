@@ -41,7 +41,8 @@
       "cache_read_per_1m": 0.031033,
       "cache_write_per_1m": 0.387918,
       "source": "manual",
-      "context_window": 1000000
+      "context_window": 1000000,
+      "output_ceiling": 8192
     },
     {
       "model": "minimax-m2.1-lightning",

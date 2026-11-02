@@ -81,64 +81,110 @@ def parse_pricing_tables(text: str) -> dict[str, dict[str, float]]:
 
     return prices
 
-def parse_model_specs(text: str, openai_text: str = "") -> dict[str, dict]:
-    """Parse model capabilities and limits from model.md and openai-api.md."""
-    specs: dict[str, dict] = {}
-    table_end = text.find("</table>")
-    table_text = text[:table_end] if table_end != -1 else text
+def _scaled(val: int, unit: str, *, binary_k: bool) -> int:
+    unit = (unit or "").upper()
+    if unit == "M":
+        return 1048576 if val == 1 else val * 1000000
+    if unit == "K":
+        # Output caps in this registry are decimal K (128K -> 128000). Context
+        # windows are binary K, which is what the model card's 8K ASR window is.
+        return val * 1024 if binary_k else val * 1000
+    return val
 
+
+def parse_model_specs(text: str, openai_text: str = "") -> dict[str, dict]:
+    """Parse model capabilities and limits from model.md and openai-api.md.
+
+    The page has one table per family (chat, ASR, TTS, then a rate-limit table
+    that names the same ids and states no length). Reading only up to the first
+    ``</table>`` dropped ASR and TTS, so the hourly sync never wrote their
+    Maximum Output. TTS states the length once, in a rowspan that also covers
+    voice clone and voice design. A later table that does not repeat the
+    length must not wipe a length an earlier table stated, and a missing
+    length is not 128K.
+    """
+    specs: dict[str, dict] = {}
     # Check multi-modality mentions in openai doc
     # e.g. "Currently, the mimo-v2.6-flash, mimo-v2.6-pro, mimo-v2.6-pro-ultraspeed and mimo-v2.5 models support image, audio or video input"
     omni_models = set(re.findall(r"`(mimo-[a-zA-Z0-9\.\-_]+)` models? support image, audio or video input", openai_text))
 
-    rows = table_text.split("<tr>")
+    # A rowspan cell states the length once for several model rows (TTS,
+    # voice clone, voice design share one "Maximum Output: 8K"). The carry
+    # lasts only for the rows that cell spans, and a later table that names
+    # the same ids without a length must not wipe it or invent 128K.
+    carry_left = 0
+    carried_context = None
+    carried_output = None
+
+    rows = text.split("<tr>")
     for r in rows:
-        cells = re.findall(r"<td[^>]*>(.*?)</td>", r, re.DOTALL)
-        if not cells:
+        raw_cells = re.findall(r"<td([^>]*)>(.*?)</td>", r, re.DOTALL)
+        if not raw_cells:
             continue
-        clean_cells = [re.sub(r"<[^>]+>", " ", c).strip() for c in cells]
+        clean_cells = [re.sub(r"<[^>]+>", " ", body).strip() for _, body in raw_cells]
         raw_models = re.findall(r"`(mimo-[a-zA-Z0-9\.\-_]+)`", clean_cells[0])
         if not raw_models:
+            if carry_left:
+                carry_left -= 1
             continue
 
         context_window = None
         output_ceiling = None
         has_omni = False
+        span = 1
 
-        for c in clean_cells:
+        for attrs, body in raw_cells:
+            c = re.sub(r"<[^>]+>", " ", body)
             if "Full-modal" in c or "full-modal" in c:
                 has_omni = True
+            stated = False
             ctx_match = re.search(r"Context Window:\s*([0-9]+)\s*([KMkm])?", c)
             if ctx_match:
-                val = int(ctx_match.group(1))
-                unit = (ctx_match.group(2) or "").upper()
-                if unit == "M":
-                    context_window = 1048576 if val == 1 else val * 1000000
-                elif unit == "K":
-                    context_window = val * 1024
-                else:
-                    context_window = val
-
+                context_window = _scaled(int(ctx_match.group(1)), ctx_match.group(2), binary_k=True)
+                stated = True
             out_match = re.search(r"Maximum Output:\s*([0-9]+)\s*([KMkm])?", c)
             if out_match:
-                val = int(out_match.group(1))
-                unit = (out_match.group(2) or "").upper()
-                if unit == "K":
-                    output_ceiling = val * 1000  # registry standard 128000
-                elif unit == "M":
-                    output_ceiling = val * 1000000
-                else:
-                    output_ceiling = val
+                output_ceiling = _scaled(int(out_match.group(1)), out_match.group(2), binary_k=False)
+                stated = True
+            span_match = re.search(r'rowspan="(\d+)"', attrs)
+            if stated and span_match:
+                span = max(span, int(span_match.group(1)))
+
+        if context_window or output_ceiling:
+            if span > 1:
+                carry_left = span - 1
+                carried_context = context_window
+                carried_output = output_ceiling
+            else:
+                carry_left = 0
+        elif carry_left > 0:
+            context_window = carried_context
+            output_ceiling = carried_output
+            carry_left -= 1
 
         for m in raw_models:
-            modalities = ["text"]
+            prev = specs.get(m, {})
+            # A length row is not a modality list. Defaulting these to text
+            # turned the ASR model into a text model. Only a row that actually
+            # says full-modal, or the v2.6 family the card describes that way,
+            # publishes modalities.
+            modalities = None
             if has_omni or m in omni_models or m.startswith("mimo-v2.6"):
                 modalities = ["text", "image", "audio", "video"]
-            specs[m] = {
-                "context_window": context_window or 1048576,
-                "output_ceiling": output_ceiling or 128000,
-                "input_modalities": modalities,
-            }
+            elif prev.get("input_modalities"):
+                modalities = prev["input_modalities"]
+            entry = {}
+            if modalities:
+                entry["input_modalities"] = modalities
+            if context_window:
+                entry["context_window"] = context_window
+            elif prev.get("context_window"):
+                entry["context_window"] = prev["context_window"]
+            if output_ceiling:
+                entry["output_ceiling"] = output_ceiling
+            elif prev.get("output_ceiling"):
+                entry["output_ceiling"] = prev["output_ceiling"]
+            specs[m] = entry
 
     return specs
 
@@ -229,9 +275,15 @@ def sync_mimo(check: bool = False) -> tuple[int, list[str]]:
         elif "effort_levels" in cur:
             entry["effort_levels"] = cur["effort_levels"]
 
-        # Surface
-        if m_id in audio_models and audio_models[m_id]["surface"]:
-            entry["surface"] = audio_models[m_id]["surface"]
+        # Surface. ASR's card has a context window and no chat route; a parsed
+        # length must not reclassify it as chat. audio_models records "audio"
+        # where the route is known and leaves ASR on whatever the file already
+        # says.
+        if m_id in audio_models:
+            if audio_models[m_id]["surface"]:
+                entry["surface"] = audio_models[m_id]["surface"]
+            elif cur.get("surface"):
+                entry["surface"] = cur["surface"]
         elif m_id in prices or (sp and sp.get("context_window")):
             entry["surface"] = "chat"
         elif "surface" in cur:

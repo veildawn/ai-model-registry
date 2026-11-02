@@ -649,6 +649,102 @@ class OutputCeilingTest(unittest.TestCase):
         ceilings = sp.index_output_ceilings(host_facts)
         self.assertEqual(ceilings["doubao-seed-evolving"], 256000)
 
+    def test_exact_floating_id_beats_a_dated_pin_and_a_split_stays_blank(self):
+        host_facts = {
+            "volcengine": {
+                "doubao-seed-2-1-pro-260628": host_row(256000, 256000),
+                "doubao-seed-2-0-mini-260428": host_row(256000, 131072),
+                "doubao-seed-2-0-lite-260428": host_row(256000, 131072),
+                "doubao-seed-2-1-pro-260101": host_row(256000, 64000),
+            },
+            "volcengine-coding-plan": {
+                "doubao-seed-2.0-lite": host_row(256000, 32000),
+            },
+            "requesty": {
+                "doubao-seed-2-1-lite-260628": host_row(256000, 99999),
+            },
+        }
+        ceilings = sp.index_output_ceilings(host_facts)
+        # Two dated pins of 2.1-pro disagree, so the floating id stays blank.
+        self.assertNotIn("doubao-seed-2.1-pro", ceilings)
+        self.assertEqual(
+            sp.lookup_output_ceiling("doubao-seed-2.0-mini", ceilings), 131072)
+        self.assertEqual(ceilings["doubao-seed-2.0-lite"], 32000)
+        self.assertEqual(
+            sp.lookup_output_ceiling("doubao-seed-2-0-lite", ceilings), 32000)
+        self.assertNotIn("doubao-seed-2.1-lite", ceilings)
+
+    def test_dated_pins_that_agree_fill_both_spellings(self):
+        host_facts = {
+            "volcengine": {
+                "doubao-seed-2-1-pro-260628": host_row(256000, 256000),
+            },
+        }
+        ceilings = sp.index_output_ceilings(host_facts)
+        self.assertEqual(ceilings["doubao-seed-2.1-pro"], 256000)
+        self.assertEqual(ceilings["doubao-seed-2-1-pro"], 256000)
+
+    def test_speed_tier_copies_the_sibling_ceiling_only(self):
+        models = [
+            {"model": "minimax-m2.1", "output_ceiling": 8192, "surface": "chat"},
+            {"model": "minimax-m2.1-highspeed", "surface": "chat"},
+            {"model": "minimax-m2.7-highspeed", "output_ceiling": 131072,
+             "surface": "chat"},
+            {"model": "orphan-highspeed", "surface": "chat"},
+        ]
+        changes = sp.inherit_speed_tier_ceilings(models, {})
+        self.assertEqual(
+            [(m["model"], ceiling) for m, _, ceiling in changes],
+            [("minimax-m2.1-highspeed", 8192)])
+        self.assertNotIn("output_ceiling", models[1])
+
+    def test_family_ceiling_is_all_or_nothing(self):
+        entries = [{
+            "model": "glm-5",
+            "variants": {"suffixes": ["", "-thinking"]},
+        }]
+        partial = sp.applicable_ceiling_updates(
+            entries, {"glm-5": 131072})
+        self.assertEqual(partial, {})
+        full = sp.applicable_ceiling_updates(
+            entries, {"glm-5": 131072, "glm-5-thinking": 131072})
+        self.assertEqual(full, {"glm-5": 131072, "glm-5-thinking": 131072})
+        self.assertTrue(sp.assign_stored_ceilings(entries, full))
+        self.assertEqual(entries[0]["output_ceiling"], 131072)
+
+
+class MimoSpecParserTest(unittest.TestCase):
+    def test_every_table_is_read_and_a_later_one_does_not_wipe_lengths(self):
+        import sync_mimo
+
+        page = """
+        <table><tr><td>`mimo-v2.6-pro`</td>
+        <td>Context Window: 1M</td><td>Maximum Output: 128K</td></tr></table>
+        <table><tr><td>`mimo-v2.5-asr`</td>
+        <td>Context Window: 8k</td><td>Maximum Output: 2k</td></tr></table>
+        <table>
+        <tr><td>`mimo-v2.5-tts`</td><td>Speech Synthesis</td>
+        <td rowspan="3">Context Window: 8K Maximum Output: 8K</td></tr>
+        <tr><td>`mimo-v2.5-tts-voiceclone`</td><td>Timbre Cloning</td></tr>
+        <tr><td>`mimo-v2.5-tts-voicedesign`</td><td>Timbre Design</td></tr>
+        </table>
+        <table><tr><td>`mimo-v2.5-asr` `mimo-v2.5-tts`</td>
+        <td>RPM 60</td></tr></table>
+        <table><tr><td>`mimo-v2-omni`</td><td>no length here</td></tr></table>
+        """
+        specs = sync_mimo.parse_model_specs(page)
+        self.assertEqual(specs["mimo-v2.6-pro"]["context_window"], 1048576)
+        self.assertEqual(specs["mimo-v2.6-pro"]["output_ceiling"], 128000)
+        self.assertEqual(specs["mimo-v2.5-asr"]["context_window"], 8192)
+        self.assertEqual(specs["mimo-v2.5-asr"]["output_ceiling"], 2000)
+        self.assertNotIn("input_modalities", specs["mimo-v2.5-asr"])
+        self.assertEqual(specs["mimo-v2.5-tts"]["output_ceiling"], 8000)
+        self.assertEqual(specs["mimo-v2.5-tts-voiceclone"]["context_window"], 8192)
+        self.assertEqual(specs["mimo-v2.5-tts-voiceclone"]["output_ceiling"], 8000)
+        self.assertEqual(specs["mimo-v2.5-tts-voicedesign"]["output_ceiling"], 8000)
+        self.assertNotIn("output_ceiling", specs["mimo-v2-omni"])
+        self.assertNotIn("context_window", specs["mimo-v2-omni"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -495,9 +495,15 @@ publisher this registry tracks, and NVIDIA hosting Kimi would otherwise contest
 Moonshot's own cap away. The model's publisher speaks first (Moonshot for
 `k3`, Volcengine for `doubao-*`, the Tencent plan hosts for `hy*`); where that
 publisher is silent, a number is taken only when every other host agrees. A
-surface's own models.dev row is the last resort, and only for a blank — Ollama
-Cloud's cap for a model Google does not list. An existing ceiling, including
-one litellm already wrote, is left alone.
+dated pin fills the floating id when the publisher never lists that spelling
+(`doubao-seed-2-1-pro-260628` supplies `doubao-seed-2.1-pro`); the floating
+spelling wins when a publisher host does list it. A surface's own models.dev
+row is the last resort, and only for a blank — Ollama Cloud's cap for a model
+Google does not list. An existing ceiling, including one litellm already wrote,
+is left alone. A `-highspeed` or `-ultraspeed` row with no ceiling copies the
+unsuffixed sibling in the same file. The hourly job's `--provider` run still
+fills a blank ceiling on every other file, including a reseller row that has
+none yet, so that update does not wait for the daily sync.
 
 | `source` | rows | what it means |
 |---|---|---|
