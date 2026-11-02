@@ -21,7 +21,8 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 131072
     },
     {
       "model": "cat-jam-free",
@@ -42,7 +43,8 @@
         "high",
         "xhigh",
         "max"
-      ]
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "claude-haiku-5-5",
@@ -126,7 +128,8 @@
       "input_modalities": [
         "text",
         "image"
-      ]
+      ],
+      "output_ceiling": 393216
     },
     {
       "model": "deepseek-v4-pro",
@@ -215,7 +218,8 @@
         "medium",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "glm-5",
@@ -447,7 +451,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "hy3-preview",
@@ -466,7 +471,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 64000
     },
     {
       "model": "iceman-contributor-free",
@@ -483,7 +489,8 @@
       "input_modalities": [
         "text"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 131072
     },
     {
       "model": "kimi-k2.5",
@@ -600,7 +607,8 @@
         "text",
         "image"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 131072
     },
     {
       "model": "mimo-v2.6-flash",
@@ -664,7 +672,8 @@
       ],
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "minimax-m3",
@@ -719,7 +728,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "mimo-v2.5",
@@ -811,7 +821,8 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 524288
     },
     {
       "model": "muse-spark-1.3-contributor",
@@ -836,7 +847,8 @@
         "high",
         "xhigh"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 131072
     },
     {
       "model": "omen-alpha",
@@ -871,7 +883,8 @@
         "text",
         "image",
         "video"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "qwen3.6-plus",
@@ -887,7 +900,8 @@
         "text",
         "image",
         "video"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "qwen3.7-max",
@@ -946,7 +960,8 @@
         "image",
         "video",
         "pdf"
-      ]
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "hy4-preview",
@@ -964,7 +979,8 @@
         "none",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 64000
     },
     {
       "model": "longcat-2.0",
@@ -982,7 +998,8 @@
       "effort_levels": [
         "none",
         "high"
-      ]
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "muse-spark-1.2-contributor",
@@ -1007,7 +1024,8 @@
         "high",
         "xhigh"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 131072
     },
     {
       "model": "qwen3.8-flash",
@@ -1051,7 +1069,8 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 524288
     },
     {
       "model": "space-bunny-free",
@@ -1074,7 +1093,8 @@
         "xhigh",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 524288
     },
     {
       "model": "step-5-preview",

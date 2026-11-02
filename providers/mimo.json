@@ -141,7 +141,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "audio"
+      "surface": "audio",
+      "output_ceiling": 8192
     },
     {
       "model": "mimo-v2.5-tts-voiceclone",
@@ -154,7 +155,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "audio"
+      "surface": "audio",
+      "output_ceiling": 8192
     },
     {
       "model": "mimo-v2.5-tts-voicedesign",
@@ -167,7 +169,8 @@
       "effort_levels": [
         "none"
       ],
-      "surface": "audio"
+      "surface": "audio",
+      "output_ceiling": 8192
     }
   ]
 }

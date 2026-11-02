@@ -22,7 +22,8 @@
         "medium",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     },
     {
       "model": "deepseek-v4-pro",

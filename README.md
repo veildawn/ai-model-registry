@@ -467,13 +467,14 @@ profiles. Ollama Cloud and OpenCode Go are the other exception: they publish
 the list of ids they actually serve, so enrollment there is a catalog fact, not
 a guess.
 
-A second upstream, [models.dev](https://models.dev/api.json), supplies the two
-fields litellm has no column for: `effort_levels`, and `surface` where a model's
-only output is an image, video or audio. It is a **supplement** in the strict
-sense — it fills a field a row leaves empty and never rewrites one that is set —
-so it can overrule neither litellm nor a person, and it has no `source` value of
-its own. It is also the one upstream whose absence is survivable: a failure there
-is logged and the run continues, because a third party's outage must not be able
+A second upstream, [models.dev](https://models.dev/api.json), supplies the
+fields litellm leaves blank: `effort_levels`, `surface` where a model's only
+output is an image, video or audio, and `output_ceiling` where litellm has no
+`max_output_tokens`. It is a **supplement** in the strict sense — it fills a
+field a row leaves empty and never rewrites one that is set — so it can
+overrule neither litellm nor a person, and it has no `source` value of its own.
+It is also the one upstream whose absence is survivable: a failure there is
+logged and the run continues, because a third party's outage must not be able
 to stop a price sync.
 
 models.dev carries one entry per host that serves a model — `gpt-5.4` appears
@@ -488,6 +489,15 @@ those 39 hosts mislabels `gpt-5.4` as an image model, and unanimity among the
 remaining hosts removes the entire class of one-bad-row errors. Where the
 vendors themselves split, or the aggregators do, the id is dropped for a person
 rather than arbitrated.
+
+`output_ceiling` uses a narrower vote than a ladder. `VENDOR_HOSTS` is every
+publisher this registry tracks, and NVIDIA hosting Kimi would otherwise contest
+Moonshot's own cap away. The model's publisher speaks first (Moonshot for
+`k3`, Volcengine for `doubao-*`, the Tencent plan hosts for `hy*`); where that
+publisher is silent, a number is taken only when every other host agrees. A
+surface's own models.dev row is the last resort, and only for a blank — Ollama
+Cloud's cap for a model Google does not list. An existing ceiling, including
+one litellm already wrote, is left alone.
 
 | `source` | rows | what it means |
 |---|---|---|

@@ -19,7 +19,8 @@
         "image"
       ],
       "surface": "chat",
-      "source": "manual"
+      "source": "manual",
+      "output_ceiling": 256000
     },
     {
       "model": "doubao-seed-2.1-pro",
@@ -95,7 +96,8 @@
         "image"
       ],
       "surface": "chat",
-      "source": "manual"
+      "source": "manual",
+      "output_ceiling": 256000
     },
     {
       "model": "doubao-seed-2.0-lite",
@@ -114,7 +116,8 @@
         "image"
       ],
       "surface": "chat",
-      "source": "manual"
+      "source": "manual",
+      "output_ceiling": 32000
     }
   ]
 }

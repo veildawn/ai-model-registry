@@ -236,7 +236,8 @@
         "medium",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 163840
     },
     {
       "model": "glm-5",
@@ -376,7 +377,8 @@
       ],
       "source": "manual",
       "context_window": 262144,
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 65536
     }
   ],
   "hidden_models": [

@@ -15,7 +15,8 @@
       "context_window": 200000,
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 32000
     },
     {
       "model": "deepseek-v4-flash-free",
@@ -52,7 +53,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "laguna-s-2.1-free",
@@ -72,7 +74,8 @@
       "context_window": 256000,
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 32000
     },
     {
       "model": "mimo-v2.5-free",
@@ -107,7 +110,8 @@
       "context_window": 1000000,
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "nemotron-3.5-lightning-free",
@@ -128,7 +132,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 262144
     }
   ]
 }

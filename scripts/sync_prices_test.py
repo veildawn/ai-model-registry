@@ -565,5 +565,90 @@ class AllProviderFactsTest(unittest.TestCase):
             2000000)
 
 
+def host_row(context, output):
+    return sp.facts_from_models_dev_model(
+        {"limit": {"context": context, "output": output},
+         "modalities": {"output": ["text"]}})
+
+
+class OutputCeilingTest(unittest.TestCase):
+    def test_placeholder_outputs_are_not_ceilings(self):
+        self.assertIsNone(sp.positive_output_limit({"limit": {"output": 0}}))
+        self.assertIsNone(sp.positive_output_limit({"limit": {"output": 1}}))
+        self.assertEqual(sp.positive_output_limit({"limit": {"output": 64000}}), 64000)
+        self.assertNotIn("output_ceiling", host_row(2048, 1))
+        self.assertEqual(host_row(1000000, 65536)["output_ceiling"], 65536)
+
+    def test_publisher_beats_a_host_that_only_serves_the_weights(self):
+        host_facts = {
+            "moonshotai": {"kimi-k3": host_row(1048576, 1048576)},
+            "moonshotai-cn": {"kimi-k3": host_row(1048576, 1048576)},
+            "nvidia": {"moonshotai/kimi-k3": host_row(1048576, 131072)},
+            "alibaba": {"kimi-k3": host_row(1048576, 1048576)},
+        }
+        ceilings = sp.index_output_ceilings(host_facts)
+        self.assertEqual(ceilings["kimi-k3"], 1048576)
+        self.assertEqual(ceilings["k3"], 1048576)
+        self.assertEqual(sp.lookup_output_ceiling("k3", ceilings), 1048576)
+
+    def test_publisher_split_drops_the_id(self):
+        host_facts = {
+            "moonshotai": {"kimi-k3": host_row(1048576, 1048576)},
+            "moonshotai-cn": {"kimi-k3": host_row(1048576, 131072)},
+            "some-aggregator": {"kimi-k3": host_row(1048576, 1048576)},
+        }
+        self.assertNotIn("k3", sp.index_output_ceilings(host_facts))
+
+    def test_unanimous_aggregators_fill_when_the_publisher_is_silent(self):
+        host_facts = {
+            "ollama-cloud": {"gemma4:31b": host_row(262144, 32768)},
+            "opencode": {"gemma4:31b": host_row(262144, 32768)},
+        }
+        ceilings = sp.index_output_ceilings(host_facts)
+        self.assertEqual(ceilings["gemma4:31b"], 32768)
+
+    def test_aggregator_split_stays_blank_until_the_surface_speaks(self):
+        host_facts = {
+            "ollama-cloud": {"gemma4:31b": host_row(262144, 32768)},
+            "opencode": {"gemma4:31b": host_row(262144, 262144)},
+        }
+        ceilings = sp.index_output_ceilings(host_facts)
+        self.assertNotIn("gemma4:31b", ceilings)
+        blank = {"model": "gemma4:31b"}
+        self.assertEqual(
+            sp.models_dev_output_ceiling(
+                blank, "gemma4:31b", ceilings, host_facts["ollama-cloud"]),
+            32768)
+        filled = {"model": "gemma4:31b", "output_ceiling": 8192}
+        self.assertIsNone(sp.models_dev_output_ceiling(
+            filled, "gemma4:31b", ceilings, host_facts["ollama-cloud"]))
+
+    def test_embedding_width_is_not_a_response_cap(self):
+        row = {"model": "text-embedding-3-small", "surface": "embedding"}
+        self.assertIsNone(sp.models_dev_output_ceiling(
+            row, row["model"], {"text-embedding-3-small": 1536}, {}))
+
+    def test_publisher_placeholder_blocks_an_aggregator_dimension(self):
+        # Gemini Embedding's own row says output 1, which is not a generation
+        # cap. An aggregator calling that 4096 must not become output_ceiling.
+        host_facts = {
+            "google": {"gemini-embedding-001": host_row(2048, 1)},
+            "merge-gateway": {
+                "google/gemini-embedding-001": host_row(2048, 4096)},
+        }
+        self.assertNotIn(
+            "gemini-embedding-001", sp.index_output_ceilings(host_facts))
+
+    def test_doubao_reads_volcengine_not_a_reseller_copy(self):
+        host_facts = {
+            "volcengine": {"doubao-seed-evolving": host_row(256000, 256000)},
+            "volcengine-coding-plan": {
+                "doubao-seed-evolving": host_row(256000, 256000)},
+            "requesty": {"doubao-seed-evolving": host_row(256000, 128000)},
+        }
+        ceilings = sp.index_output_ceilings(host_facts)
+        self.assertEqual(ceilings["doubao-seed-evolving"], 256000)
+
+
 if __name__ == "__main__":
     unittest.main()

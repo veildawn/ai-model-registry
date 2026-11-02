@@ -46,7 +46,8 @@
         "medium",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 256000
     },
     {
       "model": "step-3.5-flash-2603",
@@ -65,7 +66,8 @@
         "low",
         "high"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 256000
     },
     {
       "model": "step-3.5-flash",
@@ -85,7 +87,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 256000
     },
     {
       "model": "step-router-v1",

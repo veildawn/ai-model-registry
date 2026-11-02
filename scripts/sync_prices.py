@@ -84,16 +84,21 @@ Matching never crosses namespaces. litellm carries most Chinese models under
 third-party hosts (cloudflare/, baseten/, azure_ai/, fireworks_ai/); those are
 another deployment's facts.
 
-A SECOND upstream, models.dev, supplies the two fields litellm has no column
-for: the reasoning ladder (`effort_levels`) and, where a model's only output is
-an image or video or audio, the serving `surface`. It is a supplement in the
-strict sense — it fills a field a row leaves EMPTY and never rewrites one that
-is set, so it can overrule neither litellm nor a person. It is also the one
-upstream whose absence is survivable: a failure there is logged and the run
-continues, because it must not be able to stop a price sync. Within it, the
-vendor's own namespace outranks the aggregators: where one publishes a ladder
-it wins outright, and unanimity across the remaining hosts decides only for
-ids the vendor is silent on.
+A SECOND upstream, models.dev, supplies what litellm leaves blank. The reasoning
+ladder (`effort_levels`) and, where a model's only output is an image or video
+or audio, the serving `surface` — litellm has no column for either. The maximum
+response length (`output_ceiling`) litellm does publish, as `max_output_tokens`,
+and where that column is empty models.dev's `limit.output` fills the blank.
+Every one of these is a supplement in the strict sense: it fills a field a row
+leaves EMPTY and never rewrites one that is set, so it can overrule neither
+litellm nor a person. It is also the one upstream whose absence is survivable:
+a failure there is logged and the run continues, because it must not be able to
+stop a price sync. Within it, the vendor's own namespace outranks the
+aggregators: where one publishes a ladder it wins outright, and unanimity
+across the remaining hosts decides only for ids the vendor is silent on. An
+output ceiling is narrower still — only the model's own publisher (Moonshot for
+Kimi, not NVIDIA hosting the same weights) outranks the aggregators, so one
+reseller's cap cannot contest the publisher's number away.
 
 Usage:
     python3 scripts/sync_prices.py                     # apply, then report
@@ -116,17 +121,17 @@ import urllib.request
 
 UPSTREAM = "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json"
 
-# models.dev is the SECOND upstream, and it is here for what litellm has no
-# column for at all: the reasoning ladder a model accepts. litellm publishes
-# rates and windows and says nothing about effort levels, so every ladder in this
-# registry was hand-written and coverage sat at a quarter of the rows — which is
-# the state delegation exists to get out of.
+# models.dev is the SECOND upstream. litellm publishes rates and windows and
+# says nothing about effort levels, so every ladder in this registry was
+# hand-written until this supplement existed. It also publishes limit.output,
+# which is the maximum response length for the ids litellm's max_output_tokens
+# column leaves empty.
 #
 # It is a SUPPLEMENT, never an override. It fills a field a row does not have and
 # never rewrites one that does. Its per-model data is community-curated and its
 # provider list is an order of magnitude wider than the vendors tracked here, so
-# it is trusted for the fields nobody else publishes and for nothing else;
-# litellm remains the authority for every field it carries.
+# it is trusted to fill blanks and for nothing else; litellm remains the
+# authority for every field it actually carries.
 MODELS_DEV = "https://models.dev/api.json"
 
 # models.dev namespaces that are the model's FIRST-PARTY publisher or one of its
@@ -153,6 +158,44 @@ VENDOR_HOSTS = frozenset({
     "tencent-tokenhub", "xiaomi", "xai", "zai", "zai-coding-plan", "zhipuai",
     "zhipuai-coding-plan",
 })
+
+# Which models.dev hosts are THIS model's publisher, for output_ceiling only.
+# VENDOR_HOSTS is every publisher we track, and a ladder is contested when any
+# two of them disagree. That is the wrong vote for a response cap: NVIDIA and
+# Alibaba both serve Kimi, and their caps would throw away Moonshot's own
+# number. The owner's hosts speak for the model; everyone else is an aggregator.
+OUTPUT_PUBLISHER_HOSTS = {
+    "anthropic": frozenset({"anthropic"}),
+    "codex": frozenset({"openai"}),
+    "gemini": frozenset({"google", "google-vertex"}),
+    "xai": frozenset({"xai"}),
+    "deepseek": frozenset({"deepseek"}),
+    "glm": frozenset({"zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"}),
+    "kimi": frozenset({"moonshotai", "moonshotai-cn"}),
+    "minimax": frozenset({
+        "minimax", "minimax-cn", "minimax-coding-plan", "minimax-cn-coding-plan",
+    }),
+    "mimo": frozenset({"xiaomi"}),
+    "qianwen": frozenset({
+        "alibaba", "alibaba-cn", "alibaba-coding-plan", "alibaba-coding-plan-cn",
+        "alibaba-token-plan", "alibaba-token-plan-cn",
+    }),
+    "stepfun": frozenset({"stepfun"}),
+}
+
+# Families this registry does not own a file for, matched on the id. Volcengine
+# is Doubao's publisher; the Tencent plan hosts are Hunyuan's. They are not
+# added to VENDOR_HOSTS: that set also decides ladders, and a Doubao host
+# listing Kimi must not become a vote on Kimi's ladder.
+OUTPUT_PUBLISHER_PREFIXES = (
+    (re.compile(r"^doubao-"), frozenset({
+        "volcengine", "volcengine-coding-plan",
+    })),
+    (re.compile(r"^hy\d"), frozenset({
+        "tencent-coding-plan", "tencent-token-plan", "tencent-tokenhub",
+    })),
+    (re.compile(r"^sensenova-"), frozenset({"sensenova"})),
+)
 
 # Our `surface` <- litellm's `mode`. The surface is which API ROUTE serves a
 # model — the question a gateway answers before it can dispatch, and one no rate
@@ -957,6 +1000,23 @@ def models_dev_host_ids(document, host: str) -> list:
     return sorted(str(mid).lower() for mid in models)
 
 
+def positive_output_limit(model: dict):
+    """models.dev `limit.output` when it is a real response cap.
+
+    0 is "not published". 1 is the placeholder models.dev writes on embedding
+    and reranker rows (Gemini Embedding's output limit is 1), which is not a
+    generation ceiling a Messages fold can send as max_tokens.
+    """
+    limit = model.get("limit") or {}
+    output = limit.get("output")
+    if isinstance(output, bool) or not isinstance(output, (int, float)):
+        return None
+    output = int(output)
+    if output <= 1:
+        return None
+    return output
+
+
 def facts_from_models_dev_model(model: dict) -> dict:
     """One models.dev model entry as the fields this registry stores."""
     facts = {}
@@ -964,6 +1024,9 @@ def facts_from_models_dev_model(model: dict) -> dict:
     window = limit.get("context")
     if window:
         facts["context_window"] = window
+    ceiling = positive_output_limit(model)
+    if ceiling:
+        facts["output_ceiling"] = ceiling
     modalities = [
         m for m in ((model.get("modalities") or {}).get("input") or [])
         if m in KEEP_MODALITIES
@@ -1009,6 +1072,155 @@ def index_models_dev_hosts(document) -> dict:
         if models:
             out[host] = models
     return out
+
+
+def output_publisher_hosts(bare: str):
+    """models.dev hosts whose output cap is this model's own, or None."""
+    owner = first_party_owner(bare)
+    hosts = OUTPUT_PUBLISHER_HOSTS.get(owner) if owner else None
+    if hosts:
+        return hosts
+    for pattern, prefixed in OUTPUT_PUBLISHER_PREFIXES:
+        if pattern.search(bare):
+            return prefixed
+    return None
+
+
+def spelling_group(bare: str) -> tuple:
+    """Ids this registry already treats as one model (`k3` / `kimi-k3`)."""
+    found = FIRST_PARTY_SPELLINGS.get(bare)
+    if not found:
+        return (bare,)
+    return tuple(sorted(set(found)))
+
+
+def index_output_ceilings(host_facts: dict) -> dict:
+    """bare id -> maximum response length, publisher first, else unanimity.
+
+    A publisher who lists the id decides it, and two of that publisher's own
+    hosts disagreeing drops the id rather than averaging them. Where the
+    publisher is silent, a single number every other host agrees on is taken.
+    A split is left blank: a contested cap is how step-5's context window was
+    once written into the ceiling.
+    """
+    votes = collections.defaultdict(list)
+    # Hosts that list the id at all, even with no usable ceiling. A publisher
+    # row whose output is 0 or 1 (embeddings) has spoken: there is no
+    # generation cap, and an aggregator's "4096" must not fill one in.
+    present = collections.defaultdict(set)
+    for host, models in (host_facts or {}).items():
+        if not isinstance(models, dict):
+            continue
+        for mid, facts in models.items():
+            if not isinstance(facts, dict):
+                continue
+            bare = str(mid).split("/")[-1].lower()
+            present[bare].add(host)
+            ceiling = facts.get("output_ceiling")
+            if ceiling:
+                votes[bare].append((host, ceiling))
+
+    grouped = collections.OrderedDict()
+    for bare in set(votes) | set(present):
+        grouped.setdefault(spelling_group(bare), []).append(bare)
+
+    decisions = {}
+    for group, members in grouped.items():
+        ballots = []
+        seen_hosts = set()
+        for bare in members:
+            ballots.extend(votes.get(bare, []))
+            seen_hosts.update(present.get(bare, ()))
+        hosts = None
+        for bare in group:
+            hosts = output_publisher_hosts(bare)
+            if hosts:
+                break
+        publisher_vals = {c for h, c in ballots if hosts and h in hosts}
+        publisher_listed = bool(hosts and seen_hosts.intersection(hosts))
+        if publisher_listed:
+            chosen = next(iter(publisher_vals)) if len(publisher_vals) == 1 else None
+        else:
+            vendor_vals = {c for h, c in ballots if h in VENDOR_HOSTS}
+            if len(vendor_vals) == 1:
+                chosen = next(iter(vendor_vals))
+            elif len(vendor_vals) > 1:
+                chosen = None
+            else:
+                other = {c for _, c in ballots}
+                chosen = next(iter(other)) if len(other) == 1 else None
+        if chosen:
+            for bare in group:
+                decisions[bare] = chosen
+    return decisions
+
+
+def output_lookup_keys(model_id: str) -> tuple:
+    """Spellings under which an output ceiling might be stored.
+
+    Exact id, the vendor id behind a reseller prefix, dots and dashes swapped
+    in the version, and the aliases in FIRST_PARTY_SPELLINGS. A dated or
+    preview pin is tried last so its own row wins when models.dev has one.
+    """
+    mid = model_id.lower()
+    names = []
+    for name in (mid, bare_model_id(mid)):
+        if name not in names:
+            names.append(name)
+    bare = bare_model_id(mid)
+    for name in (
+        re.sub(r"(?<=\d)\.(?=\d)", "-", bare),
+        re.sub(r"(?<=\d)-(?=\d)", ".", bare),
+    ):
+        if name not in names:
+            names.append(name)
+    keys = []
+    seen = set()
+    for name in names:
+        for candidate in (name, strip_suffixes(name), snapshot_of(name)):
+            for key in FIRST_PARTY_SPELLINGS.get(candidate, (candidate,)):
+                if key and key not in seen:
+                    seen.add(key)
+                    keys.append(key)
+    return tuple(keys)
+
+
+def lookup_output_ceiling(model_id: str, index: dict):
+    """The ceiling stored under any spelling of model_id, or None.
+
+    Values may be the integer itself or a fact dict carrying output_ceiling,
+    which is the shape of a models.dev surface host.
+    """
+    if not index:
+        return None
+    for key in output_lookup_keys(model_id):
+        found = index.get(key)
+        if isinstance(found, dict):
+            found = found.get("output_ceiling")
+        if found:
+            return found
+    return None
+
+
+def models_dev_output_ceiling(model: dict, model_id: str, ceilings: dict,
+                              surface_host: dict):
+    """A blank row's response cap from models.dev, or None when one is already set.
+
+    The publisher index wins. A surface's own models.dev host is the fallback
+    for a deployment the publisher does not list (Ollama Cloud's Gemma), and
+    only then — a surface cap must not outvote the publisher.
+    """
+    if model.get("output_ceiling"):
+        return None
+    # Embedding rows publish a vector width in this column (1536, 3072). That
+    # is not a response length, and writing it here is how a fold would send
+    # max_tokens=1536 at an embeddings route.
+    if model.get("surface") == "embedding":
+        return None
+    ceiling = lookup_output_ceiling(model_id, ceilings)
+    if ceiling is None:
+        ceiling = lookup_output_ceiling(model_id, surface_host)
+    return ceiling
 
 
 def merge_vendor_facts(host_facts: dict) -> dict:
@@ -1101,7 +1313,7 @@ def build_catalog_row(model_id: str, spec: dict, facts: dict) -> collections.Ord
             row["free"] = True
     row["source"] = "manual"
     for field in FIRST_PARTY_FACTS:
-        if field == "surface":
+        if field in ("surface", "output_ceiling"):
             continue
         if facts.get(field):
             row[field] = facts[field]
@@ -1620,6 +1832,10 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
     catalogs = catalogs or {}
     host_facts = host_facts or {}
     vendor_facts = merge_vendor_facts(host_facts)
+    # Publisher-scoped response caps. Applied on its own, blank rows only, so a
+    # litellm max_output_tokens or a hand-set ceiling is never replaced by a
+    # models.dev number — including one that merely copied the context window.
+    ceilings = index_output_ceilings(host_facts)
     # Built once, then refreshed after each first-party file so a GLM id
     # enrolled earlier in this run is what Ollama copies later in it.
     first_party = index_first_party(registry_dir)
@@ -1763,8 +1979,18 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             else:
                 facts = lookup_facts(mid, vendor_facts, surface_host)
                 overwrite = False
+            # output_ceiling from models.dev is NOT in this write. The merged
+            # facts carry whatever the vendor hosts agreed, which is a different
+            # vote from the publisher-scoped one (NVIDIA hosting Kimi must not
+            # contest Moonshot). A ceiling already on a first-party row still
+            # overwrites a reseller copy; that number was reviewed here.
+            writable = {k: v for k, v in facts.items() if k != "output_ceiling"}
+            if spec is not None or foreign:
+                party_ceiling = lookup_facts(mid, first_party).get("output_ceiling")
+                if party_ceiling:
+                    writable["output_ceiling"] = party_ceiling
             changes = apply_catalog_facts(
-                model, facts, FIRST_PARTY_FACTS, overwrite=overwrite)
+                model, writable, FIRST_PARTY_FACTS, overwrite=overwrite)
             if overwrite:
                 changes.extend(clear_vendor_silent_effort(model, facts, vendor_facts))
             for field, before, after in changes:
@@ -1778,7 +2004,10 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                     dirty = True
             # Skip the collapsed aggregator vote when a stronger chain spoke:
             # one host misreading an effort ladder must not outvote Meta / GLM.
-            skip_supplement = spec is not None or (foreign and bool(facts))
+            # output_ceiling is decided below and must not, by itself, count as
+            # the chain having spoken — that would skip an effort fill.
+            chain_facts = {k: v for k, v in facts.items() if k != "output_ceiling"}
+            skip_supplement = spec is not None or (foreign and bool(chain_facts))
 
             # The models.dev supplement runs for every row, matched upstream or
             # not: it carries ids litellm has never listed, and a row that missed
@@ -1797,11 +2026,28 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             if not skip_supplement:
                 supplement = models_dev.get(mid.lower()) or models_dev.get(strip_suffixes(mid)) or {}
                 for field, value in sorted(supplement.items()):
-                    if model.get(field) or field in proposed:
+                    if field == "output_ceiling" or model.get(field) or field in proposed:
                         continue
                     applied.append((provider, mid, field, model.get(field), value))
+                    proposed.add(field)
                     if apply:
                         model[field] = value
+                        dirty = True
+
+            # Response cap. litellm's max_output_tokens already ran above and,
+            # on a delegated row, owns the field. This only fills a blank, from
+            # the publisher's models.dev row when one agrees with itself, else
+            # from hosts that all publish the same number, else from this
+            # surface's own models.dev host.
+            if "output_ceiling" not in proposed:
+                ceiling = models_dev_output_ceiling(
+                    model, mid, ceilings, surface_host)
+                if ceiling:
+                    applied.append((provider, mid, "output_ceiling",
+                                    model.get("output_ceiling"), ceiling))
+                    proposed.add("output_ceiling")
+                    if apply:
+                        model["output_ceiling"] = ceiling
                         dirty = True
 
         # Collected after the fills above, so the cross-provider check sees the
