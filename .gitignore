@@ -1,3 +1,9 @@
 # Python sync tooling byproducts
 __pycache__/
 *.pyc
+
+# macOS Finder metadata
+.DS_Store
+
+# Internal AI-tool notes
+.zcode/
