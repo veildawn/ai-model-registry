@@ -1,6 +1,6 @@
 # ai-model-registry
 
-Provider / model / pricing registry consumed by [ai-proxy-service](https://github.com/veildawn/ai-proxy-service).
+Provider / model / pricing registry consumed by [AI Proxy](https://github.com/veildawn/ai-proxy-releases).
 The service syncs this data at startup (and on demand via the admin "sync" action);
 prices are keyed by **(provider, model)** — the same model id served by different
 providers carries its own independent price row.
@@ -23,7 +23,7 @@ HTTP path trustworthy. See [Signing](#signing) below.
 
 Reading this registry over HTTP the obvious way means fetching `index.json` and
 then one file per provider: **21 requests today**, one more with every provider
-added, for 140 KB of data. ai-proxy-service does that at boot under a 20 second
+added, for 140 KB of data. [AI Proxy](https://github.com/veildawn/ai-proxy-releases) does that at boot under a 20 second
 budget for the whole operation, so the layout only works while the average round
 trip stays under ~950ms. Past that the sync times out and the service silently
 falls back to its embedded snapshot — nothing looks broken, every model is still
@@ -82,7 +82,7 @@ Same files, same layout, one parser on the consumer's side. The module exists so
 a consumer never has to vendor a flattened copy into its own tree — a generated
 file that diffs like source and can be hand-edited is a second source of truth
 waiting to happen, and was one twice: researched effort ladders typed into
-ai-proxy-service's snapshot existed only inside a build and were wiped by the
+[AI Proxy](https://github.com/veildawn/ai-proxy-releases)'s snapshot existed only inside a build and were wiped by the
 first sync that reached this repo. A module pins its version in the consumer's
 `go.mod` and is checksummed in `go.sum`; there is nothing to hand-edit.
 
