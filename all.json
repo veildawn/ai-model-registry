@@ -4412,7 +4412,7 @@
             "image"
           ],
           "source": "litellm",
-          "context_window": 400000,
+          "context_window": 272000,
           "surface": "chat",
           "output_ceiling": 128000
         },
