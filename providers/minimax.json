@@ -16,7 +16,14 @@
       "source": "litellm",
       "context_window": 200000,
       "surface": "chat",
-      "output_ceiling": 8192
+      "output_ceiling": 8192,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "minimax-m2.1",
@@ -31,7 +38,14 @@
       "input_modalities": [
         "text"
       ],
-      "output_ceiling": 8192
+      "output_ceiling": 8192,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "minimax-m2.1-highspeed",
