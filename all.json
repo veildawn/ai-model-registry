@@ -4531,6 +4531,25 @@
           "surface": "chat"
         },
         {
+          "model": "gpt-6-cyber",
+          "pricing_style": "openai",
+          "prompt_per_1m": 20,
+          "completion_per_1m": 100,
+          "cache_read_per_1m": 2,
+          "cache_write_per_1m": 25,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 922000,
+          "output_ceiling": 128000,
+          "surface": "chat"
+        },
+        {
           "model": "gpt-6-luna",
           "pricing_style": "openai",
           "prompt_per_1m": 0.1,
