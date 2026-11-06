@@ -1100,7 +1100,7 @@ def spelling_group(bare: str) -> tuple:
     return tuple(sorted(set(found)))
 
 
-def index_output_ceilings(host_facts: dict) -> dict:
+def index_output_ceilings(host_facts: dict):
     """bare id -> maximum response length, publisher first, else unanimity.
 
     A publisher who lists the id decides it, and two of that publisher's own
@@ -1108,6 +1108,9 @@ def index_output_ceilings(host_facts: dict) -> dict:
     publisher is silent, a single number every other host agrees on is taken.
     A split is left blank: a contested cap is how step-5's context window was
     once written into the ceiling.
+
+    Returns (decisions, blocked). blocked holds bare ids the publisher listed
+    without a usable unanimous cap, so a surface host cannot fill them later.
     """
     votes = collections.defaultdict(list)
     # Hosts that list the id at all, even with no usable ceiling. A publisher
@@ -1131,6 +1134,7 @@ def index_output_ceilings(host_facts: dict) -> dict:
         grouped.setdefault(spelling_group(bare), []).append(bare)
 
     decisions = {}
+    blocked = set()
     for group, members in grouped.items():
         ballots = []
         seen_hosts = set()
@@ -1146,20 +1150,19 @@ def index_output_ceilings(host_facts: dict) -> dict:
         publisher_listed = bool(hosts and seen_hosts.intersection(hosts))
         if publisher_listed:
             chosen = next(iter(publisher_vals)) if len(publisher_vals) == 1 else None
+            if chosen is None:
+                blocked.update(group)
         else:
-            vendor_vals = {c for h, c in ballots if h in VENDOR_HOSTS}
-            if len(vendor_vals) == 1:
-                chosen = next(iter(vendor_vals))
-            elif len(vendor_vals) > 1:
-                chosen = None
-            else:
-                other = {c for _, c in ballots}
-                chosen = next(iter(other)) if len(other) == 1 else None
+            # Every non-publisher host that voted must agree. A lone VENDOR_HOSTS
+            # ballot must not beat a conflicting ordinary host (NVIDIA 10 vs
+            # Requesty 20 while Moonshot is silent).
+            other = {c for h, c in ballots if not hosts or h not in hosts}
+            chosen = next(iter(other)) if len(other) == 1 else None
         if chosen:
             for bare in group:
                 decisions[bare] = chosen
     attach_dated_publisher_pins(decisions, host_facts)
-    return decisions
+    return decisions, blocked
 
 
 # Volcengine pins a Doubao snapshot as -YYMMDD (`-260628`). Anthropic pins
@@ -1238,7 +1241,7 @@ def inherit_speed_tier_ceilings(models: list, proposed: dict) -> list:
 
 
 def proposed_output_ceiling(provider: str, model: dict, ceilings: dict,
-                            surface_host: dict, first_party: dict):
+                            surface_host: dict, first_party: dict, blocked=None):
     """Ceiling a blank row outside this run's `--provider` should take, or None.
 
     A blank reseller row takes the first-party ceiling. A ceiling already
@@ -1252,7 +1255,8 @@ def proposed_output_ceiling(provider: str, model: dict, ceilings: dict,
         party = lookup_facts(model["model"], first_party).get("output_ceiling")
         if party:
             return party
-    return models_dev_output_ceiling(model, model["model"], ceilings, surface_host)
+    return models_dev_output_ceiling(
+        model, model["model"], ceilings, surface_host, blocked)
 
 
 def applicable_ceiling_updates(entries: list, updates: dict) -> dict:
@@ -1348,7 +1352,7 @@ def overlay_party_ceilings(index: dict, provider: str, proposed: dict) -> None:
 
 def fill_ceilings_outside_target(registry_dir, provider_files, target_set,
                                  ceilings, host_facts, first_party, applied,
-                                 apply) -> bool:
+                                 apply, blocked=None) -> bool:
     """Blank-fill, and copy first-party ceilings, on files this run did not rewrite.
 
     Returns whether a provider file was written.
@@ -1369,7 +1373,7 @@ def fill_ceilings_outside_target(registry_dir, provider_files, target_set,
         for model in models:
             mid = model["model"]
             ceiling = proposed_output_ceiling(
-                provider, model, ceilings, surface_host, first_party)
+                provider, model, ceilings, surface_host, first_party, blocked)
             if not ceiling or ceiling == model.get("output_ceiling"):
                 continue
             updates[mid.lower()] = ceiling
@@ -1442,12 +1446,13 @@ def lookup_output_ceiling(model_id: str, index: dict):
 
 
 def models_dev_output_ceiling(model: dict, model_id: str, ceilings: dict,
-                              surface_host: dict):
+                              surface_host: dict, blocked=None):
     """A blank row's response cap from models.dev, or None when one is already set.
 
     The publisher index wins. A surface's own models.dev host is the fallback
     for a deployment the publisher does not list (Ollama Cloud's Gemma), and
-    only then — a surface cap must not outvote the publisher.
+    only then — a surface cap must not outvote the publisher. Ids in blocked
+    were listed by the publisher without a usable cap, so the surface stays out.
     """
     if model.get("output_ceiling"):
         return None
@@ -1456,6 +1461,10 @@ def models_dev_output_ceiling(model: dict, model_id: str, ceilings: dict,
     # max_tokens=1536 at an embeddings route.
     if model.get("surface") == "embedding":
         return None
+    if blocked:
+        for key in output_lookup_keys(model_id):
+            if key in blocked:
+                return None
     ceiling = lookup_output_ceiling(model_id, ceilings)
     if ceiling is None:
         ceiling = lookup_output_ceiling(model_id, surface_host)
@@ -2074,7 +2083,7 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
     # Publisher-scoped response caps. Applied on its own, blank rows only, so a
     # litellm max_output_tokens or a hand-set ceiling is never replaced by a
     # models.dev number — including one that merely copied the context window.
-    ceilings = index_output_ceilings(host_facts)
+    ceilings, blocked_ceilings = index_output_ceilings(host_facts)
     # Built once, then refreshed after each first-party file so a GLM id
     # enrolled earlier in this run is what Ollama copies later in it.
     first_party = index_first_party(registry_dir)
@@ -2288,7 +2297,7 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             # surface's own models.dev host.
             if "output_ceiling" not in proposed:
                 ceiling = models_dev_output_ceiling(
-                    model, mid, ceilings, surface_host)
+                    model, mid, ceilings, surface_host, blocked_ceilings)
                 if ceiling:
                     applied.append((provider, mid, "output_ceiling",
                                     model.get("output_ceiling"), ceiling))
@@ -2335,7 +2344,7 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
     if target_set:
         if fill_ceilings_outside_target(
                 registry_dir, provider_files, target_set, ceilings,
-                host_facts, first_party, applied, apply):
+                host_facts, first_party, applied, apply, blocked_ceilings):
             wrote = True
 
     # all.json is a copy of everything written above, so a run that rewrote a
