@@ -7696,7 +7696,8 @@
             "xhigh",
             "max"
           ],
-          "surface": "chat"
+          "surface": "chat",
+          "output_ceiling": 270000
         },
         {
           "model": "deepseek-flash",
