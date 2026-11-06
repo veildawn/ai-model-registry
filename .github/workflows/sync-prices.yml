@@ -15,10 +15,11 @@
 # when an upstream disagrees with one, through a single issue it keeps up to
 # date. See scripts/sync_prices.py.
 #
-# models.dev is read too, for the two fields litellm has no column for
-# (`effort_levels` and an image/video/audio `surface`). It only ever fills an
-# empty field, and its absence is not fatal: the script logs and carries on, so a
-# third party's outage cannot stop the price sync this job exists for.
+# models.dev is read too, for the fields litellm leaves blank (`effort_levels`,
+# an image/video/audio `surface`, and `output_ceiling` where litellm has no
+# max_output_tokens). It only ever fills an empty field, and its absence is not
+# fatal: the script logs and carries on, so a third party's outage cannot stop
+# the price sync this job exists for.
 #
 # Daily rather than hourly: litellm's file moves a few times a day and a price
 # change is never urgent. The schedule is off the hour because GitHub queues

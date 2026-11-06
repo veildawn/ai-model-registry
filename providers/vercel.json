@@ -3266,7 +3266,8 @@
         "high"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 32768
     },
     {
       "model": "google/gemini-3.5-transcribe-live",
@@ -3424,7 +3425,8 @@
         "high"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 16384
     },
     {
       "model": "google/gemini-3.8-flash-tts",
@@ -3443,7 +3445,8 @@
         "high"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 16384
     },
     {
       "model": "google/gemini-3.8-live",
@@ -3464,7 +3467,8 @@
         "high"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 65536
     },
     {
       "model": "google/gemini-3.8-live-extended-thinking",
@@ -3485,7 +3489,8 @@
         "high"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 65536
     },
     {
       "model": "google/gemini-4-argon",
@@ -7392,7 +7397,8 @@
         "audio"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 4096
     },
     {
       "model": "openai/gpt-realtime-2",
@@ -7416,7 +7422,8 @@
         "xhigh"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 32000
     },
     {
       "model": "openai/gpt-realtime-2.1",
@@ -7460,7 +7467,8 @@
         "audio"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 4096
     },
     {
       "model": "openai/gpt-realtime-whisper",
@@ -7475,7 +7483,8 @@
         "audio"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 2000
     },
     {
       "model": "openai/gpt-transcribe",
@@ -7714,7 +7723,8 @@
         "audio"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 4096
     },
     {
       "model": "perplexity/pplx-decider-flash-v1.2",
@@ -8708,7 +8718,8 @@
         "high"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 15000
     },
     {
       "model": "spacexai/grok-voice-3.0",

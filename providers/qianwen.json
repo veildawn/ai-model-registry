@@ -221,7 +221,8 @@
         "text",
         "image",
         "video"
-      ]
+      ],
+      "output_ceiling": 65536
     },
     {
       "model": "qwen3.7-max",
@@ -300,7 +301,8 @@
         "text",
         "image",
         "video"
-      ]
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "qwen3.8-omni-flash",

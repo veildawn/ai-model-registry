@@ -199,7 +199,8 @@
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 393216
     },
     {
       "model": "glm-5",
@@ -239,7 +240,8 @@
       ],
       "effort_levels": [
         "max"
-      ]
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "glm-5.1",
@@ -357,7 +359,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 128000
     },
     {
       "model": "hy3-preview",
@@ -377,7 +380,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 64000
     },
     {
       "model": "hy4-preview",
@@ -395,7 +399,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 64000
     },
     {
       "model": "kimi-k2.5",
@@ -474,7 +479,8 @@
         "text",
         "image",
         "video"
-      ]
+      ],
+      "output_ceiling": 262144
     },
     {
       "model": "kimi-k3",
@@ -594,7 +600,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "minimax-m3",

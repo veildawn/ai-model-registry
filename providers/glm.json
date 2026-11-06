@@ -208,7 +208,8 @@
       "surface": "chat",
       "input_modalities": [
         "text"
-      ]
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "glm-5.1",

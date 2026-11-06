@@ -124,7 +124,7 @@
       "cache_write_per_1m": 0,
       "source": "manual",
       "context_window": 8192,
-      "output_ceiling": 2048,
+      "output_ceiling": 2000,
       "effort_levels": [
         "none"
       ],
@@ -138,6 +138,8 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
+      "context_window": 8192,
+      "output_ceiling": 8000,
       "effort_levels": [
         "none"
       ],
@@ -151,6 +153,8 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
+      "context_window": 8192,
+      "output_ceiling": 8000,
       "effort_levels": [
         "none"
       ],
@@ -164,6 +168,8 @@
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
       "source": "manual",
+      "context_window": 8192,
+      "output_ceiling": 8000,
       "effort_levels": [
         "none"
       ],

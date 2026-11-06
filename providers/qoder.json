@@ -40,7 +40,8 @@
         "image",
         "video",
         "pdf"
-      ]
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "qwen3.8-flash",
@@ -128,7 +129,8 @@
         "text",
         "image",
         "video"
-      ]
+      ],
+      "output_ceiling": 131072
     },
     {
       "model": "deepseek-v4-pro",
@@ -300,7 +302,8 @@
         "text",
         "image",
         "video"
-      ]
+      ],
+      "output_ceiling": 1000000
     },
     {
       "model": "minimax-m3",

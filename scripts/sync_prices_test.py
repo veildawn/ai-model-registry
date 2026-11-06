@@ -565,5 +565,214 @@ class AllProviderFactsTest(unittest.TestCase):
             2000000)
 
 
+def host_row(context, output):
+    return sp.facts_from_models_dev_model(
+        {"limit": {"context": context, "output": output},
+         "modalities": {"output": ["text"]}})
+
+
+class OutputCeilingTest(unittest.TestCase):
+    def test_placeholder_outputs_are_not_ceilings(self):
+        self.assertIsNone(sp.positive_output_limit({"limit": {"output": 0}}))
+        self.assertIsNone(sp.positive_output_limit({"limit": {"output": 1}}))
+        self.assertEqual(sp.positive_output_limit({"limit": {"output": 64000}}), 64000)
+        self.assertNotIn("output_ceiling", host_row(2048, 1))
+        self.assertEqual(host_row(1000000, 65536)["output_ceiling"], 65536)
+
+    def test_publisher_beats_a_host_that_only_serves_the_weights(self):
+        host_facts = {
+            "moonshotai": {"kimi-k3": host_row(1048576, 1048576)},
+            "moonshotai-cn": {"kimi-k3": host_row(1048576, 1048576)},
+            "nvidia": {"moonshotai/kimi-k3": host_row(1048576, 131072)},
+            "alibaba": {"kimi-k3": host_row(1048576, 1048576)},
+        }
+        ceilings, _blocked = sp.index_output_ceilings(host_facts)
+        self.assertEqual(ceilings["kimi-k3"], 1048576)
+        self.assertEqual(ceilings["k3"], 1048576)
+        self.assertEqual(sp.lookup_output_ceiling("k3", ceilings), 1048576)
+
+    def test_publisher_split_drops_the_id(self):
+        host_facts = {
+            "moonshotai": {"kimi-k3": host_row(1048576, 1048576)},
+            "moonshotai-cn": {"kimi-k3": host_row(1048576, 131072)},
+            "some-aggregator": {"kimi-k3": host_row(1048576, 1048576)},
+        }
+        ceilings, blocked = sp.index_output_ceilings(host_facts)
+        self.assertNotIn("k3", ceilings)
+        self.assertIn("k3", blocked)
+
+    def test_unanimous_aggregators_fill_when_the_publisher_is_silent(self):
+        host_facts = {
+            "ollama-cloud": {"gemma4:31b": host_row(262144, 32768)},
+            "opencode": {"gemma4:31b": host_row(262144, 32768)},
+        }
+        ceilings, _blocked = sp.index_output_ceilings(host_facts)
+        self.assertEqual(ceilings["gemma4:31b"], 32768)
+
+    def test_aggregator_split_stays_blank_until_the_surface_speaks(self):
+        host_facts = {
+            "ollama-cloud": {"gemma4:31b": host_row(262144, 32768)},
+            "opencode": {"gemma4:31b": host_row(262144, 262144)},
+        }
+        ceilings, _blocked = sp.index_output_ceilings(host_facts)
+        self.assertNotIn("gemma4:31b", ceilings)
+        blank = {"model": "gemma4:31b"}
+        self.assertEqual(
+            sp.models_dev_output_ceiling(
+                blank, "gemma4:31b", ceilings, host_facts["ollama-cloud"]),
+            32768)
+        filled = {"model": "gemma4:31b", "output_ceiling": 8192}
+        self.assertIsNone(sp.models_dev_output_ceiling(
+            filled, "gemma4:31b", ceilings, host_facts["ollama-cloud"]))
+
+    def test_embedding_width_is_not_a_response_cap(self):
+        row = {"model": "text-embedding-3-small", "surface": "embedding"}
+        self.assertIsNone(sp.models_dev_output_ceiling(
+            row, row["model"], {"text-embedding-3-small": 1536}, {}))
+
+    def test_publisher_placeholder_blocks_an_aggregator_dimension(self):
+        # Gemini Embedding's own row says output 1, which is not a generation
+        # cap. An aggregator calling that 4096 must not become output_ceiling.
+        host_facts = {
+            "google": {"gemini-embedding-001": host_row(2048, 1)},
+            "merge-gateway": {
+                "google/gemini-embedding-001": host_row(2048, 4096)},
+        }
+        ceilings, blocked = sp.index_output_ceilings(host_facts)
+        self.assertNotIn("gemini-embedding-001", ceilings)
+        self.assertIn("gemini-embedding-001", blocked)
+
+    def test_doubao_reads_volcengine_not_a_reseller_copy(self):
+        host_facts = {
+            "volcengine": {"doubao-seed-evolving": host_row(256000, 256000)},
+            "volcengine-coding-plan": {
+                "doubao-seed-evolving": host_row(256000, 256000)},
+            "requesty": {"doubao-seed-evolving": host_row(256000, 128000)},
+        }
+        ceilings, _blocked = sp.index_output_ceilings(host_facts)
+        self.assertEqual(ceilings["doubao-seed-evolving"], 256000)
+
+    def test_exact_floating_id_beats_a_dated_pin_and_a_split_stays_blank(self):
+        host_facts = {
+            "volcengine": {
+                "doubao-seed-2-1-pro-260628": host_row(256000, 256000),
+                "doubao-seed-2-0-mini-260428": host_row(256000, 131072),
+                "doubao-seed-2-0-lite-260428": host_row(256000, 131072),
+                "doubao-seed-2-1-pro-260101": host_row(256000, 64000),
+            },
+            "volcengine-coding-plan": {
+                "doubao-seed-2.0-lite": host_row(256000, 32000),
+            },
+            "requesty": {
+                "doubao-seed-2-1-lite-260628": host_row(256000, 99999),
+            },
+        }
+        ceilings, _blocked = sp.index_output_ceilings(host_facts)
+        # Two dated pins of 2.1-pro disagree, so the floating id stays blank.
+        self.assertNotIn("doubao-seed-2.1-pro", ceilings)
+        self.assertEqual(
+            sp.lookup_output_ceiling("doubao-seed-2.0-mini", ceilings), 131072)
+        self.assertEqual(ceilings["doubao-seed-2.0-lite"], 32000)
+        self.assertEqual(
+            sp.lookup_output_ceiling("doubao-seed-2-0-lite", ceilings), 32000)
+        self.assertNotIn("doubao-seed-2.1-lite", ceilings)
+
+    def test_dated_pins_that_agree_fill_both_spellings(self):
+        host_facts = {
+            "volcengine": {
+                "doubao-seed-2-1-pro-260628": host_row(256000, 256000),
+            },
+        }
+        ceilings, _blocked = sp.index_output_ceilings(host_facts)
+        self.assertEqual(ceilings["doubao-seed-2.1-pro"], 256000)
+        self.assertEqual(ceilings["doubao-seed-2-1-pro"], 256000)
+
+    def test_speed_tier_copies_the_sibling_ceiling_only(self):
+        models = [
+            {"model": "minimax-m2.1", "output_ceiling": 8192, "surface": "chat"},
+            {"model": "minimax-m2.1-highspeed", "surface": "chat"},
+            {"model": "minimax-m2.7-highspeed", "output_ceiling": 131072,
+             "surface": "chat"},
+            {"model": "orphan-highspeed", "surface": "chat"},
+        ]
+        changes = sp.inherit_speed_tier_ceilings(models, {})
+        self.assertEqual(
+            [(m["model"], ceiling) for m, _, ceiling in changes],
+            [("minimax-m2.1-highspeed", 8192)])
+        self.assertNotIn("output_ceiling", models[1])
+
+    def test_family_ceiling_is_all_or_nothing(self):
+        entries = [{
+            "model": "glm-5",
+            "variants": {"suffixes": ["", "-thinking"]},
+        }]
+        partial = sp.applicable_ceiling_updates(
+            entries, {"glm-5": 131072})
+        self.assertEqual(partial, {})
+        full = sp.applicable_ceiling_updates(
+            entries, {"glm-5": 131072, "glm-5-thinking": 131072})
+        self.assertEqual(full, {"glm-5": 131072, "glm-5-thinking": 131072})
+        self.assertTrue(sp.assign_stored_ceilings(entries, full))
+        self.assertEqual(entries[0]["output_ceiling"], 131072)
+
+
+    def test_vendor_host_alone_does_not_beat_a_conflicting_ordinary_host(self):
+        # Moonshot silent; NVIDIA (VENDOR_HOSTS) and Requesty disagree.
+        host_facts = {
+            "nvidia": {"moonshotai/kimi-k9": host_row(1048576, 10000)},
+            "requesty": {"kimi-k9": host_row(1048576, 20000)},
+        }
+        ceilings, blocked = sp.index_output_ceilings(host_facts)
+        self.assertNotIn("k9", ceilings)
+        self.assertNotIn("kimi-k9", ceilings)
+        self.assertFalse(blocked)
+
+    def test_publisher_split_blocks_surface_fallback(self):
+        host_facts = {
+            "moonshotai": {"kimi-k3": host_row(1048576, 1048576)},
+            "moonshotai-cn": {"kimi-k3": host_row(1048576, 131072)},
+        }
+        ceilings, blocked = sp.index_output_ceilings(host_facts)
+        self.assertNotIn("k3", ceilings)
+        self.assertIn("k3", blocked)
+        blank = {"model": "kimi-k3"}
+        surface = {"kimi-k3": host_row(1048576, 1048576)}
+        self.assertIsNone(sp.models_dev_output_ceiling(
+            blank, "kimi-k3", ceilings, surface, blocked))
+
+
+class MimoSpecParserTest(unittest.TestCase):
+    def test_every_table_is_read_and_a_later_one_does_not_wipe_lengths(self):
+        import sync_mimo
+
+        page = """
+        <table><tr><td>`mimo-v2.6-pro`</td>
+        <td>Context Window: 1M</td><td>Maximum Output: 128K</td></tr></table>
+        <table><tr><td>`mimo-v2.5-asr`</td>
+        <td>Context Window: 8k</td><td>Maximum Output: 2k</td></tr></table>
+        <table>
+        <tr><td>`mimo-v2.5-tts`</td><td>Speech Synthesis</td>
+        <td rowspan="3">Context Window: 8K Maximum Output: 8K</td></tr>
+        <tr><td>`mimo-v2.5-tts-voiceclone`</td><td>Timbre Cloning</td></tr>
+        <tr><td>`mimo-v2.5-tts-voicedesign`</td><td>Timbre Design</td></tr>
+        </table>
+        <table><tr><td>`mimo-v2.5-asr` `mimo-v2.5-tts`</td>
+        <td>RPM 60</td></tr></table>
+        <table><tr><td>`mimo-v2-omni`</td><td>no length here</td></tr></table>
+        """
+        specs = sync_mimo.parse_model_specs(page)
+        self.assertEqual(specs["mimo-v2.6-pro"]["context_window"], 1048576)
+        self.assertEqual(specs["mimo-v2.6-pro"]["output_ceiling"], 128000)
+        self.assertEqual(specs["mimo-v2.5-asr"]["context_window"], 8192)
+        self.assertEqual(specs["mimo-v2.5-asr"]["output_ceiling"], 2000)
+        self.assertNotIn("input_modalities", specs["mimo-v2.5-asr"])
+        self.assertEqual(specs["mimo-v2.5-tts"]["output_ceiling"], 8000)
+        self.assertEqual(specs["mimo-v2.5-tts-voiceclone"]["context_window"], 8192)
+        self.assertEqual(specs["mimo-v2.5-tts-voiceclone"]["output_ceiling"], 8000)
+        self.assertEqual(specs["mimo-v2.5-tts-voicedesign"]["output_ceiling"], 8000)
+        self.assertNotIn("output_ceiling", specs["mimo-v2-omni"])
+        self.assertNotIn("context_window", specs["mimo-v2-omni"])
+
+
 if __name__ == "__main__":
     unittest.main()
