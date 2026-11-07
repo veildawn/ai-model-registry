@@ -6329,6 +6329,30 @@
           ]
         },
         {
+          "model": "kimi-k3.1-pro-highspeed",
+          "pricing_style": "openai",
+          "prompt_per_1m": 4,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 4,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ]
+        },
+        {
           "model": "moonshot-v1-128k",
           "pricing_style": "openai",
           "prompt_per_1m": 2,
