@@ -4763,7 +4763,7 @@
       "cache_write_per_1m": 0.375,
       "source": "vendor-api",
       "context_window": 204800,
-      "output_ceiling": 131000,
+      "output_ceiling": 131072,
       "input_modalities": [
         "text"
       ],
@@ -4786,7 +4786,7 @@
       "cache_write_per_1m": 0.375,
       "source": "vendor-api",
       "context_window": 204800,
-      "output_ceiling": 131000,
+      "output_ceiling": 131072,
       "input_modalities": [
         "text"
       ],
@@ -4808,7 +4808,7 @@
       "cache_write_per_1m": 0.375,
       "source": "vendor-api",
       "context_window": 204800,
-      "output_ceiling": 131100,
+      "output_ceiling": 131072,
       "input_modalities": [
         "text"
       ],
@@ -9545,7 +9545,7 @@
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
       "context_window": 200000,
-      "output_ceiling": 131100,
+      "output_ceiling": 131072,
       "input_modalities": [
         "text"
       ],
