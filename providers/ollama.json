@@ -212,6 +212,22 @@
       "output_ceiling": 1048576
     },
     {
+      "model": "kimi-k3.1-pro",
+      "source": "manual",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "output_ceiling": 1048576
+    },
+    {
       "model": "mimo-v2.6-flash",
       "source": "manual",
       "context_window": 1048576,
