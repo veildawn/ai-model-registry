@@ -190,6 +190,32 @@
         "high"
       ],
       "output_ceiling": 128000
+    },
+    {
+      "model": "minimax-m3.1-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.6,
+      "cache_read_per_1m": 0.015,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "output_ceiling": 524288
     }
   ]
 }
