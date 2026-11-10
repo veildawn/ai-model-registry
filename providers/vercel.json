@@ -3259,6 +3259,7 @@
       "audio_in_per_1m": 2.0,
       "source": "vendor-api",
       "input_modalities": [
+        "text",
         "audio"
       ],
       "effort_levels": [
@@ -3267,7 +3268,8 @@
       ],
       "surface": "audio",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "output_ceiling": 32768
+      "output_ceiling": 32768,
+      "context_window": 98304
     },
     {
       "model": "google/gemini-3.5-transcribe-live",
@@ -3426,7 +3428,8 @@
       ],
       "surface": "audio",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "output_ceiling": 16384
+      "output_ceiling": 16384,
+      "context_window": 8192
     },
     {
       "model": "google/gemini-3.8-flash-tts",
@@ -3446,7 +3449,8 @@
       ],
       "surface": "audio",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "output_ceiling": 16384
+      "output_ceiling": 16384,
+      "context_window": 8192
     },
     {
       "model": "google/gemini-3.8-live",
@@ -3564,15 +3568,14 @@
       "input_modalities": [
         "text",
         "image",
-        "video",
-        "pdf"
+        "video"
       ],
       "effort_levels": [
         "minimal",
         "medium",
         "high"
       ],
-      "surface": "chat",
+      "surface": "image",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
@@ -4848,11 +4851,10 @@
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
       "context_window": 1000000,
-      "output_ceiling": 1048576,
+      "output_ceiling": 524288,
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
       ],
       "effort_levels": [
         "low",

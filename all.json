@@ -1138,6 +1138,32 @@
           "output_ceiling": 128000
         },
         {
+          "model": "anthropic.claude-fable-5-2",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 8.8,
+          "completion_per_1m": 44,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 11,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
           "model": "anthropic.claude-haiku-4-5-20251001-v1:0",
           "pricing_style": "anthropic",
           "prompt_per_1m": 1.1,
@@ -1190,6 +1216,25 @@
           "completion_per_1m": 55,
           "cache_read_per_1m": 0.275,
           "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat"
+        },
+        {
+          "model": "anthropic.claude-mythos-5-2",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 8.8,
+          "completion_per_1m": 44,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 11,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
           "input_modalities": [
             "text",
             "image"
@@ -1980,6 +2025,32 @@
           "output_ceiling": 128000
         },
         {
+          "model": "eu.anthropic.claude-fable-5-2",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 8.8,
+          "completion_per_1m": 44,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 11,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
           "model": "eu.anthropic.claude-haiku-4-5-20251001-v1:0",
           "pricing_style": "anthropic",
           "prompt_per_1m": 1.1,
@@ -2024,6 +2095,25 @@
             "xhigh",
             "max"
           ]
+        },
+        {
+          "model": "eu.anthropic.claude-mythos-5-2",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 8.8,
+          "completion_per_1m": 44,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 11,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat"
         },
         {
           "model": "eu.anthropic.claude-opus-4-5-20251101-v1:0",
@@ -2300,6 +2390,32 @@
           "output_ceiling": 128000
         },
         {
+          "model": "global.anthropic.claude-fable-5-2",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 8,
+          "completion_per_1m": 40,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 10,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
           "model": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
           "pricing_style": "anthropic",
           "prompt_per_1m": 1,
@@ -2352,6 +2468,25 @@
           "completion_per_1m": 50,
           "cache_read_per_1m": 0.25,
           "cache_write_per_1m": 12.5,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat"
+        },
+        {
+          "model": "global.anthropic.claude-mythos-5-2",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 8,
+          "completion_per_1m": 40,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 10,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
           "input_modalities": [
             "text",
             "image"
@@ -2866,6 +3001,32 @@
           "output_ceiling": 128000
         },
         {
+          "model": "us.anthropic.claude-fable-5-2",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 8.8,
+          "completion_per_1m": 44,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 11,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
+        },
+        {
           "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
           "pricing_style": "anthropic",
           "prompt_per_1m": 1.1,
@@ -2941,6 +3102,25 @@
           "completion_per_1m": 55,
           "cache_read_per_1m": 0.275,
           "cache_write_per_1m": 13.75,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "surface": "chat"
+        },
+        {
+          "model": "us.anthropic.claude-mythos-5-2",
+          "pricing_style": "anthropic",
+          "prompt_per_1m": 8.8,
+          "completion_per_1m": 44,
+          "cache_read_per_1m": 0.22,
+          "cache_write_per_1m": 11,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
           "input_modalities": [
             "text",
             "image"
@@ -7926,8 +8106,7 @@
           "context_window": 1000000,
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
           ],
           "effort_levels": [
             "low",
@@ -8652,6 +8831,25 @@
           "output_ceiling": 1048576
         },
         {
+          "model": "longcat-2.5-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "chat",
+          "output_ceiling": 262144
+        },
+        {
           "model": "longcat-2.5-preview-free",
           "pricing_style": "openai",
           "prompt_per_1m": 0,
@@ -8868,8 +9066,7 @@
           "context_window": 1000000,
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
           ],
           "effort_levels": [
             "low",
@@ -14681,6 +14878,7 @@
           "audio_in_per_1m": 2.0,
           "source": "vendor-api",
           "input_modalities": [
+            "text",
             "audio"
           ],
           "effort_levels": [
@@ -14689,7 +14887,8 @@
           ],
           "surface": "audio",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-          "output_ceiling": 32768
+          "output_ceiling": 32768,
+          "context_window": 98304
         },
         {
           "model": "google/gemini-3.5-transcribe-live",
@@ -14848,7 +15047,8 @@
           ],
           "surface": "audio",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-          "output_ceiling": 16384
+          "output_ceiling": 16384,
+          "context_window": 8192
         },
         {
           "model": "google/gemini-3.8-flash-tts",
@@ -14868,7 +15068,8 @@
           ],
           "surface": "audio",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-          "output_ceiling": 16384
+          "output_ceiling": 16384,
+          "context_window": 8192
         },
         {
           "model": "google/gemini-3.8-live",
@@ -14986,15 +15187,14 @@
           "input_modalities": [
             "text",
             "image",
-            "video",
-            "pdf"
+            "video"
           ],
           "effort_levels": [
             "minimal",
             "medium",
             "high"
           ],
-          "surface": "chat",
+          "surface": "image",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         },
         {
@@ -16270,11 +16470,10 @@
           "cache_write_per_1m": 0.0,
           "source": "vendor-api",
           "context_window": 1000000,
-          "output_ceiling": 1048576,
+          "output_ceiling": 524288,
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
           ],
           "effort_levels": [
             "low",
