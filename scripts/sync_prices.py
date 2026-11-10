@@ -174,6 +174,7 @@ OUTPUT_PUBLISHER_HOSTS = {
     "anthropic": frozenset({"anthropic"}),
     "codex": frozenset({"openai"}),
     "gemini": frozenset({"google", "google-vertex"}),
+    "vertex": frozenset({"google-vertex", "google"}),
     "xai": frozenset({"xai"}),
     "deepseek": frozenset({"deepseek"}),
     "glm": frozenset({"zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"}),
@@ -244,7 +245,8 @@ NAMESPACES = {
     "anthropic": ["anthropic"],
     "bedrock": ["bedrock_converse", "bedrock"],
     "codex": ["openai"],
-    "gemini": ["gemini"],
+    "gemini": ["gemini", "vertex_ai-language-models", "vertex_ai"],
+    "vertex": ["gemini", "vertex_ai-language-models", "vertex_ai"],
     "deepseek": ["deepseek"],
     "xai": ["xai"],
     "glm": ["zai"],
@@ -304,7 +306,12 @@ AUTO_ENROLL = {
         "surfaces": frozenset({"chat", "image", "video"}),
     },
     "gemini": {
-        "include": re.compile(r"^gemini-\d"),
+        "include": re.compile(r"^gemini-(?:\d|omni-|nano-banana-)"),
+        "pricing_style": "openai",
+        "surfaces": frozenset({"chat", "image", "video"}),
+    },
+    "vertex": {
+        "include": re.compile(r"^gemini-(?:\d|omni-|nano-banana-)"),
         "pricing_style": "openai",
         "surfaces": frozenset({"chat", "image", "video"}),
     },
@@ -469,8 +476,11 @@ SHORT_DATE_PIN = re.compile(r"-\d{4}$")
 # subscription and publishes no per-token rate of its own, so the vendor's list
 # is the only number there is to bill against.
 DERIVED_NAMESPACES = {
-    "antigravity": ["anthropic", "gemini"],
-    "kiro": ["anthropic", "openai", "gemini", "deepseek", "zai", "minimax", "dashscope"],
+    "antigravity": ["anthropic", "gemini", "vertex_ai-language-models", "vertex_ai"],
+    "kiro": [
+        "anthropic", "openai", "gemini", "vertex_ai-language-models", "vertex_ai",
+        "deepseek", "zai", "minimax", "dashscope",
+    ],
 }
 
 # Suffixes a surface appends to a model id — reasoning depths, agent modes,
@@ -573,6 +583,12 @@ def family_version(model_id: str):
         major = int(gpt.group(1))
         minor = int(gpt.group(2)) if gpt.group(2) else 0
         return "gpt", (major, minor)
+    gemini_named = re.match(
+        r"^gemini-(omni|nano-banana|robotics-er)-(\d+)(?:\.(\d+))?(?:-|$)", mid)
+    if gemini_named:
+        major = int(gemini_named.group(2))
+        minor = int(gemini_named.group(3)) if gemini_named.group(3) else 0
+        return f"gemini-{gemini_named.group(1)}", (major, minor)
     gemini = re.match(r"^gemini-(\d+)(?:\.(\d+))?(?:-|$)", mid)
     if gemini:
         major = int(gemini.group(1))

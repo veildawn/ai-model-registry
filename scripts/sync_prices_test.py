@@ -35,6 +35,8 @@ class FamilyVersionTest(unittest.TestCase):
         self.assertEqual(sp.family_version("gpt-6-astra"), ("gpt", (6, 0)))
         self.assertEqual(sp.family_version("gpt-image-2.5-flare"), ("gpt-image", (2, 5)))
         self.assertEqual(sp.family_version("gemini-3.8-flash"), ("gemini", (3, 8)))
+        self.assertEqual(sp.family_version("gemini-omni-1.2-flash"), ("gemini-omni", (1, 2)))
+        self.assertEqual(sp.family_version("gemini-nano-banana-2.1"), ("gemini-nano-banana", (2, 1)))
         self.assertEqual(sp.family_version("grok-4.20-0309-reasoning"), ("grok", (4, 20)))
         self.assertEqual(sp.family_version("grok-build-0.1"), ("grok-build", (0, 1)))
 
@@ -110,6 +112,13 @@ class EnrollReasonTest(unittest.TestCase):
                         chat(prompt=0, completion=0)),
             "skipped-pattern")
         self.assertIsNone(self.reason("gemini", "gemini-3.9-flash"))
+        self.assertIsNone(self.reason("gemini", "gemini-omni-1.2-flash"))
+        self.assertIsNone(self.reason("gemini", "gemini-nano-banana-2.1",
+                                      chat(mode="image_generation")))
+        self.assertIsNone(self.reason("gemini", "gemini-3.8-flash-cyber"))
+        self.assertIsNone(self.reason("gemini", "gemini-4-argon-cyber-permissive"))
+        self.assertIsNone(self.reason("vertex", "gemini-3.9-flash"))
+        self.assertIsNone(self.reason("vertex", "gemini-omni-1.2-flash"))
 
     def test_skips_old_grok_keeps_new(self):
         self.assertEqual(self.reason("xai", "grok-3"), "outside-include")

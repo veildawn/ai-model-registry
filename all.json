@@ -30,6 +30,7 @@
         "tokenhub",
         "typesafe",
         "vercel",
+        "vertex",
         "workbuddy",
         "xai"
       ]
@@ -5072,7 +5073,8 @@
             "audio",
             "video"
           ],
-          "source": "litellm",
+          "source": "manual",
+          "price_reviewed": "Google AI Studio / Vertex AI official GA rate ($0.10/$0.40/1M); litellm's vertex_ai row carries the pre-GA $0.15/$0.60 figure.",
           "context_window": 1048576,
           "surface": "chat",
           "output_ceiling": 8192
@@ -5090,7 +5092,7 @@
             "audio",
             "video"
           ],
-          "source": "litellm",
+          "source": "manual",
           "context_window": 1048576,
           "surface": "chat",
           "output_ceiling": 8192
@@ -5111,7 +5113,8 @@
           "source": "litellm",
           "context_window": 1048576,
           "surface": "chat",
-          "output_ceiling": 8192
+          "output_ceiling": 8192,
+          "audio_in_per_1m": 0.075
         },
         {
           "model": "gemini-2.0-flash-lite-001",
@@ -5126,7 +5129,7 @@
             "audio",
             "video"
           ],
-          "source": "litellm",
+          "source": "manual",
           "context_window": 1048576,
           "surface": "chat",
           "output_ceiling": 8192
@@ -5466,13 +5469,14 @@
           "input_modalities": [
             "text"
           ],
-          "source": "manual",
+          "source": "litellm",
           "effort_levels": [
             "none"
           ],
           "context_window": 8192,
           "surface": "audio",
-          "output_ceiling": 16384
+          "output_ceiling": 16384,
+          "audio_out_per_1m": 20
         },
         {
           "model": "gemini-3.1-pro-preview",
@@ -5641,6 +5645,27 @@
           "output_ceiling": 65536
         },
         {
+          "model": "gemini-3.8-flash-cyber",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 7.5,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "output_ceiling": 65536,
+          "surface": "chat"
+        },
+        {
           "model": "gemini-4-argon",
           "pricing_style": "openai",
           "prompt_per_1m": 2,
@@ -5662,6 +5687,27 @@
             "medium",
             "high"
           ]
+        },
+        {
+          "model": "gemini-4-argon-cyber-permissive",
+          "pricing_style": "openai",
+          "prompt_per_1m": 4,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 4,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "surface": "chat"
         },
         {
           "model": "gemini-flash-latest",
@@ -5710,6 +5756,51 @@
             "high"
           ],
           "output_ceiling": 65536
+        },
+        {
+          "model": "gemini-nano-banana-2.1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 7.5,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 32768,
+          "surface": "image",
+          "effort_levels": [
+            "minimal",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "gemini-omni-1.2-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 1.5,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 65536,
+          "surface": "chat"
         },
         {
           "model": "gemini-omni-flash-preview",
@@ -5775,7 +5866,8 @@
           "source": "litellm",
           "context_window": 1048576,
           "surface": "chat",
-          "output_ceiling": 65535
+          "output_ceiling": 65535,
+          "audio_in_per_1m": 1
         },
         {
           "model": "gemini-robotics-er-1.6-preview",
@@ -5811,6 +5903,188 @@
           "context_window": 131072,
           "surface": "image",
           "output_ceiling": 32768
+        },
+        {
+          "model": "gemini-2.5-flash-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 32768,
+          "surface": "audio",
+          "output_ceiling": 16384,
+          "audio_out_per_1m": 10
+        },
+        {
+          "model": "gemini-2.5-pro-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 32768,
+          "surface": "audio",
+          "output_ceiling": 16384,
+          "audio_out_per_1m": 20
+        },
+        {
+          "model": "gemini-3.5-transcribe",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "audio"
+          ],
+          "source": "litellm",
+          "context_window": 98304,
+          "surface": "audio",
+          "output_ceiling": 32768,
+          "audio_in_per_1m": 2
+        },
+        {
+          "model": "gemini-3.5-transcribe-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "audio"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "audio",
+          "output_ceiling": 32768,
+          "audio_in_per_1m": 2
+        },
+        {
+          "model": "gemini-3.8-flash-lite-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 6,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 8192,
+          "surface": "audio",
+          "output_ceiling": 16384,
+          "audio_out_per_1m": 6
+        },
+        {
+          "model": "gemini-3.8-flash-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 8192,
+          "surface": "audio",
+          "output_ceiling": 16384,
+          "audio_out_per_1m": 9
+        },
+        {
+          "model": "gemini-omni-1.1-flash-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "surface": "chat",
+          "output_ceiling": 57920
+        },
+        {
+          "model": "gemini-robotics-er-2-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "surface": "chat",
+          "output_ceiling": 65536,
+          "audio_in_per_1m": 1,
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "gemini-robotics-er-2-streaming-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "surface": "chat",
+          "output_ceiling": 65536,
+          "audio_in_per_1m": 1
+        },
+        {
+          "model": "gemini-omni-1.1-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "surface": "chat",
+          "output_ceiling": 65536,
+          "audio_in_per_1m": 1.5,
+          "effort_levels": [
+            "low",
+            "high"
+          ]
         }
       ],
       "hidden_models": [
@@ -5824,13 +6098,24 @@
         "gemini-2.0-flash-lite-001",
         "gemini-2.5-computer-use-preview-10-2025",
         "gemini-2.5-flash-preview-tts",
+        "gemini-2.5-flash-tts",
         "gemini-2.5-pro-preview-tts",
+        "gemini-2.5-pro-tts",
         "gemini-3.1-flash-lite-preview",
         "gemini-3.1-flash-tts-preview",
         "gemini-3.1-pro-preview-customtools",
+        "gemini-3.5-transcribe",
+        "gemini-3.5-transcribe-preview",
+        "gemini-3.8-flash-lite-tts",
+        "gemini-3.8-flash-tts",
+        "gemini-omni-1.1-flash",
+        "gemini-omni-1.1-flash-preview",
         "gemini-omni-flash-preview",
         "gemini-robotics-er-1.5-preview",
         "gemini-robotics-er-1.6-preview",
+        "gemini-robotics-er-2-preview",
+        "gemini-robotics-er-2-streaming-preview",
+        "gemma-3-27b-it",
         "gemma-4-26b-a4b-it",
         "gemma-4-31b-it",
         "lyria-3-clip-preview",
@@ -20810,6 +21095,1013 @@
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         }
       ]
+    },
+    "providers/vertex.json": {
+      "name": "vertex",
+      "display_name": "Vertex AI",
+      "list_prices": true,
+      "models": [
+        {
+          "model": "gemini-2.0-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.4,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "manual",
+          "price_reviewed": "Vertex AI official GA rate ($0.10/$0.40/1M); litellm's vertex_ai row carries the pre-GA $0.15/$0.60 figure.",
+          "context_window": 1048576,
+          "surface": "chat",
+          "output_ceiling": 8192
+        },
+        {
+          "model": "gemini-2.0-flash-001",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.4,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "manual",
+          "context_window": 1048576,
+          "surface": "chat",
+          "output_ceiling": 8192
+        },
+        {
+          "model": "gemini-2.0-flash-lite",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.075,
+          "completion_per_1m": 0.3,
+          "cache_read_per_1m": 0.01875,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "output_ceiling": 8192,
+          "audio_in_per_1m": 0.075
+        },
+        {
+          "model": "gemini-2.0-flash-lite-001",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.075,
+          "completion_per_1m": 0.3,
+          "cache_read_per_1m": 0.01875,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "manual",
+          "context_window": 1048576,
+          "surface": "chat",
+          "output_ceiling": 8192
+        },
+        {
+          "model": "gemini-2.5-computer-use-preview-10-2025",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 128000,
+          "surface": "chat",
+          "output_ceiling": 64000
+        },
+        {
+          "model": "gemini-2.5-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "output_ceiling": 65536,
+          "audio_in_per_1m": 1
+        },
+        {
+          "model": "gemini-2.5-flash-image",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 65536,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image",
+          "output_ceiling": 32768,
+          "audio_in_per_1m": 1
+        },
+        {
+          "model": "gemini-2.5-flash-lite",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.4,
+          "cache_read_per_1m": 0.01,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "output_ceiling": 65536,
+          "audio_in_per_1m": 0.3
+        },
+        {
+          "model": "gemini-2.5-flash-preview-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "audio",
+          "context_window": 8192,
+          "output_ceiling": 16384,
+          "audio_out_per_1m": 10
+        },
+        {
+          "model": "gemini-2.5-flash-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 32768,
+          "surface": "audio",
+          "output_ceiling": 16384,
+          "audio_out_per_1m": 10
+        },
+        {
+          "model": "gemini-2.5-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.25,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "output_ceiling": 65536
+        },
+        {
+          "model": "gemini-2.5-pro-preview-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 8192,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "chat",
+          "output_ceiling": 16384,
+          "audio_in_per_1m": 0.7,
+          "audio_out_per_1m": 20
+        },
+        {
+          "model": "gemini-2.5-pro-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 32768,
+          "surface": "audio",
+          "output_ceiling": 16384,
+          "audio_out_per_1m": 20
+        },
+        {
+          "model": "gemini-3-flash-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0.05,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ],
+          "output_ceiling": 65536,
+          "audio_in_per_1m": 1
+        },
+        {
+          "model": "gemini-3-pro-image",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 65536,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image",
+          "output_ceiling": 32768
+        },
+        {
+          "model": "gemini-3-pro-image-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image",
+          "output_ceiling": 32768
+        },
+        {
+          "model": "gemini-3-pro-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "high"
+          ],
+          "output_ceiling": 65535
+        },
+        {
+          "model": "gemini-3.1-flash-image",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0.05,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image",
+          "output_ceiling": 32768
+        },
+        {
+          "model": "gemini-3.1-flash-image-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 3,
+          "cache_read_per_1m": 0.05,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 65536,
+          "effort_levels": [
+            "none"
+          ],
+          "surface": "image",
+          "output_ceiling": 65536
+        },
+        {
+          "model": "gemini-3.1-flash-lite",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.25,
+          "completion_per_1m": 1.5,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ],
+          "output_ceiling": 65536,
+          "audio_in_per_1m": 0.5
+        },
+        {
+          "model": "gemini-3.1-flash-lite-image",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.25,
+          "completion_per_1m": 1.5,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ],
+          "context_window": 65536,
+          "surface": "image",
+          "output_ceiling": 4096
+        },
+        {
+          "model": "gemini-3.1-flash-lite-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.25,
+          "completion_per_1m": 1.5,
+          "cache_read_per_1m": 0.025,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ],
+          "output_ceiling": 65536,
+          "audio_in_per_1m": 0.5
+        },
+        {
+          "model": "gemini-3.1-flash-tts-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "effort_levels": [
+            "none"
+          ],
+          "context_window": 8192,
+          "surface": "audio",
+          "output_ceiling": 16384,
+          "audio_out_per_1m": 20
+        },
+        {
+          "model": "gemini-3.1-pro-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "output_ceiling": 65536
+        },
+        {
+          "model": "gemini-3.1-pro-preview-customtools",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "output_ceiling": 65536
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ],
+          "output_ceiling": 65536,
+          "audio_in_per_1m": 1.5
+        },
+        {
+          "model": "gemini-3.5-flash-lite",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ],
+          "output_ceiling": 65536
+        },
+        {
+          "model": "gemini-3.5-transcribe",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "audio"
+          ],
+          "source": "litellm",
+          "context_window": 98304,
+          "surface": "audio",
+          "output_ceiling": 32768,
+          "audio_in_per_1m": 2
+        },
+        {
+          "model": "gemini-3.5-transcribe-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "audio"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "audio",
+          "output_ceiling": 32768,
+          "audio_in_per_1m": 2
+        },
+        {
+          "model": "gemini-3.6-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.75,
+          "completion_per_1m": 3.75,
+          "cache_read_per_1m": 0.075,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ],
+          "output_ceiling": 65536
+        },
+        {
+          "model": "gemini-3.7-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.75,
+          "completion_per_1m": 3.75,
+          "cache_read_per_1m": 0.075,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat",
+          "output_ceiling": 65536
+        },
+        {
+          "model": "gemini-3.8-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.75,
+          "completion_per_1m": 3.75,
+          "cache_read_per_1m": 0.075,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video",
+            "pdf"
+          ],
+          "source": "manual",
+          "context_window": 1048576,
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "surface": "chat",
+          "output_ceiling": 65536
+        },
+        {
+          "model": "gemini-3.8-flash-cyber",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 7.5,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "audio_in_per_1m": 1.5,
+          "context_window": 1048576,
+          "output_ceiling": 65536,
+          "surface": "chat"
+        },
+        {
+          "model": "gemini-3.8-flash-lite-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 6,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 8192,
+          "surface": "audio",
+          "output_ceiling": 16384,
+          "audio_out_per_1m": 6
+        },
+        {
+          "model": "gemini-3.8-flash-tts",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0.125,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text"
+          ],
+          "source": "litellm",
+          "context_window": 8192,
+          "surface": "audio",
+          "output_ceiling": 16384,
+          "audio_out_per_1m": 9
+        },
+        {
+          "model": "gemini-4-argon",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "audio_in_per_1m": 2
+        },
+        {
+          "model": "gemini-4-argon-cyber-permissive",
+          "pricing_style": "openai",
+          "prompt_per_1m": 4,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "surface": "chat",
+          "audio_in_per_1m": 4
+        },
+        {
+          "model": "gemini-nano-banana-2.1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 7.5,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "output_ceiling": 32768,
+          "surface": "image",
+          "effort_levels": [
+            "minimal",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "gemini-omni-1.1-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "surface": "chat",
+          "output_ceiling": 65536,
+          "effort_levels": [
+            "low",
+            "high"
+          ],
+          "audio_in_per_1m": 1.5
+        },
+        {
+          "model": "gemini-omni-1.1-flash-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "surface": "chat",
+          "output_ceiling": 57920
+        },
+        {
+          "model": "gemini-omni-1.2-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "source": "litellm",
+          "audio_in_per_1m": 1.5,
+          "context_window": 131072,
+          "output_ceiling": 65536,
+          "surface": "chat",
+          "image_in_per_1m": 1.5
+        },
+        {
+          "model": "gemini-omni-flash-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 9,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "surface": "chat",
+          "output_ceiling": 65536,
+          "effort_levels": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ],
+          "audio_in_per_1m": 1.5
+        },
+        {
+          "model": "gemini-robotics-er-1.5-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.3,
+          "completion_per_1m": 2.5,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "video",
+            "audio"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "surface": "chat",
+          "output_ceiling": 65535,
+          "audio_in_per_1m": 1
+        },
+        {
+          "model": "gemini-robotics-er-1.6-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "context_window": 131072,
+          "surface": "chat",
+          "output_ceiling": 65536
+        },
+        {
+          "model": "gemini-robotics-er-2-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "surface": "chat",
+          "output_ceiling": 65536,
+          "audio_in_per_1m": 1,
+          "effort_levels": [
+            "minimal",
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
+          "model": "gemini-robotics-er-2-streaming-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1,
+          "completion_per_1m": 5,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 131072,
+          "surface": "chat",
+          "output_ceiling": 65536,
+          "audio_in_per_1m": 1
+        },
+        {
+          "model": "gemma-3-27b-it",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.6,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "price_reviewed": "Vertex AI list rate ($0.15/$0.60/1M); AI Studio free tier.",
+          "context_window": 131072,
+          "surface": "chat",
+          "output_ceiling": 8192
+        },
+        {
+          "model": "gemma-4-26b-a4b-it",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.6,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "price_reviewed": "Vertex AI list rate ($0.15/$0.60/1M); AI Studio free tier.",
+          "context_window": 262144,
+          "surface": "chat",
+          "output_ceiling": 32768
+        },
+        {
+          "model": "gemma-4-31b-it",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.2,
+          "completion_per_1m": 0.6,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "price_reviewed": "Vertex AI list rate ($0.20/$0.60/1M); AI Studio free tier.",
+          "context_window": 262144,
+          "surface": "chat",
+          "output_ceiling": 32768
+        },
+        {
+          "model": "nano-banana-pro-preview",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 12,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "effort_levels": [
+            "none"
+          ],
+          "context_window": 131072,
+          "surface": "image",
+          "output_ceiling": 32768
+        }
+      ],
+      "hidden_models": []
     },
     "providers/workbuddy.json": {
       "name": "workbuddy",
