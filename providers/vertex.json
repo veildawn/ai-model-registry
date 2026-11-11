@@ -745,6 +745,11 @@
       "context_window": 1048576,
       "output_ceiling": 1048576,
       "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
       "audio_in_per_1m": 4
     },
     {
