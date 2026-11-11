@@ -913,6 +913,33 @@
           ]
         },
         {
+          "model": "gemini-4-carbon",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video",
+            "pdf"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        {
           "model": "gemini-pro-agent",
           "pricing_style": "openai",
           "prompt_per_1m": 2,
@@ -22168,6 +22195,27 @@
             "medium",
             "high"
           ]
+        },
+        {
+          "model": "gemini-4-carbon-cyber-permissive",
+          "pricing_style": "openai",
+          "prompt_per_1m": 4,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 4,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "surface": "chat"
         },
         {
           "model": "gemini-4-carbon-preview",
