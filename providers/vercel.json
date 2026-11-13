@@ -5371,7 +5371,7 @@
       "prompt_per_1m": 4.0,
       "completion_per_1m": 20.0,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 4.0,
+      "cache_write_per_1m": 5.0,
       "source": "vendor-api",
       "context_window": 1048576,
       "output_ceiling": 1048576,
