@@ -102,8 +102,9 @@ reseller's cap cannot contest the publisher's number away. A dated pin fills
 the floating id only when the publisher does not list that spelling
 (`doubao-seed-2-1-pro-260628` for `doubao-seed-2.1-pro`). `-highspeed` and
 `-ultraspeed` copy the unsuffixed sibling in the same file. `--provider` still
-blank-fills this field on every other file, so the hourly job does not leave
-a new id's ceiling for the daily run. A ceiling already stored is not replaced
+blank-fills this field on every other file, so a one-provider dispatch does
+not leave a new id's ceiling for the next full run. The scheduled hourly job
+syncs every provider in one pass. A ceiling already stored is not replaced
 on that pass.
 
 Usage:
@@ -2373,11 +2374,12 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             with open(path, "w") as fh:
                 fh.write(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")
 
-    # `--provider` rewrites that file and, until now, left every other file
-    # untouched. The hourly job runs one provider at a time, so a blank
-    # ceiling — a Doubao id whose publisher only lists a dated pin, a speed
-    # tier, a reseller row with no ceiling yet — waited for the daily full
-    # sync. This pass fills blanks only.
+    # `--provider` rewrites that file and leaves every other file's rates
+    # alone. A one-provider dispatch still fills blank ceilings elsewhere — a
+    # Doubao id whose publisher only lists a dated pin, a speed tier, a
+    # reseller row with no ceiling yet — so that dispatch does not wait for
+    # the next full run. The scheduled hourly job is a full run. This pass
+    # fills blanks only.
     if target_set:
         if fill_ceilings_outside_target(
                 registry_dir, provider_files, target_set, ceilings,

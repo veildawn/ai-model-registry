@@ -155,8 +155,8 @@ worst the embedded module's.
 | writer | writes | signs |
 | --- | --- | --- |
 | a person, via PR | `providers/*.json`, `index.json` | `sign-bundle.yml`, after the merge |
-| `sync-firstparty.yml` (hourly) | one first-party channel's ids and rates | in the same run, before pushing |
-| `sync-prices.yml` (daily) | delegated rows, then the bundle | in the same run, before pushing |
+| `sync-firstparty.yml` (hourly) | every provider's ids and rates, one commit | in the same run, before pushing |
+| `sync-prices.yml` (daily) | the same sync, plus the price-drift issue | in the same run, before pushing |
 
 `.github/workflows/sign-bundle.yml` is what makes the PR path safe. It runs on
 every push to `main` that touches the bundle's inputs or outputs, regenerates
@@ -501,9 +501,9 @@ spelling wins when a publisher host does list it. A surface's own models.dev
 row is the last resort, and only for a blank — Ollama Cloud's cap for a model
 Google does not list. An existing ceiling, including one litellm already wrote,
 is left alone. A `-highspeed` or `-ultraspeed` row with no ceiling copies the
-unsuffixed sibling in the same file. The hourly job's `--provider` run still
-fills a blank ceiling on every other file, including a reseller row that has
-none yet, so that update does not wait for the daily sync.
+unsuffixed sibling in the same file. The hourly job syncs every provider. A
+manual run limited to one `--provider` still fills a blank ceiling on every
+other file, including a reseller row that has none yet.
 
 | `source` | rows | what it means |
 |---|---|---|
@@ -689,20 +689,20 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | glm | GLM (Zhipu) | `glm-4.5` and `glm-4.6` are **unpriced** — see below |
 | minimax | MiniMax | `MiniMax-M2`…`M3` upstream ids, lowercased here |
 | mimo | MiMo (Xiaomi) | overseas PAYG for `mimo-v2.5` / `mimo-v2.5-pro`; `-asr` / `-tts*` stay **unpriced** |
-| ollama | Ollama | Cloud catalog, **unpriced**; ids and capability facts enroll daily from models.dev `ollama-cloud`, copying this registry's first-party window/ladder when the family has one |
+| ollama | Ollama | Cloud catalog, **unpriced**; ids and capability facts enroll hourly from models.dev `ollama-cloud`, copying this registry's first-party window/ladder when the family has one |
 | opencode | OpenCode Zen | the seven current `*-free` / `big-pickle` rows are **$0** with `"free": true` — not unpriced |
 | cline | Cline | its free-tier ids (`cline-free/*`, `z-ai/glm-5.3-flash`, `poolside/laguna-s-2.1:free`) are **$0** with `"free": true`; Cline Pass (`cline-pass/*`), Cline Cloud (`cline-cloud/*`), and recommended OpenRouter passthrough models carry vendor official list rates and reasoning ladders |
 | cursor | Cursor | **prices none** — reseller; `hidden_models` only, trims uncommon `claude-*` / `gpt-5.*` / `gemini-*` |
 | antigravity | Antigravity | **prices none** — reseller; `hidden_models` only, trims non-current Gemini/Claude |
-| bedrock | AWS Bedrock (Claude) | Geo / In-region Cross-region Inference rates for current `anthropic.claude-*` and geo-prefixed inference profiles; daily AUTO_ENROLL from LiteLLM |
+| bedrock | AWS Bedrock (Claude) | Geo / In-region Cross-region Inference rates for current `anthropic.claude-*` and geo-prefixed inference profiles; hourly AUTO_ENROLL from LiteLLM |
 | gemini | Google AI Studio | `hidden_models` trims niche Gemini (tts / music / robotics / research / gemma); the image family is **listed** — see below |
-| opencode-go | OpenCode Go | curated open-model subscription (`opencode.ai/zen/go`); new catalog ids enroll daily, facts copied from the first-party file when one exists |
+| opencode-go | OpenCode Go | curated open-model subscription (`opencode.ai/zen/go`); new catalog ids enroll hourly, facts copied from the first-party file when one exists |
 | qoder-intl | Qoder International | same opaque `*model` aliases as `qoder`, priced from the intl edition's own model set; `auto` hidden (router alias) |
 
 The registry supplies rates and (via `hidden_models`) a listing blacklist.
 What a deployment **serves** is still decided by its account pool's probes —
 enrolling an id here prices it, it does not turn the model on. On the four
-first-party catalogs and Bedrock Claude the daily job will add a newly
+first-party catalogs and Bedrock Claude the hourly job will add a newly
 published id; Ollama Cloud and OpenCode Go grow from their own catalogs the
 same way. It never removes one.
 
@@ -883,9 +883,9 @@ the catalog row, which outranks this file.
 
 ## Editing
 
-**Check the row's `source` first.** A `litellm` row is rewritten by the daily job
-and a hand edit to it will be gone by morning; flip it to `manual` in the same
-commit if you mean to hold it yourself.
+**Check the row's `source` first.** A `litellm` row is rewritten by the hourly
+job and a hand edit to it will be gone within the hour; flip it to `manual` in
+the same commit if you mean to hold it yourself.
 
 For a `manual` row: edit the relevant `providers/<name>.json`, keep model ids
 unique within a file, then commit. Running deployments pick the change up on

@@ -1,12 +1,17 @@
-# Keep this registry current against its upstreams, once a day, without a person.
+# Keep the price-drift issue current, once a day.
+#
+# The hourly job (sync-firstparty.yml) already rewrites every provider. This
+# run repeats that sync so the review issue below is opened, updated, or
+# closed from a report that matches the files. It does not have to be the
+# thing that first notices a new model.
 #
 # Rows marked `"source": "litellm"` are rewritten from the upstream database and
 # committed. On anthropic / codex / google-ai-studio / vertex / xai, an id the
 # vendor's namespace grew that this file does not yet have is enrolled the same
 # way — new row, delegated, then kept fresh. Antigravity enrolls matching
 # Gemini ids as `vendor-api` (it meters Google's list, same catalog as AI
-# Studio). The hourly job syncs AI Studio, Vertex, and Antigravity together;
-# this daily run is the same enrollment for every other file.
+# Studio). The hourly job syncs every provider in one pass, including this
+# enrollment.
 # Bedrock enrolls current Claude ids at AWS Geo / In-region Cross-region
 # Inference rates (not the cheaper Global tab).
 # Ollama Cloud and OpenCode Go enroll from their own catalogs (models.dev
@@ -23,9 +28,9 @@
 # fatal: the script logs and carries on, so a third party's outage cannot stop
 # the price sync this job exists for.
 #
-# Daily rather than hourly: litellm's file moves a few times a day and a price
-# change is never urgent. The schedule is off the hour because GitHub queues
-# every cron in the world at :00, and a queued run is a late run.
+# The schedule is off the hour because GitHub queues every cron in the world
+# at :00, and a queued run is a late run. The hourly job uses the same
+# sync-registry lock, so this run waits instead of pushing over it.
 #
 # all.json — the whole registry in one document, which is what consumers fetch —
 # is regenerated and committed in the same run as the files it is built from,
@@ -42,7 +47,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: sync-prices
+  group: sync-registry
   cancel-in-progress: false
 
 jobs:
