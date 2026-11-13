@@ -819,6 +819,25 @@ class UpstreamModalitiesTest(unittest.TestCase):
             sp.upstream_modalities({"supports_vision": False}),
             ["text"])
 
+    def test_pdf_flag_without_a_base_list_does_not_become_pdf_only(self):
+        entry = {
+            "litellm_provider": "gemini",
+            "supports_pdf_input": True,
+        }
+        self.assertIsNone(sp.upstream_modalities(entry))
+        self.assertIsNone(sp.upstream_modalities({
+            "litellm_provider": "vertex_ai",
+            "supports_pdf_input": True,
+            "supported_modalities": ["document"],
+        }))
+        self.assertEqual(
+            sp.upstream_modalities({
+                "litellm_provider": "gemini",
+                "supports_vision": True,
+                "supports_pdf_input": True,
+            }),
+            ["text", "image", "pdf"])
+
 
 if __name__ == "__main__":
     unittest.main()

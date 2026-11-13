@@ -1759,14 +1759,17 @@ def upstream_modalities(entry: dict):
     else:
         vision = entry.get("supports_vision")
         if vision is None:
-            keep = []
-        else:
-            keep = ["text", "image"] if vision else ["text"]
+            # A bare supports_pdf_input is not a modality list. Returning
+            # ["pdf"] would overwrite a stored text/image row with PDF-only.
+            return None
+        keep = ["text", "image"] if vision else ["text"]
+    if not keep:
+        return None
     if (entry.get("supports_pdf_input") and "pdf" not in keep
             and entry.get("litellm_provider") in (
                 "gemini", "vertex_ai", "vertex_ai-language-models")):
         keep.append("pdf")
-    return keep or None
+    return keep
 
 
 def upstream_surface(entry: dict):
