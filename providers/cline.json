@@ -1023,7 +1023,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "surface": "chat"
     },

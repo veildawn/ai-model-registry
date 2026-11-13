@@ -217,7 +217,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "effort_levels": [
         "low",

@@ -292,6 +292,24 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
+      "model": "alibaba/qwen3.6-35b-a3b",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.375,
+      "completion_per_1m": 2.25,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 262144,
+      "output_ceiling": 65536,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "alibaba/qwen3.6-plus",
       "pricing_style": "openai",
       "prompt_per_1m": 0.5,
@@ -391,13 +409,13 @@
     {
       "model": "alibaba/qwen3.8-27b",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.5,
-      "completion_per_1m": 3.0,
-      "cache_read_per_1m": 0.1,
-      "cache_write_per_1m": 0.625,
+      "prompt_per_1m": 0.06,
+      "completion_per_1m": 2.2,
+      "cache_read_per_1m": 0.059,
+      "cache_write_per_1m": 0.0,
       "source": "vendor-api",
-      "context_window": 1000000,
-      "output_ceiling": 131072,
+      "context_window": 262144,
+      "output_ceiling": 262144,
       "input_modalities": [
         "text",
         "image",
@@ -700,10 +718,8 @@
         "pdf"
       ],
       "effort_levels": [
-        "none",
         "low",
-        "medium",
-        "high"
+        "medium"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -854,6 +870,75 @@
       "completion_per_1m": 25.0,
       "cache_read_per_1m": 0.125,
       "cache_write_per_1m": 6.25,
+      "source": "vendor-api",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "input_modalities": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "anthropic/claude-fable-5.2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 8.0,
+      "completion_per_1m": 40.0,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 10.0,
+      "source": "vendor-api",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "variants": {
+        "suffixes": [
+          "",
+          "-fast"
+        ],
+        "overrides": [
+          {
+            "suffixes": [
+              "-fast"
+            ],
+            "prompt_per_1m": 16.0,
+            "completion_per_1m": 80.0,
+            "cache_read_per_1m": 0.4,
+            "cache_write_per_1m": 20.0,
+            "audio_in_per_1m": 0,
+            "audio_out_per_1m": 0,
+            "image_in_per_1m": 0
+          }
+        ]
+      }
+    },
+    {
+      "model": "anthropic/claude-fable-5.2-batch",
+      "pricing_style": "openai",
+      "prompt_per_1m": 4.0,
+      "completion_per_1m": 20.0,
+      "cache_read_per_1m": 0.1,
+      "cache_write_per_1m": 5.0,
       "source": "vendor-api",
       "context_window": 1000000,
       "output_ceiling": 128000,
@@ -1498,31 +1583,24 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
-      "model": "arcee-ai/trinity-large-thinking",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.25,
-      "completion_per_1m": 0.8,
-      "cache_read_per_1m": 0.06,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 262100,
-      "output_ceiling": 80000,
-      "input_modalities": [
-        "text"
-      ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
       "model": "baseten/elephant-1",
       "pricing_style": "openai",
       "prompt_per_1m": 0.035,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 16384,
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "decision",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "baseten/joey-1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.01,
       "completion_per_1m": 0.0,
       "cache_read_per_1m": 0.0,
       "cache_write_per_1m": 0.0,
@@ -1745,46 +1823,6 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
-      "model": "bytedance/seed-1.6",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.25,
-      "completion_per_1m": 2.0,
-      "cache_read_per_1m": 0.05,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 256000,
-      "output_ceiling": 32000,
-      "input_modalities": [
-        "text",
-        "image"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "bytedance/seed-1.8",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.25,
-      "completion_per_1m": 2.0,
-      "cache_read_per_1m": 0.05,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 256000,
-      "output_ceiling": 64000,
-      "input_modalities": [
-        "text",
-        "image"
-      ],
-      "effort_levels": [
-        "minimal",
-        "low",
-        "medium",
-        "high"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
       "model": "bytedance/seed-2.1-turbo",
       "pricing_style": "openai",
       "prompt_per_1m": 0.5,
@@ -1853,7 +1891,8 @@
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
       "input_modalities": [
-        "text"
+        "text",
+        "image"
       ],
       "surface": "video",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -1881,21 +1920,6 @@
       "cache_read_per_1m": 0.0,
       "cache_write_per_1m": 0.0,
       "video_per_second": 0.0206,
-      "source": "vendor-api",
-      "input_modalities": [
-        "text"
-      ],
-      "surface": "video",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "bytedance/seedance-v1.5-pro",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.0,
-      "completion_per_1m": 0.0,
-      "cache_read_per_1m": 0.0,
-      "cache_write_per_1m": 0.0,
-      "video_per_second": 0.0518,
       "source": "vendor-api",
       "input_modalities": [
         "text"
@@ -2130,28 +2154,11 @@
     {
       "model": "convaiinnovations/laya",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.0,
+      "prompt_per_1m": 0.0105,
       "completion_per_1m": 0.0,
       "cache_read_per_1m": 0.0,
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
-      "free": true,
-      "context_window": 8192,
-      "input_modalities": [
-        "text"
-      ],
-      "surface": "decision",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "convaiinnovations/laya-free",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.0,
-      "completion_per_1m": 0.0,
-      "cache_read_per_1m": 0.0,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "free": true,
       "context_window": 8192,
       "input_modalities": [
         "text"
@@ -2172,11 +2179,11 @@
       "input_modalities": [
         "text"
       ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
       "effort_levels": [
         "high"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      ]
     },
     {
       "model": "deepseek/deepseek-v3.1",
@@ -2240,9 +2247,9 @@
     {
       "model": "deepseek/deepseek-v4-flash-0731",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.076,
-      "completion_per_1m": 0.153,
-      "cache_read_per_1m": 0.014,
+      "prompt_per_1m": 0.13,
+      "completion_per_1m": 0.26,
+      "cache_read_per_1m": 0.028,
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
       "context_window": 1000000,
@@ -2283,23 +2290,10 @@
     {
       "model": "deepseek/deepseek-v4-pro",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.66,
-      "completion_per_1m": 1.98,
-      "cache_read_per_1m": 0.022,
+      "prompt_per_1m": 1.32,
+      "completion_per_1m": 3.96,
+      "cache_read_per_1m": 0.132,
       "cache_write_per_1m": 0.0,
-      "rate_variants": [
-        {
-          "name": "peak",
-          "utc_window_minutes": [
-            60,
-            240,
-            360,
-            600
-          ],
-          "weekdays_only": true,
-          "multiplier": 2.0
-        }
-      ],
       "source": "vendor-api",
       "context_window": 1000000,
       "output_ceiling": 393216,
@@ -2346,23 +2340,10 @@
     {
       "model": "deepseek/deepseek-v4.1-flash",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.075,
-      "completion_per_1m": 0.3,
-      "cache_read_per_1m": 0.0015,
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.007,
       "cache_write_per_1m": 0.0,
-      "rate_variants": [
-        {
-          "name": "peak",
-          "utc_window_minutes": [
-            60,
-            240,
-            360,
-            600
-          ],
-          "weekdays_only": true,
-          "multiplier": 2.0
-        }
-      ],
       "source": "vendor-api",
       "context_window": 1000000,
       "output_ceiling": 393216,
@@ -2403,23 +2384,10 @@
     {
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.075,
-      "completion_per_1m": 0.3,
-      "cache_read_per_1m": 0.0015,
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.007,
       "cache_write_per_1m": 0.0,
-      "rate_variants": [
-        {
-          "name": "peak",
-          "utc_window_minutes": [
-            60,
-            240,
-            360,
-            600
-          ],
-          "weekdays_only": true,
-          "multiplier": 2.0
-        }
-      ],
       "source": "vendor-api",
       "context_window": 1000000,
       "output_ceiling": 393216,
@@ -2458,37 +2426,30 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
+      "model": "deepseek/deepseek-v4.1-flash-1017-ultrafast",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2.4,
+      "completion_per_1m": 9.6,
+      "cache_read_per_1m": 0.048,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1048576,
+      "output_ceiling": 1048576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "elevenlabs/eleven-flash-v2",
-      "pricing_style": "openai",
-      "prompt_per_1m": 20.0,
-      "completion_per_1m": 0.0,
-      "cache_read_per_1m": 0.0,
-      "cache_write_per_1m": 0.0,
-      "tts_per_1m_chars": 20.0,
-      "source": "vendor-api",
-      "input_modalities": [
-        "text"
-      ],
-      "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "elevenlabs/eleven-flash-v2.5",
-      "pricing_style": "openai",
-      "prompt_per_1m": 20.0,
-      "completion_per_1m": 0.0,
-      "cache_read_per_1m": 0.0,
-      "cache_write_per_1m": 0.0,
-      "tts_per_1m_chars": 20.0,
-      "source": "vendor-api",
-      "input_modalities": [
-        "text"
-      ],
-      "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "elevenlabs/eleven-multilingual-v2",
       "pricing_style": "openai",
       "prompt_per_1m": 40.0,
       "completion_per_1m": 0.0,
@@ -2503,11 +2464,41 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
+      "model": "elevenlabs/eleven-flash-v2.5",
+      "pricing_style": "openai",
+      "prompt_per_1m": 40.0,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "tts_per_1m_chars": 40.0,
+      "source": "vendor-api",
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "audio",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "elevenlabs/eleven-multilingual-v2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 80.0,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "tts_per_1m_chars": 80.0,
+      "source": "vendor-api",
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "audio",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "elevenlabs/eleven-realtime-v1-max",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.9,
-      "completion_per_1m": 4.5,
-      "cache_read_per_1m": 0.09,
+      "prompt_per_1m": 1.8,
+      "completion_per_1m": 9.0,
+      "cache_read_per_1m": 0.18,
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
       "input_modalities": [
@@ -2520,9 +2511,9 @@
     {
       "model": "elevenlabs/eleven-realtime-v1-mini",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.1,
-      "completion_per_1m": 3.0,
-      "cache_read_per_1m": 0.01,
+      "prompt_per_1m": 0.2,
+      "completion_per_1m": 6.0,
+      "cache_read_per_1m": 0.02,
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
       "input_modalities": [
@@ -2535,11 +2526,11 @@
     {
       "model": "elevenlabs/eleven-v3",
       "pricing_style": "openai",
-      "prompt_per_1m": 40.0,
+      "prompt_per_1m": 80.0,
       "completion_per_1m": 0.0,
       "cache_read_per_1m": 0.0,
       "cache_write_per_1m": 0.0,
-      "tts_per_1m_chars": 40.0,
+      "tts_per_1m_chars": 80.0,
       "source": "vendor-api",
       "input_modalities": [
         "text"
@@ -2550,21 +2541,6 @@
     {
       "model": "elevenlabs/eleven-v3-conversational",
       "pricing_style": "openai",
-      "prompt_per_1m": 20.0,
-      "completion_per_1m": 0.0,
-      "cache_read_per_1m": 0.0,
-      "cache_write_per_1m": 0.0,
-      "tts_per_1m_chars": 20.0,
-      "source": "vendor-api",
-      "input_modalities": [
-        "text"
-      ],
-      "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "elevenlabs/eleven-v4",
-      "pricing_style": "openai",
       "prompt_per_1m": 40.0,
       "completion_per_1m": 0.0,
       "cache_read_per_1m": 0.0,
@@ -2578,13 +2554,28 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
-      "model": "elevenlabs/eleven-v4-turbo",
+      "model": "elevenlabs/eleven-v4",
       "pricing_style": "openai",
-      "prompt_per_1m": 20.0,
+      "prompt_per_1m": 80.0,
       "completion_per_1m": 0.0,
       "cache_read_per_1m": 0.0,
       "cache_write_per_1m": 0.0,
-      "tts_per_1m_chars": 20.0,
+      "tts_per_1m_chars": 80.0,
+      "source": "vendor-api",
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "audio",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "elevenlabs/eleven-v4-turbo",
+      "pricing_style": "openai",
+      "prompt_per_1m": 40.0,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "tts_per_1m_chars": 40.0,
       "source": "vendor-api",
       "input_modalities": [
         "text"
@@ -2627,7 +2618,7 @@
       "completion_per_1m": 0.0,
       "cache_read_per_1m": 0.0,
       "cache_write_per_1m": 0.0,
-      "asr_per_second": 3.056e-05,
+      "asr_per_second": 6.111e-05,
       "source": "vendor-api",
       "free": true,
       "input_modalities": [
@@ -2798,7 +2789,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -2842,7 +2834,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "effort_levels": [
         "none"
@@ -2864,7 +2857,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -2907,7 +2901,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -2928,7 +2923,6 @@
         "pdf"
       ],
       "effort_levels": [
-        "none",
         "low",
         "medium",
         "high"
@@ -2952,7 +2946,9 @@
         "pdf"
       ],
       "effort_levels": [
+        "minimal",
         "low",
+        "medium",
         "high"
       ],
       "surface": "chat",
@@ -2974,7 +2970,9 @@
         "pdf"
       ],
       "effort_levels": [
+        "minimal",
         "low",
+        "medium",
         "high"
       ],
       "surface": "chat",
@@ -3012,27 +3010,8 @@
       "output_ceiling": 32768,
       "input_modalities": [
         "text",
-        "image"
-      ],
-      "effort_levels": [
-        "none"
-      ],
-      "surface": "image",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "google/gemini-3.1-flash-image-preview",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.5,
-      "completion_per_1m": 3.0,
-      "cache_read_per_1m": 0.05,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 65536,
-      "output_ceiling": 65536,
-      "input_modalities": [
-        "text",
-        "image"
+        "image",
+        "pdf"
       ],
       "effort_levels": [
         "none"
@@ -3054,7 +3033,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "effort_levels": [
         "minimal",
@@ -3081,7 +3061,9 @@
         "pdf"
       ],
       "effort_levels": [
+        "minimal",
         "low",
+        "medium",
         "high"
       ],
       "surface": "chat",
@@ -3099,7 +3081,8 @@
       "output_ceiling": 4096,
       "input_modalities": [
         "text",
-        "image"
+        "image",
+        "pdf"
       ],
       "effort_levels": [
         "none"
@@ -3121,7 +3104,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "effort_levels": [
         "low",
@@ -3148,6 +3132,7 @@
       ],
       "effort_levels": [
         "low",
+        "medium",
         "high"
       ],
       "surface": "chat",
@@ -3167,35 +3152,13 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "effort_levels": [
         "minimal",
         "low",
         "medium",
-        "high"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "google/gemini-3.5-flash-batch",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.75,
-      "completion_per_1m": 4.5,
-      "cache_read_per_1m": 0.075,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 1000000,
-      "output_ceiling": 64000,
-      "input_modalities": [
-        "text",
-        "image",
-        "pdf",
-        "video"
-      ],
-      "effort_levels": [
-        "low",
         "high"
       ],
       "surface": "chat",
@@ -3215,7 +3178,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "effort_levels": [
         "minimal",
@@ -3243,7 +3207,9 @@
         "video"
       ],
       "effort_levels": [
+        "minimal",
         "low",
+        "medium",
         "high"
       ],
       "surface": "chat",
@@ -3264,12 +3230,13 @@
       ],
       "effort_levels": [
         "low",
+        "medium",
         "high"
       ],
       "surface": "audio",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "output_ceiling": 32768,
-      "context_window": 98304
+      "context_window": 98304,
+      "output_ceiling": 32768
     },
     {
       "model": "google/gemini-3.5-transcribe-live",
@@ -3285,6 +3252,7 @@
       ],
       "effort_levels": [
         "low",
+        "medium",
         "high"
       ],
       "surface": "audio",
@@ -3304,7 +3272,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "effort_levels": [
         "minimal",
@@ -3332,7 +3301,9 @@
         "video"
       ],
       "effort_levels": [
+        "minimal",
         "low",
+        "medium",
         "high"
       ],
       "surface": "chat",
@@ -3352,34 +3323,12 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "effort_levels": [
         "low",
         "medium",
-        "high"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "google/gemini-3.7-flash-batch",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.375,
-      "completion_per_1m": 1.875,
-      "cache_read_per_1m": 0.0375,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 1000000,
-      "output_ceiling": 65535,
-      "input_modalities": [
-        "text",
-        "image",
-        "pdf",
-        "video"
-      ],
-      "effort_levels": [
-        "low",
         "high"
       ],
       "surface": "chat",
@@ -3424,12 +3373,13 @@
       ],
       "effort_levels": [
         "low",
+        "medium",
         "high"
       ],
       "surface": "audio",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "output_ceiling": 16384,
-      "context_window": 8192
+      "context_window": 8192,
+      "output_ceiling": 16384
     },
     {
       "model": "google/gemini-3.8-flash-tts",
@@ -3445,12 +3395,13 @@
       ],
       "effort_levels": [
         "low",
+        "medium",
         "high"
       ],
       "surface": "audio",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "output_ceiling": 16384,
-      "context_window": 8192
+      "context_window": 8192,
+      "output_ceiling": 16384
     },
     {
       "model": "google/gemini-3.8-live",
@@ -3468,6 +3419,7 @@
       ],
       "effort_levels": [
         "low",
+        "medium",
         "high"
       ],
       "surface": "audio",
@@ -3490,6 +3442,7 @@
       ],
       "effort_levels": [
         "low",
+        "medium",
         "high"
       ],
       "surface": "audio",
@@ -3510,7 +3463,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "effort_levels": [
         "low",
@@ -3518,6 +3472,79 @@
         "high"
       ],
       "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "google/gemini-4-carbon",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2.0,
+      "completion_per_1m": 10.0,
+      "cache_read_per_1m": 0.1,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1048576,
+      "output_ceiling": 1048576,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video",
+        "pdf"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "google/gemini-4-hydrogen",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.5,
+      "completion_per_1m": 7.5,
+      "cache_read_per_1m": 0.075,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1048576,
+      "output_ceiling": 1048576,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video",
+        "pdf"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "google/gemini-decision-1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.1,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "decision",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
@@ -3568,7 +3595,8 @@
       "input_modalities": [
         "text",
         "image",
-        "video"
+        "video",
+        "pdf"
       ],
       "effort_levels": [
         "minimal",
@@ -3576,6 +3604,24 @@
         "high"
       ],
       "surface": "image",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "google/gemini-omni-1.2-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.5,
+      "completion_per_1m": 9.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 131072,
+      "output_ceiling": 65536,
+      "input_modalities": [
+        "text",
+        "image",
+        "video"
+      ],
+      "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
@@ -3595,14 +3641,14 @@
         "audio",
         "video"
       ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
       "effort_levels": [
         "none",
         "low",
         "medium",
         "high"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      ]
     },
     {
       "model": "google/gemma-4-26b-a4b-it",
@@ -3669,36 +3715,6 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
-      "model": "google/veo-3.0-fast-generate-001",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.0,
-      "completion_per_1m": 0.0,
-      "cache_read_per_1m": 0.0,
-      "cache_write_per_1m": 0.0,
-      "video_per_second": 0.15,
-      "source": "vendor-api",
-      "input_modalities": [
-        "text"
-      ],
-      "surface": "video",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "google/veo-3.0-generate-001",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.0,
-      "completion_per_1m": 0.0,
-      "cache_read_per_1m": 0.0,
-      "cache_write_per_1m": 0.0,
-      "video_per_second": 0.4,
-      "source": "vendor-api",
-      "input_modalities": [
-        "text"
-      ],
-      "surface": "video",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
       "model": "google/veo-3.1-fast-generate-001",
       "pricing_style": "openai",
       "prompt_per_1m": 0.0,
@@ -3756,6 +3772,29 @@
         "image"
       ],
       "surface": "video",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "humansand/ampersand-v0.1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.0,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "free": true,
+      "context_window": 1000000,
+      "output_ceiling": 32768,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
@@ -3922,6 +3961,28 @@
       "source": "vendor-api",
       "context_window": 262144,
       "output_ceiling": 32768,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "inclusionai/ling-3.1-flash-1019",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 0.9,
+      "cache_read_per_1m": 0.06,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1000000,
+      "output_ceiling": 262144,
       "input_modalities": [
         "text"
       ],
@@ -4158,7 +4219,7 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
-      "model": "meituan/longcat-2.5-preview",
+      "model": "meituan/longcat-2.5",
       "pricing_style": "openai",
       "prompt_per_1m": 0.3,
       "completion_per_1m": 1.2,
@@ -4187,12 +4248,6 @@
       "input_modalities": [
         "text"
       ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
-      ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
@@ -4209,12 +4264,6 @@
       "input_modalities": [
         "text"
       ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
-      ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
@@ -4230,12 +4279,6 @@
       "output_ceiling": 8192,
       "input_modalities": [
         "text"
-      ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -4254,12 +4297,6 @@
         "text",
         "image"
       ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
-      ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
@@ -4277,11 +4314,31 @@
         "text",
         "image"
       ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "meta/muse-ember",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.1,
+      "completion_per_1m": 0.5,
+      "cache_read_per_1m": 0.004,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1048576,
+      "output_ceiling": 1048576,
+      "input_modalities": [
+        "text",
+        "image",
+        "pdf"
+      ],
       "effort_levels": [
-        "none",
+        "minimal",
         "low",
         "medium",
-        "high"
+        "high",
+        "xhigh",
+        "max"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -4667,6 +4724,36 @@
       }
     },
     {
+      "model": "minimax/minimax-h3-image",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2.3,
+      "completion_per_1m": 3.8,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "image",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "minimax/minimax-h3-image-highspeed",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2.3,
+      "completion_per_1m": 7.6,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "image",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "minimax/minimax-m2",
       "pricing_style": "openai",
       "prompt_per_1m": 0.3,
@@ -4983,12 +5070,12 @@
     {
       "model": "mistral/mistral-large-4",
       "pricing_style": "openai",
-      "prompt_per_1m": 1.36,
-      "completion_per_1m": 4.18,
-      "cache_read_per_1m": 0.14,
+      "prompt_per_1m": 0.7,
+      "completion_per_1m": 2.1,
+      "cache_read_per_1m": 0.07,
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
-      "context_window": 524288,
+      "context_window": 1048576,
       "output_ceiling": 262144,
       "input_modalities": [
         "text",
@@ -5232,27 +5319,29 @@
         "max"
       ],
       "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "variants": {
-        "suffixes": [
-          "",
-          "-fast"
-        ],
-        "overrides": [
-          {
-            "suffixes": [
-              "-fast"
-            ],
-            "prompt_per_1m": 4.5,
-            "completion_per_1m": 22.5,
-            "cache_read_per_1m": 0.45,
-            "cache_write_per_1m": 0.0,
-            "audio_in_per_1m": 0,
-            "audio_out_per_1m": 0,
-            "image_in_per_1m": 0
-          }
-        ]
-      }
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "moonshotai/kimi-k3-fast",
+      "pricing_style": "openai",
+      "prompt_per_1m": 4.5,
+      "completion_per_1m": 22.5,
+      "cache_read_per_1m": 0.45,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1048576,
+      "output_ceiling": 1048576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
       "model": "moonshotai/kimi-k3.1-pro",
@@ -5260,7 +5349,7 @@
       "prompt_per_1m": 2.0,
       "completion_per_1m": 10.0,
       "cache_read_per_1m": 0.2,
-      "cache_write_per_1m": 2.0,
+      "cache_write_per_1m": 0.0,
       "source": "vendor-api",
       "context_window": 1048576,
       "output_ceiling": 1048576,
@@ -5331,6 +5420,53 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
+      "model": "nace-ai/drex-max-finance",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.03,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "decision",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "nace-ai/drex-max-v1.1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.03,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "decision",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "nace-ai/drex-v2.0",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.03,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 262144,
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "decision",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "nvidia/nemotron-3-nano-30b-a3b",
       "pricing_style": "openai",
       "prompt_per_1m": 0.05,
@@ -5365,12 +5501,6 @@
       "input_modalities": [
         "text"
       ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
-      ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
@@ -5399,9 +5529,9 @@
     {
       "model": "nvidia/nemotron-3.5-lightning",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.05,
-      "completion_per_1m": 0.2,
-      "cache_read_per_1m": 0.01,
+      "prompt_per_1m": 0.06,
+      "completion_per_1m": 0.16,
+      "cache_read_per_1m": 0.03,
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
       "context_window": 262144,
@@ -5479,12 +5609,6 @@
         "text",
         "image"
       ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
-      ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
@@ -5500,12 +5624,6 @@
       "output_ceiling": 131072,
       "input_modalities": [
         "text"
-      ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -6042,33 +6160,36 @@
         "pdf"
       ],
       "effort_levels": [
-        "none",
         "low",
         "medium",
         "high"
       ],
       "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "variants": {
-        "suffixes": [
-          "",
-          "-max"
-        ],
-        "overrides": [
-          {
-            "suffixes": [
-              "-max"
-            ],
-            "prompt_per_1m": 1.25,
-            "completion_per_1m": 10.0,
-            "cache_read_per_1m": 0.125,
-            "cache_write_per_1m": 0.0,
-            "audio_in_per_1m": 0,
-            "audio_out_per_1m": 0,
-            "image_in_per_1m": 0
-          }
-        ]
-      }
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "openai/gpt-5.1-codex-max",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.25,
+      "completion_per_1m": 10.0,
+      "cache_read_per_1m": 0.125,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 400000,
+      "output_ceiling": 128000,
+      "input_modalities": [
+        "text",
+        "image",
+        "pdf"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
       "model": "openai/gpt-5.1-codex-mini",
@@ -6086,7 +6207,6 @@
         "pdf"
       ],
       "effort_levels": [
-        "none",
         "low",
         "medium",
         "high"
@@ -6198,7 +6318,6 @@
       ],
       "effort_levels": [
         "none",
-        "minimal",
         "low",
         "medium",
         "high",
@@ -6223,10 +6342,10 @@
         "pdf"
       ],
       "effort_levels": [
-        "none",
         "low",
         "medium",
-        "high"
+        "high",
+        "xhigh"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -6360,7 +6479,6 @@
       ],
       "effort_levels": [
         "none",
-        "minimal",
         "low",
         "medium",
         "high",
@@ -6431,7 +6549,6 @@
       ],
       "effort_levels": [
         "none",
-        "minimal",
         "low",
         "medium",
         "high",
@@ -6481,7 +6598,6 @@
       ],
       "effort_levels": [
         "none",
-        "minimal",
         "low",
         "medium",
         "high",
@@ -6574,7 +6690,6 @@
       ],
       "effort_levels": [
         "none",
-        "minimal",
         "low",
         "medium",
         "high",
@@ -6761,7 +6876,6 @@
       ],
       "effort_levels": [
         "none",
-        "minimal",
         "low",
         "medium",
         "high",
@@ -6833,7 +6947,6 @@
       ],
       "effort_levels": [
         "none",
-        "minimal",
         "low",
         "medium",
         "high",
@@ -7256,6 +7369,36 @@
     },
     {
       "model": "openai/gpt-image-2.5-sunburst",
+      "pricing_style": "openai",
+      "prompt_per_1m": 5.0,
+      "completion_per_1m": 30.0,
+      "cache_read_per_1m": 1.25,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "image",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "openai/gpt-image-2.6-flare",
+      "pricing_style": "openai",
+      "prompt_per_1m": 5.0,
+      "completion_per_1m": 30.0,
+      "cache_read_per_1m": 1.25,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "image",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "openai/gpt-image-2.6-sunburst",
       "pricing_style": "openai",
       "prompt_per_1m": 5.0,
       "completion_per_1m": 30.0,
@@ -7728,6 +7871,76 @@
       "output_ceiling": 4096
     },
     {
+      "model": "paperinstruments/ultramarine-1-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.5,
+      "cache_read_per_1m": 0.03,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1048576,
+      "output_ceiling": 131000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "parallel/parallel-decisions-fast",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.0,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 32000,
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "decision",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "particle/particle-1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.125,
+      "completion_per_1m": 0.5,
+      "cache_read_per_1m": 0.015,
+      "cache_write_per_1m": 0.0,
+      "rate_variants": [
+        {
+          "name": "peak",
+          "utc_window_minutes": [
+            480,
+            30
+          ],
+          "multiplier": 2.0
+        }
+      ],
+      "source": "vendor-api",
+      "context_window": 1048576,
+      "output_ceiling": 131072,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "perplexity/pplx-decider-flash-v1.2",
       "pricing_style": "openai",
       "prompt_per_1m": 0.01,
@@ -7744,7 +7957,39 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
+      "model": "perplexity/pplx-decider-flash-v1.3",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.01,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "decision",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "perplexity/pplx-decider-v1.2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.02,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "decision",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "perplexity/pplx-decider-v1.3",
       "pricing_style": "openai",
       "prompt_per_1m": 0.02,
       "completion_per_1m": 0.0,
@@ -7810,39 +8055,6 @@
         "medium",
         "high",
         "xhigh"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "poolside/laguna-s-2.1",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.09,
-      "completion_per_1m": 0.18,
-      "cache_read_per_1m": 0.009,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 1000000,
-      "output_ceiling": 131072,
-      "input_modalities": [
-        "text"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "poolside/laguna-s-2.1-free",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.0,
-      "completion_per_1m": 0.0,
-      "cache_read_per_1m": 0.0,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "free": true,
-      "context_window": 256000,
-      "output_ceiling": 32768,
-      "input_modalities": [
-        "text"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -8269,7 +8481,6 @@
         "pdf"
       ],
       "effort_levels": [
-        "none",
         "low",
         "medium",
         "high"
@@ -8293,7 +8504,6 @@
         "pdf"
       ],
       "effort_levels": [
-        "none",
         "low",
         "medium",
         "high"
@@ -8315,12 +8525,6 @@
         "text",
         "image"
       ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
-      ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
@@ -8338,12 +8542,6 @@
         "text",
         "image",
         "pdf"
-      ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -8363,12 +8561,6 @@
         "image",
         "pdf"
       ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
-      ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
@@ -8386,14 +8578,14 @@
         "text",
         "image"
       ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
       "effort_levels": [
         "none",
         "low",
         "medium",
         "high"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      ]
     },
     {
       "model": "spacexai/grok-4.20-reasoning-batch",
@@ -8409,12 +8601,6 @@
         "text",
         "image",
         "pdf"
-      ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -8433,12 +8619,6 @@
         "text",
         "image",
         "pdf"
-      ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -8571,13 +8751,13 @@
         "text",
         "image"
       ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
       "effort_levels": [
         "low",
         "medium",
         "high"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      ]
     },
     {
       "model": "spacexai/grok-imagine-image",
@@ -8592,12 +8772,12 @@
         "text",
         "image"
       ],
-      "effort_levels": [
-        "none"
-      ],
       "surface": "image",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "context_window": 16000
+      "context_window": 16000,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "spacexai/grok-imagine-image-2.0",
@@ -8612,12 +8792,12 @@
         "text",
         "image"
       ],
-      "effort_levels": [
-        "none"
-      ],
       "surface": "image",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "context_window": 64000
+      "context_window": 64000,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "spacexai/grok-imagine-video",
@@ -8633,12 +8813,12 @@
         "image",
         "video"
       ],
-      "effort_levels": [
-        "none"
-      ],
       "surface": "video",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "context_window": 1024
+      "context_window": 1024,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "spacexai/grok-imagine-video-1.5",
@@ -8654,12 +8834,12 @@
         "image",
         "audio"
       ],
-      "effort_levels": [
-        "none"
-      ],
       "surface": "video",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "context_window": 1024
+      "context_window": 1024,
+      "effort_levels": [
+        "none"
+      ]
     },
     {
       "model": "spacexai/grok-imagine-video-1.5-lite",
@@ -8691,12 +8871,6 @@
       "input_modalities": [
         "audio"
       ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
-      ],
       "surface": "audio",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
@@ -8711,12 +8885,6 @@
       "source": "vendor-api",
       "input_modalities": [
         "text"
-      ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
       ],
       "surface": "audio",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
@@ -8733,33 +8901,6 @@
       "input_modalities": [
         "text",
         "audio"
-      ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
-      ],
-      "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "spacexai/grok-voice-think-fast-2.0",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.0,
-      "completion_per_1m": 0.0,
-      "cache_read_per_1m": 0.0,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "input_modalities": [
-        "text",
-        "audio"
-      ],
-      "effort_levels": [
-        "none",
-        "low",
-        "medium",
-        "high"
       ],
       "surface": "audio",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -8903,6 +9044,27 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
+      "model": "tencent/hy4",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.417,
+      "completion_per_1m": 1.2505,
+      "cache_read_per_1m": 0.021,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1024000,
+      "output_ceiling": 64000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "high"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "tencent/hy4-preview",
       "pricing_style": "openai",
       "prompt_per_1m": 0.834,
@@ -8945,6 +9107,29 @@
         "high",
         "xhigh",
         "max"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "thinkingmachines/inkling-2-small",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.0,
+      "cache_read_per_1m": 0.03,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1048576,
+      "output_ceiling": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -9273,51 +9458,6 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
-      "model": "xiaomi/mimo-v2.5",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.119,
-      "completion_per_1m": 0.238,
-      "cache_read_per_1m": 0.0025,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 1048576,
-      "output_ceiling": 128000,
-      "input_modalities": [
-        "text"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "effort_levels": [
-        "low",
-        "medium",
-        "high"
-      ]
-    },
-    {
-      "model": "xiaomi/mimo-v2.5-pro",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.3045,
-      "completion_per_1m": 0.609,
-      "cache_read_per_1m": 0.0028,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 1048576,
-      "output_ceiling": 128000,
-      "input_modalities": [
-        "text",
-        "image",
-        "audio",
-        "video"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "effort_levels": [
-        "low",
-        "medium",
-        "high"
-      ]
-    },
-    {
       "model": "xiaomi/mimo-v2.6-flash",
       "pricing_style": "openai",
       "prompt_per_1m": 0.14,
@@ -9578,9 +9718,9 @@
     {
       "model": "zai/glm-5.2",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.8,
-      "completion_per_1m": 2.55,
-      "cache_read_per_1m": 0.16,
+      "prompt_per_1m": 1.4,
+      "completion_per_1m": 4.4,
+      "cache_read_per_1m": 0.14,
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
       "context_window": 1000000,
@@ -9597,34 +9737,38 @@
         "max"
       ],
       "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "variants": {
-        "suffixes": [
-          "",
-          "-fast"
-        ],
-        "overrides": [
-          {
-            "suffixes": [
-              "-fast"
-            ],
-            "prompt_per_1m": 2.8,
-            "completion_per_1m": 8.8,
-            "cache_read_per_1m": 0.56,
-            "cache_write_per_1m": 0.0,
-            "audio_in_per_1m": 0,
-            "audio_out_per_1m": 0,
-            "image_in_per_1m": 0
-          }
-        ]
-      }
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "zai/glm-5.2-fast",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2.8,
+      "completion_per_1m": 8.8,
+      "cache_read_per_1m": 0.56,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
       "model": "zai/glm-5.3",
       "pricing_style": "openai",
-      "prompt_per_1m": 1.2,
-      "completion_per_1m": 4.0,
-      "cache_read_per_1m": 0.2,
+      "prompt_per_1m": 1.4,
+      "completion_per_1m": 4.4,
+      "cache_read_per_1m": 0.14,
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
       "context_window": 1000000,
@@ -9638,27 +9782,28 @@
         "max"
       ],
       "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
-      "variants": {
-        "suffixes": [
-          "",
-          "-fast"
-        ],
-        "overrides": [
-          {
-            "suffixes": [
-              "-fast"
-            ],
-            "prompt_per_1m": 2.1,
-            "completion_per_1m": 6.6,
-            "cache_read_per_1m": 0.21,
-            "cache_write_per_1m": 0.0,
-            "audio_in_per_1m": 0,
-            "audio_out_per_1m": 0,
-            "image_in_per_1m": 0
-          }
-        ]
-      }
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "zai/glm-5.3-fast",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2.1,
+      "completion_per_1m": 6.6,
+      "cache_read_per_1m": 0.21,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
       "model": "zai/glm-5.3-flash",
@@ -9698,6 +9843,28 @@
         "image",
         "video",
         "pdf"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "zai/glm-5.3-flashx-legal",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.37,
+      "completion_per_1m": 1.25,
+      "cache_read_per_1m": 0.075,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1000000,
+      "output_ceiling": 131072,
+      "input_modalities": [
+        "text",
+        "image"
       ],
       "effort_levels": [
         "low",
