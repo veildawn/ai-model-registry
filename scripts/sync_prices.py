@@ -25,14 +25,14 @@ occasionally right and always rotting, which is the state this registry was in �
 its only freshness signal was a "last full refresh" date in the README that
 nothing checked.
 
-Four vendor files, Antigravity, and Bedrock also ENROLL ids the catalog does
-not yet have. Matching only keeps a row fresh; it cannot notice that Anthropic
-shipped `claude-fable-5-1` or OpenAI shipped `gpt-5.7` if nobody typed the id
-in. `AUTO_ENROLL` is that notice, scoped to the first-party catalogs a new
-frontier model actually lands in (Anthropic, OpenAI/Codex, Google AI Studio,
-xAI), to Antigravity for Gemini only — the same ids AI Studio enrolls, metered
-at Google's list — and to Bedrock for current Claude ids, metered at AWS's
-Geo and In-region Cross-region Inference table.
+The first-party catalogs, Antigravity, and Bedrock also ENROLL ids the catalog
+does not yet have. Matching only keeps a row fresh; it cannot notice that
+Anthropic shipped `claude-fable-5-1` or OpenAI shipped `gpt-5.7` if nobody
+typed the id in. `AUTO_ENROLL` is that notice, scoped to the first-party
+catalogs a new frontier model actually lands in (Anthropic, OpenAI/Codex,
+Google AI Studio, Vertex AI, xAI), to Antigravity for Gemini only — the same
+ids AI Studio enrolls, metered at Google's list — and to Bedrock for current
+Claude ids, metered at AWS's Geo and In-region Cross-region Inference table.
 
 Ollama Cloud and OpenCode Go are the other case: they publish a CURATED list,
 not a discount of whoever shipped this week, so guessing is not required. Their
@@ -102,8 +102,9 @@ reseller's cap cannot contest the publisher's number away. A dated pin fills
 the floating id only when the publisher does not list that spelling
 (`doubao-seed-2-1-pro-260628` for `doubao-seed-2.1-pro`). `-highspeed` and
 `-ultraspeed` copy the unsuffixed sibling in the same file. `--provider` still
-blank-fills this field on every other file, so the hourly job does not leave
-a new id's ceiling for the daily run. A ceiling already stored is not replaced
+blank-fills this field on every other file, so a one-provider dispatch does
+not leave a new id's ceiling for the next full run. The scheduled hourly job
+syncs every provider in one pass. A ceiling already stored is not replaced
 on that pass.
 
 Usage:
@@ -1740,15 +1741,36 @@ def per_1m(entry: dict, field: str):
 
 
 def upstream_modalities(entry: dict):
-    """litellm's input media as our comma-separated form, or None if it says nothing."""
+    """litellm's input media as our list, or None if it says nothing.
+
+    PDF is not a member of `supported_modalities`. LiteLLM publishes it on
+    `supports_pdf_input`, and reading only the list drops a modality the vendor
+    stated. Gemini 4 Carbon is the row that hit this: the flag is true, the
+    list is text/image/audio/video, and a derived Antigravity row lost pdf on
+    the next sync while the hand-held AI Studio row kept it.
+
+    The flag is honored only on Google's own namespaces. The same boolean is
+    set on Claude rows whose first-party file still says text and image, and
+    taking it there would rewrite that catalog and then have the first-party
+    pass strip it back off.
+    """
     modalities = entry.get("supported_modalities")
     if modalities:
         keep = [m for m in modalities if m in KEEP_MODALITIES]
-        return keep or None
-    vision = entry.get("supports_vision")
-    if vision is None:
+    else:
+        vision = entry.get("supports_vision")
+        if vision is None:
+            # A bare supports_pdf_input is not a modality list. Returning
+            # ["pdf"] would overwrite a stored text/image row with PDF-only.
+            return None
+        keep = ["text", "image"] if vision else ["text"]
+    if not keep:
         return None
-    return ["text", "image"] if vision else ["text"]
+    if (entry.get("supports_pdf_input") and "pdf" not in keep
+            and entry.get("litellm_provider") in (
+                "gemini", "vertex_ai", "vertex_ai-language-models")):
+        keep.append("pdf")
+    return keep
 
 
 def upstream_surface(entry: dict):
@@ -2352,11 +2374,12 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
             with open(path, "w") as fh:
                 fh.write(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")
 
-    # `--provider` rewrites that file and, until now, left every other file
-    # untouched. The hourly job runs one provider at a time, so a blank
-    # ceiling — a Doubao id whose publisher only lists a dated pin, a speed
-    # tier, a reseller row with no ceiling yet — waited for the daily full
-    # sync. This pass fills blanks only.
+    # `--provider` rewrites that file and leaves every other file's rates
+    # alone. A one-provider dispatch still fills blank ceilings elsewhere — a
+    # Doubao id whose publisher only lists a dated pin, a speed tier, a
+    # reseller row with no ceiling yet — so that dispatch does not wait for
+    # the next full run. The scheduled hourly job is a full run. This pass
+    # fills blanks only.
     if target_set:
         if fill_ceilings_outside_target(
                 registry_dir, provider_files, target_set, ceilings,
@@ -2492,8 +2515,8 @@ def render(applied, disagree, orphans, unclassified, capability, counts, contest
         verb_enroll = "Enrolled" if apply else "Would enroll"
         w(f"## {verb_enroll} new ids")
         w("")
-        w("AUTO_ENROLL (Anthropic, OpenAI/Codex, Google AI Studio, xAI, "
-          "Antigravity's Gemini ids, and Bedrock Claude) reads the vendor's "
+        w("AUTO_ENROLL (Anthropic, OpenAI/Codex, Google AI Studio, Vertex AI, "
+          "xAI, Antigravity's Gemini ids, and Bedrock Claude) reads the vendor's "
           "litellm namespace. Bedrock bills Geo and In-region Cross-region "
           "Inference, not Global. CATALOG_ENROLL (Ollama Cloud, OpenCode Go) "
           "reads that surface's own model list. First-party AUTO_ENROLL rows "

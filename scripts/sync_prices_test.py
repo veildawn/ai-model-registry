@@ -117,7 +117,9 @@ class EnrollReasonTest(unittest.TestCase):
                                       chat(mode="image_generation")))
         self.assertIsNone(self.reason("gemini", "gemini-3.8-flash-cyber"))
         self.assertIsNone(self.reason("gemini", "gemini-4-argon-cyber-permissive"))
+        self.assertIsNone(self.reason("gemini", "gemini-4-hydrogen"))
         self.assertIsNone(self.reason("vertex", "gemini-3.9-flash"))
+        self.assertIsNone(self.reason("vertex", "gemini-4-hydrogen"))
         self.assertIsNone(self.reason("vertex", "gemini-omni-1.2-flash"))
 
     def test_skips_old_grok_keeps_new(self):
@@ -141,6 +143,7 @@ class EnrollReasonTest(unittest.TestCase):
         self.assertEqual(reason("gemini-3-flash"), "already-present")
         self.assertEqual(reason("gemini-3-flash-preview"), "already-present")
         self.assertIsNone(reason("gemini-3.9-flash"))
+        self.assertIsNone(reason("gemini-4-hydrogen"))
         self.assertEqual(reason("gpt-5.4"), "outside-include")
 
     def test_unpriced_and_unserved(self):
@@ -781,6 +784,59 @@ class MimoSpecParserTest(unittest.TestCase):
         self.assertEqual(specs["mimo-v2.5-tts-voicedesign"]["output_ceiling"], 8000)
         self.assertNotIn("output_ceiling", specs["mimo-v2-omni"])
         self.assertNotIn("context_window", specs["mimo-v2-omni"])
+
+
+class UpstreamModalitiesTest(unittest.TestCase):
+    def test_pdf_flag_is_kept_when_the_modality_list_omits_it(self):
+        entry = {
+            "litellm_provider": "gemini",
+            "supported_modalities": ["text", "image", "audio", "video"],
+            "supports_pdf_input": True,
+        }
+        self.assertEqual(
+            sp.upstream_modalities(entry),
+            ["text", "image", "audio", "video", "pdf"])
+
+    def test_pdf_flag_does_not_duplicate(self):
+        entry = {
+            "litellm_provider": "vertex_ai",
+            "supported_modalities": ["text", "pdf", "image"],
+            "supports_pdf_input": True,
+        }
+        self.assertEqual(sp.upstream_modalities(entry), ["text", "pdf", "image"])
+
+    def test_pdf_flag_on_other_vendors_stays_in_their_list(self):
+        entry = {
+            "litellm_provider": "anthropic",
+            "supported_modalities": ["text", "image"],
+            "supports_pdf_input": True,
+        }
+        self.assertEqual(sp.upstream_modalities(entry), ["text", "image"])
+
+    def test_silence_stays_silence(self):
+        self.assertIsNone(sp.upstream_modalities({}))
+        self.assertEqual(
+            sp.upstream_modalities({"supports_vision": False}),
+            ["text"])
+
+    def test_pdf_flag_without_a_base_list_does_not_become_pdf_only(self):
+        entry = {
+            "litellm_provider": "gemini",
+            "supports_pdf_input": True,
+        }
+        self.assertIsNone(sp.upstream_modalities(entry))
+        self.assertIsNone(sp.upstream_modalities({
+            "litellm_provider": "vertex_ai",
+            "supports_pdf_input": True,
+            "supported_modalities": ["document"],
+        }))
+        self.assertEqual(
+            sp.upstream_modalities({
+                "litellm_provider": "gemini",
+                "supports_vision": True,
+                "supports_pdf_input": True,
+            }),
+            ["text", "image", "pdf"])
 
 
 if __name__ == "__main__":
