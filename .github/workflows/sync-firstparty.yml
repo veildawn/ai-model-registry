@@ -29,6 +29,8 @@ jobs:
           - codex
           - deepseek
           - gemini
+          - vertex
+          - antigravity
           - glm
           - kimi
           - mimo

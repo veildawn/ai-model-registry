@@ -54,7 +54,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "surface": "chat",
       "output_ceiling": 65536
@@ -160,7 +161,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -179,7 +181,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 65536,
@@ -201,7 +204,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -239,7 +243,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -277,7 +282,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -340,7 +346,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -360,7 +367,8 @@
       "cache_write_per_1m": 0,
       "input_modalities": [
         "text",
-        "image"
+        "image",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 131072,
@@ -400,7 +408,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -423,7 +432,8 @@
       "cache_write_per_1m": 0,
       "input_modalities": [
         "text",
-        "image"
+        "image",
+        "pdf"
       ],
       "source": "manual",
       "effort_levels": [
@@ -444,7 +454,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -488,7 +499,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -511,7 +523,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -534,7 +547,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -559,7 +573,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -583,7 +598,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -607,7 +623,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -657,7 +674,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -675,7 +693,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -701,7 +720,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -728,7 +748,7 @@
         "video",
         "pdf"
       ],
-      "source": "manual",
+      "source": "litellm",
       "context_window": 1048576,
       "output_ceiling": 1048576,
       "surface": "chat",
@@ -752,7 +772,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -798,7 +819,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -822,7 +844,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -846,7 +869,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -872,7 +896,8 @@
       "input_modalities": [
         "text",
         "image",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 131072,
@@ -940,7 +965,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 1048576,
@@ -1132,7 +1158,8 @@
         "text",
         "image",
         "audio",
-        "video"
+        "video",
+        "pdf"
       ],
       "source": "litellm",
       "context_window": 131072,
