@@ -154,6 +154,23 @@
       "output_ceiling": 32768
     },
     {
+      "model": "inkling-2-small",
+      "source": "manual",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "output_ceiling": 131072
+    },
+    {
       "model": "kimi-k2.5",
       "source": "manual",
       "context_window": 262144,

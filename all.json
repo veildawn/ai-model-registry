@@ -1111,7 +1111,8 @@
             "image"
           ],
           "surface": "chat",
-          "source": "manual"
+          "source": "manual",
+          "output_ceiling": 256000
         },
         {
           "model": "doubao-seed-2.0-mini",
@@ -8109,6 +8110,23 @@
           ],
           "surface": "chat",
           "output_ceiling": 32768
+        },
+        {
+          "model": "inkling-2-small",
+          "source": "manual",
+          "context_window": 1048576,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "max"
+          ],
+          "surface": "chat",
+          "output_ceiling": 131072
         },
         {
           "model": "kimi-k2.5",
