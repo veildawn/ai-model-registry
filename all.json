@@ -4746,15 +4746,15 @@
         {
           "model": "gpt-5.6-sol",
           "pricing_style": "openai",
-          "prompt_per_1m": 5,
-          "completion_per_1m": 30,
-          "cache_read_per_1m": 0.5,
-          "cache_write_per_1m": 6.25,
+          "prompt_per_1m": 4,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0.4,
+          "cache_write_per_1m": 5,
           "input_modalities": [
             "text",
             "image"
           ],
-          "source": "manual",
+          "source": "litellm",
           "context_window": 922000,
           "effort_levels": [
             "none",
@@ -6757,11 +6757,11 @@
         {
           "model": "glm-5.2",
           "pricing_style": "openai",
-          "prompt_per_1m": 1.182225,
-          "completion_per_1m": 4.137788,
-          "cache_read_per_1m": 0.295556,
+          "prompt_per_1m": 1.4,
+          "completion_per_1m": 4.4,
+          "cache_read_per_1m": 0.26,
           "cache_write_per_1m": 0,
-          "source": "manual",
+          "source": "litellm",
           "context_window": 1000000,
           "effort_levels": [
             "none",
@@ -6800,16 +6800,16 @@
         {
           "model": "glm-5.3-flash",
           "pricing_style": "openai",
-          "prompt_per_1m": 0.075,
-          "completion_per_1m": 0.25,
-          "cache_read_per_1m": 0.015,
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.5,
+          "cache_read_per_1m": 0.03,
           "cache_write_per_1m": 0,
           "input_modalities": [
             "text",
             "image",
             "video"
           ],
-          "source": "manual",
+          "source": "litellm",
           "context_window": 1000000,
           "effort_levels": [
             "low",
@@ -6817,7 +6817,6 @@
             "max"
           ],
           "surface": "chat",
-          "price_reviewed": "rates are z.ai's USD list, as published on models.dev (zai and zhipuai rows agree); litellm has no zai-namespace row for this id",
           "output_ceiling": 128000
         },
         {
@@ -7309,7 +7308,7 @@
             "text",
             "image"
           ],
-          "source": "vendor-api",
+          "source": "manual",
           "context_window": 1000000,
           "surface": "chat",
           "output_ceiling": 64000,
@@ -7317,7 +7316,8 @@
             "low",
             "medium",
             "high"
-          ]
+          ],
+          "price_reviewed": "Retained historical Sonnet 4 vendor list (3/15/0.3/3.75 USD per 1M); no matching Anthropic row in LiteLLM as of 2026-11-15. Do not substitute Sonnet 4.5 or a different reseller price."
         },
         {
           "model": "claude-sonnet-4.5",
@@ -9747,11 +9747,11 @@
         {
           "model": "deepseek-v4-pro",
           "pricing_style": "openai",
-          "prompt_per_1m": 0.435,
-          "completion_per_1m": 0.87,
-          "cache_read_per_1m": 0.003625,
+          "prompt_per_1m": 2.4,
+          "completion_per_1m": 4.8,
+          "cache_read_per_1m": 0.2,
           "cache_write_per_1m": 0,
-          "source": "manual",
+          "source": "litellm",
           "context_window": 1000000,
           "effort_levels": [
             "high",
@@ -9766,11 +9766,11 @@
         {
           "model": "glm-5.2",
           "pricing_style": "openai",
-          "prompt_per_1m": 1.182225,
-          "completion_per_1m": 4.137788,
-          "cache_read_per_1m": 0.295556,
+          "prompt_per_1m": 1.4,
+          "completion_per_1m": 4.4,
+          "cache_read_per_1m": 0.28,
           "cache_write_per_1m": 0,
-          "source": "manual",
+          "source": "litellm",
           "context_window": 1000000,
           "effort_levels": [
             "none",
