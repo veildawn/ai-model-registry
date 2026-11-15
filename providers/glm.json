@@ -281,11 +281,10 @@
       "cache_write_per_1m": 0,
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
       ],
       "source": "litellm",
-      "context_window": 1000000,
+      "context_window": 1048576,
       "effort_levels": [
         "low",
         "high",

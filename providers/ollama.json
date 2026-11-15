@@ -109,11 +109,10 @@
     {
       "model": "glm-5.3-flash",
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 1048576,
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
       ],
       "effort_levels": [
         "low",

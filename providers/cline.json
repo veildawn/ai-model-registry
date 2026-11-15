@@ -138,12 +138,11 @@
       "free": true,
       "source": "manual",
       "price_reviewed": "Cline's own free tier: its catalog endpoint lists this id under `free` and the desktop app prices it at all-zero rates, so $0 is the published price rather than a missing one.",
-      "context_window": 1000000,
+      "context_window": 1048576,
       "output_ceiling": 128000,
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
       ],
       "surface": "chat",
       "effort_levels": [
@@ -402,12 +401,11 @@
       "cache_write_per_1m": 0.0,
       "source": "manual",
       "price_reviewed": "Zhipu official list rates for reference; Cline Pass settles in subscription credits.",
-      "context_window": 1000000,
+      "context_window": 1048576,
       "output_ceiling": 128000,
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
       ],
       "surface": "chat",
       "effort_levels": [

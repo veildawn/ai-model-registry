@@ -212,7 +212,7 @@
       "cache_read_per_1m": 0.02,
       "cache_write_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 1048576,
       "effort_levels": [
         "low",
         "high",
@@ -221,8 +221,7 @@
       "surface": "chat",
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
       ],
       "output_ceiling": 128000
     },
