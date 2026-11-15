@@ -3798,50 +3798,6 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
-      "model": "inception/mercury-2",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.25,
-      "completion_per_1m": 0.75,
-      "cache_read_per_1m": 0.025,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 128000,
-      "output_ceiling": 128000,
-      "input_modalities": [
-        "text"
-      ],
-      "effort_levels": [
-        "instant",
-        "low",
-        "medium",
-        "high"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "inception/mercury-2.5",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.04,
-      "completion_per_1m": 0.15,
-      "cache_read_per_1m": 0.004,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 260000,
-      "output_ceiling": 65536,
-      "input_modalities": [
-        "text"
-      ],
-      "effort_levels": [
-        "instant",
-        "low",
-        "medium",
-        "high"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
       "model": "inception/mercury-3",
       "pricing_style": "openai",
       "prompt_per_1m": 0.1,
@@ -3859,22 +3815,6 @@
         "low",
         "medium",
         "high"
-      ],
-      "surface": "chat",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
-      "model": "inception/mercury-coder-small",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.25,
-      "completion_per_1m": 1.0,
-      "cache_read_per_1m": 0.0,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 32000,
-      "output_ceiling": 16384,
-      "input_modalities": [
-        "text"
       ],
       "surface": "chat",
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
