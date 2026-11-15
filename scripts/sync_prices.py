@@ -8,12 +8,10 @@ Every model entry carries a `source`, and it decides who writes its RATES
                   overwrites the row's rates from litellm on every run. Nobody
                   edits these by hand — an edit would be reverted the next
                   morning, which is the point: the row is delegated.
-    "vendor-api"  a surface that publishes no rates of its own and meters at the
-                  vendor's API list (kiro, antigravity). Written the same way,
-                  from the vendor's row, after this surface's own suffixes are
-                  stripped. Named apart from "litellm" because it is DERIVED:
-                  someone auditing a bill needs to see which rows were read and
-                  which were inferred.
+    "vendor-api"  either a direct vendor catalog (Vercel, maintained by its
+                  dedicated sync), or a surface in DERIVED_NAMESPACES (Kiro,
+                  Antigravity) metered at another vendor's list. Only the latter
+                  is written here, after stripping the surface's suffixes.
     "manual"      this script NEVER writes the row's rates. It only reports when
                   the upstream disagrees, so a stale hand-authored rate stops
                   hiding.
@@ -2172,6 +2170,11 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                 unclassified.append((provider, mid))
                 source = "manual"
             counts[source] += 1
+            # Direct API catalogs have their own writer and their own prices
+            # and limits. LiteLLM's absence says nothing about their health;
+            # even a matching id must not replace what their API publishes.
+            if source == "vendor-api" and provider not in DERIVED_NAMESPACES:
+                continue
             # Fields the litellm pass has already spoken for on this row. Under
             # --check nothing is written, so without this the models.dev
             # supplement would still see an empty field and report a second
@@ -2221,6 +2224,13 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                             theirs = per_1m(entry, upstream_field)
                             mine = model.get(field, 0)
                             if not theirs:
+                                continue
+                            # An absent modality input rate inherits the text
+                            # input price in the consumer; 0 vs that same price
+                            # is an equivalent representation, not price drift.
+                            if (field in ("image_in_per_1m", "audio_in_per_1m", "video_in_per_1m")
+                                    and not mine
+                                    and not differs(model.get("prompt_per_1m", 0), theirs)):
                                 continue
                             # A cache rate we do not carry is usually a rate the
                             # vendor does not charge; only report where both
@@ -2429,7 +2439,7 @@ def render(applied, disagree, orphans, unclassified, capability, counts, contest
     w("# Registry vs litellm")
     w("")
     w(f"{counts['litellm']} rows read from litellm · "
-      f"{counts['vendor-api']} derived from the vendor's API list · "
+      f"{counts['vendor-api']} from vendor APIs or derived vendor lists · "
       f"{counts['manual']} maintained here")
     w("")
     fresh = [d for d in disagree if not d[6]]

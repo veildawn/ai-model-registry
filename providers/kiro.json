@@ -145,7 +145,7 @@
         "text",
         "image"
       ],
-      "source": "vendor-api",
+      "source": "manual",
       "context_window": 1000000,
       "surface": "chat",
       "output_ceiling": 64000,
@@ -153,7 +153,8 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "price_reviewed": "Retained historical Sonnet 4 vendor list (3/15/0.3/3.75 USD per 1M); no matching Anthropic row in LiteLLM as of 2026-11-15. Do not substitute Sonnet 4.5 or a different reseller price."
     },
     {
       "model": "claude-sonnet-4.5",

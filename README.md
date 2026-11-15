@@ -735,9 +735,25 @@ conversion of its CN list — `zai/glm-4.7` at 0.6/2.2 where the CNY list gave
 0.591/2.364. Those are two price lists, not two conversions of one, so the swap
 is a real change in what gets billed, taken knowingly in exchange for never
 having to re-derive them again. The frozen rate now survives only on the rows
-litellm cannot match: `kimi` (`k3`, `k3-256k`), `glm-5-turbo`, `glm-5.2`,
+litellm cannot match: `kimi` (`k3`, `k3-256k`), `glm-5-turbo`,
 `qwen3.6-flash`, `qwen3.8-max-preview`, StepFun Step Plan's token-priced
 `step-*` / `stepaudio-*` rows, and the resold copies of all of those.
+
+Review on **2026-11-15** moved `codex/gpt-5.6-sol`, `glm/glm-5.2`,
+`glm/glm-5.3-flash`, and Qianwen's `glm-5.2` / `deepseek-v4-pro` to
+LiteLLM ownership after comparison with [OpenAI's standard price table](https://developers.openai.com/api/docs/pricing),
+[Z.AI's USD price list](https://docs.z.ai/guides/overview/pricing), and
+[Alibaba Cloud's international list](https://www.alibabacloud.com/help/en/model-studio/model-pricing).
+These Qianwen rows use the international list, consistent with the other
+delegated Qianwen rows, rather than the historical converted CN rates.
+GPT-5.6 Sol's current 4/20/0.4/5 rate is promotional through November 30;
+delegation lets the upstream update it when the promotion ends.
+Kiro's retired Sonnet 4 row retains the [historical Anthropic list](https://platform.claude.com/docs/en/about-claude/pricing)
+under manual ownership because LiteLLM no longer carries its first-party id.
+
+Direct `vendor-api` catalogs such as Vercel are maintained by their dedicated
+sync script. The LiteLLM pass neither overwrites their facts nor reports them
+as orphaned; derived vendor lists for Kiro and Antigravity still participate.
 
 ### Variable pricing is flattened
 

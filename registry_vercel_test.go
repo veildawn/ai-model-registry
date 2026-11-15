@@ -48,7 +48,7 @@ func TestVercelModelSurfacesAndPricing(t *testing.T) {
 		"bfl/flux-3-image":              "image",
 		"openai/whisper-1":              "audio",
 		"openai/tts-1":                  "audio",
-		"google/veo-3.0-generate-001":   "video",
+		"google/veo-3.1-generate-001":   "video",
 		"klingai/kling-v3.0-t2v":        "video",
 		"openai/text-embedding-3-small": "embedding",
 	}
