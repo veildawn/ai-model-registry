@@ -504,6 +504,29 @@
       "output_ceiling": 64000
     },
     {
+      "model": "hy4-flash-free",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "source": "manual",
+      "context_window": 1048576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "high"
+      ],
+      "surface": "chat",
+      "output_ceiling": 65536
+    },
+    {
       "model": "iceman-contributor-free",
       "pricing_style": "openai",
       "prompt_per_1m": 0,
@@ -1114,7 +1137,7 @@
       ],
       "effort_levels": [
         "low",
-        "medium",
+        "high",
         "xhigh"
       ],
       "surface": "chat",

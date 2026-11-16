@@ -9004,6 +9004,27 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
+      "model": "tencent/hy4-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.035,
+      "completion_per_1m": 0.1405,
+      "cache_read_per_1m": 0.0015,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1024000,
+      "output_ceiling": 64000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "high"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "tencent/hy4-preview",
       "pricing_style": "openai",
       "prompt_per_1m": 0.834,

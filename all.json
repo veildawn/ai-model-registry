@@ -8895,6 +8895,29 @@
           "output_ceiling": 64000
         },
         {
+          "model": "hy4-flash-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "source": "manual",
+          "context_window": 1048576,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "high"
+          ],
+          "surface": "chat",
+          "output_ceiling": 65536
+        },
+        {
           "model": "iceman-contributor-free",
           "pricing_style": "openai",
           "prompt_per_1m": 0,
@@ -9505,7 +9528,7 @@
           ],
           "effort_levels": [
             "low",
-            "medium",
+            "high",
             "xhigh"
           ],
           "surface": "chat",
@@ -20813,6 +20836,27 @@
           "prompt_per_1m": 0.417,
           "completion_per_1m": 1.2505,
           "cache_read_per_1m": 0.021,
+          "cache_write_per_1m": 0.0,
+          "source": "vendor-api",
+          "context_window": 1024000,
+          "output_ceiling": 64000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "high"
+          ],
+          "surface": "chat",
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+        },
+        {
+          "model": "tencent/hy4-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.035,
+          "completion_per_1m": 0.1405,
+          "cache_read_per_1m": 0.0015,
           "cache_write_per_1m": 0.0,
           "source": "vendor-api",
           "context_window": 1024000,
