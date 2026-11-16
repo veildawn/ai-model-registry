@@ -364,7 +364,7 @@ func TestClineDeepSeekAndPassModels(t *testing.T) {
 	}
 	want := map[string]facts{
 		"cline-pass/deepseek-v4.1-flash":    {0.30, 1.20, 0.006, 0, 1000000, 393216},
-		"cline-pass/glm-5.3-flash":          {0.15, 0.50, 0.03, 0, 1000000, 128000},
+		"cline-pass/glm-5.3-flash":          {0.15, 0.50, 0.03, 0, 1048576, 128000},
 		"cline-pass/kimi-k3":                {3.0, 15.0, 0.30, 0, 1048576, 1048576},
 		"cline-pass/mimo-v2.5-pro":          {1.74, 3.48, 0.0145, 0, 1048576, 128000},
 		"deepseek/deepseek-chat":            {0.28, 0.42, 0.028, 0, 131072, 8192},
