@@ -9520,11 +9520,10 @@
           "audio_out_per_1m": 0,
           "image_in_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 991808,
           "input_modalities": [
             "text",
-            "image",
-            "video"
+            "image"
           ],
           "effort_levels": [
             "low",
@@ -9532,7 +9531,7 @@
             "xhigh"
           ],
           "surface": "chat",
-          "output_ceiling": 393216
+          "output_ceiling": 131072
         },
         {
           "model": "space-bunny",
@@ -10109,6 +10108,25 @@
             "medium",
             "xhigh"
           ]
+        },
+        {
+          "model": "qwen4-max",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.5,
+          "completion_per_1m": 4.5,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 991808,
+          "output_ceiling": 131072,
+          "surface": "chat"
         }
       ]
     },

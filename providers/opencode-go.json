@@ -1129,11 +1129,10 @@
       "audio_out_per_1m": 0,
       "image_in_per_1m": 0,
       "source": "manual",
-      "context_window": 1000000,
+      "context_window": 991808,
       "input_modalities": [
         "text",
-        "image",
-        "video"
+        "image"
       ],
       "effort_levels": [
         "low",
@@ -1141,7 +1140,7 @@
         "xhigh"
       ],
       "surface": "chat",
-      "output_ceiling": 393216
+      "output_ceiling": 131072
     },
     {
       "model": "space-bunny",
