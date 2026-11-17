@@ -262,10 +262,15 @@ it stops being a secret.
   express — one generated image, one second of generated video, one million
   synthesized characters, one second of transcribed audio. A row may carry only
   these (token buckets all zero): that is a priced row, not an unpriced one.
-  The sync writes `per_image` from LiteLLM's `input_cost_per_image` on
-  `image_generation`, and `video_per_second` from `output_cost_per_second` on
-  `video_generation` (the default resolution, which is the overview number).
+  The sync writes `per_image` from LiteLLM's `output_cost_per_image` on
+  `image_generation`, and from `input_cost_per_image` only when that output
+  key is absent (xAI publishes the sticker there). A card that already prices
+  the picture in tokens does not also get `per_image`: the gateway adds
+  `Images * per_image` on top of the token bill, and Gemini's input key is the
+  fee for an uploaded image, not the picture. `video_per_second` comes from
+  `output_cost_per_second` on `video_generation` (the default resolution).
   A video row's `input_cost_per_image` is an image prompt and is not copied.
+  A published 0 overwrites a previous sticker; an absent field does not.
   Resolution tiers stay in `price_reviewed`; the schema has one rate per unit.
 - `rate_variants` (optional): condition-scoped amendments to the fields above —
   the base card is one tier, and each variant states when it applies and what

@@ -178,6 +178,40 @@ class EnrollReasonTest(unittest.TestCase):
         self.assertIsNone(sp.unit_rate(video, "per_image"))
         self.assertEqual(sp.unit_rate(video, "video_per_second"), 0.05)
         self.assertEqual(sp.unit_rate(image, "per_image"), 0.02)
+        # A published zero is a price, not an absent field.
+        self.assertEqual(sp.unit_rate(
+            {"mode": "image_generation", "input_cost_per_image": 0}, "per_image"), 0)
+        self.assertIsNone(sp.unit_rate({"mode": "image_generation"}, "per_image"))
+
+    def test_generated_image_sticker_beats_the_input_fee(self):
+        # Gemini publishes both. The input key is the uploaded-image fee; the
+        # output key is the picture. Token output already bills the picture, so
+        # the flat sticker is not copied on top of it.
+        gemini = {
+            "mode": "image_generation",
+            "input_cost_per_token": 2e-6,
+            "output_cost_per_token": 1.2e-5,
+            "output_cost_per_image_token": 0.00012,
+            "input_cost_per_image": 0.0011,
+            "output_cost_per_image": 0.134,
+        }
+        self.assertIsNone(sp.unit_rate(gemini, "per_image"))
+        # No token output: the output sticker wins over the input fee.
+        sticker = {
+            "mode": "image_generation",
+            "input_cost_per_image": 0.0011,
+            "output_cost_per_image": 0.134,
+        }
+        self.assertEqual(sp.unit_rate(sticker, "per_image"), 0.134)
+
+    def test_catalog_row_keeps_a_unit_price(self):
+        spec = sp.CATALOG_ENROLL["opencode-go"]
+        row = sp.build_catalog_row("grok-imagine-image", spec, {
+            "per_image": 0.02,
+            "surface": "image",
+        })
+        self.assertEqual(row["per_image"], 0.02)
+        self.assertEqual(row["prompt_per_1m"], 0)
 
     def test_image_token_output_fills_completion_when_text_is_absent(self):
         image_only = {

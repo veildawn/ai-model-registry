@@ -530,13 +530,15 @@ RATES = [
 ]
 
 # Absolute USD, not per token, and only for the mode the field actually prices.
-# An image model's `input_cost_per_image` is one generated image (resolution
-# tiers, when litellm also publishes them, stay on separate keys this schema
-# cannot bill — the flat sticker is the one written). A video model's
-# `output_cost_per_second` is one second at the default resolution, which is
-# the number the vendor's overview quotes. The same `input_cost_per_image` key
-# on a video model is an image prompt, not `per_image`, so the mode is part of
-# the mapping.
+# `per_image` is the generated picture. LiteLLM's `output_cost_per_image` is
+# that sticker; `input_cost_per_image` is the same sticker only on cards that
+# publish no output key (xAI). On Gemini the input key is the fee for an
+# uploaded image, about 100× smaller, so it is never the picture. A card that
+# already prices the picture in tokens does not also get `per_image`: the
+# gateway adds `Images * per_image` on top of the token bill. A video model's
+# `output_cost_per_second` is one second at the default resolution. The same
+# `input_cost_per_image` key on a video model is an image prompt, not
+# `per_image`.
 UNIT_RATES = (
     ("per_image", "input_cost_per_image", "image_generation"),
     ("video_per_second", "output_cost_per_second", "video_generation"),
@@ -840,7 +842,7 @@ def build_enrolled_row(model_id: str, entry: dict, pricing_style: str,
         row[field] = theirs if theirs is not None else 0
     for field, _, _ in UNIT_RATES:
         theirs = unit_rate(entry, field)
-        if theirs:
+        if theirs is not None:
             row[field] = theirs
     modalities = upstream_modalities(entry)
     if modalities:
@@ -1620,6 +1622,12 @@ def build_catalog_row(model_id: str, spec: dict, facts: dict) -> collections.Ord
         row["pricing_style"] = spec.get("pricing_style") or "openai"
         for field, _ in RATES:
             row[field] = facts[field] if field in facts else 0
+        # A unit price is the whole bill for an image or video row. Dropping it
+        # here leaves the new catalog id with zero token buckets and nothing
+        # else, so it bills at $0.
+        for field, _, _ in UNIT_RATES:
+            if field in facts:
+                row[field] = facts[field]
         if facts.get("free"):
             row["free"] = True
     row["source"] = "manual"
@@ -1794,15 +1802,30 @@ def token_rate(entry: dict, field: str, upstream_field: str):
 def unit_rate(entry: dict, field: str):
     """A UNIT_RATES column in dollars, or None when this entry does not price it.
 
-    The mode check is the whole distinction between an image's sticker price
-    and a video prompt's image-input charge: both sit on `input_cost_per_image`.
+    None and 0 stay distinct. 0 is a published price (the write and the drift
+    report must apply it); None means the upstream said nothing, and writing
+    that silence in would zero a hand-set sticker.
+
+    For `per_image`, `output_cost_per_image` is the generated picture.
+    `input_cost_per_image` is that sticker only when no output key exists, which
+    is how xAI publishes it. Gemini publishes both, and the input key is the
+    fee for an uploaded image. A card that also prices the picture in tokens
+    (`output_cost_per_token` or `output_cost_per_image_token`) does not get a
+    flat sticker: the gateway bills `Images * per_image` on top of those tokens.
     """
     for name, upstream_field, mode in UNIT_RATES:
         if name != field:
             continue
         if entry.get("mode") != mode:
             return None
-        value = entry.get(upstream_field)
+        if name == "per_image":
+            if (per_1m(entry, "output_cost_per_token") is not None
+                    or per_1m(entry, "output_cost_per_image_token") is not None):
+                return None
+            output = entry.get("output_cost_per_image")
+            value = output if output is not None else entry.get(upstream_field)
+        else:
+            value = entry.get(upstream_field)
         return None if value is None else clean(value)
     return None
 
@@ -2293,7 +2316,9 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                                 dirty = True
                     for field, _, _ in UNIT_RATES:
                         theirs = unit_rate(entry, field)
-                        if not theirs:
+                        # None is silence. 0 is a published price and must
+                        # replace a sticker the upstream has withdrawn.
+                        if theirs is None:
                             continue
                         if differs(model.get(field, 0), theirs):
                             applied.append((provider, mid, field, model.get(field, 0), theirs))
@@ -2302,11 +2327,13 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                                 dirty = True
                 else:
                     # source == "manual": rates are compared, never written.
-                    comparable = (not all(not model.get(f, 0) for f, _ in RATES)
-                                  # 0 across the board is this registry's way of
-                                  # saying "no published per-token rate". It is a
-                                  # statement, not a gap.
-                                  and not mid.lower().endswith("-latest"))
+                    has_rate = (any(model.get(f, 0) for f, _ in RATES)
+                                or any(model.get(f, 0) for f, _, _ in UNIT_RATES))
+                    # 0 across every bucket is this registry's way of saying
+                    # "no published rate". It is a statement, not a gap. A unit
+                    # sticker with zero token buckets is a price, and it has to
+                    # be compared or it can drift forever.
+                    comparable = has_rate and not mid.lower().endswith("-latest")
                     # A floating alias is each side's snapshot of a different
                     # generation. Both can be right and they will never agree.
                     if comparable:
@@ -2327,6 +2354,14 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                             # sides state a number.
                             if field.startswith("cache_") and not mine:
                                 continue
+                            if differs(mine, theirs):
+                                disagree.append((provider, mid, key, field, mine,
+                                                 theirs, model.get("price_reviewed", "")))
+                        for field, _, _ in UNIT_RATES:
+                            theirs = unit_rate(entry, field)
+                            if theirs is None:
+                                continue
+                            mine = model.get(field, 0)
                             if differs(mine, theirs):
                                 disagree.append((provider, mid, key, field, mine,
                                                  theirs, model.get("price_reviewed", "")))
