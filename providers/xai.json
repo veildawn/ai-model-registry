@@ -462,7 +462,8 @@
       ],
       "source": "litellm",
       "surface": "video",
-      "price_reviewed": "480p default $0.02/s. 720p is $0.03 and 1080p is $0.14."
+      "price_reviewed": "480p default $0.02/s. 720p is $0.03 and 1080p is $0.14.",
+      "context_window": 1024
     }
   ]
 }

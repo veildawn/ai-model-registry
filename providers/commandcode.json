@@ -71,14 +71,17 @@
       "context_window": 1000000,
       "input_modalities": [
         "text",
-        "image"
+        "image",
+        "video",
+        "pdf"
       ],
       "effort_levels": [
         "low",
         "high",
         "max"
       ],
-      "surface": "chat"
+      "surface": "chat",
+      "output_ceiling": 131072
     }
   ]
 }

@@ -58,6 +58,56 @@
       "surface": "chat"
     },
     {
+      "model": "qwen-image-2.0",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "per_image": 0.035,
+      "source": "litellm",
+      "surface": "image",
+      "context_window": 8192,
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
+      "model": "qwen-image-2.0-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "per_image": 0.075,
+      "source": "litellm",
+      "surface": "image",
+      "context_window": 8192,
+      "input_modalities": [
+        "text"
+      ]
+    },
+    {
+      "model": "qwen-image-3.0",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "per_image": 0.03,
+      "source": "litellm",
+      "surface": "image"
+    },
+    {
       "model": "qwen-max",
       "pricing_style": "openai",
       "prompt_per_1m": 1.6,
@@ -331,8 +381,8 @@
       "pricing_style": "openai",
       "prompt_per_1m": 1.5,
       "completion_per_1m": 4.5,
-      "cache_read_per_1m": 0,
-      "cache_write_per_1m": 0,
+      "cache_read_per_1m": 0.075,
+      "cache_write_per_1m": 1.875,
       "audio_in_per_1m": 0,
       "audio_out_per_1m": 0,
       "image_in_per_1m": 0,
