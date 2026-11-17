@@ -1,0 +1,209 @@
+{
+  "name": "doubao-work",
+  "display_name": "Doubao Work",
+  "models": [
+    {
+      "model": "doubao-2.1-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.886669,
+      "completion_per_1m": 4.433345,
+      "cache_read_per_1m": 0.177334,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Volcengine Doubao-Seed-2.1-pro list: ¥6 / ¥30 / ¥1.20 cache per 1M tokens (ai.volcengine.com). USD at this registry's frozen ECB rate 6.7669 (2026-07-16), the same conversion k3 uses. Doubao Work does not publish its own token card; this is the underlying model's list. doubao-2.1-lite has no published price and stays out.",
+      "context_window": 262144,
+      "output_ceiling": 256000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "person-deepseek-v4-1-flash-261017",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.6,
+      "cache_read_per_1m": 0.003,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Doubao Work pin of DeepSeek V4.1 Flash (dated 2026-10-17). Card is DeepSeek's off-peak list, the same card as deepseek-v4-flash here; peak is 2x on the vendor's weekday window. Not a measured Doubao discount.",
+      "context_window": 1000000,
+      "output_ceiling": 393216,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "rate_variants": [
+        {
+          "name": "peak",
+          "utc_window_minutes": [
+            60,
+            240,
+            360,
+            600
+          ],
+          "weekdays_only": true,
+          "multiplier": 2
+        }
+      ]
+    },
+    {
+      "model": "person-deepseek-v4-pro-ga-260813",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.66,
+      "completion_per_1m": 1.98,
+      "cache_read_per_1m": 0.022,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Doubao Work pin of DeepSeek V4 Pro GA (2026-08-13). Card is DeepSeek's off-peak list from deepseek.json; peak is 2x on the vendor's weekday window.",
+      "context_window": 1000000,
+      "output_ceiling": 393216,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "rate_variants": [
+        {
+          "name": "peak",
+          "utc_window_minutes": [
+            60,
+            240,
+            360,
+            600
+          ],
+          "weekdays_only": true,
+          "multiplier": 2
+        }
+      ]
+    },
+    {
+      "model": "person-glm-5-3-261111",
+      "pricing_style": "openai",
+      "prompt_per_1m": 1.4,
+      "completion_per_1m": 4.4,
+      "cache_read_per_1m": 0.26,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Doubao Work pin of GLM-5.3 (2026-11-11). Card is glm.json's litellm USD list, $1.40/$4.40, cache read $0.26.",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "input_modalities": [
+        "text"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "person-glm-5-3-flash-261111",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.5,
+      "cache_read_per_1m": 0.03,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Doubao Work pin of GLM-5.3 Flash (2026-11-11). Card is glm.json's litellm USD list, $0.15/$0.50, cache read $0.03.",
+      "context_window": 1048576,
+      "output_ceiling": 128000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "person-kimi-k3-1-pro-261111",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 2,
+      "source": "manual",
+      "price_reviewed": "Doubao Work pin of Kimi K3.1 Pro (2026-11-11). Card is kimi-k3.1-pro's litellm list: $2/$10, cache read $0.2, cache write $2.",
+      "context_window": 1048576,
+      "output_ceiling": 1048576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "person-kimi-k3-1-pro-highspeed-261111",
+      "pricing_style": "openai",
+      "prompt_per_1m": 4,
+      "completion_per_1m": 20,
+      "cache_read_per_1m": 0.2,
+      "cache_write_per_1m": 4,
+      "source": "manual",
+      "price_reviewed": "Doubao Work pin of Kimi K3.1 Pro Highspeed (2026-11-11). Card is kimi-k3.1-pro-highspeed's litellm list: $4/$20, cache read $0.2, cache write $4.",
+      "context_window": 1048576,
+      "output_ceiling": 1048576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "person-kimi-k3-261111",
+      "pricing_style": "openai",
+      "prompt_per_1m": 3,
+      "completion_per_1m": 15,
+      "cache_read_per_1m": 0.3,
+      "cache_write_per_1m": 3,
+      "source": "manual",
+      "price_reviewed": "Doubao Work pin of Kimi K3 (2026-11-11). Card is kimi-k3's litellm international list ($3/$15, cache read $0.3, cache write $3), not the CNY k3 row.",
+      "context_window": 1048576,
+      "output_ceiling": 1048576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    }
+  ]
+}

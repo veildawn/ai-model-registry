@@ -61,9 +61,15 @@ What stays manual is what no upstream has an answer for:
   - Resellers with a price list of their own that they do not publish: qoder,
     qoder-intl, workbuddy. A vendor's rate would be fiction rather than
     derivation there, since these really do discount.
-  - Ids nothing upstream carries: `k3`, `kimi-for-coding*`, every `mimo-*`, the
-    `grok-imagine-*` pairs, `glm-5-turbo`, `gpt-oss-120b-medium`, and
-    Antigravity's two `tab_*` completion models.
+  - Ids nothing upstream carries: `k3`, `kimi-for-coding*`, every `mimo-*`,
+    `glm-5-turbo`, `gpt-oss-120b-medium`, and Antigravity's two `tab_*`
+    completion models.
+
+A published rate is a token rate or a unit price. Image generation priced only
+as `input_cost_per_image`, and video priced only as `output_cost_per_second`,
+enroll and stay delegated. Those fields are dollars per image and per second,
+not per token, and they are read only for that mode: a video row's
+`input_cost_per_image` is the cost of an image prompt, which is not `per_image`.
 
 Two consequences worth knowing, both accepted rather than worked around:
 
@@ -73,10 +79,11 @@ Two consequences worth knowing, both accepted rather than worked around:
     price lists, not two conversions of one — the swap is real, and it retires
     a hand-refreshed exchange-rate constant that was drifting from the day it
     was written.
-  - `gpt-image-2` loses a deliberate reading: this registry carried the IMAGE
-    output rate (30) because that is the only kind those routes emit, and
-    litellm publishes the text one (10). Flip that one row's `source` back to
-    `manual` if the undercharge matters more than the freshness.
+  - Image models whose only output price is `output_cost_per_image_token` used
+    to land with completion 0, so image output billed at $0. When litellm
+    publishes no text `output_cost_per_token`, completion takes the image-token
+    rate. When both exist, the text rate still wins: the gateway's completion
+    bucket is the text one, and the image-token rate would overcharge text.
 
 Matching never crosses namespaces. litellm carries most Chinese models under
 third-party hosts (cloudflare/, baseten/, azure_ai/, fireworks_ai/); those are
@@ -388,7 +395,7 @@ FIRST_PARTY_OWNER = (
     (re.compile(r"^grok-"), "xai"),
     (re.compile(r"^deepseek"), "deepseek"),
     (re.compile(r"^glm-"), "glm"),
-    (re.compile(r"^(?:kimi-|k3(?:-|$))"), "kimi"),
+    (re.compile(r"^(?:kimi-|k3(?:[.-]|$))"), "kimi"),
     (re.compile(r"^minimax-"), "minimax"),
     (re.compile(r"^mimo-"), "mimo"),
     (re.compile(r"^qwen"), "qianwen"),
@@ -402,6 +409,12 @@ FIRST_PARTY_SPELLINGS = {
     "kimi-k3": ("kimi-k3", "k3"),
     "deepseek-v4.1-flash": ("deepseek-v4.1-flash", "deepseek-flash"),
     "deepseek-flash": ("deepseek-flash", "deepseek-v4.1-flash"),
+    # The Kimi plugin's catalog serves the short id. The priced row is the
+    # `kimi-` spelling; both names are the same SKU.
+    "k3.1-pro": ("k3.1-pro", "kimi-k3.1-pro"),
+    "kimi-k3.1-pro": ("kimi-k3.1-pro", "k3.1-pro"),
+    "k3.1-pro-highspeed": ("k3.1-pro-highspeed", "kimi-k3.1-pro-highspeed"),
+    "kimi-k3.1-pro-highspeed": ("kimi-k3.1-pro-highspeed", "k3.1-pro-highspeed"),
 }
 
 # Capability facts copied from a first-party row. Rates are a separate decision
@@ -415,11 +428,13 @@ FIRST_PARTY_RATES = (
     "pricing_style", "prompt_per_1m", "completion_per_1m",
     "cache_read_per_1m", "cache_write_per_1m",
     "audio_in_per_1m", "audio_out_per_1m", "image_in_per_1m",
+    "per_image", "video_per_second",
 )
 RATE_FIELDS = frozenset((
     "prompt_per_1m", "completion_per_1m",
     "cache_read_per_1m", "cache_write_per_1m",
     "audio_in_per_1m", "audio_out_per_1m", "image_in_per_1m",
+    "per_image", "video_per_second",
 ))
 
 # Media a model can READ. `pdf` is a first-party input on several vendors
@@ -513,6 +528,19 @@ RATES = [
     ("audio_out_per_1m", "output_cost_per_audio_token"),
     ("image_in_per_1m", "input_cost_per_image_token"),
 ]
+
+# Absolute USD, not per token, and only for the mode the field actually prices.
+# An image model's `input_cost_per_image` is one generated image (resolution
+# tiers, when litellm also publishes them, stay on separate keys this schema
+# cannot bill — the flat sticker is the one written). A video model's
+# `output_cost_per_second` is one second at the default resolution, which is
+# the number the vendor's overview quotes. The same `input_cost_per_image` key
+# on a video model is an image prompt, not `per_image`, so the mode is part of
+# the mapping.
+UNIT_RATES = (
+    ("per_image", "input_cost_per_image", "image_generation"),
+    ("video_per_second", "output_cost_per_second", "video_generation"),
+)
 
 # Rates are clean decimals on both sides; this only absorbs float noise from the
 # per-token → per-1M multiply. A real disagreement (0.310334 against 0.3, the
@@ -609,15 +637,28 @@ def family_version(model_id: str):
     return None
 
 
-def family_floors(models: list) -> dict:
+# Served ids kept below the generation this file otherwise carries. They must
+# not lower the floor: gpt-image-1 in the Codex file would otherwise admit
+# gpt-image-1-mini on the next enroll. already-present still refreshes them.
+FLOOR_HOLDOUTS = {
+    "codex": frozenset({"gpt-image-1", "gpt-image-1.5"}),
+}
+
+
+def family_floors(models: list, holdouts=()) -> dict:
     """Lowest version this file already carries, per family.
 
     Using the minimum (not the newest) is the point: Codex listing gpt-5.4 and
     gpt-6 means a new gpt-5.4-nano is in-generation and a leftover gpt-5.1 is
     not. A family the file has never listed has no floor and is admitted.
+    `holdouts` are rows kept on purpose below that generation; they do not
+    count toward the minimum.
     """
+    held = {mid.lower() for mid in holdouts}
     floors = {}
     for row in models:
+        if row["model"].lower() in held:
+            continue
         parsed = family_version(row["model"])
         if not parsed:
             continue
@@ -771,10 +812,13 @@ def enroll_reason(provider: str, model_id: str, entry: dict, known: set,
     if surface not in spec["surfaces"]:
         return "unserved-surface"
     prompt = per_1m(entry, "input_cost_per_token")
-    completion = per_1m(entry, "output_cost_per_token")
-    if prompt is None:
+    completion = token_rate(entry, "completion_per_1m", "output_cost_per_token")
+    units = any(unit_rate(entry, name) for name, _, _ in UNIT_RATES)
+    # A unit price is a published rate even when both token fields are absent.
+    # Image and video generation are priced that way.
+    if prompt is None and completion is None and not units:
         return "unpriced"
-    if not prompt and not completion:
+    if not prompt and not completion and not units:
         return "zero-price"
     parsed = family_version(check)
     if parsed:
@@ -792,8 +836,12 @@ def build_enrolled_row(model_id: str, entry: dict, pricing_style: str,
     row["model"] = model_id
     row["pricing_style"] = pricing_style
     for field, upstream_field in RATES:
-        theirs = per_1m(entry, upstream_field)
+        theirs = token_rate(entry, field, upstream_field)
         row[field] = theirs if theirs is not None else 0
+    for field, _, _ in UNIT_RATES:
+        theirs = unit_rate(entry, field)
+        if theirs:
+            row[field] = theirs
     modalities = upstream_modalities(entry)
     if modalities:
         row["input_modalities"] = modalities
@@ -826,8 +874,8 @@ def provider_floors(provider: str, models: list, registry_dir=None) -> dict:
                 doc = json.load(fh)
             donor_models = [
                 row for entry in doc.get("models", []) for row in expand_family(entry)]
-            return family_floors(donor_models)
-    return family_floors(models)
+            return family_floors(donor_models, FLOOR_HOLDOUTS.get(donor, ()))
+    return family_floors(models, FLOOR_HOLDOUTS.get(provider, ()))
 
 
 def namespace_enroll_items(provider: str, namespace: str, idx: dict):
@@ -1726,6 +1774,39 @@ def clean(value: float):
     return int(value) if value == int(value) else value
 
 
+def token_rate(entry: dict, field: str, upstream_field: str):
+    """One RATES column, with the image-output fallback on completion.
+
+    LiteLLM prices several image models only on `output_cost_per_image_token`.
+    Writing that silence as completion 0 makes image output free. When the text
+    output rate is absent, completion takes the image-token rate. When both
+    exist, the text rate wins: this bucket is what the gateway charges for
+    text output, and the image-token rate would overcharge it.
+    """
+    if field == "completion_per_1m":
+        text = per_1m(entry, "output_cost_per_token")
+        if text is not None:
+            return text
+        return per_1m(entry, "output_cost_per_image_token")
+    return per_1m(entry, upstream_field)
+
+
+def unit_rate(entry: dict, field: str):
+    """A UNIT_RATES column in dollars, or None when this entry does not price it.
+
+    The mode check is the whole distinction between an image's sticker price
+    and a video prompt's image-input charge: both sit on `input_cost_per_image`.
+    """
+    for name, upstream_field, mode in UNIT_RATES:
+        if name != field:
+            continue
+        if entry.get("mode") != mode:
+            return None
+        value = entry.get(upstream_field)
+        return None if value is None else clean(value)
+    return None
+
+
 def per_1m(entry: dict, field: str):
     """The upstream rate in our unit, or None when it publishes none.
 
@@ -2202,8 +2283,17 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
 
                 if source in WRITTEN:
                     for field, upstream_field in RATES:
-                        theirs = per_1m(entry, upstream_field)
+                        theirs = token_rate(entry, field, upstream_field)
                         if theirs is None:
+                            continue
+                        if differs(model.get(field, 0), theirs):
+                            applied.append((provider, mid, field, model.get(field, 0), theirs))
+                            if apply:
+                                model[field] = theirs
+                                dirty = True
+                    for field, _, _ in UNIT_RATES:
+                        theirs = unit_rate(entry, field)
+                        if not theirs:
                             continue
                         if differs(model.get(field, 0), theirs):
                             applied.append((provider, mid, field, model.get(field, 0), theirs))
@@ -2221,7 +2311,7 @@ def sync(registry_dir: str, upstream, models_dev: dict, apply: bool,
                     # generation. Both can be right and they will never agree.
                     if comparable:
                         for field, upstream_field in RATES:
-                            theirs = per_1m(entry, upstream_field)
+                            theirs = token_rate(entry, field, upstream_field)
                             mine = model.get(field, 0)
                             if not theirs:
                                 continue

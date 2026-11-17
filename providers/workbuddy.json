@@ -42,6 +42,28 @@
       "output_ceiling": 393216
     },
     {
+      "model": "deepseek-v4.1-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.14,
+      "completion_per_1m": 0.28,
+      "cache_read_per_1m": 0.0028,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "WorkBuddy publishes no separate V4.1 card. DeepSeek's off-peak list prices V4.1 Flash at the same $0.15/$0.60/$0.003 as V4 Flash, so this row uses the card WorkBuddy already publishes for deepseek-v4-flash rather than the vendor list.",
+      "context_window": 1000000,
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_ceiling": 393216
+    },
+    {
       "model": "glm-5.1",
       "pricing_style": "openai",
       "prompt_per_1m": 1.182225,

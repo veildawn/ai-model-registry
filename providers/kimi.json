@@ -169,6 +169,9 @@
         "image"
       ],
       "source": "litellm",
+      "aliases": [
+        "k3.1-pro"
+      ],
       "context_window": 1048576,
       "output_ceiling": 1048576,
       "surface": "chat",
@@ -193,6 +196,9 @@
         "image"
       ],
       "source": "litellm",
+      "aliases": [
+        "k3.1-pro-highspeed"
+      ],
       "context_window": 1048576,
       "output_ceiling": 1048576,
       "surface": "chat",

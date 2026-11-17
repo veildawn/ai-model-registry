@@ -331,7 +331,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual",
+      "source": "litellm",
       "effort_levels": [
         "none"
       ],
@@ -340,7 +340,9 @@
         "text",
         "image"
       ],
-      "context_window": 16000
+      "context_window": 16000,
+      "per_image": 0.02,
+      "price_reviewed": "LiteLLM input_cost_per_image $0.02. xAI's image table prices 1K and 2K at $0.02; resolution tiers are not separate rows."
     },
     {
       "model": "grok-imagine-image-2.0",
@@ -349,7 +351,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual",
+      "source": "litellm",
       "effort_levels": [
         "none"
       ],
@@ -358,7 +360,28 @@
         "text",
         "image"
       ],
-      "context_window": 64000
+      "context_window": 64000,
+      "per_image": 0.06,
+      "price_reviewed": "LiteLLM's flat sticker is $0.06. xAI's table runs $0.04 (1K low) to $0.08 (2K medium); this schema has one per-image rate, so the flat number is the one delegated."
+    },
+    {
+      "model": "grok-imagine-image-pro",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "per_image": 0.04,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "surface": "image",
+      "price_reviewed": "Same sticker as grok-imagine-image-quality: $0.04. xAI's 2K tier is $0.06; the flat LiteLLM number is the 1K rate."
     },
     {
       "model": "grok-imagine-image-quality",
@@ -367,7 +390,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual",
+      "source": "litellm",
       "effort_levels": [
         "none"
       ],
@@ -376,7 +399,9 @@
         "image"
       ],
       "surface": "image",
-      "context_window": 16000
+      "context_window": 16000,
+      "per_image": 0.04,
+      "price_reviewed": "LiteLLM input_cost_per_image $0.04 (the 1K tier). 2K is $0.06 and is not a separate row."
     },
     {
       "model": "grok-imagine-video",
@@ -385,7 +410,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual",
+      "source": "litellm",
       "effort_levels": [
         "none"
       ],
@@ -395,7 +420,9 @@
         "image",
         "video"
       ],
-      "context_window": 1024
+      "context_window": 1024,
+      "video_per_second": 0.05,
+      "price_reviewed": "LiteLLM output_cost_per_second $0.05, which is the 480p default and the docs at-a-glance rate. 720p is $0.07. Image-prompt input ($0.002) is not per_image."
     },
     {
       "model": "grok-imagine-video-1.5",
@@ -404,7 +431,7 @@
       "completion_per_1m": 0,
       "cache_read_per_1m": 0,
       "cache_write_per_1m": 0,
-      "source": "manual",
+      "source": "litellm",
       "effort_levels": [
         "none"
       ],
@@ -414,7 +441,28 @@
         "image",
         "audio"
       ],
-      "context_window": 1024
+      "context_window": 1024,
+      "video_per_second": 0.08,
+      "price_reviewed": "480p default $0.08/s. 720p is $0.14 and 1080p is $0.25; the schema stores the default only."
+    },
+    {
+      "model": "grok-imagine-video-1.5-lite",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "video_per_second": 0.02,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "surface": "video",
+      "price_reviewed": "480p default $0.02/s. 720p is $0.03 and 1080p is $0.14."
     }
   ]
 }

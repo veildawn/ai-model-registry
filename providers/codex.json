@@ -446,10 +446,42 @@
       ]
     },
     {
-      "model": "gpt-image-2",
+      "model": "gpt-image-1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 40,
+      "cache_read_per_1m": 1.25,
+      "cache_write_per_1m": 0,
+      "image_in_per_1m": 10,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "surface": "image",
+      "price_reviewed": "Still sold, so kept despite the gpt-image generation floor (the file's floor is 2). LiteLLM publishes no text output rate; completion is output_cost_per_image_token ($40/1M). The daily sync refreshes the row and will not re-enroll it if deleted."
+    },
+    {
+      "model": "gpt-image-1.5",
       "pricing_style": "openai",
       "prompt_per_1m": 5,
       "completion_per_1m": 10,
+      "cache_read_per_1m": 1.25,
+      "cache_write_per_1m": 0,
+      "image_in_per_1m": 8,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "surface": "image",
+      "price_reviewed": "Still sold, kept below the gpt-image floor of 2. LiteLLM publishes a text output rate ($10/1M) and an image-token output rate ($32/1M); completion keeps the text rate, because that bucket is what text output is billed at."
+    },
+    {
+      "model": "gpt-image-2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 30,
       "cache_read_per_1m": 1.25,
       "cache_write_per_1m": 0,
       "source": "litellm",
@@ -467,10 +499,12 @@
       "model": "gpt-image-2.5",
       "pricing_style": "openai",
       "prompt_per_1m": 5,
-      "completion_per_1m": 10,
+      "completion_per_1m": 30,
       "cache_read_per_1m": 1.25,
       "cache_write_per_1m": 0,
+      "image_in_per_1m": 8,
       "source": "manual",
+      "price_reviewed": "No bare gpt-image-2.5 in LiteLLM. flare and sunburst publish the same card (text in $5, image in $8, image-token out $30, cache read $1.25) and no text output rate. The previous $10 completion was the retired text-output reading.",
       "input_modalities": [
         "text",
         "image"
@@ -484,7 +518,7 @@
       "model": "gpt-image-2.5-flare",
       "pricing_style": "openai",
       "prompt_per_1m": 5,
-      "completion_per_1m": 0,
+      "completion_per_1m": 30,
       "cache_read_per_1m": 1.25,
       "cache_write_per_1m": 0,
       "input_modalities": [
@@ -499,7 +533,7 @@
       "model": "gpt-image-2.5-sunburst",
       "pricing_style": "openai",
       "prompt_per_1m": 5,
-      "completion_per_1m": 0,
+      "completion_per_1m": 30,
       "cache_read_per_1m": 1.25,
       "cache_write_per_1m": 0,
       "input_modalities": [
@@ -511,10 +545,26 @@
       "image_in_per_1m": 8
     },
     {
+      "model": "gpt-image-2.6",
+      "pricing_style": "openai",
+      "prompt_per_1m": 5,
+      "completion_per_1m": 30,
+      "cache_read_per_1m": 1.25,
+      "cache_write_per_1m": 0,
+      "image_in_per_1m": 8,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "manual",
+      "price_reviewed": "No bare gpt-image-2.6 in LiteLLM. Both 2.6-flare and 2.6-sunburst publish this same card, and the catalog serves the bare id.",
+      "surface": "image"
+    },
+    {
       "model": "gpt-image-2.6-flare",
       "pricing_style": "openai",
       "prompt_per_1m": 5,
-      "completion_per_1m": 0,
+      "completion_per_1m": 30,
       "cache_read_per_1m": 1.25,
       "cache_write_per_1m": 0,
       "audio_in_per_1m": 0,
@@ -531,7 +581,7 @@
       "model": "gpt-image-2.6-sunburst",
       "pricing_style": "openai",
       "prompt_per_1m": 5,
-      "completion_per_1m": 0,
+      "completion_per_1m": 30,
       "cache_read_per_1m": 1.25,
       "cache_write_per_1m": 0,
       "audio_in_per_1m": 0,

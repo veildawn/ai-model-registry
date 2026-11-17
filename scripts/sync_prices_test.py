@@ -92,6 +92,16 @@ class EnrollReasonTest(unittest.TestCase):
         self.assertIsNone(self.reason("codex", "gpt-5.4-nano"))
         self.assertIsNone(self.reason("codex", "gpt-5.7"))
         self.assertEqual(self.reason("codex", "gpt-image-1"), "below-floor")
+        # A holdout that the file keeps must not drag the floor down to it.
+        held = sp.family_floors(
+            [{"model": "gpt-image-1"}, {"model": "gpt-image-1.5"}, {"model": "gpt-image-2"}],
+            holdouts={"gpt-image-1", "gpt-image-1.5"})
+        self.assertEqual(held["gpt-image"], (2, 0))
+        self.assertEqual(
+            sp.enroll_reason("codex", "gpt-image-1-mini",
+                             chat(mode="image_generation"),
+                             {"gpt-image-1", "gpt-image-2"}, held),
+            "below-floor")
         self.assertIsNone(self.reason("codex", "gpt-image-2.5-flare"))
         self.assertEqual(self.reason("codex", "ft:gpt-4o-mini-2024-07-18"),
                          "skipped-pattern")
@@ -155,6 +165,47 @@ class EnrollReasonTest(unittest.TestCase):
             self.reason("codex", "gpt-5.4-nano",
                         {"mode": "embedding", "input_cost_per_token": 1e-7}),
             "unserved-surface")
+
+    def test_unit_price_is_a_published_rate(self):
+        image = {"mode": "image_generation", "input_cost_per_image": 0.02}
+        self.assertIsNone(self.reason("xai", "grok-imagine-image-pro", image))
+        video = {
+            "mode": "video_generation",
+            "input_cost_per_image": 0.002,
+            "output_cost_per_second": 0.05,
+        }
+        self.assertIsNone(self.reason("xai", "grok-imagine-video-1.5-lite", video))
+        self.assertIsNone(sp.unit_rate(video, "per_image"))
+        self.assertEqual(sp.unit_rate(video, "video_per_second"), 0.05)
+        self.assertEqual(sp.unit_rate(image, "per_image"), 0.02)
+
+    def test_image_token_output_fills_completion_when_text_is_absent(self):
+        image_only = {
+            "mode": "image_generation",
+            "input_cost_per_token": 5e-6,
+            "output_cost_per_image_token": 3e-5,
+        }
+        both = {
+            "mode": "image_generation",
+            "input_cost_per_token": 5e-6,
+            "output_cost_per_token": 1e-5,
+            "output_cost_per_image_token": 3.2e-5,
+        }
+        self.assertEqual(
+            sp.token_rate(image_only, "completion_per_1m", "output_cost_per_token"),
+            30)
+        self.assertEqual(
+            sp.token_rate(both, "completion_per_1m", "output_cost_per_token"),
+            10)
+        # Still a distinct sold SKU, still below the generation this file carries.
+        self.assertEqual(self.reason("codex", "gpt-image-1", image_only), "below-floor")
+        row = sp.build_enrolled_row("grok-imagine-image-pro", {
+            "mode": "image_generation",
+            "input_cost_per_image": 0.04,
+        }, "openai", {})
+        self.assertEqual(row["per_image"], 0.04)
+        self.assertEqual(row["completion_per_1m"], 0)
+        self.assertNotIn("video_per_second", row)
 
     def test_bedrock_geo_and_inregion_claude(self):
         floors = {

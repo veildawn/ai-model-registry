@@ -1,0 +1,84 @@
+{
+  "name": "commandcode",
+  "display_name": "CommandCode",
+  "models": [
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.6,
+      "cache_read_per_1m": 0.003,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Command Code bills at the underlying API rate with no markup (commandcode.ai/docs/provider). Off-peak card from commandcode.ai/models/deepseek-v4-1-flash: $0.15/$0.60/$0.003. Peak is 2x on weekdays 01:00–04:00 and 06:00–10:00 UTC, the same window as DeepSeek.",
+      "context_window": 1000000,
+      "output_ceiling": 393216,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat",
+      "rate_variants": [
+        {
+          "name": "peak",
+          "utc_window_minutes": [
+            60,
+            240,
+            360,
+            600
+          ],
+          "weekdays_only": true,
+          "multiplier": 2
+        }
+      ]
+    },
+    {
+      "model": "z-ai/glm-5.3-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.15,
+      "completion_per_1m": 0.5,
+      "cache_read_per_1m": 0.03,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "Command Code no-markup card, commandcode.ai/models (and the GLM-5.3 FlashX page's lineup): $0.15/$0.50, cache read $0.03. Same numbers as glm.json's litellm row.",
+      "context_window": 1048576,
+      "output_ceiling": 128000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    },
+    {
+      "model": "z-ai/glm-5.3-flashx",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.37,
+      "completion_per_1m": 1.25,
+      "cache_read_per_1m": 0.07,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "commandcode.ai/models/glm-5-3-flashx (2026-11-17): $0.37/$1.25, cache read $0.07. The page's calculator uses $0.07; an older models.md table said $0.075.",
+      "context_window": 1000000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "effort_levels": [
+        "low",
+        "high",
+        "max"
+      ],
+      "surface": "chat"
+    }
+  ]
+}
