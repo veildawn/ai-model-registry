@@ -122,6 +122,32 @@
       ]
     },
     {
+      "model": "anthropic.claude-mythos-5",
+      "pricing_style": "anthropic",
+      "prompt_per_1m": 11,
+      "completion_per_1m": 55,
+      "cache_read_per_1m": 1.1,
+      "cache_write_per_1m": 13.75,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 1000000,
+      "output_ceiling": 128000,
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    },
+    {
       "model": "anthropic.claude-mythos-5-1",
       "pricing_style": "anthropic",
       "prompt_per_1m": 11,
