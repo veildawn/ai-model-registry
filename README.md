@@ -262,6 +262,16 @@ it stops being a secret.
   express — one generated image, one second of generated video, one million
   synthesized characters, one second of transcribed audio. A row may carry only
   these (token buckets all zero): that is a priced row, not an unpriced one.
+  The sync writes `per_image` from LiteLLM's `output_cost_per_image` on
+  `image_generation`, and from `input_cost_per_image` only when that output
+  key is absent (xAI publishes the sticker there). A card that already prices
+  the picture in tokens does not also get `per_image`: the gateway adds
+  `Images * per_image` on top of the token bill, and Gemini's input key is the
+  fee for an uploaded image, not the picture. `video_per_second` comes from
+  `output_cost_per_second` on `video_generation` (the default resolution).
+  A video row's `input_cost_per_image` is an image prompt and is not copied.
+  A published 0 overwrites a previous sticker; an absent field does not.
+  Resolution tiers stay in `price_reviewed`; the schema has one rate per unit.
 - `rate_variants` (optional): condition-scoped amendments to the fields above —
   the base card is one tier, and each variant states when it applies and what
   it changes. Fields per variant:
@@ -560,7 +570,7 @@ What stays `manual` is what no upstream answers:
 - **Resellers who publish nothing**, where a vendor's rate would be fiction
   rather than derivation: `qoder`, `qoder-intl`, `workbuddy`.
 - **Ids nothing upstream carries** — `k3`, `kimi-for-coding*`, every `mimo-*`,
-  `grok-imagine-*`, `glm-5-turbo`, `qwen3.6-flash`, `kiro/deepseek-3.2`,
+  `glm-5-turbo`, `qwen3.6-flash`, `kiro/deepseek-3.2`,
   `kiro/qwen3-coder-next`, `antigravity/gemini-pro-agent`,
   `antigravity/gpt-oss-120b-medium`, and Antigravity's two `tab_*` models.
 
@@ -682,8 +692,8 @@ A provider file may carry a `hidden_models` array in addition to (or instead of)
 | name | display | notes |
 |---|---|---|
 | anthropic | Anthropic | canonical `claude-*` ids |
-| codex | OpenAI (Codex) | `gpt-5.4` / `gpt-5.5` / `gpt-5.6-*` / `gpt-6-*`; `gpt-image-2` / `gpt-image-2.5` is the images route — see below |
-| xai | xAI | `grok-*`; the four `grok-imagine-*` entries are **unpriced** — see below |
+| codex | OpenAI (Codex) | `gpt-5.4` / `gpt-5.5` / `gpt-5.6-*` / `gpt-6-*`; `gpt-image-1` through `gpt-image-2.6` is the images route — see below |
+| xai | xAI | `grok-*`; `grok-imagine-image*` is `per_image`, `grok-imagine-video*` is `video_per_second` (the default resolution) |
 | kimi | Kimi (Moonshot) | `k3` priced; the two `kimi-for-coding*` are **unpriced** — see below |
 | deepseek | DeepSeek | `deepseek-v4-flash` / `deepseek-v4-pro` |
 | glm | GLM (Zhipu) | `glm-4.5` and `glm-4.6` are **unpriced** — see below |
@@ -793,11 +803,15 @@ one 1024×1024 output is ~1.5K tokens at $30/1M — so this is a rounding error,
 not a systematic leak. Batch rates (exactly half of every row above) do not
 apply: nothing here goes through the Batch API.
 
-**This reading is no longer in force.** `gpt-image-2` is delegated, and litellm
-publishes the **text** output rate (10), so output went 30 → 10 and image
-generation is now billed at a third of what it costs. That is the price of not
-hand-holding the row. If it matters more than the freshness, set that one entry
-back to `"source": "manual"` and restore 30 — the job will leave it alone.
+LiteLLM no longer publishes a text `output_cost_per_token` for `gpt-image-2`
+and the flare/sunburst rows. The sync then takes `output_cost_per_image_token`
+as completion ($30/1M), which is the image-output rate above. Where both rates
+exist (`gpt-image-1.5`: text $10, image-token $32), completion keeps the text
+rate, because that bucket is what text output is billed at. `gpt-image-1` and
+`gpt-image-1.5` stay in the file even though they are below the generation
+floor: the catalog still sells them, and a delegated row is refreshed, not
+re-enrolled. The bare `gpt-image-2.5` and `gpt-image-2.6` ids are not in
+LiteLLM; they are manual copies of the flare/sunburst card.
 
 ### Unpriced entries (all rates 0)
 
@@ -813,8 +827,6 @@ models list can show 免费. OpenCode Zen's current free catalogue (`big-pickle`
 
 | entries | why |
 |---|---|
-| `grok-imagine-image`, `grok-imagine-image-quality` | billed per image ($0.02 / $0.05), not per token |
-| `grok-imagine-video`, `grok-imagine-video-1.5` | billed per second ($0.050 / $0.080), not per token |
 | `mimo-v2.5-asr` | billed per hour of audio ($0.074 overseas / ¥0.5 CN), not per token |
 | `mimo-v2.5-tts*` (3) | Xiaomi lists them as 限时免费; no per-token rate when the promo ends |
 | `kimi-for-coding`, `kimi-for-coding-highspeed` | coding-plan aliases; no public per-token price. (`kimi-k2.7-code` **is** published at ¥1.30/¥6.50/¥27.00, but that is a different model id and was not substituted) |
@@ -832,13 +844,11 @@ advertised: `gemini-*-image*` and `nano-banana-pro-preview` under
 `gemini`, `gemini-3.1-flash-image` under `antigravity`, and
 `grok-imagine-image` / `grok-imagine-image-quality` under `xai`.
 
-The Gemini ids carry real per-token rates, so they bill correctly. **The two xAI
-ids do not** — they are billed per image ($0.02 / $0.05), which this schema
-cannot express, so a deployment now advertises two image models it charges
-nothing for. Price them on the catalog row per deployment, or accept the give.
-
-The `grok-imagine-video*` pair stays hidden: there is no video route to serve
-them, and they are unpriceable for the same reason.
+The Gemini ids carry real per-token rates. The xAI image ids carry `per_image`
+(the LiteLLM sticker: $0.02, $0.06, $0.04) and the video ids carry
+`video_per_second` at the 480p default ($0.05, $0.08, $0.02 for the lite).
+Higher resolutions are in each row's `price_reviewed`; one field cannot bill
+them separately.
 
 ### Time-limited rates
 
@@ -888,8 +898,7 @@ them, and a wrong declaration is worse here than no declaration:
 | qoder, qoder-intl, workbuddy | every entry (all resold CN models above, plus `hy3`, `kimi-k2.6/2.7/k3`) |
 | antigravity | `tab_flash_lite_preview`, `tab_jump_flash_lite_preview` |
 | gemini | `deep-research-*` (3) |
-| xai | `grok-build-0.1`, `grok-imagine-*` (4) |
-| codex | `gpt-image-2`, `gpt-image-2.5` |
+| xai | `grok-build-0.1` |
 | mimo | `mimo-v2.5-asr`, `mimo-v2.5-tts*` (3) |
 | kiro | `glm-5`, `minimax-m2.1`, `minimax-m2.5` |
 

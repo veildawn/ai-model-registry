@@ -11,7 +11,9 @@
         "bedrock",
         "cline",
         "codex",
+        "commandcode",
         "deepseek",
+        "doubao-work",
         "gemini",
         "glm",
         "kimi",
@@ -4994,10 +4996,42 @@
           ]
         },
         {
-          "model": "gpt-image-2",
+          "model": "gpt-image-1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 40,
+          "cache_read_per_1m": 1.25,
+          "cache_write_per_1m": 0,
+          "image_in_per_1m": 10,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "surface": "image",
+          "price_reviewed": "Still sold, so kept despite the gpt-image generation floor (the file's floor is 2). LiteLLM publishes no text output rate; completion is output_cost_per_image_token ($40/1M). The daily sync refreshes the row and will not re-enroll it if deleted."
+        },
+        {
+          "model": "gpt-image-1.5",
           "pricing_style": "openai",
           "prompt_per_1m": 5,
           "completion_per_1m": 10,
+          "cache_read_per_1m": 1.25,
+          "cache_write_per_1m": 0,
+          "image_in_per_1m": 8,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "surface": "image",
+          "price_reviewed": "Still sold, kept below the gpt-image floor of 2. LiteLLM publishes a text output rate ($10/1M) and an image-token output rate ($32/1M); completion keeps the text rate, because that bucket is what text output is billed at."
+        },
+        {
+          "model": "gpt-image-2",
+          "pricing_style": "openai",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 30,
           "cache_read_per_1m": 1.25,
           "cache_write_per_1m": 0,
           "source": "litellm",
@@ -5015,10 +5049,12 @@
           "model": "gpt-image-2.5",
           "pricing_style": "openai",
           "prompt_per_1m": 5,
-          "completion_per_1m": 10,
+          "completion_per_1m": 30,
           "cache_read_per_1m": 1.25,
           "cache_write_per_1m": 0,
+          "image_in_per_1m": 8,
           "source": "manual",
+          "price_reviewed": "No bare gpt-image-2.5 in LiteLLM. flare and sunburst publish the same card (text in $5, image in $8, image-token out $30, cache read $1.25) and no text output rate. The previous $10 completion was the retired text-output reading.",
           "input_modalities": [
             "text",
             "image"
@@ -5032,7 +5068,7 @@
           "model": "gpt-image-2.5-flare",
           "pricing_style": "openai",
           "prompt_per_1m": 5,
-          "completion_per_1m": 0,
+          "completion_per_1m": 30,
           "cache_read_per_1m": 1.25,
           "cache_write_per_1m": 0,
           "input_modalities": [
@@ -5047,7 +5083,7 @@
           "model": "gpt-image-2.5-sunburst",
           "pricing_style": "openai",
           "prompt_per_1m": 5,
-          "completion_per_1m": 0,
+          "completion_per_1m": 30,
           "cache_read_per_1m": 1.25,
           "cache_write_per_1m": 0,
           "input_modalities": [
@@ -5059,10 +5095,26 @@
           "image_in_per_1m": 8
         },
         {
+          "model": "gpt-image-2.6",
+          "pricing_style": "openai",
+          "prompt_per_1m": 5,
+          "completion_per_1m": 30,
+          "cache_read_per_1m": 1.25,
+          "cache_write_per_1m": 0,
+          "image_in_per_1m": 8,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "manual",
+          "price_reviewed": "No bare gpt-image-2.6 in LiteLLM. Both 2.6-flare and 2.6-sunburst publish this same card, and the catalog serves the bare id.",
+          "surface": "image"
+        },
+        {
           "model": "gpt-image-2.6-flare",
           "pricing_style": "openai",
           "prompt_per_1m": 5,
-          "completion_per_1m": 0,
+          "completion_per_1m": 30,
           "cache_read_per_1m": 1.25,
           "cache_write_per_1m": 0,
           "audio_in_per_1m": 0,
@@ -5079,7 +5131,7 @@
           "model": "gpt-image-2.6-sunburst",
           "pricing_style": "openai",
           "prompt_per_1m": 5,
-          "completion_per_1m": 0,
+          "completion_per_1m": 30,
           "cache_read_per_1m": 1.25,
           "cache_write_per_1m": 0,
           "audio_in_per_1m": 0,
@@ -5091,6 +5143,90 @@
           ],
           "source": "litellm",
           "surface": "image"
+        }
+      ]
+    },
+    "providers/commandcode.json": {
+      "name": "commandcode",
+      "display_name": "CommandCode",
+      "models": [
+        {
+          "model": "deepseek/deepseek-v4.1-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.6,
+          "cache_read_per_1m": 0.003,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Command Code bills at the underlying API rate with no markup (commandcode.ai/docs/provider). Off-peak card from commandcode.ai/models/deepseek-v4-1-flash: $0.15/$0.60/$0.003. Peak is 2x on weekdays 01:00–04:00 and 06:00–10:00 UTC, the same window as DeepSeek.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat",
+          "rate_variants": [
+            {
+              "name": "peak",
+              "utc_window_minutes": [
+                60,
+                240,
+                360,
+                600
+              ],
+              "weekdays_only": true,
+              "multiplier": 2
+            }
+          ]
+        },
+        {
+          "model": "z-ai/glm-5.3-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.5,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Command Code no-markup card, commandcode.ai/models (and the GLM-5.3 FlashX page's lineup): $0.15/$0.50, cache read $0.03. Same numbers as glm.json's litellm row.",
+          "context_window": 1048576,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "z-ai/glm-5.3-flashx",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.37,
+          "completion_per_1m": 1.25,
+          "cache_read_per_1m": 0.07,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "commandcode.ai/models/glm-5-3-flashx (2026-11-17): $0.37/$1.25, cache read $0.07. The page's calculator uses $0.07; an older models.md table said $0.075.",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
         }
       ]
     },
@@ -5291,6 +5427,215 @@
               "multiplier": 2
             }
           ]
+        }
+      ]
+    },
+    "providers/doubao-work.json": {
+      "name": "doubao-work",
+      "display_name": "Doubao Work",
+      "models": [
+        {
+          "model": "doubao-2.1-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.886669,
+          "completion_per_1m": 4.433345,
+          "cache_read_per_1m": 0.177334,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Volcengine Doubao-Seed-2.1-pro list: ¥6 / ¥30 / ¥1.20 cache per 1M tokens (ai.volcengine.com). USD at this registry's frozen ECB rate 6.7669 (2026-07-16), the same conversion k3 uses. Doubao Work does not publish its own token card; this is the underlying model's list. doubao-2.1-lite has no published price and stays out.",
+          "context_window": 262144,
+          "output_ceiling": 256000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "person-deepseek-v4-1-flash-261017",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.6,
+          "cache_read_per_1m": 0.003,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Doubao Work pin of DeepSeek V4.1 Flash (dated 2026-10-17). Card is DeepSeek's off-peak list, the same card as deepseek-v4-flash here; peak is 2x on the vendor's weekday window. Not a measured Doubao discount.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat",
+          "rate_variants": [
+            {
+              "name": "peak",
+              "utc_window_minutes": [
+                60,
+                240,
+                360,
+                600
+              ],
+              "weekdays_only": true,
+              "multiplier": 2
+            }
+          ]
+        },
+        {
+          "model": "person-deepseek-v4-pro-ga-260813",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.66,
+          "completion_per_1m": 1.98,
+          "cache_read_per_1m": 0.022,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Doubao Work pin of DeepSeek V4 Pro GA (2026-08-13). Card is DeepSeek's off-peak list from deepseek.json; peak is 2x on the vendor's weekday window.",
+          "context_window": 1000000,
+          "output_ceiling": 393216,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "high",
+            "max"
+          ],
+          "surface": "chat",
+          "rate_variants": [
+            {
+              "name": "peak",
+              "utc_window_minutes": [
+                60,
+                240,
+                360,
+                600
+              ],
+              "weekdays_only": true,
+              "multiplier": 2
+            }
+          ]
+        },
+        {
+          "model": "person-glm-5-3-261111",
+          "pricing_style": "openai",
+          "prompt_per_1m": 1.4,
+          "completion_per_1m": 4.4,
+          "cache_read_per_1m": 0.26,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Doubao Work pin of GLM-5.3 (2026-11-11). Card is glm.json's litellm USD list, $1.40/$4.40, cache read $0.26.",
+          "context_window": 1000000,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "person-glm-5-3-flash-261111",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.15,
+          "completion_per_1m": 0.5,
+          "cache_read_per_1m": 0.03,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "Doubao Work pin of GLM-5.3 Flash (2026-11-11). Card is glm.json's litellm USD list, $0.15/$0.50, cache read $0.03.",
+          "context_window": 1048576,
+          "output_ceiling": 128000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "person-kimi-k3-1-pro-261111",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 2,
+          "source": "manual",
+          "price_reviewed": "Doubao Work pin of Kimi K3.1 Pro (2026-11-11). Card is kimi-k3.1-pro's litellm list: $2/$10, cache read $0.2, cache write $2.",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "person-kimi-k3-1-pro-highspeed-261111",
+          "pricing_style": "openai",
+          "prompt_per_1m": 4,
+          "completion_per_1m": 20,
+          "cache_read_per_1m": 0.2,
+          "cache_write_per_1m": 4,
+          "source": "manual",
+          "price_reviewed": "Doubao Work pin of Kimi K3.1 Pro Highspeed (2026-11-11). Card is kimi-k3.1-pro-highspeed's litellm list: $4/$20, cache read $0.2, cache write $4.",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
+        },
+        {
+          "model": "person-kimi-k3-261111",
+          "pricing_style": "openai",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.3,
+          "cache_write_per_1m": 3,
+          "source": "manual",
+          "price_reviewed": "Doubao Work pin of Kimi K3 (2026-11-11). Card is kimi-k3's litellm international list ($3/$15, cache read $0.3, cache write $3), not the CNY k3 row.",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat"
         }
       ]
     },
@@ -7053,6 +7398,9 @@
             "image"
           ],
           "source": "litellm",
+          "aliases": [
+            "k3.1-pro"
+          ],
           "context_window": 1048576,
           "output_ceiling": 1048576,
           "surface": "chat",
@@ -7077,6 +7425,9 @@
             "image"
           ],
           "source": "litellm",
+          "aliases": [
+            "k3.1-pro-highspeed"
+          ],
           "context_window": 1048576,
           "output_ceiling": 1048576,
           "surface": "chat",
@@ -11887,6 +12238,27 @@
           ],
           "surface": "decision",
           "output_ceiling": 28800
+        },
+        {
+          "model": "jev-1.14.0",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.042,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "input $0.042/M, output free — docs.typesafe.ai/models (2026-11-17). docs name no separate preview SKU, so jev-latest (stable) and jev-preview both alias this row. Output 0 is the published price; the non-zero input rate is what keeps the row priced.",
+          "aliases": [
+            "jev-latest",
+            "jev-preview"
+          ],
+          "context_window": 64000,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "decision",
+          "output_ceiling": 32000
         }
       ]
     },
@@ -15253,7 +15625,8 @@
             "high"
           ],
           "surface": "audio",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+          "output_ceiling": 32768
         },
         {
           "model": "google/gemini-3.5-transcribe-live",
@@ -15391,7 +15764,8 @@
             "high"
           ],
           "surface": "audio",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+          "output_ceiling": 16384
         },
         {
           "model": "google/gemini-3.8-flash-tts",
@@ -15411,7 +15785,8 @@
             "high"
           ],
           "surface": "audio",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+          "output_ceiling": 16384
         },
         {
           "model": "google/gemini-3.8-live",
@@ -23015,6 +23390,28 @@
           "output_ceiling": 393216
         },
         {
+          "model": "deepseek-v4.1-flash",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.14,
+          "completion_per_1m": 0.28,
+          "cache_read_per_1m": 0.0028,
+          "cache_write_per_1m": 0,
+          "source": "manual",
+          "price_reviewed": "WorkBuddy publishes no separate V4.1 card. DeepSeek's off-peak list prices V4.1 Flash at the same $0.15/$0.60/$0.003 as V4 Flash, so this row uses the card WorkBuddy already publishes for deepseek-v4-flash rather than the vendor list.",
+          "context_window": 1000000,
+          "effort_levels": [
+            "low",
+            "high",
+            "max"
+          ],
+          "surface": "chat",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_ceiling": 393216
+        },
+        {
           "model": "glm-5.1",
           "pricing_style": "openai",
           "prompt_per_1m": 1.182225,
@@ -23494,7 +23891,7 @@
           "completion_per_1m": 0,
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
-          "source": "manual",
+          "source": "litellm",
           "effort_levels": [
             "none"
           ],
@@ -23503,7 +23900,9 @@
             "text",
             "image"
           ],
-          "context_window": 16000
+          "context_window": 16000,
+          "per_image": 0.02,
+          "price_reviewed": "LiteLLM input_cost_per_image $0.02. xAI's image table prices 1K and 2K at $0.02; resolution tiers are not separate rows."
         },
         {
           "model": "grok-imagine-image-2.0",
@@ -23512,7 +23911,7 @@
           "completion_per_1m": 0,
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
-          "source": "manual",
+          "source": "litellm",
           "effort_levels": [
             "none"
           ],
@@ -23521,7 +23920,28 @@
             "text",
             "image"
           ],
-          "context_window": 64000
+          "context_window": 64000,
+          "per_image": 0.06,
+          "price_reviewed": "LiteLLM's flat sticker is $0.06. xAI's table runs $0.04 (1K low) to $0.08 (2K medium); this schema has one per-image rate, so the flat number is the one delegated."
+        },
+        {
+          "model": "grok-imagine-image-pro",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "per_image": 0.04,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "surface": "image",
+          "price_reviewed": "Same sticker as grok-imagine-image-quality: $0.04. xAI's 2K tier is $0.06; the flat LiteLLM number is the 1K rate."
         },
         {
           "model": "grok-imagine-image-quality",
@@ -23530,7 +23950,7 @@
           "completion_per_1m": 0,
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
-          "source": "manual",
+          "source": "litellm",
           "effort_levels": [
             "none"
           ],
@@ -23539,7 +23959,9 @@
             "image"
           ],
           "surface": "image",
-          "context_window": 16000
+          "context_window": 16000,
+          "per_image": 0.04,
+          "price_reviewed": "LiteLLM input_cost_per_image $0.04 (the 1K tier). 2K is $0.06 and is not a separate row."
         },
         {
           "model": "grok-imagine-video",
@@ -23548,7 +23970,7 @@
           "completion_per_1m": 0,
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
-          "source": "manual",
+          "source": "litellm",
           "effort_levels": [
             "none"
           ],
@@ -23558,7 +23980,9 @@
             "image",
             "video"
           ],
-          "context_window": 1024
+          "context_window": 1024,
+          "video_per_second": 0.05,
+          "price_reviewed": "LiteLLM output_cost_per_second $0.05, which is the 480p default and the docs at-a-glance rate. 720p is $0.07. Image-prompt input ($0.002) is not per_image."
         },
         {
           "model": "grok-imagine-video-1.5",
@@ -23567,7 +23991,7 @@
           "completion_per_1m": 0,
           "cache_read_per_1m": 0,
           "cache_write_per_1m": 0,
-          "source": "manual",
+          "source": "litellm",
           "effort_levels": [
             "none"
           ],
@@ -23577,7 +24001,28 @@
             "image",
             "audio"
           ],
-          "context_window": 1024
+          "context_window": 1024,
+          "video_per_second": 0.08,
+          "price_reviewed": "480p default $0.08/s. 720p is $0.14 and 1080p is $0.25; the schema stores the default only."
+        },
+        {
+          "model": "grok-imagine-video-1.5-lite",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "video_per_second": 0.02,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "surface": "video",
+          "price_reviewed": "480p default $0.02/s. 720p is $0.03 and 1080p is $0.14."
         }
       ]
     }

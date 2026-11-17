@@ -3361,7 +3361,8 @@
         "high"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 32768
     },
     {
       "model": "google/gemini-3.5-transcribe-live",
@@ -3499,7 +3500,8 @@
         "high"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 16384
     },
     {
       "model": "google/gemini-3.8-flash-tts",
@@ -3519,7 +3521,8 @@
         "high"
       ],
       "surface": "audio",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+      "output_ceiling": 16384
     },
     {
       "model": "google/gemini-3.8-live",
