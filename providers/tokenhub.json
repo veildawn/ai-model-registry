@@ -383,6 +383,48 @@
       "output_ceiling": 64000
     },
     {
+      "model": "hy4",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.886669,
+      "completion_per_1m": 2.660007,
+      "cache_read_per_1m": 0.044333,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "TokenHub list 6/18/0.3 CNY at ECB 6.7669. See Tencent 130055 and 130051. A 50% discount runs through 2026-12-31 23:59:59 (Beijing); the list price is recorded, not the promotion, because the discount lapses while this row would not.",
+      "context_window": 1024000,
+      "effort_levels": [
+        "none",
+        "high"
+      ],
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_ceiling": 64000
+    },
+    {
+      "model": "hy4-flash",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.073889,
+      "completion_per_1m": 0.295556,
+      "cache_read_per_1m": 0.002956,
+      "cache_write_per_1m": 0,
+      "source": "manual",
+      "price_reviewed": "TokenHub list 0.5/2/0.02 CNY at ECB 6.7669. See Tencent 130055 and 130051. A 50% discount runs through 2026-11-30 12:00:00 (Beijing); the list price is recorded, not the promotion, because the discount lapses while this row would not.",
+      "context_window": 1024000,
+      "effort_levels": [
+        "none",
+        "high"
+      ],
+      "surface": "chat",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_ceiling": 64000
+    },
+    {
       "model": "hy4-preview",
       "pricing_style": "openai",
       "prompt_per_1m": 0.834,
