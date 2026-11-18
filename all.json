@@ -17240,44 +17240,12 @@
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         },
         {
-          "model": "minimax/minimax-m2",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.3,
-          "completion_per_1m": 1.2,
-          "cache_read_per_1m": 0.03,
-          "cache_write_per_1m": 0.375,
-          "source": "vendor-api",
-          "context_window": 205000,
-          "output_ceiling": 205000,
-          "input_modalities": [
-            "text"
-          ],
-          "surface": "chat",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-        },
-        {
           "model": "minimax/minimax-m2.1",
           "pricing_style": "openai",
           "prompt_per_1m": 0.3,
           "completion_per_1m": 1.2,
-          "cache_read_per_1m": 0.03,
-          "cache_write_per_1m": 0.375,
-          "source": "vendor-api",
-          "context_window": 204800,
-          "output_ceiling": 131072,
-          "input_modalities": [
-            "text"
-          ],
-          "surface": "chat",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-        },
-        {
-          "model": "minimax/minimax-m2.1-lightning",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.3,
-          "completion_per_1m": 2.4,
-          "cache_read_per_1m": 0.03,
-          "cache_write_per_1m": 0.375,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0.0,
           "source": "vendor-api",
           "context_window": 204800,
           "output_ceiling": 131072,
@@ -17292,27 +17260,11 @@
           "pricing_style": "openai",
           "prompt_per_1m": 0.3,
           "completion_per_1m": 1.2,
-          "cache_read_per_1m": 0.03,
-          "cache_write_per_1m": 0.375,
+          "cache_read_per_1m": 0.0,
+          "cache_write_per_1m": 0.0,
           "source": "vendor-api",
-          "context_window": 204800,
-          "output_ceiling": 131000,
-          "input_modalities": [
-            "text"
-          ],
-          "surface": "chat",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-        },
-        {
-          "model": "minimax/minimax-m2.5-highspeed",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.6,
-          "completion_per_1m": 2.4,
-          "cache_read_per_1m": 0.03,
-          "cache_write_per_1m": 0.375,
-          "source": "vendor-api",
-          "context_window": 204800,
-          "output_ceiling": 131000,
+          "context_window": 1000000,
+          "output_ceiling": 8192,
           "input_modalities": [
             "text"
           ],
@@ -17322,31 +17274,20 @@
         {
           "model": "minimax/minimax-m2.7",
           "pricing_style": "openai",
-          "prompt_per_1m": 0.3,
-          "completion_per_1m": 1.2,
-          "cache_read_per_1m": 0.06,
-          "cache_write_per_1m": 0.375,
+          "prompt_per_1m": 0.21,
+          "completion_per_1m": 0.84,
+          "cache_read_per_1m": 0.042,
+          "cache_write_per_1m": 0.0,
           "source": "vendor-api",
-          "context_window": 204800,
-          "output_ceiling": 131000,
+          "context_window": 196608,
+          "output_ceiling": 196608,
           "input_modalities": [
             "text"
           ],
-          "surface": "chat",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-        },
-        {
-          "model": "minimax/minimax-m2.7-highspeed",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.6,
-          "completion_per_1m": 2.4,
-          "cache_read_per_1m": 0.06,
-          "cache_write_per_1m": 0.375,
-          "source": "vendor-api",
-          "context_window": 204800,
-          "output_ceiling": 131100,
-          "input_modalities": [
-            "text"
+          "effort_levels": [
+            "low",
+            "medium",
+            "high"
           ],
           "surface": "chat",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
