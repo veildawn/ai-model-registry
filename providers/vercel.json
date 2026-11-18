@@ -3607,6 +3607,31 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
+      "model": "google/gemini-4-neon",
+      "pricing_style": "openai",
+      "prompt_per_1m": 3.0,
+      "completion_per_1m": 15.0,
+      "cache_read_per_1m": 0.15,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 1000000,
+      "output_ceiling": 1000000,
+      "input_modalities": [
+        "text",
+        "image",
+        "pdf",
+        "video"
+      ],
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "surface": "chat",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "google/gemini-decision-1",
       "pricing_style": "openai",
       "prompt_per_1m": 0.1,

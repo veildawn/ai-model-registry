@@ -985,6 +985,28 @@
           ]
         },
         {
+          "model": "gemini-4-neon",
+          "pricing_style": "openai",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video",
+            "pdf"
+          ],
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "surface": "chat"
+        },
+        {
           "model": "gemini-pro-agent",
           "pricing_style": "openai",
           "prompt_per_1m": 2,
@@ -4905,9 +4927,9 @@
         {
           "model": "gpt-6-rosalind",
           "pricing_style": "openai",
-          "prompt_per_1m": 15,
-          "completion_per_1m": 75,
-          "cache_read_per_1m": 1.5,
+          "prompt_per_1m": 10,
+          "completion_per_1m": 50,
+          "cache_read_per_1m": 1,
           "cache_write_per_1m": 18.75,
           "audio_in_per_1m": 0,
           "audio_out_per_1m": 0,
@@ -6547,6 +6569,28 @@
             "high",
             "xhigh"
           ]
+        },
+        {
+          "model": "gemini-4-neon",
+          "pricing_style": "openai",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video",
+            "pdf"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "surface": "chat"
         },
         {
           "model": "gemini-flash-latest",
@@ -16037,6 +16081,31 @@
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         },
         {
+          "model": "google/gemini-4-neon",
+          "pricing_style": "openai",
+          "prompt_per_1m": 3.0,
+          "completion_per_1m": 15.0,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0.0,
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "output_ceiling": 1000000,
+          "input_modalities": [
+            "text",
+            "image",
+            "pdf",
+            "video"
+          ],
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ],
+          "surface": "chat",
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+        },
+        {
           "model": "google/gemini-decision-1",
           "pricing_style": "openai",
           "prompt_per_1m": 0.1,
@@ -23302,6 +23371,28 @@
             "high",
             "xhigh"
           ]
+        },
+        {
+          "model": "gemini-4-neon",
+          "pricing_style": "openai",
+          "prompt_per_1m": 3,
+          "completion_per_1m": 15,
+          "cache_read_per_1m": 0.15,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image",
+            "audio",
+            "video",
+            "pdf"
+          ],
+          "source": "litellm",
+          "context_window": 1048576,
+          "output_ceiling": 1048576,
+          "surface": "chat"
         },
         {
           "model": "gemini-nano-banana-2.1",
