@@ -20026,6 +20026,21 @@
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         },
         {
+          "model": "openai/gpt-live-1.1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.0,
+          "completion_per_1m": 0.0,
+          "cache_read_per_1m": 0.0,
+          "cache_write_per_1m": 0.0,
+          "source": "vendor-api",
+          "input_modalities": [
+            "text",
+            "audio"
+          ],
+          "surface": "audio",
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+        },
+        {
           "model": "openai/gpt-live-transcribe",
           "pricing_style": "openai",
           "prompt_per_1m": 0.0002,
@@ -20646,21 +20661,6 @@
             "xhigh"
           ],
           "surface": "chat",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-        },
-        {
-          "model": "prodia/flux-fast-schnell",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.0,
-          "completion_per_1m": 0.0,
-          "cache_read_per_1m": 0.0,
-          "cache_write_per_1m": 0.0,
-          "source": "vendor-api",
-          "context_window": 512,
-          "input_modalities": [
-            "text"
-          ],
-          "surface": "image",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         },
         {
