@@ -1004,7 +1004,13 @@
           "source": "vendor-api",
           "context_window": 1048576,
           "output_ceiling": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ]
         },
         {
           "model": "gemini-pro-agent",
@@ -6590,7 +6596,13 @@
           "source": "litellm",
           "context_window": 1048576,
           "output_ceiling": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ]
         },
         {
           "model": "gemini-flash-latest",
@@ -20996,6 +21008,23 @@
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         },
         {
+          "model": "scaledown/extract-1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.05,
+          "completion_per_1m": 0.0,
+          "cache_read_per_1m": 0.0,
+          "cache_write_per_1m": 0.0,
+          "source": "vendor-api",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image",
+            "pdf"
+          ],
+          "surface": "chat",
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+        },
+        {
           "model": "scaledown/scaledown-classify-1",
           "pricing_style": "openai",
           "prompt_per_1m": 0.05,
@@ -23392,7 +23421,13 @@
           "source": "litellm",
           "context_window": 1048576,
           "output_ceiling": 1048576,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ]
         },
         {
           "model": "gemini-nano-banana-2.1",

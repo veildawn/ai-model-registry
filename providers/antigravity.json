@@ -554,7 +554,13 @@
       "source": "vendor-api",
       "context_window": 1048576,
       "output_ceiling": 1048576,
-      "surface": "chat"
+      "surface": "chat",
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ]
     },
     {
       "model": "gemini-pro-agent",
