@@ -14892,7 +14892,7 @@
             }
           ],
           "source": "vendor-api",
-          "context_window": 1000000,
+          "context_window": 1048600,
           "output_ceiling": 384000,
           "input_modalities": [
             "text"
@@ -17706,6 +17706,22 @@
             "text"
           ],
           "surface": "chat",
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+        },
+        {
+          "model": "modaic/mo",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.04,
+          "completion_per_1m": 0.0,
+          "cache_read_per_1m": 0.0,
+          "cache_write_per_1m": 0.0,
+          "source": "vendor-api",
+          "context_window": 262144,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "decision",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         },
         {
@@ -21358,23 +21374,6 @@
             "medium",
             "high",
             "xhigh"
-          ],
-          "surface": "chat",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-        },
-        {
-          "model": "spacexai/grok-build-0.1",
-          "pricing_style": "openai",
-          "prompt_per_1m": 1.0,
-          "completion_per_1m": 2.0,
-          "cache_read_per_1m": 0.2,
-          "cache_write_per_1m": 0.0,
-          "source": "vendor-api",
-          "context_window": 256000,
-          "output_ceiling": 256000,
-          "input_modalities": [
-            "text",
-            "image"
           ],
           "surface": "chat",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
