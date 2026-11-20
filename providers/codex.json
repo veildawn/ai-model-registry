@@ -358,7 +358,7 @@
       "prompt_per_1m": 10,
       "completion_per_1m": 50,
       "cache_read_per_1m": 1,
-      "cache_write_per_1m": 18.75,
+      "cache_write_per_1m": 12.5,
       "audio_in_per_1m": 0,
       "audio_out_per_1m": 0,
       "image_in_per_1m": 0,
