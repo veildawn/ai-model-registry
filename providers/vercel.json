@@ -408,7 +408,7 @@
       "model": "alibaba/qwen3.8-27b",
       "pricing_style": "openai",
       "prompt_per_1m": 0.06,
-      "completion_per_1m": 2.2,
+      "completion_per_1m": 1.96,
       "cache_read_per_1m": 0.059,
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
@@ -2391,23 +2391,13 @@
     {
       "model": "deepseek/deepseek-v4-pro-0813",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.66,
-      "completion_per_1m": 1.98,
-      "cache_read_per_1m": 0.066,
+      "prompt_per_1m": 1.32,
+      "completion_per_1m": 3.96,
+      "cache_read_per_1m": 0.132,
       "cache_write_per_1m": 0.0,
-      "rate_variants": [
-        {
-          "name": "peak",
-          "utc_window_minutes": [
-            0,
-            840
-          ],
-          "multiplier": 2.0
-        }
-      ],
       "source": "vendor-api",
       "context_window": 1048600,
-      "output_ceiling": 384000,
+      "output_ceiling": 1048600,
       "input_modalities": [
         "text"
       ],
@@ -8052,8 +8042,8 @@
         {
           "name": "peak",
           "utc_window_minutes": [
-            480,
-            30
+            540,
+            90
           ],
           "multiplier": 2.0
         }
