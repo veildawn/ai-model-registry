@@ -4202,22 +4202,6 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
-      "model": "liquid/d1",
-      "pricing_style": "openai",
-      "prompt_per_1m": 0.02,
-      "completion_per_1m": 0.0,
-      "cache_read_per_1m": 0.0,
-      "cache_write_per_1m": 0.0,
-      "source": "vendor-api",
-      "context_window": 65536,
-      "input_modalities": [
-        "text",
-        "image"
-      ],
-      "surface": "decision",
-      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-    },
-    {
       "model": "liquid/d1-ultra",
       "pricing_style": "openai",
       "prompt_per_1m": 0.042,
@@ -4901,13 +4885,13 @@
     {
       "model": "minimax/minimax-m2.7",
       "pricing_style": "openai",
-      "prompt_per_1m": 0.21,
-      "completion_per_1m": 0.84,
-      "cache_read_per_1m": 0.042,
+      "prompt_per_1m": 0.3,
+      "completion_per_1m": 1.2,
+      "cache_read_per_1m": 0.06,
       "cache_write_per_1m": 0.0,
       "source": "vendor-api",
-      "context_window": 196608,
-      "output_ceiling": 196608,
+      "context_window": 204800,
+      "output_ceiling": 131072,
       "input_modalities": [
         "text"
       ],
