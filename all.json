@@ -8615,6 +8615,21 @@
           "output_ceiling": 32768
         },
         {
+          "model": "hy4",
+          "source": "manual",
+          "context_window": 1048576,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "effort_levels": [
+            "none",
+            "high"
+          ],
+          "surface": "chat",
+          "output_ceiling": 65536
+        },
+        {
           "model": "inkling-2-small",
           "source": "manual",
           "context_window": 1048576,
