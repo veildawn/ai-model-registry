@@ -982,7 +982,13 @@
             "medium",
             "high",
             "xhigh"
-          ]
+          ],
+          "variants": {
+            "suffixes": [
+              "",
+              "-sonar"
+            ]
+          }
         },
         {
           "model": "gemini-4-neon",

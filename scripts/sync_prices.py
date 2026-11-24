@@ -503,7 +503,7 @@ DERIVED_NAMESPACES = {
 # rate either ("gemini-3-flash-agent" is priced as gemini-3-flash), which is the
 # one assumption those rows rest on.
 SURFACE_SUFFIX = re.compile(
-    r"-(thinking|agent|tiered|extra-high|extra-low|minimal|none|low|medium|high|xhigh|max|fast)$")
+    r"-(thinking|agent|tiered|sonar|extra-high|extra-low|minimal|none|low|medium|high|xhigh|max|fast)$")
 
 # An Anthropic-style dated release suffix, and nothing else.
 DATED_SUFFIX = re.compile(r"^-20\d{6}$")
