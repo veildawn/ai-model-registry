@@ -291,6 +291,25 @@
       "output_ceiling": 128000
     },
     {
+      "model": "gpt-6-astra-healthcare",
+      "pricing_style": "openai",
+      "prompt_per_1m": 10,
+      "completion_per_1m": 50,
+      "cache_read_per_1m": 1,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 922000,
+      "output_ceiling": 128000,
+      "surface": "chat"
+    },
+    {
       "model": "gpt-6-astra-law",
       "pricing_style": "openai",
       "prompt_per_1m": 10,
@@ -419,6 +438,25 @@
       ]
     },
     {
+      "model": "gpt-6.1-sol-healthcare",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.1,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 922000,
+      "output_ceiling": 128000,
+      "surface": "chat"
+    },
+    {
       "model": "gpt-6.1-terra",
       "pricing_style": "openai",
       "prompt_per_1m": 1,
@@ -472,6 +510,25 @@
       ]
     },
     {
+      "model": "gpt-6.2-astra-healthcare",
+      "pricing_style": "openai",
+      "prompt_per_1m": 8,
+      "completion_per_1m": 40,
+      "cache_read_per_1m": 0.4,
+      "cache_write_per_1m": 10,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 922000,
+      "output_ceiling": 128000,
+      "surface": "chat"
+    },
+    {
       "model": "gpt-6.2-astra-law",
       "pricing_style": "openai",
       "prompt_per_1m": 8,
@@ -515,6 +572,25 @@
         "xhigh",
         "max"
       ]
+    },
+    {
+      "model": "gpt-6.2-sol-healthcare",
+      "pricing_style": "openai",
+      "prompt_per_1m": 2,
+      "completion_per_1m": 10,
+      "cache_read_per_1m": 0.1,
+      "cache_write_per_1m": 2.5,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "source": "litellm",
+      "context_window": 922000,
+      "output_ceiling": 128000,
+      "surface": "chat"
     },
     {
       "model": "gpt-image-1",

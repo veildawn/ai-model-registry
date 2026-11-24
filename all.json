@@ -4875,6 +4875,25 @@
           "output_ceiling": 128000
         },
         {
+          "model": "gpt-6-astra-healthcare",
+          "pricing_style": "openai",
+          "prompt_per_1m": 10,
+          "completion_per_1m": 50,
+          "cache_read_per_1m": 1,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 922000,
+          "output_ceiling": 128000,
+          "surface": "chat"
+        },
+        {
           "model": "gpt-6-astra-law",
           "pricing_style": "openai",
           "prompt_per_1m": 10,
@@ -5003,6 +5022,25 @@
           ]
         },
         {
+          "model": "gpt-6.1-sol-healthcare",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 922000,
+          "output_ceiling": 128000,
+          "surface": "chat"
+        },
+        {
           "model": "gpt-6.1-terra",
           "pricing_style": "openai",
           "prompt_per_1m": 1,
@@ -5056,6 +5094,25 @@
           ]
         },
         {
+          "model": "gpt-6.2-astra-healthcare",
+          "pricing_style": "openai",
+          "prompt_per_1m": 8,
+          "completion_per_1m": 40,
+          "cache_read_per_1m": 0.4,
+          "cache_write_per_1m": 10,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 922000,
+          "output_ceiling": 128000,
+          "surface": "chat"
+        },
+        {
           "model": "gpt-6.2-astra-law",
           "pricing_style": "openai",
           "prompt_per_1m": 8,
@@ -5099,6 +5156,25 @@
             "xhigh",
             "max"
           ]
+        },
+        {
+          "model": "gpt-6.2-sol-healthcare",
+          "pricing_style": "openai",
+          "prompt_per_1m": 2,
+          "completion_per_1m": 10,
+          "cache_read_per_1m": 0.1,
+          "cache_write_per_1m": 2.5,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "source": "litellm",
+          "context_window": 922000,
+          "output_ceiling": 128000,
+          "surface": "chat"
         },
         {
           "model": "gpt-image-1",
@@ -9490,6 +9566,7 @@
           "context_window": 256000,
           "effort_levels": [
             "none",
+            "low",
             "high"
           ],
           "surface": "chat",
@@ -10104,7 +10181,7 @@
             "text"
           ],
           "source": "manual",
-          "context_window": 1024000,
+          "context_window": 1048576,
           "effort_levels": [
             "none",
             "high"
@@ -10195,6 +10272,7 @@
             "image"
           ],
           "effort_levels": [
+            "none",
             "low",
             "high",
             "xhigh"
@@ -10863,7 +10941,13 @@
           "source": "litellm",
           "context_window": 991808,
           "output_ceiling": 131072,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "none",
+            "low",
+            "high",
+            "xhigh"
+          ]
         }
       ]
     },
@@ -11157,11 +11241,10 @@
           "cache_read_per_1m": 0.2,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 1048576,
           "effort_levels": [
             "none",
             "low",
-            "medium",
             "high",
             "max"
           ],
@@ -11492,11 +11575,10 @@
           "cache_read_per_1m": 0.2,
           "cache_write_per_1m": 0,
           "source": "manual",
-          "context_window": 1000000,
+          "context_window": 1048576,
           "effort_levels": [
             "none",
             "low",
-            "medium",
             "high",
             "max"
           ],
@@ -14099,24 +14181,6 @@
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         },
         {
-          "model": "anthropic/claude-sonnet-4.5-batch",
-          "pricing_style": "openai",
-          "prompt_per_1m": 1.5,
-          "completion_per_1m": 7.5,
-          "cache_read_per_1m": 0.15,
-          "cache_write_per_1m": 1.875,
-          "source": "vendor-api",
-          "context_window": 1000000,
-          "output_ceiling": 64000,
-          "input_modalities": [
-            "text",
-            "image",
-            "pdf"
-          ],
-          "surface": "chat",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-        },
-        {
           "model": "anthropic/claude-sonnet-4.6",
           "pricing_style": "openai",
           "prompt_per_1m": 3.0,
@@ -16308,7 +16372,27 @@
             "xhigh"
           ],
           "surface": "chat",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models.",
+          "variants": {
+            "suffixes": [
+              "",
+              "-fast"
+            ],
+            "overrides": [
+              {
+                "suffixes": [
+                  "-fast"
+                ],
+                "prompt_per_1m": 5.4,
+                "completion_per_1m": 27.0,
+                "cache_read_per_1m": 0.27,
+                "cache_write_per_1m": 0.0,
+                "audio_in_per_1m": 0,
+                "audio_out_per_1m": 0,
+                "image_in_per_1m": 0
+              }
+            ]
+          }
         },
         {
           "model": "google/gemini-decision-1",
@@ -18145,21 +18229,6 @@
           "input_modalities": [
             "text",
             "image"
-          ],
-          "surface": "decision",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-        },
-        {
-          "model": "nace-ai/drex-v2.0",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.03,
-          "completion_per_1m": 0.0,
-          "cache_read_per_1m": 0.0,
-          "cache_write_per_1m": 0.0,
-          "source": "vendor-api",
-          "context_window": 262144,
-          "input_modalities": [
-            "text"
           ],
           "surface": "decision",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -21872,6 +21941,32 @@
             "text",
             "image",
             "pdf"
+          ],
+          "effort_levels": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "surface": "chat",
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+        },
+        {
+          "model": "thinkingmachines/inkling-2-mini",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.075,
+          "completion_per_1m": 0.3,
+          "cache_read_per_1m": 0.015,
+          "cache_write_per_1m": 0.0,
+          "source": "vendor-api",
+          "context_window": 1048576,
+          "output_ceiling": 1000000,
+          "input_modalities": [
+            "text",
+            "image"
           ],
           "effort_levels": [
             "none",

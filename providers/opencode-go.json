@@ -542,6 +542,7 @@
       "context_window": 256000,
       "effort_levels": [
         "none",
+        "low",
         "high"
       ],
       "surface": "chat",
@@ -1156,7 +1157,7 @@
         "text"
       ],
       "source": "manual",
-      "context_window": 1024000,
+      "context_window": 1048576,
       "effort_levels": [
         "none",
         "high"
@@ -1247,6 +1248,7 @@
         "image"
       ],
       "effort_levels": [
+        "none",
         "low",
         "high",
         "xhigh"
