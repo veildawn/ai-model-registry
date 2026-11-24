@@ -252,6 +252,40 @@
       "output_ceiling": 65536
     },
     {
+      "model": "gemini-decision-1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "source": "manual",
+      "surface": "chat"
+    },
+    {
+      "model": "gemini-embedding-2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.2,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "source": "manual",
+      "context_window": 8192,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video",
+        "pdf"
+      ],
+      "surface": "chat"
+    },
+    {
       "model": "glm-5",
       "pricing_style": "openai",
       "prompt_per_1m": 1,
@@ -400,6 +434,19 @@
       "surface": "chat"
     },
     {
+      "model": "gpt-6-luna-decision",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "source": "manual",
+      "surface": "chat"
+    },
+    {
       "model": "grok-4.5",
       "pricing_style": "openai",
       "prompt_per_1m": 2,
@@ -543,6 +590,19 @@
       ],
       "surface": "chat",
       "output_ceiling": 131072
+    },
+    {
+      "model": "jev-1.14",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "source": "manual",
+      "surface": "chat"
     },
     {
       "model": "kimi-k2.5",
@@ -959,6 +1019,19 @@
       "surface": "chat"
     },
     {
+      "model": "qwen3-embedding-8b",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "source": "manual",
+      "surface": "chat"
+    },
+    {
       "model": "qwen3.5-plus",
       "pricing_style": "openai",
       "prompt_per_1m": 0.2,
@@ -1252,6 +1325,24 @@
         "high"
       ],
       "surface": "chat"
+    },
+    {
+      "model": "text-embedding-3-small",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.02,
+      "completion_per_1m": 0,
+      "cache_read_per_1m": 0,
+      "cache_write_per_1m": 0,
+      "audio_in_per_1m": 0,
+      "audio_out_per_1m": 0,
+      "image_in_per_1m": 0,
+      "source": "manual",
+      "context_window": 8191,
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "chat",
+      "output_ceiling": 1536
     },
     {
       "model": "union-alpha",

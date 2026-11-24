@@ -166,7 +166,14 @@
       "input_modalities": [
         "text"
       ],
-      "output_ceiling": 131072
+      "output_ceiling": 131072,
+      "effort_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
     },
     {
       "model": "minimax-m3",
