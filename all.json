@@ -9460,6 +9460,26 @@
           "output_ceiling": 500000
         },
         {
+          "model": "hungerg-free",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0,
+          "completion_per_1m": 0,
+          "cache_read_per_1m": 0,
+          "cache_write_per_1m": 0,
+          "audio_in_per_1m": 0,
+          "audio_out_per_1m": 0,
+          "image_in_per_1m": 0,
+          "source": "manual",
+          "context_window": 1000000,
+          "input_modalities": [
+            "text",
+            "image",
+            "video"
+          ],
+          "surface": "chat",
+          "output_ceiling": 65536
+        },
+        {
           "model": "hy3",
           "pricing_style": "openai",
           "prompt_per_1m": 0.14,
@@ -12784,22 +12804,6 @@
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         },
         {
-          "model": "alibaba/qwen3-max-thinking",
-          "pricing_style": "openai",
-          "prompt_per_1m": 1.2,
-          "completion_per_1m": 6.0,
-          "cache_read_per_1m": 0.24,
-          "cache_write_per_1m": 0.0,
-          "source": "vendor-api",
-          "context_window": 256000,
-          "output_ceiling": 65536,
-          "input_modalities": [
-            "text"
-          ],
-          "surface": "chat",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-        },
-        {
           "model": "alibaba/qwen3-next-80b-a3b-instruct",
           "pricing_style": "openai",
           "prompt_per_1m": 0.09,
@@ -14265,6 +14269,22 @@
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         },
         {
+          "model": "baseten/bison-1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.1,
+          "completion_per_1m": 0.0,
+          "cache_read_per_1m": 0.0,
+          "cache_write_per_1m": 0.0,
+          "source": "vendor-api",
+          "context_window": 131072,
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "surface": "decision",
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+        },
+        {
           "model": "baseten/elephant-1",
           "pricing_style": "openai",
           "prompt_per_1m": 0.035,
@@ -14275,6 +14295,22 @@
           "context_window": 16384,
           "input_modalities": [
             "text"
+          ],
+          "surface": "decision",
+          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+        },
+        {
+          "model": "baseten/groundhog-1",
+          "pricing_style": "openai",
+          "prompt_per_1m": 0.035,
+          "completion_per_1m": 0.0,
+          "cache_read_per_1m": 0.0,
+          "cache_write_per_1m": 0.0,
+          "source": "vendor-api",
+          "context_window": 131072,
+          "input_modalities": [
+            "text",
+            "image"
           ],
           "surface": "decision",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
@@ -16852,22 +16888,6 @@
             "text"
           ],
           "surface": "video",
-          "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
-        },
-        {
-          "model": "liquid/d1-ultra",
-          "pricing_style": "openai",
-          "prompt_per_1m": 0.042,
-          "completion_per_1m": 0.0,
-          "cache_read_per_1m": 0.0,
-          "cache_write_per_1m": 0.0,
-          "source": "vendor-api",
-          "context_window": 32768,
-          "input_modalities": [
-            "text",
-            "image"
-          ],
-          "surface": "decision",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
         },
         {
