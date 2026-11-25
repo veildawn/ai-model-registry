@@ -4891,7 +4891,14 @@
           "source": "litellm",
           "context_window": 922000,
           "output_ceiling": 128000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "gpt-6-astra-law",
@@ -5038,7 +5045,14 @@
           "source": "litellm",
           "context_window": 922000,
           "output_ceiling": 128000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "gpt-6.1-terra",
@@ -5110,7 +5124,14 @@
           "source": "litellm",
           "context_window": 922000,
           "output_ceiling": 128000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "gpt-6.2-astra-law",
@@ -5174,7 +5195,14 @@
           "source": "litellm",
           "context_window": 922000,
           "output_ceiling": 128000,
-          "surface": "chat"
+          "surface": "chat",
+          "effort_levels": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ]
         },
         {
           "model": "gpt-image-1",
