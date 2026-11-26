@@ -7201,7 +7201,10 @@
           "source": "litellm",
           "context_window": 128000,
           "output_ceiling": 32000,
-          "surface": "chat"
+          "surface": "chat",
+          "input_modalities": [
+            "text"
+          ]
         },
         {
           "model": "glm-4.5",
@@ -20804,7 +20807,7 @@
           ],
           "source": "vendor-api",
           "context_window": 1048576,
-          "output_ceiling": 131072,
+          "output_ceiling": 1048576,
           "input_modalities": [
             "text",
             "image"
@@ -21307,7 +21310,9 @@
           "cache_write_per_1m": 0.0,
           "source": "vendor-api",
           "input_modalities": [
-            "text"
+            "text",
+            "image",
+            "pdf"
           ],
           "surface": "decision",
           "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."

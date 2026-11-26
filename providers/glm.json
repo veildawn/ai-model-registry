@@ -45,7 +45,10 @@
       "source": "litellm",
       "context_window": 128000,
       "output_ceiling": 32000,
-      "surface": "chat"
+      "surface": "chat",
+      "input_modalities": [
+        "text"
+      ]
     },
     {
       "model": "glm-4.5",
