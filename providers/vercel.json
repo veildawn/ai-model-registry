@@ -8314,6 +8314,21 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
+      "model": "recraft/recraft-v4.1-flash-v2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.0,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "per_image": 0.007,
+      "source": "vendor-api",
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "image",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "recraft/recraft-v4.1-pro",
       "pricing_style": "openai",
       "prompt_per_1m": 0.0,
