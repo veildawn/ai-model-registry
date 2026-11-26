@@ -5486,6 +5486,22 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
+      "model": "nace-ai/drex-max-v1.2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.03,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "source": "vendor-api",
+      "context_window": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "surface": "decision",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "nvidia/nemotron-3-super-120b-a12b",
       "pricing_style": "openai",
       "prompt_per_1m": 0.15,
