@@ -1585,6 +1585,53 @@
       "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
     },
     {
+      "model": "assemblyai/stt-3.7",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.0,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "asr_per_second": 5.834e-05,
+      "source": "vendor-api",
+      "free": true,
+      "input_modalities": [
+        "audio"
+      ],
+      "surface": "audio",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "assemblyai/tts-1",
+      "pricing_style": "openai",
+      "prompt_per_1m": 15.0,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "tts_per_1m_chars": 15.0,
+      "source": "vendor-api",
+      "input_modalities": [
+        "text"
+      ],
+      "surface": "audio",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
+      "model": "assemblyai/universal-2",
+      "pricing_style": "openai",
+      "prompt_per_1m": 0.0,
+      "completion_per_1m": 0.0,
+      "cache_read_per_1m": 0.0,
+      "cache_write_per_1m": 0.0,
+      "asr_per_second": 4.167e-05,
+      "source": "vendor-api",
+      "free": true,
+      "input_modalities": [
+        "audio"
+      ],
+      "surface": "audio",
+      "price_reviewed": "Official pricing from vercel.com/ai-gateway/models and GET ai-gateway.vercel.sh/v1/models."
+    },
+    {
       "model": "baseten/bison-1",
       "pricing_style": "openai",
       "prompt_per_1m": 0.1,
