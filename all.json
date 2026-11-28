@@ -16745,12 +16745,11 @@
         {
           "model": "humansand/ampersand-v0.1",
           "pricing_style": "openai",
-          "prompt_per_1m": 0.0,
-          "completion_per_1m": 0.0,
-          "cache_read_per_1m": 0.0,
+          "prompt_per_1m": 1.0,
+          "completion_per_1m": 5.2,
+          "cache_read_per_1m": 0.2,
           "cache_write_per_1m": 0.0,
           "source": "vendor-api",
-          "free": true,
           "context_window": 1000000,
           "output_ceiling": 32768,
           "input_modalities": [
